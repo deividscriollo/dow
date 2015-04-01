@@ -1,4 +1,7 @@
 <?php
+date_default_timezone_set('America/Guayaquil'); 
+$fecha = date('Y-m-d H:i:s', time());   
+$fecha_larga = date('His', time());
 function sesion_activa(){
     session_start();        
     return $_SESSION['iddow'];
@@ -23,23 +26,6 @@ function cargarSelect($conexion, $sql) {
         while ($row = pg_fetch_row($sql)) {
             $lista[] = $row[0];
             $lista[] = $row[1];
-        }
-        echo $lista = json_encode($lista);
-    }
-}
-function carga_tabla_7($conexion, $sql) {
-    $lista = array();
-    $data = 0;
-    $sql = pg_query($conexion, $sql);
-    if ($sql) {
-        while ($row = pg_fetch_row($sql)) {
-            $lista[] = $row[0];
-            $lista[] = $row[1];
-            $lista[] = $row[2];
-            $lista[] = $row[3];
-            $lista[] = $row[4];
-            $lista[] = $row[5];
-            $lista[] = $row[6];
         }
         echo $lista = json_encode($lista);
     }
@@ -73,7 +59,23 @@ function cargarSelect_6($conexion, $sql) {
         echo $lista = json_encode($lista);
     }
 }
-
+function carga_tabla_7($conexion, $sql) {
+    $lista = array();
+    $data = 0;
+    $sql = pg_query($conexion, $sql);
+    if ($sql) {
+        while ($row = pg_fetch_row($sql)) {
+            $lista[] = $row[0];
+            $lista[] = $row[1];
+            $lista[] = $row[2];
+            $lista[] = $row[3];
+            $lista[] = $row[4];
+            $lista[] = $row[5];
+            $lista[] = $row[6];
+        }
+        echo $lista = json_encode($lista);
+    }
+}
 function cargarSelect_8($conexion, $sql) {
     $lista = array();
     $data = 0;
@@ -92,6 +94,7 @@ function cargarSelect_8($conexion, $sql) {
         echo $lista = json_encode($lista);
     }
 }
+
 function unique($fecha_larga) {
     $id = uniqid();
     $id = $fecha_larga . $id;
@@ -223,8 +226,35 @@ function maxCaracter($texto, $cant){
     return $texto;
 }
 function carga_json($conexion,$sql){     
-        $sql = pg_query($sql);                
-        return $sql;
+    $sql = pg_query($sql);                
+    return $sql;
+}       
+function carga_json_1($conexion,$sql){     
+    $sql = pg_query($sql);                
+    $sql = pg_fetch_row($sql);
+    return $sql;
+}       
+function sql_array($conexion,$sql){    
+    $sql = pg_fetch_row(pg_query($sql));                                 
+    $sql = "array['".implode("', '", $sql)."']";   
+    return $sql;     
+}
+function auditoria_sistema($conexion,$tabla,$id_user,$proceso,$id_registro,$fecha_larga,$fecha,$sql_nuevo,$sql_anterior){
+    $cliente = $_SERVER['REMOTE_ADDR'];
+    $server = $_SERVER['SERVER_ADDR'];
+    $id = unique($fecha_larga);    
+    if($proceso == 'Insert'){                
+        $consulta = "insert into auditoria values ('$id','$tabla','$id_registro',array[''],$sql_nuevo::text[],'$proceso','$id_user','$cliente','$server','0','$fecha')";                       
+        pg_query($consulta);               
+    }else{
+        if($proceso == 'Update'){        
+            $consulta = "insert into auditoria values ('$id','$tabla','$id_registro',$sql_anterior::text[],$sql_nuevo::text[],'$proceso','$id_user','$cliente','$server','0','$fecha')";                       
+            pg_query($consulta);       
+        }else{            
+            if($proceso == 'Backup'){        
+            }               
+        }
     }
+}
 
 ?>

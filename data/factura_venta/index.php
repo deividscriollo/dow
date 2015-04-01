@@ -1,4 +1,12 @@
-<?php include('../menu/index.php'); ?>
+<?php include('../menu/index.php'); 
+include '../conexion.php';
+$conexion = conectarse();
+
+$consulta = pg_query("select numero_serie from factura_venta");
+while ($row = pg_fetch_row($consulta)) {
+    $num_factura = $row[0];
+}
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -33,7 +41,7 @@
 		<script src="../../dist/js/ace-extra.min.js"></script>
 	</head>
 
-	<body class="no-skin">
+	<body class="skin-1">
 		<?php menu_arriba(); ?>
 		<div class="main-container" id="main-container">
 			<?php menu_lateral(); ?>
@@ -93,6 +101,7 @@
 															</div>
 														</div>
 													</div>
+													
 													<div class="hr"></div>
 													<div class="row">
 														<div class="col-xs-12">
@@ -170,6 +179,7 @@
 																			</div>
 																			<div class="col-sm-4">
 																				<input type="text" id="serie3" name="serie3" class="form-control" data-toggle="tooltip" data-original-title="" required />																		
+																				<input type="hidden" id="num_oculto" name="num_oculto" class="form-control" data-toggle="tooltip" data-original-title="" value="<?php echo $num_factura ?>" />																		
 																			</div>																														
 																		</div>
 																	</div>

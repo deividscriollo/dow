@@ -39,7 +39,7 @@
 		<script src="../../dist/js/ace-extra.min.js"></script>
 	</head>
 
-	<body class="no-skin">
+	<body class="skin-1">
 		<?php menu_arriba(); ?>
 
 		<div class="main-container" id="main-container">			

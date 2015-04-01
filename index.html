@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+   <meta charset="utf-8" />
+   <title>Logeo</title>
+   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+   <meta content="" name="description" />
+   <meta content="" name="author" />
+   <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+   <link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
+   <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+   <link href="css/style.css" rel="stylesheet" />
+   <link href="css/style-responsive.css" rel="stylesheet" />
+   <link href="css/style-default.css" rel="stylesheet" id="style_color" />
+   <link href="css/animate.css" rel="stylesheet" />
+   <link rel="stylesheet" href="dist/css/jquery.gritter.min.css" />
+
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="lock">
+    <div class="lock-header">
+        <!-- BEGIN LOGO -->
+        <a class="center" id="logo" href="index.html">
+            <img class="center animated rubberBand" alt="logo" src="empresa/logotipo.fw.png">
+        </a>
+        <!-- END LOGO -->
+    </div>
+    <div class="login-wrap">
+        <form>
+            <div class="">
+                <div class="metro double-size green">
+                    <div class="input-append lock-input">
+                        <input type="text" id="txt_1" name="txt_1" placeholder="Usuario">
+                    </div>
+                </div>
+                <div class="metro double-size yellow ">            
+                    <div class="input-append lock-input">
+                        <input type="password" id="txt_2" name="txt_2" placeholder="Clave">
+                    </div>
+                </div>
+            </div>
+            <div class="metro single-size terques dc" id="btn_acceder">
+                <i class=" icon-long-arrow-right"></i>
+            </div>
+        </form>
+    </div>
+</body>
+<!-- END BODY -->
+</html>
+<style type="text/css">
+    .dc{
+        width: 300px!important;        
+    }
+    .dc:hover{
+        background: #024B78;
+        
+    }
+    /*#txt_1{
+        border: solid 2px red;
+    }*/
+</style>
+
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='dist/js/jquery.min.js'>"+"<"+"/script>");
+</script>
+<script src="dist/js/jquery.gritter.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('.dc').css({'cursor':'pointer'});
+//class="animated bounce"
+        $('.dc').hover(function(){
+            
+        });
+    })
+    $('#btn_acceder').click(function(){        
+        var a=$('#txt_1').val();
+        var b=$('#txt_2').val();
+        if (a!=''&&b!='') {
+            $.ajax({
+                url:'index/proceso.php',
+                type:'POST',
+                data:{g:'ok',txt_1:$('#txt_1').val(),txt_2:$('#txt_2').val()},
+                success:function(data){                 
+                    console.log(data)
+                    if (data==1) {
+                        $.gritter.add({
+                            title: 'Información Mensaje',
+                            text: ' <span class="fa fa-shield"></span>'
+                                        +' Bienvenido: <span class="text-success">'+$('#txt_1').val().toUpperCase()
+                                    +'</span><br><span class="fa fa-paw"></span> Dame unos segundos para acceder a la aplicación <span class="text-succes fa fa-spinner fa-spin"></span>'
+                                    ,
+                            image: 'dist/avatars/avatar1.png', //in Ace demo dist will be replaced by correct assets path
+                            sticky: false,
+                            time: 3000,                                             
+                        });                                 
+                        redireccionar();
+                        
+                    };
+                    if (data==0) {
+                        $.gritter.add({
+                            title: '<span>Información Mensaje</span>',
+                            text: ' <span class="fa fa-shield"></span>'
+                                        +' <span class="text-danger">Su usuario o contraseña son incorrectos</span>'
+                                    +'<span class="fa fa-ban fa-stack-2x text-danger"></span>',
+                            image: 'dist/avatars/avatar1.png', //in Ace demo dist will be replaced by correct assets path
+                            sticky: false,
+                            time: 3000,                                             
+                        }); 
+                        //Limpiar formulario
+                        $('#form_proceso').each (function(){
+                          this.reset();
+                        });
+                    };
+                    if (data!=0&&data!=1) {
+                        $.gritter.add({
+                            title: '<span>Información Mensaje</span>',
+                            text: ' <span class="fa fa-shield"></span>'
+                                        +' <span class="text-danger">ERROR PROCESO AUTENTIFICACIÓN<BR></span>'
+                                    +'<span class="fa fa-ban fa-stack-2x text-danger"></span>',
+                            image: 'dist/avatars/avatar1.png', //in Ace demo dist will be replaced by correct assets path
+                            sticky: false,
+                            time: 3000,                                             
+                        }); 
+                    };                    
+                }
+            });
+        }
+        if (a!='') {
+            $('#txt_1').css({'border':'solid 2px #90BB4F'});            
+        };if(a=='') {
+            $('#txt_1').css({'border':'solid 2px #FF4D4D'});
+            $('#txt_1').addClass('animated bounce');
+            setTimeout ("accionar()", 1000);
+        }
+        if (b!='') {
+            $('#txt_2').css({'border':'solid 2px #90BB4F'});
+        };if(b=='') {
+            $('#txt_2').css({'border':'solid 2px #FF4D4D'});
+            $('#txt_2').addClass('animated bounce');
+            setTimeout ("accionar()", 1000);
+        }        
+    });
+function accionar(){
+    $('#txt_1').removeClass('animated bounce');
+    $('#txt_2').removeClass('animated bounce');
+}
+// redireccion
+function redireccionar() {
+    setTimeout("location.href='data/inicio/'", 4000);
+}
+</script>

@@ -546,6 +546,11 @@ function appendToChosenProducto(id,val1,val2,val3,val4,val5,val6,val7,text,chose
     var input = $("#"+chosen1).children().next().children(); 
     $(input).children().val(text);            
 }
+function appendToChosenDevolucion(id,val1,val2,val3,val4,val5,val6,val7,text,chosen,chosen1){      
+    $('#'+chosen).append($("<option data-barras='"+val2+"' data-codigo='"+val3+"' data-precio='"+val4+"' data-stock='"+val5+"' data-descuento='"+val6+"' data-total='"+val7+"' ></option>").val(id).html(val1)).trigger('chosen:updated');
+    var input = $("#"+chosen1).children().next().children(); 
+    $(input).children().val(text);            
+}
 
 function appendToChosen(id,value,text,extra,chosen,chosen1){            
     $('#'+chosen).append($("<option data-extra='"+extra+"'></option>").val(id).html(value)).trigger('chosen:updated');        
@@ -820,7 +825,27 @@ if(contador == 0){
     }
     limpiar_chosen_codigo();
 }
-
+function documentos(fun){
+    if(fun == 0){
+        $("#txt_2").val("");    
+    }   
+    $("#txt_2").focus();
+    if($("#txt_1").val() == "Cedula"){                      
+        $("#txt_2").prop("maxlength",10);
+        $("#txt_2").attr("minlength",10);
+        $("#txt_2").prop("pattern","[0-9]{10,10}");
+    }else{
+        if($("#txt_1").val() == "RUC"){                             
+            $("#txt_2").prop("maxlength",13);
+            $("#txt_2").attr("minlength",13);
+            $("#txt_2").prop("pattern","[0-9]{13,13}");
+        }else{          
+            $("#txt_2").removeAttr("maxlength");            
+            $("#txt_2").attr("minlength",1);
+            $("#txt_2").prop("pattern","[0-9]{1,}");
+        }
+    }
+}
 
 
 

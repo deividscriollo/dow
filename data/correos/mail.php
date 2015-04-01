@@ -1,5 +1,6 @@
 <?php
 require 'PHPMailer/PHPMailerAutoload.php';
+//require 'prueba.php';
 /**
 * Clase email que se extiende de PHPMailer
 */
@@ -39,7 +40,7 @@ class email  extends PHPMailer{
        $this->Subject =$titulo;
        $this->Body    =  $contenido; //contenido con etiquetas HTML
        $this->AltBody =  strip_tags($contenido); //Contenido para servidores que no aceptan HTML
-       $this->AddAttachment($archivo);
+       $this->AddAttachment('../correos/factura_electronicaid.zip');
        //envio de e-mail y retorno de resultado
        return $this->Send() ;
    }
@@ -47,7 +48,8 @@ class email  extends PHPMailer{
 }//--> fin clase
 
 /* == se emplea la clase email == */
-function envio_correo_ventas($correoa,$nombre,$total_factura,$archivoadjunto,$num_factura){
+function envio_correo_ventas($correoa, $nombre, $total_factura, $link, $num_factura){
+
   $res=0;
   $contenido_html =  '
   <!DOCTYPE html>
@@ -242,7 +244,7 @@ function envio_correo_ventas($correoa,$nombre,$total_factura,$archivoadjunto,$nu
        <table width="60%" align="center" cellspacing="0" cellpadding="0" border="0" style="table-layout: fixed;"><tbody><tr><td width="100%" bgcolor="#d9edf7" style="font-family: Arial, sans-serif; line-height: 19px; color: #31708f; font-size: 14px; font-weight: normal; padding: 15px; border: 1px solid #bce8f1; background-color: #f9d2aa;" valign="top" align="left">
          Si requiere su factura electrónica para la declaración tributaria del SRI. 
          <br>
-         <a href="'.$archivoadjunto.'" style="color: #428bca; text-decoration: none; background-color: transparent;"> Dar clic Aqui</a>
+         <a href="'.$link.'" style="color: #428bca; text-decoration: none; background-color: transparent;"> Dar clic Aqui</a>
        </td></tr></tbody></table>
        </td></tr></tbody></table>
     </td></tr></tbody></table>
@@ -298,7 +300,7 @@ function envio_correo_ventas($correoa,$nombre,$total_factura,$archivoadjunto,$nu
   ';
   
   $email = new email();
-  if ( $email->enviar( $correoa , 'TOTORA SISA' , 'FACTURA ELECTRONICA' ,  $contenido_html,$archivoadjunto ) )
+  if ($email->enviar( $correoa , 'TOTORA SISA' , 'FACTURA ELECTRONICA' ,  $contenido_html,'df') )
      $res=1;
   else
   {
@@ -306,21 +308,11 @@ function envio_correo_ventas($correoa,$nombre,$total_factura,$archivoadjunto,$nu
   }
   return $res;
 }
-  
 
 
-?>
-<?php
 
-//$zip = new ZipArchive();
-//$filename = "./test112.zip";
 
-//if ($zip->open($filename, ZipArchive::CREATE)!==TRUE) {
-//    exit("cannot open <$filename>\n");
-//}
 
-//$zip->addFromString("deivid.pdf" . time(), "#1 Esto es una cadena de prueba añadida como  testfilephp.txt.\n");
-//echo "numficheros: " . $zip->numFiles . "\n";
-//echo "estado:" . $zip->status . "\n";
-//$zip->close();
+
+//envio_correo_ventas('deividscriollo@gmail.com','deivid C','678567',$filename,'1234');
 ?>

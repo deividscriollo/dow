@@ -3,6 +3,7 @@
 	include '../conexion.php';
 	include '../funciones_generales.php';
 	include '../correos/mail.php';
+	// include '../correos/prueba.php';
 	$conexion = conectarse();
 	date_default_timezone_set('America/Guayaquil');
 	$fecha = date('Y-m-d H:i:s', time());
@@ -17,7 +18,7 @@
 	///////////////////////guardar factura venta////////////////////
     $num_serie = "001-001-".$_POST['serie3'];
 
-	$sql = "insert into factura_venta values ('$id','$_POST[id_cliente]','$id_session','$id','$fecha','$_POST[hora]','$num_serie','$_POST[fecha_cancelacion]','$_POST[tipo]','$_POST[formas]','$_POST[tarifa0]','$_POST[tarifa12]','$_POST[iva]','$_POST[descuento_total]','$_POST[total]','Activo','$fecha')";	
+	$sql = "insert into factura_venta values ('$id','$_POST[id_cliente]','$id_session','$_POST[serie3]','$fecha','$_POST[hora]','$num_serie','$_POST[fecha_cancelacion]','$_POST[tipo]','$_POST[formas]','$_POST[tarifa0]','$_POST[tarifa12]','$_POST[iva]','$_POST[descuento_total]','$_POST[total]','Activo','$fecha')";	
 		
 	$guardar = guardarSql($conexion,$sql);
 	if( $guardar == 'true'){
@@ -72,13 +73,10 @@
 	////////////////////////////////////////
 }
 
-$consulta2 = pg_query("select * from cliente where id_cliente = '".$_POST['id_cliente']."'");
-    while ($row = pg_fetch_row($consulta2)) {
-        $nombre= $row[3];
-        $correo= $row[9];
-    }
+
+//validando_xml($id,'fecha','total','detalle','cliente','ruc_ced','total_sin inpuestos','descuento','iva','diferencia','telefono','num_factu','dir-client','orden_num');
 
 $l='localhost/sistema_dow/data/reportes/factura_venta.php?id='.$id;
-envio_correo_ventas($correo,$nombre,$_POST['total'],$l, $num_serie);
+envio_correo_ventas($_POST['correo'],$_POST['nombre'],$_POST['total'],$l, $num_serie);
 echo $data;
 ?>

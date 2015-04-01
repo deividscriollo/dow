@@ -33,7 +33,7 @@
 		<script src="../../dist/js/ace-extra.min.js"></script>
 	</head>
 
-	<body class="no-skin">
+	<body class="skin-1">
 		<?php menu_arriba(); ?>
 		<div class="main-container" id="main-container">
 			<?php menu_lateral(); ?>
@@ -219,7 +219,6 @@
 																		</tr>
 																	</thead>
 																	<tbody>
-																		
 																	</tbody>
 																</table>
 															</div>
@@ -293,35 +292,35 @@
 		<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
 			<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
 			</a>
-		</div><!-- /.main-container -->
+		</div>
 
 		<!-- Modal -->
-			<div id="top-menu" class="modal aside" data-fixed="true" data-placement="top" data-background="true" data-backdrop="invisible" tabindex="-1">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-body container">
-							<div class="row">
-								<div class="col-sm-5 col-sm-offset-1 white">
-									<h3 class="lighter">Imprimir &amp; Inventario</h3>
-								</div>
+		<div id="top-menu" class="modal aside" data-fixed="true" data-placement="top" data-background="true" data-backdrop="invisible" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body container">
+						<div class="row">
+							<div class="col-sm-5 col-sm-offset-1 white">
+								<h3 class="lighter">Imprimir &amp; Inventario</h3>
+							</div>
 
-								<div class="col-sm-5 text-center line-height-2">									
+							<div class="col-sm-5 text-center line-height-2">									
 
-									&nbsp; &nbsp;
-									<a class="btn btn-app btn-light no-radius" href="#">
-										<i class="ace-icon fa fa-print bigger-230"></i>
-										Inprimir
-									</a>
-								</div>
+								&nbsp; &nbsp;
+								<a class="btn btn-app btn-light no-radius" href="#">
+									<i class="ace-icon fa fa-print bigger-230"></i>
+									Inprimir
+								</a>
 							</div>
 						</div>
-					</div><!-- /.modal-content -->
+					</div>
+				</div><!-- /.modal-content -->
 
-					<button class="btn btn-inverse btn-app btn-xs ace-settings-btn aside-trigger" data-target="#top-menu" data-toggle="modal" type="button">
-						<i data-icon="fa-chevron-down" data-icon="fa-chevron-up" class="ace-icon fa fa-chevron-down bigger-110 icon-only"></i>
-					</button>
-				</div><!-- /.modal-dialog -->
-			</div>
+				<button class="btn btn-inverse btn-app btn-xs ace-settings-btn aside-trigger" data-target="#top-menu" data-toggle="modal" type="button">
+					<i data-icon="fa-chevron-down" data-icon="fa-chevron-up" class="ace-icon fa fa-chevron-down bigger-110 icon-only"></i>
+				</button>
+			</div><!-- /.modal-dialog -->
+		</div>
 		<!--[if !IE]> -->
 		<script type="text/javascript">
 			window.jQuery || document.write("<script src='../../dist/js/jquery.min.js'>"+"<"+"/script>");

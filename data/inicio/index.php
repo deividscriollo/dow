@@ -40,7 +40,7 @@ if(!isset($_SESSION))
 		<script src="../../dist/js/ace-extra.min.js"></script>
 	</head>
 
-	<body class="no-skin">
+	<body class="skin-1">
 		<?php menu_arriba(); ?>
 
 		<div class="main-container" id="main-container">
@@ -57,7 +57,22 @@ if(!isset($_SESSION))
 									<div class="widget-header">
 										<h5 class="widget-title">Proceso</h5>
 
-										<div class="widget-toolbar">											
+										<div class="widget-toolbar">
+											<div class="widget-menu">
+												<a href="#" data-action="settings" data-toggle="dropdown">
+													<i class="ace-icon fa fa-bars"></i>
+												</a>
+
+												<ul class="dropdown-menu dropdown-menu-right dropdown-light-blue dropdown-caret dropdown-closer">
+													<li>
+														<a data-toggle="tab" href="#dropdown1">Opcion 1</a>
+													</li>
+
+													<li>
+														<a data-toggle="tab" href="#dropdown2">Opcion 2</a>
+													</li>
+												</ul>
+											</div>
 
 											<a href="#" data-action="fullscreen" class="orange2">
 												<i class="ace-icon fa fa-expand"></i>
@@ -70,14 +85,15 @@ if(!isset($_SESSION))
 											<a href="#" data-action="collapse">
 												<i class="ace-icon fa fa-chevron-up"></i>
 											</a>
+
+											<a href="#" data-action="close">
+												<i class="ace-icon fa fa-times"></i>
+											</a>
 										</div>
 									</div>
 
 									<div class="widget-body">
-										<div class="widget-main">
-											
-
-											
+										<div class="widget-main">estructura en procesos de gestion
 
 
 										</div>
@@ -143,7 +159,6 @@ if(!isset($_SESSION))
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
-			
 		</script>
 	</body>
 </html>

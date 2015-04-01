@@ -47,7 +47,7 @@ function guardar_factura(){
                 $("#serie3").val(a + "" + $("#serie3").val());
                 $.ajax({        
                     type: "POST",
-                    data: $("#form_facturaVenta").serialize()+"&campo1="+vect1+"&campo2="+vect2+"&campo3="+vect3+"&campo4="+vect4+"&campo5="+vect5+"&hora="+$("#estado").text(),                
+                    data: $("#form_facturaVenta").serialize()+"&campo1="+vect1+"&campo2="+vect2+"&campo3="+vect3+"&campo4="+vect4+"&campo5="+vect5+"&hora="+$("#estado").text()+"&nombre="+$("#txt_nombre_cliente").text()+"&correo="+$("#lbl_client_correo").text(),                
                     url: "factura_venta.php",      
                     success: function(data) { 
                         if( data == 0 ){
@@ -66,6 +66,21 @@ function guardar_factura(){
 function inicio (){		  
 	mostrar("estado");
 	fecha_actual("fecha_actual");
+
+  if ($("#num_oculto").val() === "") {
+        $("#serie3").val("");
+    } else {
+        var str = $("#num_oculto").val();
+        var res = parseInt(str.substr(8, 16));
+        res = res + 1;
+        
+        $("#serie3").val(res);
+        var a = autocompletar(res);
+        var validado = a + "" + res;
+        $("#serie3").val(validado);
+    }
+
+
  	////////////////validaciones/////////////////
  	$("#cantidad").validCampoFranz("0123456789");
  	$("#serie3").validCampoFranz("0123456789");
@@ -89,9 +104,9 @@ function inicio (){
 		    	    $('#txt_nombre_cliente').html("");
 		        	$('#txt_nombre_cliente').append($("<option data-extra='"+data[1]+"' data-direccion='"+data[3]+"' data-telefono='"+data[4]+"' data-email='"+data[5]+"'></option>").val(data[0]).html(data[2])).trigger('chosen:updated');                    
 			        $("#id_cliente").val(data[0]);		        
-					$('#lbl_client_telefono').html(data[3]);
-					$('#lbl_client_correo').html(data[4]);
-					$('#lbl_client_direccion').html(data[5]);
+    					$('#lbl_client_telefono').html(data[4]);
+    					$('#lbl_client_correo').html(data[5]);
+    					$('#lbl_client_direccion').html(data[3]);
 			    },
 			    error: function (data) {
 			        console.log(data)
@@ -137,10 +152,10 @@ function inicio (){
 			        }		        
 		    	    $('#txt_nro_identificacion').html("");
 		        	$('#txt_nro_identificacion').append($("<option data-extra='"+data[2]+"' data-direccion='"+data[3]+"' data-telefono='"+data[4]+"' data-email='"+data[5]+"'></option>").val(data[0]).html(data[1])).trigger('chosen:updated');                    
-			        $("#id_cliente").val(data[0]);		        
-					$('#lbl_client_telefono').html(data[3]);
-					$('#lbl_client_correo').html(data[4]);
-					$('#lbl_client_direccion').html(data[5]);
+			        $("#id_cliente").val(data[0]);		        					
+              $('#lbl_client_telefono').html(data[4]);
+              $('#lbl_client_correo').html(data[5]);
+              $('#lbl_client_direccion').html(data[3]);
 			    },
 			    error: function (data) {
 			        console.log(data)

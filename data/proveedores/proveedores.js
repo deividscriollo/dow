@@ -24,27 +24,10 @@ function inicio (){
 	/*-----------------------*/
 	$("input").on("keyup click",function (e){//campos requeridos		
 		comprobarCamposRequired(e.currentTarget.form.id)
-
 	});	
 	/*----procesos ci ruc pass-----*/
 	$("#txt_1").change(function (){
-		$("#txt_2").val("");
-		$("#txt_2").focus();
-		if($(this).val() == "Cedula"){						
-			$("#txt_2").prop("maxlength",10);
-			$("#txt_2").attr("minlength",10);
-			$("#txt_2").prop("pattern","[0-9]{10,10}");
-		}else{
-			if($(this).val() == "RUC"){								
-				$("#txt_2").prop("maxlength",13);
-				$("#txt_2").attr("minlength",13);
-				$("#txt_2").prop("pattern","[0-9]{13,13}");
-			}else{			
-				$("#txt_2").removeAttr("maxlength");			
-				$("#txt_2").attr("minlength",1);
-				$("#txt_2").prop("pattern","[0-9]{1,}");
-			}
-		}
+		documentos("0");
 	});
 	$("#txt_2").keyup(function(){
 		ci_ruc_pass("txt_2",$("#txt_2").val(),$("#txt_1").val())
@@ -68,6 +51,7 @@ function inicio (){
 		if(resp[0] != false){			
 			$("#txt_0").val(resp[0][0]);
 			$("#txt_1").val(resp[0][1]);
+			$("#txt_1").trigger("chosen:updated"); 	
 			$("#txt_2").val(resp[0][2]);
 			$("#txt_12").val(resp[0][3]);
 			$("#txt_18").val(resp[0][4]);		
@@ -84,7 +68,7 @@ function inicio (){
 			$("#txt_8").val(resp[0][15]);		
 		    $("#txt_8").trigger("chosen:updated"); 
 		    $("#txt_15").val(resp[0][16]);		
-
+		    documentos("1");
 		    /**/
 	        var prov = 0;
 	        var pais = 0;
@@ -170,6 +154,7 @@ function inicio (){
 		if(resp[0] != false){
 			$("#txt_0").val(resp[0][0]);
 			$("#txt_1").val(resp[0][1]);
+			$("#txt_1").trigger("chosen:updated");
 			$("#txt_2").val(resp[0][2]);
 			$("#txt_12").val(resp[0][3]);
 			$("#txt_18").val(resp[0][4]);		
@@ -186,7 +171,7 @@ function inicio (){
 			$("#txt_8").val(resp[0][15]);		
 		    $("#txt_8").trigger("chosen:updated"); 
 		    $("#txt_15").val(resp[0][16]);		
-
+		    documentos("1");
 		    
 		    /**/
 	        var prov = 0;
@@ -342,6 +327,7 @@ function inicio (){
             	console.log(ret)
 	            $("#txt_0").val(ret.txt_0);
 	            $("#txt_1").val(ret.txt_1);
+	            $("#txt_1").trigger("chosen:updated");  
 	            $("#txt_2").val(ret.txt_2);
 	            $("#txt_3").val(ret.txt_3);
 	            $("#txt_4").val(ret.txt_4);	            
@@ -358,6 +344,7 @@ function inicio (){
 	            $("#txt_16").trigger("chosen:updated");          	            	            	            
 	            $("#txt_8").trigger("chosen:updated");          	            	            	            
 	            $("#txt_18").trigger("chosen:updated");          	            	            	            
+	            documentos("1");
 	            /**/
 	            var prov = 0;
 	            var pais = 0;

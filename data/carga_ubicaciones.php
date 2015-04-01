@@ -163,6 +163,72 @@
 																					}else{
 																						
 																					}
+																				}else{
+																					if($_GET['fun'] == "21"){//para la busqueda de proveedores por ci con factura
+																						if($_GET['tipo'] == "0"){
+																							$sql = "select distinct proveedor.id_proveedor,identificacion,nombres_completos from factura_compra,proveedor where factura_compra.id_proveedor = proveedor.id_proveedor and proveedor.id_proveedor like '%$_GET[val]%'";
+																							cargarSelect_1($conexion,$sql);//select de 5 datos
+																						}else{
+																							
+																						}
+																					}else{
+																						if($_GET['fun'] == "22"){//para la busqueda de proveedores por nombres con factura
+																							if($_GET['tipo'] == "0"){
+																								$sql = "select distinct proveedor.id_proveedor,nombres_completos,identificacion from factura_compra,proveedor where factura_compra.id_proveedor = proveedor.id_proveedor and proveedor.nombres_completos like '%$_GET[val]%'";
+																								cargarSelect_1($conexion,$sql);//select de 5 datos
+																							}else{
+																							
+																							}
+																						}else{
+																							if($_GET['fun'] == "23"){//para la busqueda de proveedores por nombres con factura
+																								if($_GET['tipo'] == "0"){
+																									$sql = "select  id_factura_compra,numero_serie,id_usuario from factura_compra where id_proveedor = '$_GET[id]' and numero_serie  like '%$_GET[val]%'";																									
+																									cargarSelect_1($conexion,$sql);//select de 5 datos
+																								}else{
+																								
+																								}
+																							}else{
+																								if($_GET['fun'] == "24"){//para la busqueda del codigo del producto
+																									if($_GET['tipo'] == "0"){
+																										$sql = "select productos.id_productos,codigo,codigo_barras,descripcion,detalle_factura_compra.precio,cantidad,descuento,total from detalle_factura_compra,productos where detalle_factura_compra.id_productos = productos.id_productos and id_factura_compra ='$_GET[id]' and productos.codigo like '%$_GET[val]%'";																	
+																										
+																										cargarSelect_8($conexion,$sql);//select de 5 datos
+																									}else{
+																										
+																									}
+																								}else{
+																									if($_GET['fun'] == "25"){//para la busqueda del codigo del producto
+																										if($_GET['tipo'] == "0"){
+																											$sql = "select productos.id_productos,codigo,codigo_barras,descripcion,detalle_factura_compra.precio,cantidad,descuento,total from detalle_factura_compra,productos where detalle_factura_compra.id_productos = productos.id_productos and id_factura_compra ='$_GET[id]' and productos.descripcion like '%$_GET[val]%'";																	
+																											cargarSelect_8($conexion,$sql);//select de 5 datos
+																										}else{
+																											
+																										}
+																									}else{
+																										if($_GET['fun'] == "26"){//para la busqueda del codigo del producto
+																											if($_GET['tipo'] == "0"){
+																												$sql = "select id_usuario,identificacion,nombres_completos from usuario where identificacion like '%$_GET[val]%'";																	
+																												cargarSelect_1($conexion,$sql);//select de 3 datos
+																											}else{
+																												
+																											}
+																										}else{
+																											if($_GET['fun'] == "27"){//para la busqueda del codigo del producto
+																												if($_GET['tipo'] == "0"){
+																													$sql = "select id_usuario,identificacion,nombres_completos from usuario where nombres_completos like '%$_GET[val]%'";																	
+																													cargarSelect_1($conexion,$sql);//select de 3 datos
+																												}else{
+																													
+																												}
+																											}else{
+
+																											}	
+																										}	
+																									}	
+																								}
+																							}	
+																						}	
+																					}	
 																				}
 																			}
 																		}
