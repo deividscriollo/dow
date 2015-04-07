@@ -234,7 +234,7 @@ function carga_json_1($conexion,$sql){
     $sql = pg_fetch_row($sql);
     return $sql;
 }       
-function sql_array($conexion,$sql){    
+function sql_array($conexion,$sql){        
     $sql = pg_fetch_row(pg_query($sql));                                 
     $sql = "array['".implode("', '", $sql)."']";   
     return $sql;     

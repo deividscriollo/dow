@@ -109,6 +109,15 @@ function limpiar_form(e){
                         $("#txt_13").trigger('chosen:updated');
                         $("#txt_6").val('')
                         $("#txt_6").trigger('chosen:updated');
+                    }else{
+                        if(form == "form_plan_cuentas"){
+                            $("#btn_0").text("");
+                            $("#btn_0").append("<span class='glyphicon glyphicon-log-in'></span> Guardar");                                                        
+                            $("#txt_0").val('');
+                            $("#txt_1").val('');
+                            $("#txt_2").val('');
+                            $("#txt_3").val('');                                                                                    
+                        }   
                     }   
                 }   
             }    

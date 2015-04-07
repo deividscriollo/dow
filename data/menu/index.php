@@ -95,158 +95,159 @@ function menu_lateral(){
 		<script type="text/javascript">
 			try{ace.settings.check("sidebar" , "fixed")}catch(e){}
 		</script>
-	<ul class="nav nav-list">';
-	if($_SESSION['nivel1'][0] == 1){
-		print '<li>
+	<ul class="nav nav-list">';	
+	print '<li>
 		<a href="../inicio/">
 			<i class="menu-icon fa fa-home"></i>
 			<span class="menu-text"> Inicio </span>
+		</a>
+		<b class="arrow"></b>
+	</li>';		
+	print '<li ';if ($acus[3]=='categorias' || $acus[3]=='bodegas' || $acus[3]=='clientes' || $acus[3]=='marcas' || $acus[3]=='unidad_medida'|| $acus[3]=='usuario'|| $acus[3]=='empresa'|| $acus[3]=='tipo_producto'|| $acus[3]=='proveedores'|| $acus[3]=='productos') {
+		print('class="active open"');
+	}print'>
+	<a href="#" class="dropdown-toggle">
+		<i class="menu-icon fa fa-desktop"></i>
+		<span class="menu-text">
+			Ingresos
+		</span>
+		<b class="arrow fa fa-angle-down red"></b>
+	</a>
+	<b class="arrow"></b>';
+	print'<ul class="submenu">
+		<li ';if ($acus[3]=='bodegas'||$acus[3]=='categorias'||$acus[3]=='marcas'||$acus[3]=='unidad_medida'||$acus[3]=='tipo_producto') {
+			print('class="active open"');
+		}print'>';			
+			echo '<a href="#" class="dropdown-toggle">
+				<i class="menu-icon fa fa-caret-right"></i>
+				Generales
+				<b class="arrow fa fa-angle-down"></b>
+			</a>
+			<b class="arrow"></b>
+			<ul class="submenu">';				
+				print '<li ';if ($acus[3]=='bodegas') {
+					print('class="active"');
+				}print'>
+					<a href="../bodegas/">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Bodegas
+					</a>
+					<b class="arrow"></b>
+				</li>';
+									
+				print '<li ';if ($acus[3]=='categorias') {
+					print('class="active"');
+				}print'>
+					<a href="../categorias/">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Categorías
+					</a>
+					<b class="arrow"></b>
+				</li>';
+									
+				print '<li ';if ($acus[3]=='marcas') {
+					print('class="active"');
+				}print'>
+					<a href="../marcas/">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Marcas
+					</a>
+					<b class="arrow"></b>
+				</li>';
+									
+				print '<li ';if ($acus[3]=='unidad_medida') {
+					print('class="active"');
+				}print'>
+					<a href="../unidad_medida/">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Unidades de Medida
+					</a>
+					<b class="arrow"></b>
+				</li>';
+								
+				print '<li ';if ($acus[3]=='tipo_producto') {
+					print('class="active"');
+				}print'>
+					<a href="../tipo_producto/">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Tipo de producto
+					</a>
+					<b class="arrow"></b>
+				</li>';					
+				print '<li ';if ($acus[3]=='formas_pago') {
+					print('class="active"');
+				}print'>
+					<a href="../formas_pago/">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Formas de pago
+					</a>
+					<b class="arrow"></b>
+				</li>';				
+				print '<li ';if ($acus[3]=='terminos_pago') {
+					print('class="active"');
+				}print'>
+					<a href="../terminos_pago/">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Términos de pago
+					</a>
+					<b class="arrow"></b>
+				</li>';				
+			print '</ul>
+		</li>';
+					
+		print '<li ';if ($acus[3]=='empresa') {
+			print('class="active"');
+		}print'>
+			<a href="../empresa/">
+				<i class="menu-icon fa fa-caret-right"></i>
+				Empresa
+			</a>
+			<b class="arrow"></b>
+		</li>';	
+						
+		print '<li ';if ($acus[3]=='usuario') {
+			print('class="active"');
+		}print'>
+			<a href="../usuario/">
+				<i class="menu-icon fa fa-caret-right"></i>
+				Usuario
 			</a>
 			<b class="arrow"></b>
 		</li>';
-	}
-	if($_SESSION['nivel1'][1] == 1){
-		print '<li ';if ($acus[3]=='categorias' || $acus[3]=='bodegas' || $acus[3]=='clientes' || $acus[3]=='marcas' || $acus[3]=='unidad_medida'|| $acus[3]=='usuario'|| $acus[3]=='empresa'|| $acus[3]=='tipo_producto'|| $acus[3]=='proveedores'|| $acus[3]=='productos') {
-					print('class="active open"');
+						
+		print '<li ';if ($acus[3]=='clientes') {
+			print('class="active"');
 		}print'>
-		<a href="#" class="dropdown-toggle">
-			<i class="menu-icon fa fa-desktop"></i>
-			<span class="menu-text">
-				Ingresos
-			</span>
-			<b class="arrow fa fa-angle-down red"></b>
-		</a>
-		<b class="arrow"></b>';
-		print'<ul class="submenu">
-			<li ';if ($acus[3]=='bodegas'||$acus[3]=='categorias'||$acus[3]=='marcas'||$acus[3]=='unidad_medida'||$acus[3]=='tipo_producto') {
-			print('class="active open"');
-			}print'>';
-			if($_SESSION['nivel2'][0] == 1){
-				echo '<a href="#" class="dropdown-toggle">
+			<a href="../clientes/">
+				<i class="menu-icon fa fa-caret-right"></i>
+				Clientes
+			</a>
+			<b class="arrow"></b>
+		</li>';
+			
+			
+		print '<li ';if ($acus[3]=='proveedores') {
+			print('class="active"');
+		}print'>
+			<a href="../proveedores/">
+				<i class="menu-icon fa fa-caret-right"></i>
+				Proveedores
+			</a>
+			<b class="arrow"></b>
+		</li>';
+								
+			print '<li ';if ($acus[3]=='productos') {
+				print('class="active"');
+			}print'>
+				<a href="../productos/">
 					<i class="menu-icon fa fa-caret-right"></i>
-					Generales
-					<b class="arrow fa fa-angle-down"></b>
+					Productos
 				</a>
 				<b class="arrow"></b>
-				<ul class="submenu">';
-				if($_SESSION['nivel3'][0] == 1){
-					print '<li ';if ($acus[3]=='bodegas') {
-					print('class="active"');
-					}print'>
-						<a href="../bodegas/">
-							<i class="menu-icon fa fa-caret-right"></i>
-							Bodegas
-						</a>
-						<b class="arrow"></b>
-					</li>';
-				}
-				if($_SESSION['nivel3'][1] == 1){
-					print '<li ';if ($acus[3]=='categorias') {
-						print('class="active"');
-						}print'>
-						<a href="../categorias/">
-							<i class="menu-icon fa fa-caret-right"></i>
-							Categorías
-						</a>
-						<b class="arrow"></b>
-					</li>';
-				}
-				if($_SESSION['nivel3'][2] == 1){
-					print '<li ';if ($acus[3]=='marcas') {
-						print('class="active"');
-						}print'>
-						<a href="../marcas/">
-							<i class="menu-icon fa fa-caret-right"></i>
-							Marcas
-						</a>
-						<b class="arrow"></b>
-					</li>';
-				}
-				if($_SESSION['nivel3'][3] == 1){
-					print '<li ';if ($acus[3]=='unidad_medida') {
-						print('class="active"');
-						}print'>
-						<a href="../unidad_medida/">
-							<i class="menu-icon fa fa-caret-right"></i>
-							Unidades de Medida
-						</a>
-						<b class="arrow"></b>
-
-					</li>';
-				}
-				if($_SESSION['nivel3'][4] == 1){
-					print '<li ';if ($acus[3]=='tipo_producto') {
-						print('class="active"');
-						}print'>
-						<a href="../tipo_producto/">
-							<i class="menu-icon fa fa-caret-right"></i>
-							Tipo de producto
-						</a>
-						<b class="arrow"></b>
-					</li>';
-				}
-				print '</ul>
-			</li>';
-			}
-			if($_SESSION['nivel2'][1] == 1){					
-				print '<li ';if ($acus[3]=='empresa') {
-				print('class="active"');
-				}print'>
-					<a href="../empresa/">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Empresa
-					</a>
-					<b class="arrow"></b>
-				</li>';	
-			}
-			if($_SESSION['nivel2'][2] == 1){	
-				print '<li ';if ($acus[3]=='usuario') {
-					print('class="active"');
-					}print'>
-					<a href="../usuario/">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Usuario
-					</a>
-					<b class="arrow"></b>
-				</li>';
-			}
-			if($_SESSION['nivel2'][3] == 1){	
-				print '<li ';if ($acus[3]=='clientes') {
-					print('class="active"');
-					}print'>
-					<a href="../clientes/">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Clientes
-					</a>
-					<b class="arrow"></b>
-				</li>';
-			}
-			if($_SESSION['nivel2'][4] == 1){
-				print '<li ';if ($acus[3]=='proveedores') {
-					print('class="active"');
-					}print'>
-					<a href="../proveedores/">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Proveedores
-					</a>
-					<b class="arrow"></b>
-				</li>';
-			}		
-			if($_SESSION['nivel2'][5] == 1){
-				print '<li ';if ($acus[3]=='productos') {
-					print('class="active"');
-					}print'>
-					<a href="../productos/">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Productos
-					</a>
-					<b class="arrow"></b>
-				</li>';
-			}				
+			</li>';						
 			print '</ul>
 		</li>';
-	}
-	if($_SESSION['nivel1'][2] == 1){
+		
 		print '<li ';if ($acus[3]=='factura_compra' || $acus[3]=='devolucion_compra' || $acus[3]=='factura_venta'|| $acus[3]=='nota_credito'|| $acus[3]=='kardex'|| $acus[3]=='inventario' ) {
 			print('class="active open"');
 			}print'>
@@ -258,94 +259,79 @@ function menu_lateral(){
 				<b class="arrow fa fa-angle-down red"></b>
 			</a>
 			<b class="arrow"></b>
-			<ul class="submenu">';
-			if($_SESSION['nivel2'][6] == 1){
-				print '<li ';if ($acus[3]=='inventario') {
-					print('class="active"');
-					}print'>
-					<a href="../inventario/">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Inventario
-					</a>
-					<b class="arrow"></b>
-				</li>';
-			}
-			if($_SESSION['nivel2'][7] == 1){
-				print '<li ';if ($acus[3]=='factura_compra'||$acus[3]=='devolucion_compra') {
-					print('class="active open"');
-					}print'>
-					<a href="#" class="dropdown-toggle">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Compras
-						<b class="arrow fa fa-angle-down"></b>
-					</a>
-					<b class="arrow"></b>
-					<ul class="submenu">';
-					if($_SESSION['nivel3'][5] == 1){
-						print '<li ';if ($acus[3]=='factura_compra') {
-						print('class="active"');
-						}print'>
-							<a href="../factura_compra/">
-								<i class="menu-icon fa fa-caret-right"></i>
-								Productos Bodega
-							</a>
-							<b class="arrow"></b>
-						</li>';
-					}
-					if($_SESSION['nivel3'][6] == 1){
-						print '<li ';if ($acus[3]=='devolucion_compra') {
-							print('class="active"');
-						}print'>
-							<a href="../devolucion_compra/">
-								<i class="menu-icon fa fa-caret-right"></i>
-								Devolución Compras
-							</a>
-							<b class="arrow"></b>
-						</li>';
-					}						
-					print '</ul>
-				</li>';
-			}
-			if($_SESSION['nivel2'][8] == 1){
-				print '<li ';if ($acus[3]=='factura_venta'||$acus[3]=='nota_credito') {
+			<ul class="submenu">';			
+			print '<li ';if ($acus[3]=='inventario') {
+				print('class="active"');
+				}print'>
+				<a href="../inventario/">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Inventario
+				</a>
+				<b class="arrow"></b>
+			</li>';						
+			print '<li ';if ($acus[3]=='factura_compra'||$acus[3]=='devolucion_compra') {
 				print('class="active open"');
 				}print'>
-					<a href="#" class="dropdown-toggle">
+				<a href="#" class="dropdown-toggle">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Compras
+					<b class="arrow fa fa-angle-down"></b>
+				</a>
+				<b class="arrow"></b>
+				<ul class="submenu">';					
+				print '<li ';if ($acus[3]=='factura_compra') {
+				print('class="active"');
+				}print'>
+					<a href="../factura_compra/">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Ventas
-						<b class="arrow fa fa-angle-down"></b>
+						Productos Bodega
 					</a>
 					<b class="arrow"></b>
-					<ul class="submenu">';
-					if($_SESSION['nivel3'][7] == 1){
-						print '<li ';if ($acus[3]=='factura_venta') {
-						print('class="active"');
-						}print'>
-							<a href="../factura_venta/">
-								<i class="menu-icon fa fa-caret-right"></i>
-								Ventas Facturación
-							</a>
-							<b class="arrow"></b>
-						</li>';
-					}																								
-					print '</ul>
-				</li>';							
-			}
-			if($_SESSION['nivel2'][9] == 1){
-				print '<li ';if ($acus[3]=='kardex') {
+				</li>';									
+				print '<li ';if ($acus[3]=='devolucion_compra') {
 					print('class="active"');
 				}print'>
-					<a href="../kardex/">
+					<a href="../devolucion_compra/">
 						<i class="menu-icon fa fa-caret-right"></i>
-						Kardex
+						Devolución Compras
 					</a>
 					<b class="arrow"></b>
-				</li>';
-			}													
+				</li>';										
+				print '</ul>
+			</li>';						
+			print '<li ';if ($acus[3]=='factura_venta'||$acus[3]=='nota_credito') {
+			print('class="active open"');
+			}print'>
+				<a href="#" class="dropdown-toggle">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Ventas
+					<b class="arrow fa fa-angle-down"></b>
+				</a>
+				<b class="arrow"></b>
+				<ul class="submenu">';					
+				print '<li ';if ($acus[3]=='factura_venta') {
+				print('class="active"');
+				}print'>
+					<a href="../factura_venta/">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Ventas Facturación
+					</a>
+					<b class="arrow"></b>
+				</li>';																													
+				print '</ul>
+			</li>';												
+			print '<li ';if ($acus[3]=='kardex') {
+				print('class="active"');
+			}print'>
+				<a href="../kardex/">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Kardex
+				</a>
+				<b class="arrow"></b>
+			</li>';															
 		print '</ul>
 		</li>';
-	}
-	if($_SESSION['nivel1'][3] == 1){
+		
 		print '<li ';if ($acus[3]=='r_estadistico' || $acus[3]=='r_simple') {
 		print('class="active open"');
 		}print'>
@@ -357,59 +343,54 @@ function menu_lateral(){
 				<b class="arrow fa fa-angle-down red"></b>
 			</a>
 			<b class="arrow"></b>
-			<ul class="submenu">';
-			if($_SESSION['nivel2'][10] == 1){
-				print '<li ';if ($acus[3]=='r_estadistico') {
-					print('class="active"');
+			<ul class="submenu">';			
+			print '<li ';if ($acus[3]=='r_estadistico') {
+				print('class="active"');
+			}print'>
+				<a href="../r_estadistico/">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Estadisticos
+				</a>
+				<b class="arrow"></b>
+			</li>';					
+			print '<li ';if ($acus[3]=='r_simple') {
+				print('class="active"');
 				}print'>
-					<a href="../r_estadistico/">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Estadisticos
-					</a>
-					<b class="arrow"></b>
-				</li>';
-			}
-			if($_SESSION['nivel2'][11] == 1){
-				print '<li ';if ($acus[3]=='r_simple') {
-					print('class="active"');
-					}print'>
-					<a href="../r_simple/">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Simples
-					</a>
-					<b class="arrow"></b>
-				</li>';
-			}
+				<a href="../r_simple/">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Simples
+				</a>
+				<b class="arrow"></b>
+			</li>';			
 			print '</ul>
-		</li>';		
-	}	
-	if($_SESSION['nivel1'][4] == 1){		
+		</li>';			
+	
 		print '<li ';if ($acus[3]=='privilegios') {
 		print('class="active open"');
 		}print'>
 			<a href="#" class="dropdown-toggle">
 				<i class="menu-icon fa fa-user"></i>
 				<span class="menu-text">
-					Administración
+					Parametros
 				</span>
 				<b class="arrow fa fa-angle-down red"></b>
 			</a>
 			<b class="arrow"></b>
-			<ul class="submenu">';
-			if($_SESSION['nivel2'][12] == 1){
-				print '<li ';if ($acus[3]=='privilegios') {
-					print('class="active"');
-				}print'>
-					<a href="../privilegios/">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Privilegios
-					</a>
-					<b class="arrow"></b>
-				</li>';
-			}			
+			<ul class="submenu">';			
+			print '<li ';if ($acus[3]=='privilegios') {				
+				print('class="active"');
+			}print'>
+				<a href="../privilegios/">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Privilegios
+				</a>
+				<b class="arrow"></b>
+			</li>';
+
+						
 			print '</ul>
 		</li>';		
-	}
+	
 	print '</ul><!-- /.nav-list -->
 		<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
 			<i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>

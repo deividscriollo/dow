@@ -1,25 +1,5 @@
 $(document).on("ready",inicio);
-function inicio (){		
-	function getDoc(frame) {
-        var doc = null;     
-     	
-        try {
-            if (frame.contentWindow) {
-                doc = frame.contentWindow.document;
-            }
-        } catch(err) {
-        }
-        if (doc) { 
-            return doc;
-        }
-        try { 
-            doc = frame.contentDocument ? frame.contentDocument : frame.document;
-        } catch(err) {
-       
-            doc = frame.document;
-        }
-        return doc;
-    }	
+function inicio (){			
 	$(window)
 	.off('resize.chosen')
 	.on('resize.chosen', function() {
@@ -40,7 +20,7 @@ function inicio (){
 	cargar_cuentas();
 	/*----*/
 	$("#btn_0").on('click',guardar_plan);
-	$("#btn_3").on('click',subir_plan);
+	$("#btn_3").on('click',subir_archivos);
 	/*------------*/	
 	$("input").on("keyup click",function (e){//campos requeridos		
 		comprobarCamposRequired(e.currentTarget.form.id)
@@ -125,51 +105,34 @@ function cargar_cuentas(){
                                 
    	});      
 }
-function subir_plan(){    	
-    $("#form_plan_cuentas").submit(function(e) {
-        var formObj = $(this);
-        var formURL = formObj.attr("action");
-        if(window.FormData !== undefined) {	
-            var formData = new FormData(this);   
-            formURL=formURL;        	
-            $.ajax({
-                url: "plan_cuentas.php?tipo=s",
-                type: "POST",
-                data:  formData,
-                mimeType:"multipart/form-data",
-                dataType: 'json',
-                contentType: false,
-                cache: false,
-                processData:false,
-                success: function(data, textStatus, jqXHR)
-                {
-                    var res=data;
-                    if(res != ""){
-                        alert("Datos cargados");                        
-                    }
-                    else{
-                        alert("Error..... Al cargar los registros");
-                        
-                    }
-                },
-                error: function(jqXHR, textStatus, errorThrown) 
-                {
-                } 	        
-            });
-            e.preventDefault();
-            $(this).unbind("submit");
-        } else {
-            var  iframeId = "unique" + (new Date().getTime());
-            var iframe = $('<iframe src="javascript:false;" name="'+iframeId+'" />');
-            iframe.hide();
-            formObj.attr("target",iframeId);
-            iframe.appendTo("body");
-            iframe.load(function(e)
-            {
-                var doc = getDoc(iframe[0]);
-                var docRoot = doc.body ? doc.body : doc.documentElement;
-                var data = docRoot.innerHTML;
-            });
-        }
-    });
+function subir_archivos(){    	
+    var archivos = document.getElementById("txt_3");
+    var archivo = archivos.files;
+    var archivos = new FormData();    
+    if(archivo.length > 0){
+   		for(var i = 0; i < archivo.length; i++){
+	        archivos.append('archivo'+i,archivo[i]);        
+	    }
+	    
+	    $.ajax({
+	        url:'plan_cuentas.php?tipo=s',
+	        type:'POST',
+	        contentType:false,
+	        data:archivos,
+	        processData:false,
+	        cache:false,        
+	    }).done(function(data){
+	        if( data == 0 ){            
+	            alert('Archivo subido satisfactoriamente');                                            
+	            cargar_cuentas();               
+	            $("#txt_3").val("");
+	        }else{
+	            alert("Error al momento de enviar los datos la página se recargara");                   
+	            actualizar_form();
+	        }
+	    }); 	
+    }else{
+    	alert("No ha seleccionado ningun archivo");
+    }
+    
 }
