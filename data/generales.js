@@ -856,6 +856,33 @@ function documentos(fun){
     }
 }
 
-
+function carga_forma_pago(id){
+    $.ajax({       /*cargar el select forma_pago*/        
+        type: "POST",
+        dataType: 'json',        
+        url: "../carga_ubicaciones.php?tipo=0&fun=28",        
+        success: function(response) {         
+            $("#"+id).html("");
+            for (var i = 0; i < response.length; i=i+2) {               
+                $("#"+id).append("<option value ="+response[i]+">"+response[i+1]+"</option>");                                                                                                                                           
+            }               
+            $('#'+id).trigger('chosen:updated')
+        }                   
+    });      
+}
+function carga_termino_pago(id){
+    $.ajax({       /*cargar el select forma_pago*/        
+        type: "POST",
+        dataType: 'json',        
+        url: "../carga_ubicaciones.php?tipo=0&fun=29",        
+        success: function(response) {         
+            $("#"+id).html("");
+            for (var i = 0; i < response.length; i=i+2) {               
+                $("#"+id).append("<option value ="+response[i]+">"+response[i+1]+"</option>");                                                                                                                                           
+            }               
+            $('#'+id).trigger('chosen:updated')
+        }                   
+    });      
+}
 
 

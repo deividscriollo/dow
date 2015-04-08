@@ -75,14 +75,11 @@ function guardar_factura(){
         }
     }
 } 
-
-
-
-
-
 function inicio (){		
   mostrar("estado");	
   fecha_actual("fecha_actual");  
+  carga_forma_pago("formas");
+  carga_termino_pago("termino_pago");
   /*jqgrid*/    
   jQuery(function($) {
     var grid_selector = "#table";
@@ -105,7 +102,7 @@ function inicio (){
     jQuery(grid_selector).jqGrid({          
       datatype: "xml",
       url: 'xml_factura_compra.php',        
-      colNames: ['id_Factura_compra','RESPONSABLE','FECHA','HORA ACUTAL','id_proveedor','CI/RUC','PROVEEDOR','COMPROBANTE','FECHA REGISTRO','FECHA EMISION', 'FECHA CADUCIDAD','FECHA CANCELACION','NRO SERIE','NRO AUTORIZACION','FORMA PAGO','TARFIA 0','TARIFA 12','IVA', 'DESCUENTO','TOTAL'],
+      colNames: ['id_Factura_compra','RESPONSABLE','FECHA','HORA ACUTAL','id_proveedor','CI/RUC','PROVEEDOR','COMPROBANTE','FECHA REGISTRO','FECHA EMISION', 'FECHA CADUCIDAD','FECHA CANCELACION','NRO SERIE','NRO AUTORIZACION','id_form_pago','TARFIA 0','TARIFA 12','IVA', 'DESCUENTO','TOTAL','id_termino_pago','TÉRMINO PAGO','FORMA PAGO'],
       colModel:[      
               {name:'comprobante',index:'id_factura_compra',frozen:true,align:'left',search:false},
               {name:'txt_reponsable',index:'usuario.nombres_completos',frozen : true,align:'left',search:true},
@@ -121,12 +118,15 @@ function inicio (){
               {name:'fecha_cancelacion',index:'fecha_cancelacion',frozen : true,align:'left',search:false},
               {name:'nro_serie',index:'nro_serie',frozen : true,align:'left',search:false},
               {name:'autorizacion',index:'autorizacion',frozen : true,align:'left',search:false},
-              {name:'formas',index:'formas',frozen : true,align:'left',search:false},
+              {name:'id_forma_pago',index:'id_forma_pago',frozen : true,align:'left',search:false},
               {name:'tarifa0',index:'tarifa0',frozen : true,align:'left',search:false},
               {name:'tarifa12',index:'tarifa12',frozen : true,align:'left',search:false},
               {name:'iva',index:'iva',frozen : true,align:'left',search:false},
               {name:'descuento_total',index:'descuento_total',frozen : true,align:'left',search:false},
               {name:'total',index:'total',frozen : true,align:'left',search:false},                                         
+              {name:'id_termino_pago',index:'id_termino_pago',frozen : true,align:'left',search:false},                                         
+              {name:'descripcion_termino',index:'terminos_pago.descripcion',frozen : true,align:'left',search:false},                                         
+              {name:'descripcion_formas',index:'formas_pago.descripcion',frozen : true,align:'left',search:false},                                         
           ],          
           rowNum: 10,       
           width:600,
@@ -174,15 +174,20 @@ function inicio (){
             $('#serie2').val(text.substr(4,3));
             $('#serie3').val(text.substr(8,30));
             $('#autorizacion').val(ret.autorizacion);
-            $('#formas').val(ret.formas);
-            $('#formas').trigger("chosen:updated");
+            
             $('#tarifa0').val(ret.tarifa0);
             $('#tarifa12').val(ret.tarifa12);
             $('#iva').val(ret.iva);
             $('#descuento_total').val(ret.descuento_total);
             $('#total').val(ret.total);
+
+            $("#formas").val(ret.id_forma_pago);            
+            $('#formas').trigger("chosen:updated");            
+            
+            $("#termino_pago").val(ret.id_termino_pago)            
+            $('#termino_pago').trigger("chosen:updated");
             $('#myModal').modal('hide');  
-            carga_detalles_fc("detalle_factura");                
+            carga_detalles_fc("detalle_factura",ret.comprobante);                            
             $("#btn_0").text("");
             $("#btn_0").append("<span class='glyphicon glyphicon-log-in'></span> ----------");                   
         },          
@@ -198,6 +203,8 @@ function inicio (){
       jQuery(grid_selector).jqGrid('hideCol', "iva");      
       jQuery(grid_selector).jqGrid('hideCol', "descuento_total");      
       jQuery(grid_selector).jqGrid('hideCol', "total");      
+      jQuery(grid_selector).jqGrid('hideCol', "id_forma_pago");  
+      jQuery(grid_selector).jqGrid('hideCol', "id_termino_pago");  
       $(window).triggerHandler('resize.jqGrid');//cambiar el tamaño para hacer la rejilla conseguir el tamaño correcto
 
       function aceSwitch( cellvalue, options, cell ) {
@@ -735,11 +742,11 @@ function inicio (){
   });
   
 }
-function carga_detalles_fc(id_tabla){
+function carga_detalles_fc(id_tabla,comprobante){
   $.ajax({        
     type: "POST",
     dataType: 'json',        
-    url: "../carga_ubicaciones.php?tipo=0&id="+$("#comprobante").val()+"&fun=17",        
+    url: "../carga_ubicaciones.php?tipo=0&id="+comprobante+"&fun=17",        
     success: function(response) {                 
       for (var i = 0; i < response.length; i=i+7) {        
         $("#"+id_tabla+" tbody").append( "<tr>" +"<td align=center>" + response[i] +"</td>" +"<td align=center>" + response[i+1] + "</td>" +"<td align=center>" + response[i+2] +"</td>" +"<td align=center>" + response[i+3] +"</td>" +"<td align=center>" + response[i+4] + "</td>" +"<td align=center>" + response[i+5] +"</td>" +"<td align=center>" + response[i+6] + "</td>" +"<td align=center>" + "<div class=hidden-sm hidden-xs action-buttons> <a class='red dc_btn_accion tooltip-error ' data-rel='tooltip' data-original-title='Eliminar'><i class='ace-icon fa fa-trash-o bigger-130' ></i></a></div>"+ "</td><td class='hidden'>"+"NH"+"</td>" +"</tr>" );                     

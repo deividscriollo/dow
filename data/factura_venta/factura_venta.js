@@ -66,6 +66,8 @@ function guardar_factura(){
 function inicio (){		  
 	mostrar("estado");
 	fecha_actual("fecha_actual");
+  carga_forma_pago("formas");
+  carga_termino_pago("termino_pago");
 
   if ($("#num_oculto").val() === "") {
         $("#serie3").val("");

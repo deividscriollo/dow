@@ -18,8 +18,8 @@
 	///////////////////////guardar factura venta////////////////////
     $num_serie = "001-001-".$_POST['serie3'];
 
-	$sql = "insert into factura_venta values ('$id','$_POST[id_cliente]','$id_session','$_POST[serie3]','$fecha','$_POST[hora]','$num_serie','$_POST[fecha_cancelacion]','$_POST[tipo]','$_POST[formas]','$_POST[tarifa0]','$_POST[tarifa12]','$_POST[iva]','$_POST[descuento_total]','$_POST[total]','Activo','$fecha')";	
-		
+	$sql = "insert into factura_venta values ('$id','".$_POST['id_cliente']."','".$id_session."','".$_POST['serie3']."','$fecha','".$_POST['hora']."','".$num_serie."','".$_POST['fecha_cancelacion']."','".$_POST['tipo']."','".$_POST['formas']."','".$_POST['tarifa0']."','".$_POST['tarifa12']."','".$_POST['iva']."','".$_POST['descuento_total']."','".$_POST['total']."','Activo','$fecha','".$_POST['termino_pago']."')";	
+	
 	$guardar = guardarSql($conexion,$sql);
 	if( $guardar == 'true'){
 		$data = 0; ////datos guardados
@@ -51,16 +51,14 @@
     $sql2 = "insert into detalle_factura_venta values (
    	'$id2','$id','".$arreglo1[$i]."','".$arreglo2[$i]."','".$arreglo3[$i]."','".$arreglo4[$i]."','".$arreglo5[$i]."','Activo','$fecha')";       
 	$guardar = guardarSql($conexion,$sql2);
-	//////////////////////////////
-    
+	//////////////////////////////	    
 
     //////////////modificar productos///////////
-    $consulta = pg_query("select * from productos where id_productos = '".$arreglo1[$i]."'");
+    $consulta = pg_query("select stock from productos where id_productos = '".$arreglo1[$i]."'");
     while ($row = pg_fetch_row($consulta)) {
-        $stock = $row[10];
+        $stock = $row[0];
     }
-    $cal = $stock - $arreglo2[$i];
-    
+    $cal = $stock - $arreglo2[$i];    
 
     $sql3 = "update productos set precio='".$arreglo3[$i]."', stock='$cal' where id_productos='".$arreglo1[$i]."'";								
 	$guardar = guardarSql($conexion, $sql3);
@@ -72,7 +70,6 @@
 	$guardar = guardarSql($conexion,$sql4);
 	////////////////////////////////////////
 }
-
 
 //validando_xml($id,'fecha','total','detalle','cliente','ruc_ced','total_sin inpuestos','descuento','iva','diferencia','telefono','num_factu','dir-client','orden_num');
 

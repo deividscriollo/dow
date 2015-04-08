@@ -219,14 +219,21 @@
 																<div class="form-group">
 																	<label class="col-sm-6 control-label no-padding-right" for="formas"> Forma de Pago:</label>
 																	<div class="col-sm-6">
-																		<select class="chosen-select form-control" id="formas" name="formas" data-placeholder="Forma de Pago">
-	                                                                        <option value="CONTADO">CONTADO</option>
-	                                                                        <option value="CREDITO">CREDITO</option>
+																		<select class="chosen-select form-control" id="formas" name="formas" data-placeholder="Forma de Pago">                                                                        
 	                                                                    </select>
 																	</div>																														
 																</div>														
 															</div>
-															<div class="col-xs-4"></div>
+															<div class="col-xs-4">
+																<div class="form-group">
+																	<label class="col-sm-5 control-label no-padding-right" for="termino_pago"> Términos de Pago:</label>
+																	<div class="col-sm-7">
+																		<select class="chosen-select form-control" id="termino_pago" name="termino_pago" data-placeholder="Términos de Pago">
+	                                                                        
+	                                                                    </select>
+																	</div>																														
+																</div>														
+															</div>
 														</div>
 													</div>
 													<div class="row ">

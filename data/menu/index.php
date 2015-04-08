@@ -386,6 +386,15 @@ function menu_lateral(){
 				</a>
 				<b class="arrow"></b>
 			</li>';
+			print '<li ';if ($acus[3]=='plan_cuentas') {				
+				print('class="active"');
+			}print'>
+				<a href="../plan_cuentas/">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Privilegios
+				</a>
+				<b class="arrow"></b>
+			</li>';
 
 						
 			print '</ul>

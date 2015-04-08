@@ -221,7 +221,25 @@
 																													
 																												}
 																											}else{
+																												if($_GET['fun'] == "28"){//para la busqueda de formas de pago
+																													if($_GET['tipo'] == "0"){
+																														$sql = "select id_forma_pago,descripcion from formas_pago order by principal = 'No' asc";
+																														cargarSelect($conexion,$sql);//select de 3 datos
+																													}else{
+																														
+																													}
+																												}else{
+																													if($_GET['fun'] == "29"){//para la busqueda de formas de pago
+																														if($_GET['tipo'] == "0"){
+																															$sql = "select id_termino_pago,descripcion from terminos_pago order by principal = 'No' asc";
+																															cargarSelect($conexion,$sql);//select de 3 datos
+																														}else{
+																															
+																														}
+																													}else{
 
+																													}
+																												}	
 																											}	
 																										}	
 																									}	

@@ -28,22 +28,25 @@
 	        subGridRowExpanded: function (subgridDivId, rowId) {	          
 	        },
 
-	        url: 'xml_formas_pago.php',
+	        url: 'xml_terminos_pago.php',
 	        datatype: "xml",
 	        height: 250,
-	        colNames:['ID','DESCRIPCIÓN','ESTADO','PRINCIPAL','FECHA'],
+	        colNames:['ID','DESCRIPCIÓN','PRINCIPAL','ESTADO','FECHA','PORCENTAJE INICIAL','MONTO INICIAL','NRO MESES'],
 	        colModel:[
-	            {name:'id_forma_pago',index:'id_forma_pago', width:60, sorttype:"int", editable: true, hidden: true, editoptions: {readonly: 'readonly'}},
-	            {name:'descripcion',index:'descripcion',width:150, editable:true, editoptions:{size:"20",maxlength:"30"}, editrules: {required: true}},	            	            
-	            {name:'estado',index:'estado', width:150,editable: true,hidden: true,editoptions:{size:"20",maxlength:"30",readonly: 'readonly'}},
+	            {name:'id_termino_pago',index:'id_termino_pago', width:60, sorttype:"int", editable: true, hidden: true, editoptions: {readonly: 'readonly'}},
+	            {name:'descripcion',index:'descripcion',width:150, editable:true, editoptions:{size:"20",maxlength:"30"}, editrules: {required: true}},	            	            	            
 	            {name:'principal',index:'principal', width:60, editable: true,edittype:"checkbox",editoptions: {value:"Si:No"}},
-	            {name:'fecha_creacion',index:'fecha_creacion', width:150, hidden:false, editable: false, editrules:{edithidden:false}}
+	            {name:'estado',index:'estado', width:150,editable: true,hidden: true,editoptions:{size:"20",maxlength:"30",readonly: 'readonly'}},
+	            {name:'fecha_creacion',index:'fecha_creacion', width:150, hidden:false, editable: false, editrules:{edithidden:false}},
+	            {name:'porcentaje_inicial',index:'porcentaje_inicial',width:150, editable:true, editoptions:{size:"20",maxlength:"30"}, editrules: {required: true}},	            	            	            
+	            {name:'monto_inicial',index:'monto_inicial',width:150, editable:true, editoptions:{size:"20",maxlength:"30"}, editrules: {required: true}},	            	            	            
+	            {name:'nro_meses',index:'nro_meses',width:150, editable:true, editoptions:{size:"20",maxlength:"30"}, editrules: {required: true}},	            	            	            
 
 	        ], 
 	        rowNum:10,
 	        rowList:[10,20,30],
 	        pager : pager_selector,
-	        sortname: 'id_forma_pago',
+	        sortname: 'id_termino_pago',
 	        sortorder: 'asc',
 	        altRows: true,
 	        multiselect: false,
@@ -59,8 +62,8 @@
 	            }, 0);
 	        },
 
-	        editurl: "formas_pago.php",
-	        caption: "LISTA FORMAS DE PAGO"
+	        editurl: "terminos_pago.php",
+	        caption: "LISTA DE TÉRMIOS DE PAGO"
 	    });
 	    $(window).triggerHandler('resize.jqGrid');//cambiar el tamaño para hacer la rejilla conseguir el tamaño correcto
 
@@ -117,7 +120,7 @@
 	        	}else{
 	        		if(response.responseText == 1){	
 	        			$("#descripcion").val("");
-	        			return [false,"Error.. La forma de pago ya existe ingrese otra"];
+	        			return [false,"Error.. Este término de pago ya existe ingrese otro"];
 		        	}	
 	        	}
 	        },
@@ -144,7 +147,7 @@
 	        	}else{
 	        		if(response.responseText == 1){	
 	        			$("#descripcion").val("");
-	        			return [false,"Error.. La forma de pago ya existe ingrese otra"];
+	        			return [false,"Error.. Este término de pago ya existe ingrese otro"];
 		        	}	
 	        	}
 	        },
