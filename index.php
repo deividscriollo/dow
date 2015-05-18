@@ -8,6 +8,7 @@ if(!isset($_SESSION))
 	}
 	
 ?>
+sti
 <!DOCTYPE html>
 <html lang="es">
 	<head>
@@ -214,13 +215,7 @@ if(!isset($_SESSION))
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
 			 
-			 jQuery(function($){
-			 	$('#obj_animacion').removeClass().addClass('animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-			      $(this).removeClass();
-			    });
-			 });
-			 
-
+			
 			jQuery(function($) {				
 			 $(document).on('click', '.toolbar a[data-target]', function(e) {
 				e.preventDefault();
