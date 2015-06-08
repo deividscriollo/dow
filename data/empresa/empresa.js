@@ -4,6 +4,7 @@ function inicio (){
 
 	// inicializacion de formato txt_ telefono1
 	$('#txt_3').mask('(999) 999-999');
+	$('#txt_4').mask('(999) 999-999');
 	$('#txt_7').mask('(999) 999-9999');
 	///////////varias validaciones//////////////}
 		//editables on first profile page

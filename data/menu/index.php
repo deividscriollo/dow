@@ -385,20 +385,33 @@ function menu_lateral(){
 					Privilegios
 				</a>
 				<b class="arrow"></b>
-			</li>';
+			</li>';								
+			print '</ul>			
+		</li>';	
+		print '<li ';if ($acus[3]=='plan_cuentas') {
+		print('class="active open"');
+		}print'>
+			<a href="#" class="dropdown-toggle">
+				<i class="menu-icon fa fa-print ranger"></i>
+				<span class="menu-text">
+					Contabilidad
+				</span>
+				<b class="arrow fa fa-angle-down red"></b>
+			</a>
+			<b class="arrow"></b>
+			<ul class="submenu">';			
 			print '<li ';if ($acus[3]=='plan_cuentas') {				
 				print('class="active"');
 			}print'>
 				<a href="../plan_cuentas/">
 					<i class="menu-icon fa fa-caret-right"></i>
-					Privilegios
+					Plan de Cuentas
 				</a>
 				<b class="arrow"></b>
-			</li>';
-
-						
+			</li>';							
+					
 			print '</ul>
-		</li>';		
+		</li>';				
 	
 	print '</ul><!-- /.nav-list -->
 		<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
