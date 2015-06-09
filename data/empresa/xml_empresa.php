@@ -25,15 +25,15 @@ $start = $limit * $page - $limit;
 if ($start < 0)
     $start = 0;
 if ($search == 'false') {
-    $SQL = "select id_empresa,ruc_empresa,nombre_empresa,propietario,slogan,telefono1,telefono2,ciudad,descripcion,direccion,correo,fax,sitio_web,nombre_contador,autorizacion_sri,ascesor_legar,representante_legal,identificacion_repre,inicio_fac_preimpresa,item_factura,anio_contable,modo_costeo,comentario,imagen,estado from empresa,ciudad where empresa.ciudad = ciudad.id_ciudad ORDER BY  $sidx $sord offset $start limit $limit";
+    $SQL = "select id_empresa,ruc_empresa,nombre_empresa,propietario,slogan,telefono1,telefono2,ciudad,descripcion,direccion,correo,fax,sitio_web,nombre_contador,autorizacion_factura,ascesor_legal,representante_legal,identificacion_repre,inicio_fac_preimpresa,item_factura,anio_contable,modo_costeo,comentario,imagen,estado,ruc_contador,serie_retencion,autorizacion_retencion,serie_nota_credito,autorizacion_nota_credito from empresa,ciudad where empresa.ciudad = ciudad.id_ciudad ORDER BY  $sidx $sord offset $start limit $limit";
 } else {
     $campo = $_GET['searchField'];
   
     if ($_GET['searchOper'] == 'eq') {
-        $SQL = "select id_empresa,ruc_empresa,nombre_empresa,propietario,slogan,telefono1,telefono2,ciudad,descripcion,direccion,correo,fax,sitio_web,nombre_contador,autorizacion_sri,ascesor_legar,representante_legal,identificacion_repre,inicio_fac_preimpresa,item_factura,anio_contable,modo_costeo,comentario,imagen,estado from empresa,ciudad where empresa.ciudad = ciudad.id_ciudad and $campo = '$_GET[searchString]' ORDER BY $sidx $sord offset $start limit $limit";
+        $SQL = "select id_empresa,ruc_empresa,nombre_empresa,propietario,slogan,telefono1,telefono2,ciudad,descripcion,direccion,correo,fax,sitio_web,nombre_contador,autorizacion_factura,ascesor_legal,representante_legal,identificacion_repre,inicio_fac_preimpresa,item_factura,anio_contable,modo_costeo,comentario,imagen,estado,ruc_contador,serie_retencion,autorizacion_retencion,serie_nota_credito,autorizacion_nota_credito from empresa,ciudad where empresa.ciudad = ciudad.id_ciudad and $campo = '$_GET[searchString]' ORDER BY $sidx $sord offset $start limit $limit";
     }         
     if ($_GET['searchOper'] == 'cn') {
-        $SQL = "select id_empresa,ruc_empresa,nombre_empresa,propietario,slogan,telefono1,telefono2,ciudad,descripcion,direccion,correo,fax,sitio_web,nombre_contador,autorizacion_sri,ascesor_legar,representante_legal,identificacion_repre,inicio_fac_preimpresa,item_factura,anio_contable,modo_costeo,comentario,imagen,estado from empresa,ciudad where empresa.ciudad = ciudad.id_ciudad and $campo like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
+        $SQL = "select id_empresa,ruc_empresa,nombre_empresa,propietario,slogan,telefono1,telefono2,ciudad,descripcion,direccion,correo,fax,sitio_web,nombre_contador,autorizacion_factura,ascesor_legal,representante_legal,identificacion_repre,inicio_fac_preimpresa,item_factura,anio_contable,modo_costeo,comentario,imagen,estado,ruc_contador,serie_retencion,autorizacion_retencion,serie_nota_credito,autorizacion_nota_credito from empresa,ciudad where empresa.ciudad = ciudad.id_ciudad and $campo like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
     }
   
 }
@@ -71,6 +71,11 @@ while ($row = pg_fetch_row($result)) {
     $s .= "<cell>" . $row[22] . "</cell>";
     $s .= "<cell>" . $row[23] . "</cell>";
     $s .= "<cell>" . $row[24] . "</cell>";    
+    $s .= "<cell>" . $row[25] . "</cell>";    
+    $s .= "<cell>" . $row[26] . "</cell>";    
+    $s .= "<cell>" . $row[27] . "</cell>";    
+    $s .= "<cell>" . $row[28] . "</cell>";    
+    $s .= "<cell>" . $row[29] . "</cell>";    
     $s .= "</row>";
 }
 $s .= "</rows>";

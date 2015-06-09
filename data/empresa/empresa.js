@@ -107,15 +107,16 @@ function inicio (){
 	.off('resize.chosen')
 	.on('resize.chosen', function() {
 		$('.chosen-select').each(function() {
-			 var $this = $(this);
-			 $this.next().css({'width': $this.parent().width()});
+			var $this = $(this);			 
+			$this.next().css({'width': $this.parent().width()});			 			 				 
+			 
 		})
 	}).trigger('resize.chosen');
 	//resize chosen on sidebar collapse/expand
 	$(document).on('settings.ace.chosen', function(e, event_name, event_val) {
 		if(event_name != 'sidebar_collapsed') return;
 		$('.chosen-select').each(function() {
-			 var $this = $(this);
+			 var $this = $(this);			 
 			 $this.next().css({'width': $this.parent().width()});
 		})
 	});
@@ -164,7 +165,14 @@ function inicio (){
 			$("#spinner2").val(resp[0][19]);
 			$("#spinner3").val(resp[0][20]);
 			$("#txt_19").val(resp[0][21]);
-			$("#txt_20").val(resp[0][22]);			
+			$("#txt_20").val(resp[0][22]);		
+
+			$("#txt_21").val(resp[0][25]);		
+			$("#txt_22").val(resp[0][26]);		
+			$("#txt_23").val(resp[0][27]);		
+			$("#txt_24").val(resp[0][28]);		
+			$("#txt_25").val(resp[0][29]);		
+
 			
 			$("#avatar").attr("src","img/"+resp[0][23]);	
 			if(resp[0][24] == "on"){
@@ -277,6 +285,12 @@ function inicio (){
 			$("#txt_19").val(resp[0][21]);
 			$("#txt_20").val(resp[0][22]);			
 			
+			$("#txt_21").val(resp[0][25]);		
+			$("#txt_22").val(resp[0][26]);		
+			$("#txt_23").val(resp[0][27]);		
+			$("#txt_24").val(resp[0][28]);		
+			$("#txt_25").val(resp[0][29]);		
+
 			$("#avatar").attr("src","img/"+resp[0][23]);	
 			if(resp[0][24] == "on"){
 		    	$("#switch-field-1").prop("checked",true);
@@ -390,7 +404,7 @@ function inicio (){
 	    jQuery(grid_selector).jqGrid({	        
 	        datatype: "xml",
 	        url: 'xml_empresa.php',        
-	        colNames: ['ID','RUC','EMPRESA','PROPIETARIO','SLOGAN','TELEFONO','CELULAR','id_ciudad','CIUDAD','DIRECCION','CORREO','FAX','WEB','CONTADOR','AUTORIZACION SRI','ASCESOR','REPRESENTANTE','CI REPRESENTANTE','NRO FACTURA','ITEM FACTURA','AÑO CONTABLE','COSTEO','COMENTARIO','IMAGEN','ESTADO'],
+	        colNames: ['ID','RUC','EMPRESA','PROPIETARIO','SLOGAN','TELEFONO','CELULAR','id_ciudad','CIUDAD','DIRECCION','CORREO','FAX','WEB','CONTADOR','AUTORIZACION SRI','ASCESOR','REPRESENTANTE','CI REPRESENTANTE','NRO FACTURA','ITEM FACTURA','AÑO CONTABLE','COSTEO','COMENTARIO','IMAGEN','ESTADO','RUC CONTADOR','SERIE RETENCIÓN','AUTORIZACIÓN RETENCIÓN','SERIE NOTA DE CRÉDITO','AUTORIZACIÓN NOTA DE CRÉDITO'],
 	        colModel:[      
             	{name:'txt_o',index:'id_empresa',frozen:true,align:'left',search:false},
             	{name:'txt_1',index:'ruc_empresa',frozen:true,align:'left',search:false},
@@ -416,8 +430,15 @@ function inicio (){
             	{name:'txt_19',index:'modo_costeo',frozen:true,align:'left',search:false},
             	{name:'txt_20',index:'comentario',frozen:true,align:'left',search:false},
             	{name:'avatar',index:'imagen',frozen:true,align:'left',search:false},
-            	{name:'estado',index:'estado',frozen:true,align:'left',search:false},            		        ],          
-	        rowNum: 10,       
+            	{name:'estado',index:'estado',frozen:true,align:'left',search:false},
+            	{name:'txt_21',index:'ruc_contador',frozen:true,align:'left',search:false},
+            	{name:'txt_22',index:'serie_retencion',frozen:true,align:'left',search:false},
+            	{name:'txt_23',index:'autorizacion_retencion',frozen:true,align:'left',search:false},
+            	{name:'txt_24',index:'serie_nota_credito',frozen:true,align:'left',search:false},
+            	{name:'txt_25',index:'autorizacion_nota_credito',frozen:true,align:'left',search:false},
+
+            ],
+           	rowNum: 10,       
 	        width:600,
 	        shrinkToFit: false,
 	        height:200,
@@ -464,6 +485,12 @@ function inicio (){
 	            $("#spinner1").val(ret.spinner1);
 	            $("#spinner2").val(ret.spinner2);
 	            $("#spinner3").val(ret.spinner3);
+
+	            $("#txt_21").val(ret.txt_21)
+				$("#txt_22").val(ret.txt_22)
+				$("#txt_23").val(ret.txt_23)
+				$("#txt_24").val(ret.txt_24)
+				$("#txt_25").val(ret.txt_25)
 	            
 	            if(ret.estado == "on"){
 	            	$("#switch-field-1").prop("checked",true);
@@ -555,9 +582,20 @@ function inicio (){
 		jQuery(grid_selector).jqGrid('hideCol', "txt_11");
 		jQuery(grid_selector).jqGrid('hideCol', "txt_4");
 		jQuery(grid_selector).jqGrid('hideCol', "estado");
-		jQuery(grid_selector).jqGrid('hideCol', "imagen");
+		jQuery(grid_selector).jqGrid('hideCol', "avatar");
 		jQuery(grid_selector).jqGrid('hideCol', "extranjero");		
 		jQuery(grid_selector).jqGrid('hideCol', "txt_5");		
+		jQuery(grid_selector).jqGrid('hideCol', "txt_21");		
+		jQuery(grid_selector).jqGrid('hideCol', "txt_22");		
+		jQuery(grid_selector).jqGrid('hideCol', "txt_23");		
+		jQuery(grid_selector).jqGrid('hideCol', "txt_24");		
+		jQuery(grid_selector).jqGrid('hideCol', "txt_25");		
+		
+		jQuery(grid_selector).jqGrid('hideCol', "spinner1");
+		jQuery(grid_selector).jqGrid('hideCol', "spinner2");
+		jQuery(grid_selector).jqGrid('hideCol', "spinner3");
+		jQuery(grid_selector).jqGrid('hideCol', "txt_19");
+		jQuery(grid_selector).jqGrid('hideCol', "txt_20");
 	    $(window).triggerHandler('resize.jqGrid');//cambiar el tamaño para hacer la rejilla conseguir el tamaño correcto
 
 	    function aceSwitch( cellvalue, options, cell ) {
@@ -807,7 +845,7 @@ function guardar_datos(valores,tipo,p){
 	    		$('#table').trigger('reloadGrid');					
 	    	}else{
 	    		alert('Error al momento de guardar. Intente nuevamente');	
-	    		//actualizar_form();
+	    		actualizar_form();
 	    	}
 		},		
 	}); 

@@ -462,25 +462,8 @@
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
-			/*funcion inicial de la imagen y  buscadores del select no topar plz*/			
-			$('.chosen-select').chosen({allow_single_deselect:true}); 
-			$(window)
-			.off('resize.chosen')
-			.on('resize.chosen', function() {
-				$('.chosen-select').each(function() {
-					 var $this = $(this);
-					 $this.next().css({'width': $this.parent().width()});
-				})
-			}).trigger('resize.chosen');
-			//resize chosen on sidebar collapse/expand
-			$(document).on('settings.ace.chosen', function(e, event_name, event_val) {
-				if(event_name != 'sidebar_collapsed') return;
-				$('.chosen-select').each(function() {
-					 var $this = $(this);
-					 $this.next().css({'width': $this.parent().width()});
-				})
-			});
-			/*-----------------------*/
+			
+			
 			/*funcion inicial spinner para objetos de subir y bajar con intervalos automaticos*/
 			$('#spinner1').ace_spinner({value:0,min:0,max:900050,step:1, btn_up_class:'btn btn-success' , btn_down_class:'btn btn-danger'});
 			$('#spinner2').ace_spinner({value:0,min:0,max:900050,step:1, btn_up_class:'btn btn-success' , btn_down_class:'btn btn-danger'});
