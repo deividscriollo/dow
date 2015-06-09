@@ -237,7 +237,16 @@
 																															
 																														}
 																													}else{
+																														if($_GET['fun'] == "30"){//detales de los grupos
+																															if($_GET['tipo'] == "0"){
+																																$sql = "select cuentas_grupos.id_plan,codigo_cuenta,nombre_cuenta,id from cuentas_grupos,plan_cuentas where cuentas_grupos.id_plan = plan_cuentas.id_plan and cuentas_grupos.id_grupo = '".$_GET['val']."'";
+																																buscar_nombres($conexion,$sql);//select de 4 datos
+																															}else{
+																																
+																															}
+																														}else{
 
+																														}
 																													}
 																												}	
 																											}	

@@ -408,6 +408,15 @@ function menu_lateral(){
 					Plan de Cuentas
 				</a>
 				<b class="arrow"></b>
+			</li>';	
+			print '<li ';if ($acus[3]=='grupos') {				
+				print('class="active"');
+			}print'>
+				<a href="../grupos/">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Grupos Contables
+				</a>
+				<b class="arrow"></b>
 			</li>';							
 					
 			print '</ul>

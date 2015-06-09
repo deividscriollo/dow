@@ -117,6 +117,18 @@ function limpiar_form(e){
                             $("#txt_1").val('');
                             $("#txt_2").val('');
                             $("#txt_3").val('');                                                                                    
+                        }else{
+                            if(form == "form_grupos"){
+                                $("#btn_0").text("");
+                                $("#btn_0").append("<span class='glyphicon glyphicon-log-in'></span> Guardar");                                                        
+                                $("#txt_0").val('');
+                                $("#txt_1").val('');
+                                $("#txt_2").val('');
+                                $("#td_grupos tbody").html("");
+                                $("#table").trigger('reloadGrid');   
+                                $("#table1").trigger('reloadGrid');   
+
+                            }   
                         }   
                     }   
                 }   
@@ -791,7 +803,7 @@ if(contador == 0){
     diferencia = (parseInt( $("#cantidad").val()) - Math.abs(parseInt( $("#stock").val())));
     $("#"+id_tabla+" tbody").append( "<tr>" +"<td align=center>" + id_productos +"</td>" +"<td align=center>" + codigo_producto + "</td>" +"<td align=center>" + detalle_producto +"</td>" +"<td align=center>" + precio_costo +"</td>" +"<td align=center>" + stock +"</td>" +"<td align=center>" + existencia +"</td>" +"<td align=center>" + diferencia + "</td>" +"<td align=center>" + "<div class=hidden-sm hidden-xs action-buttons> <a class='red dc_btn_accion tooltip-error' data-rel='tooltip' data-original-title='Eliminar'><i class='ace-icon fa fa-trash-o bigger-130' onclick='return eliminar_fila2(event)' ></i></a></div>" +"</tr>" ); 
     }else{
-      $("#"+id_tabla+" tbody tr").each(function (index) {                                                                 
+       $("#"+id_tabla+" tbody tr").each(function (index) {                                                                 
             $(this).children("td").each(function (index) {                               
                 switch (index) {                                            
                     case 0:
