@@ -32,12 +32,8 @@ while ($row = pg_fetch_row($consulta)) {
 		<link rel="stylesheet" href="../../dist/css/daterangepicker.min.css" />
 		<link rel="stylesheet" href="../../dist/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="../../dist/css/fontdc.css" />
-
-		<!-- ace styles -->
 		<link rel="stylesheet" href="../../dist/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
 		<link type="text/css" rel="stylesheet" id="ace-skins-stylesheet" href="../../dist/css/ace-skins.min.css">
-
-		<!-- ace settings handler -->
 		<script src="../../dist/js/ace-extra.min.js"></script>
 	</head>
 
@@ -104,85 +100,85 @@ while ($row = pg_fetch_row($consulta)) {
 													
 													<div class="hr"></div>
 													<div class="row">
-														<div class="col-xs-12">
-															<div class="col-sm-6">
-																<div class="row">
-																	<div class="col-xs-12">																		
-																		<div class="form-group">
-																			<label class="col-sm-5 control-label no-padding-right" for="txt_nro_identificacion"> Cedula de Identidad o Ruc:</label>
-																			<div class="col-sm-7">
-																			<input type="hidden" id="id_cliente" name="id_cliente">																				
-																				<select class="chosen-select form-control" id="txt_nro_identificacion" name="txt_nro_identificacion" data-placeholder="Nro de identifiación">	     
-			                                                                        <option value=""></option>	                                                                        
-			                                                                    </select>
-																			</div>																													
-																		</div>																												
-																	</div>
-																</div>																
+														<div class="col-md-12">
+															<div class="col-md-6">
+																<div class="form-group">
+																	<label class="col-sm-5 no-padding-right" for="serie3"> Nro factura preimpresa: 001-001</label>																			
+																	<div class="col-sm-5">
+																		<input type="text" id="serie3" name="serie3" class="form-control" data-toggle="tooltip" data-original-title="" required />																		
+																		<input type="hidden" id="num_oculto" name="num_oculto" class="form-control" data-toggle="tooltip" data-original-title="" value="<?php echo $num_factura ?>" />																		
+																	</div>																														
+																</div>
+															</div>																	
+														</div>
+													</div>
+
+													<div class="row">
+														<div class="col-md-12">
+															<div class="col-md-6">
+																<div class="form-group">
+																	<label class="col-sm-5 no-padding-right" for="txt_nro_identificacion"> Cédula de Identidad o Ruc: <font color="red">*</font></label>
+																	<div class="col-sm-7">
+																	<input type="hidden" id="id_cliente" name="id_cliente">																				
+																		<select class="chosen-select form-control" id="txt_nro_identificacion" name="txt_nro_identificacion" data-placeholder="Nro de identifiación">	     
+	                                                                        <option value=""></option>	                                                                        
+	                                                                    </select>
+																	</div>																													
+																</div>																												
 															</div>
-															<div class="col-sm-6">
-																<div class="row">
-																	<div class="col-xs-12">																		
-																		<div class="form-group">
-																			<label class="col-sm-5 control-label no-padding-right" for="txt_nombre_cliente"> Nombres Completos:</label>
-																			<div class="col-sm-7">
-																				<select class="chosen-select form-control" id="txt_nombre_cliente" name="txt_nombre_cliente" data-placeholder="Nombres Completos">	                                                                        
-			                                                                        <option value=""> </option>	                                                                        
-			                                                                    </select>
-																			</div>																													
-																		</div>																												
-																	</div>
-																</div>																
+
+															<div class="col-md-6">
+																<div class="form-group">
+																	<label class="col-sm-5 control-label no-padding-right" for="txt_nombre_cliente"> Nombres Completos: <font color="red">*</font></label>
+																	<div class="col-sm-7">
+																		<select class="chosen-select form-control" id="txt_nombre_cliente" name="txt_nombre_cliente" data-placeholder="Nombres Completos">	                                                                        
+	                                                                        <option value=""> </option>	                                                                        
+	                                                                    </select>
+																	</div>																													
+																</div>																												
 															</div>
 														</div>
-													</div>													
+													</div>
+
 													<div class="row">	
-														<div class="col-xs-12">
-															<div class="col-sm-4">																		
+														<div class="col-md-12">
+															<div class="col-md-5">																		
 																<div class="form-group">
-																	<label class="col-sm-4 control-label no-padding-right" for="form-field-1"> Dirección:</label>
-																	<div class="col-sm-8">
-																		<h5 class="blue" id="lbl_client_direccion"></h5>
+																	<label class="col-sm-3 no-padding-right" for="form-field-1"> Dirección: <font color="red">*</font></label>
+																	<div class="col-sm-9">
+																		<input type="text" id="lbl_client_direccion" name="lbl_client_direccion" class="form-control" data-toggle="tooltip"  value="" /> 
+																		<!-- <h5 class="blue" id="lbl_client_direccion"></h5> -->
+
 																	</div>																													
 																</div>																												
 															</div>
-															<div class="col-sm-4">																		
+
+															<div class="col-md-3">																		
 																<div class="form-group">
-																	<label class="col-sm-4 control-label no-padding-right" for="form-field-1"> Teléfono:</label>
+																	<label class="col-sm-4 no-padding-right" for="form-field-1"> Teléfono:</label>
 																	<div class="col-sm-8">
-																		<h5 class="blue" id="lbl_client_telefono"></h5>
+																	    <input type="text" id="lbl_client_telefono" name="lbl_client_telefono" class="form-control" data-toggle="tooltip"  value="" /> 
+																		<!-- <h5 class="blue" id="lbl_client_telefono"></h5> -->
 																	</div>																													
 																</div>																												
 															</div>
-															<div class="col-sm-4">																		
+
+															<div class="col-md-4">																		
 																<div class="form-group">
-																	<label class="col-sm-4 control-label no-padding-right" for="form-field-1"> Correo:</label>
-																	<div class="col-sm-8">
-																		<h5 class="blue" id="lbl_client_correo"></h5>
+																	<label class="col-sm-3 no-padding-right" for="form-field-1"> Correo:</label>
+																	<div class="col-sm-9">
+																		<input type="text" id="lbl_client_correo" name="lbl_client_correo" class="form-control" data-toggle="tooltip"  value="" /> 
+																		<!-- <h5 class="blue" id="lbl_client_correo"></h5> -->
 																	</div>																													
 																</div>																												
 															</div>																
 														</div>
 													</div>	
+
 													<div class="row">
 														<div class="col-xs-8">
 															<div class="row">
 																<div class="col-xs-12">
-																	<div class="col-sm-6">
-																		<div class="form-group">
-																			<label class="col-sm-6 control-label no-padding-right" for="form-field-1"> Nro factura preimpresa:</label>																			
-																			<div class="col-sm-1">
-																				<h5 class="red">001-</h5>																				
-																			</div>
-																			<div class="col-sm-1">
-																				<h5 class="red">001-</h5>
-																			</div>
-																			<div class="col-sm-4">
-																				<input type="text" id="serie3" name="serie3" class="form-control" data-toggle="tooltip" data-original-title="" required />																		
-																				<input type="hidden" id="num_oculto" name="num_oculto" class="form-control" data-toggle="tooltip" data-original-title="" value="<?php echo $num_factura ?>" />																		
-																			</div>																														
-																		</div>
-																	</div>
 																	<div class="col-sm-6">
 																		<div class="form-group">
 																			<label class="col-sm-6 control-label no-padding-right" for="fecha_cancelacion"> Fecha cancelación:</label>
@@ -199,6 +195,7 @@ while ($row = pg_fetch_row($consulta)) {
 																</div>
 															</div>
 														</div>
+														
 														<div class="col-xs-4">
 															<div class="row">
 																<div class="col-xs-12">
@@ -217,6 +214,7 @@ while ($row = pg_fetch_row($consulta)) {
 															</div>															
 														</div>
 													</div>
+
 													<div class="row">
 														<div class="col-xs-12">
 															<div class="row">
