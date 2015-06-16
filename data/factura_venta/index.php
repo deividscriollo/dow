@@ -124,7 +124,7 @@ while ($row = pg_fetch_row($consulta)) {
 																<div class="row">
 																	<div class="col-xs-12">																		
 																		<div class="form-group">
-																			<label class="col-sm-5 control-label no-padding-right" for="txt_nombre_cliente"> Nombres O Apellido:</label>
+																			<label class="col-sm-5 control-label no-padding-right" for="txt_nombre_cliente"> Nombres Completos:</label>
 																			<div class="col-sm-7">
 																				<select class="chosen-select form-control" id="txt_nombre_cliente" name="txt_nombre_cliente" data-placeholder="Nombres Completos">	                                                                        
 			                                                                        <option value=""> </option>	                                                                        
@@ -337,6 +337,9 @@ while ($row = pg_fetch_row($consulta)) {
 																				<div class="col-xs-12">
 																					<input type="number" id="descuento" name="descuento" class="form-control" data-toggle="tooltip" onkeydown="return validarNumeros(event)" value="0" /> 
 																					<input type="hidden" id="id_productos" name="id_productos" class="form-control" data-toggle="tooltip" /> 
+																					<input type="hidden" id="iva_producto" name="iva_producto" class="form-control" data-toggle="tooltip" /> 
+																					<input type="hidden" id="incluye" name="incluye" class="form-control" data-toggle="tooltip" />
+																					<input type="hidden" id="inventar" name="inventar" class="form-control" data-toggle="tooltip" />  
 																				</div>
 																			</div>
 																		</div>

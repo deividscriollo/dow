@@ -14,24 +14,12 @@
 		<link rel="stylesheet" href="../../dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="../../dist/css/font-awesome.min.css" />
 		<link rel="stylesheet" href="../../dist/css/bootstrap-editable.min.css" />
-
-
-		<!-- Select -->
 		<link rel="stylesheet" href="../../dist/css/chosen.min.css" />
 		<link rel="stylesheet" href="../../dist/css/jquery.gritter.min.css" />
 		<link rel="stylesheet" href="../../dist/css/ui.jqgrid.min.css" />
-
-
-		<!-- page specific plugin styles -->
-
-		<!-- text fonts -->
 		<link rel="stylesheet" href="../../dist/css/fontdc.css" />
-
-		<!-- ace styles -->
 		<link rel="stylesheet" href="../../dist/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
 		<link type="text/css" rel="stylesheet" id="ace-skins-stylesheet" href="../../dist/css/ace-skins.min.css">
-
-		<!-- ace settings handler -->
 		<script src="../../dist/js/ace-extra.min.js"></script>
 	</head>
 
@@ -39,7 +27,6 @@
 		<?php menu_arriba(); ?>
 
 		<div class="main-container" id="main-container">
-			
 
 			<?php menu_lateral(); ?>
 
@@ -142,15 +129,12 @@
 																					<div class="col-sm-2 btn btn-sm btn-success" id="btn_asi_a" data-toggle="modal" href="#modal_asi_a"> Agregar</div>
 																				</div>
 																				<div class="form-group">
-																					<label class="col-sm-4 control-label no-padding-right" for="sin_existencia"> Facturar sin existencia: </label>
+																					<label class="col-sm-4 control-label no-padding-right" for="iva_producto"> Porcentaje Iva: </label>
 																					<div class="col-sm-6">
-																						<div class="col-xs-3">
-																							<label>
-																								<input name="sin_existencia" id="sin_existencia" class="ace ace-switch ace-switch-5" type="checkbox" checked>
-																								<span class="lbl"></span>
-																							</label>
-																						</div>										
-																					</div>																					
+																						<select class="chosen-select form-control" id="iva_producto" name="iva_producto" data-placeholder="% iva">																																										
+																							<option value=""></option>
+																						</select>																												
+																					</div>
 																				</div>																																						
 																			</div>
 																			<div class="col-sm-6">
@@ -207,7 +191,6 @@
 																						<input type="text" readonly id="txt_15" name="txt_15"  class="form-control" data-toggle="tooltip" data-original-title="" />																																																						
 																					</div>
 																					<label class="col-sm-1 control-label no-padding-right" for="txt_15">Unid(s)</label>
-
 																				</div>
 																			</div>
 																		</div>
@@ -234,22 +217,31 @@
 																							</div>
 																						</div>
 																						<div class="form-group">
-																							<label class="col-sm-5 control-label no-padding-right" for="iva_producto"> Iva: </label>
+																							<label class="col-sm-5 control-label no-padding-right" for="incluye_iva"> Incluye Iva: </label>
 																							<div class="col-sm-7">																								
 																								<label>
-																									<input name="iva_producto" id="iva_producto" class="ace ace-switch ace-switch-5" type="checkbox" checked>
+																									<input name="incluye_iva" id="incluye_iva" class="ace ace-switch ace-switch-5" type="checkbox" checked>
 																									<span class="lbl"></span>
 																								</label>																																	
 																							</div>																							
 																						</div>
 																						<div class="form-group">
+																							<label class="col-sm-5 control-label no-padding-right" for="sin_existencia"> Facturar sin existencia: </label>
+																							<div class="col-sm-7">
+																								<label>
+																									<input name="sin_existencia" id="sin_existencia" class="ace ace-switch ace-switch-5" type="checkbox" checked>
+																									<span class="lbl"></span>
+																								</label>
+																							</div>																					
+																						</div>
+																						<div class="form-group">
 																							<label class="col-sm-5 control-label no-padding-right" for="expiracion_producto">Producto con Expiración:</label>
-																								<div class="col-xs-3">
-																									<label>
-																										<input name="expiracion_producto" id="expiracion_producto" class="ace ace-switch ace-switch-5" type="checkbox">
-																										<span class="lbl"></span>
-																									</label>
-																								</div>																								
+																							<div class="col-sm-7">
+																								<label>
+																									<input name="expiracion_producto" id="expiracion_producto" class="ace ace-switch ace-switch-5" type="checkbox">
+																									<span class="lbl"></span>
+																								</label>
+																							</div>																								
 																						</div>																																																																	
 																					</div>
 																					<div class="col-xs-5">
@@ -261,21 +253,21 @@
 																						</div>
 																						<div class="form-group">
 																							<label class="col-sm-5 control-label no-padding-right" for="producto_series"> Producto series:</label>
-																								<div class="col-xs-3">
-																									<label>
-																										<input name="producto_series" id="producto_series" class="ace ace-switch ace-switch-5" type="checkbox">
-																										<span class="lbl"></span>
-																									</label>
-																								</div>																								
+																							<div class="col-sm-7">
+																								<label>
+																									<input name="producto_series" id="producto_series" class="ace ace-switch ace-switch-5" type="checkbox">
+																									<span class="lbl"></span>
+																								</label>
+																							</div>																								
 																						</div>
 																						<div class="form-group">
 																							<label class="col-sm-5 control-label no-padding-right" for="producto_activo"> Producto Activo:</label>
-																								<div class="col-xs-3">
-																									<label>
-																										<input name="producto_activo" id="producto_activo" class="ace ace-switch ace-switch-5" type="checkbox" checked>
-																										<span class="lbl"></span>
-																									</label>
-																								</div>	
+																							<div class="col-sm-7">
+																								<label>
+																									<input name="producto_activo" id="producto_activo" class="ace ace-switch ace-switch-5" type="checkbox" checked>
+																									<span class="lbl"></span>
+																								</label>
+																							</div>	
 																						</div>
 																						<div class="form-group">
 																							<label class="col-sm-5 control-label no-padding-right" for="txt_18"> Detalle producto:</label>

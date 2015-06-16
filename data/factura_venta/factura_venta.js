@@ -187,6 +187,7 @@ function inicio (){
     			$('#lbl_client_direccion').html($(a).data("direccion"));
 		}
 	});
+
 	/*buscador del codigo del producto*/
   var input_codigoProducto = $("#codigo_chosen").children().next().children();    
   	$(input_codigoProducto).on("keyup",function(input_ci){
@@ -197,17 +198,16 @@ function inicio (){
         		dataType: 'json',        
           		url: "../carga_ubicaciones.php?tipo=0&id=0&fun=15&val="+text,        
           		success: function(data, status) {
+                console.log(data)
             		$('#codigo').html("");            
-            		for (var i = 0; i < data.length; i=i+8) {                                                 
-              			appendToChosenProducto(data[i],data[i+1],data[i+2],data[i+3],data[i+4],data[i+5],data[i+6],data[i+7],text,"codigo","codigo_chosen");
+            		for (var i = 0; i < data.length; i = i + 10) {                                                 
+              			appendToChosenProducto(data[i],data[i+1],data[i+2],data[i+3],data[i+4],data[i+5],data[i+6],data[i+7],data[i+8],data[i+9],text,"codigo","codigo_chosen");
             		}           
             		$('#producto').html("");
-            		$('#producto').append($("<option data-barras='"+data[2]+"' data-codigo='"+data[1]+"' data-precio='"+data[4]+"' data-stock='"+data[5]+"' data-iva='"+data[6]+"' data-inventariable='"+data[7]+"' ></option>").val(data[0]).html(data[3])).trigger('chosen:updated');            
+            		$('#producto').append($("<option data-barras='"+data[2]+"' data-codigo='"+data[1]+"' data-precio='"+data[4]+"' data-stock='"+data[5]+"' data-iva='"+data[6]+"' data-inventariable='"+data[7]+"' data-incluye_iva='"+data[8]+"' data-descuento='"+data[9]+"' ></option>").val(data[0]).html(data[3])).trigger('chosen:updated');            
 	    	        $("#id_productos").val(data[0]);
     		        $('#codigo_barras').html("");
-	        	    $('#codigo_barras').append($("<option data-barras='"+data[3]+"' data-codigo='"+data[1]+"' data-precio='"+data[4]+"' data-stock='"+data[5]+"' data-iva='"+data[6]+"' data-inventariable='"+data[7]+"' ></option>").val(data[0]).html(data[2])).trigger('chosen:updated');                        
-            		$("#precio").val(data[4]);
-            		//$("#cantidad").val(data[5]);
+	        	    $('#codigo_barras').append($("<option data-barras='"+data[3]+"' data-codigo='"+data[1]+"' data-precio='"+data[4]+"' data-stock='"+data[5]+"' data-iva='"+data[6]+"' data-inventariable='"+data[7]+"' data-incluye_iva='"+data[8]+"' data-descuento='"+data[9]+"' ></option>").val(data[0]).html(data[2])).trigger('chosen:updated');                        
           		},
           		error: function (data) {
             		 console.log(data);
@@ -218,6 +218,7 @@ function inicio (){
   	$("#codigo_chosen").children().next().children().click(function (){
     	$("#cantidad").focus(); 
   	});
+
   	$("#codigo").chosen().change(function (event,params){    
     	if(params == undefined){     
     		limpiar_chosen_codigo();          
@@ -225,13 +226,18 @@ function inicio (){
     		var a = $("#codigo option:selected");            
     	  	$('#producto').html("");                   
 	      	$('#codigo_barras').html("");             
-    	  	$('#producto').append($("<option data-barras='"+$(a).data("barras")+"' data-codigo='"+$(a).text()+"' data-precio='"+$(a).data("precio")+"' data-stock='"+$(a).data("stock")+"' data-iva='"+$(a).data("iva")+"' data-inventariable='"+$(a).data("inventariable")+"' ></option>").val($(a).val()).html($(a).data("codigo"))).trigger('chosen:updated');                  
-	      	$('#codigo_barras').append($("<option data-barras='"+$(a).data("codigo")+"' data-codigo='"+$(a).text()+"' data-precio='"+$(a).data("precio")+"' data-stock='"+$(a).data("stock")+"' data-iva='"+$(a).data("iva")+"' data-inventariable='"+$(a).data("inventariable")+"' ></option>").val($(a).val()).html($(a).data("barras"))).trigger('chosen:updated');                  
+    	  	$('#producto').append($("<option data-barras='"+$(a).data("barras")+"' data-codigo='"+$(a).text()+"' data-precio='"+$(a).data("precio")+"' data-stock='"+$(a).data("stock")+"' data-iva='"+$(a).data("iva")+"' data-inventariable='"+$(a).data("inventariable")+"' data-incluye_iva='"+$(a).data("incluye_iva")+"' data-descuento='"+$(a).data("descuento")+"' ></option>").val($(a).val()).html($(a).data("codigo"))).trigger('chosen:updated');                  
+	      	$('#codigo_barras').append($("<option data-barras='"+$(a).data("codigo")+"' data-codigo='"+$(a).text()+"' data-precio='"+$(a).data("precio")+"' data-stock='"+$(a).data("stock")+"' data-iva='"+$(a).data("iva")+"' data-inventariable='"+$(a).data("inventariable")+"' data-incluye_iva='"+$(a).data("incluye_iva")+"' data-descuento='"+$(a).data("descuento")+"' ></option>").val($(a).val()).html($(a).data("barras"))).trigger('chosen:updated');                  
       		$("#id_productos").val($(a).val());
     	  	$("#precio").val($(a).data("precio"));       
 	      	$("#cantidad").focus();
+          $("#descuento").val($(a).data("descuento"));
+          $("#iva_producto").val($(a).data("iva"));
+          $("#incluye").val($(a).data("incluye_iva"));
+          $("#inventar").val($(a).data("inventariable"));
     	}
   	}); 
+
 	/*buscador del nombre del producto*/
 	var input_nombreProducto = $("#producto_chosen").children().next().children();    
   	$(input_nombreProducto).on("keyup",function(input_ci){    
@@ -307,11 +313,11 @@ function inicio (){
             		//agregar_fila(id_tabla,id_productos,codigo_producto,detalle_producto,cantidad_producto,limite,precio_unitario,descuento,total,inventariable);            			
                   var a = $("#producto option:selected");      
                   //console.log($("#cantidad").val() <= $(a).data('stock'))
-                  if($(a).data('inventariable') == 'on' && $("#cantidad").val() <= $(a).data('stock'))
+                  if($(a).data('inventariable') == 'Si' && $("#cantidad").val() <= $(a).data('stock'))
                   {
             			 agregar_fila("detalle_factura",$("#id_productos").val(),$(a).data("codigo"),$(a).text(),$("#cantidad").val(),$(a).data("stock"),$("#precio").val(),$("#descuento").val(),$(a).data("iva"),$(a).data("inventariable"));            
                   }else{
-                    if($(a).data('inventariable') == 'off'){
+                    if($(a).data('inventariable') == 'No'){
                       agregar_fila("detalle_factura",$("#id_productos").val(),$(a).data("codigo"),$(a).text(),$("#cantidad").val(),$(a).data("stock"),$("#precio").val(),$("#descuento").val(),$(a).data("iva"),$(a).data("inventariable"));                                  
                     }else{
                       alert('Fuera de stock el límite del productos es: '+$(a).data('stock'));

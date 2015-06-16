@@ -562,8 +562,8 @@ function adelante(id,carpeta,archivo){
     return resp;
 }
 
-function appendToChosenProducto(id,val1,val2,val3,val4,val5,val6,val7,text,chosen,chosen1){      
-    $('#'+chosen).append($("<option data-barras='"+val2+"' data-codigo='"+val3+"' data-precio='"+val4+"' data-stock='"+val5+"' data-iva='"+val6+"' data-inventariable='"+val7+"' ></option>").val(id).html(val1)).trigger('chosen:updated');
+function appendToChosenProducto(id,val1,val2,val3,val4,val5,val6,val7,val8,val9,text,chosen,chosen1){      
+    $('#'+chosen).append($("<option data-barras='"+val2+"' data-codigo='"+val3+"' data-precio='"+val4+"' data-stock='"+val5+"' data-iva='"+val6+"' data-inventariable='"+val7+"' data-incluye_iva='"+val8+"' data-descuento='"+val9+"' ></option>").val(id).html(val1)).trigger('chosen:updated');
     var input = $("#"+chosen1).children().next().children(); 
     $(input).children().val(text);            
 }

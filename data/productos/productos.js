@@ -1,5 +1,6 @@
 $(document).on("ready",inicio);
-function inicio (){	
+    
+function inicio (){
 	///////////varias validaciones//////////////}					
 	$.fn.editable.defaults.mode = 'inline';
 	$.fn.editableform.loading = "<div class='editableform-loading'><i class='ace-icon fa fa-spinner fa-spin fa-2x light-blue'></i></div>";
@@ -499,7 +500,8 @@ function inicio (){
 	carga_detalles_productos("txt_7",'9');//asignado a y el numero de funcion
 	carga_detalles_productos("txt_13",'10');//asignado a y el numero de funcion
 	carga_detalles_productos_1("txt_14",'11');//asignado a y el numero de funcion
-
+    carga_detalles_productos("iva_producto",'31');
+	
 	////////////////////////
 	/*guardar categorias productos*/
 	$("#guardarCategoriaProducto").on("click",guardarCategoriaProducto);
@@ -838,4 +840,5 @@ function datos_productos(valores,tipo,p){
 		}
 	}); 
 }
+
 /*---------------------------------*/

@@ -8,21 +8,21 @@
 	$sql = "";	
 	$id = unique($fecha_larga);			
 	$id_user = sesion_activa();	
-	$sin_existencia = "off";	///checks
-	$iva_producto = "off";	///checks
-	$expiracion_producto = "off";	///checks
-	$producto_series = "off";	///checks
-	$producto_activo = "off";	///checks
+	$sin_existencia = "No";	///checks
+	$incluye_iva = "No";	///checks
+	$expiracion_producto = "No";	///checks
+	$producto_series = "No";	///checks
+	$producto_activo = "No";	///checks
 	if(isset($_POST["sin_existencia"]))
-		$sin_existencia = "on";	
-	if(isset($_POST["iva_producto"]))
-		$iva_producto = "on";	
+		$sin_existencia = "Si";	
+	if(isset($_POST["incluye_iva"]))
+		$incluye_iva = "Si";	
 	if(isset($_POST["expiracion_producto"]))
-		$expiracion_producto = "on";	
+		$expiracion_producto = "Si";	
 	if(isset($_POST["producto_series"]))
-		$producto_series = "on";	
+		$producto_series = "Si";	
 	if(isset($_POST["producto_activo"]))
-		$producto_activo = "on";	
+		$producto_activo = "Si";	
 	/////////////validacion de los checks
 
 	$cadena = " ".$_POST['img'];	
@@ -50,18 +50,18 @@
 			$valor2 = number_format($_POST['txt_4'], 2, '.', '');
 			$valor3 = number_format($_POST['txt_11'], 2, '.', '');
 			if (strpos($cadena, $buscar) ==  FALSE) {
-				$sql ="insert into productos values ('$id','$_POST[txt_1]','$_POST[txt_8]','".strtoupper($_POST['txt_2'])."','$valor1','$_POST[txt_3]','$_POST[txt_10]','$valor2','$valor3','$_POST[txt_5]','$_POST[txt_12]','$_POST[txt_6]','$_POST[txt_13]','$_POST[txt_7]','$_POST[txt_14]','$sin_existencia','$_POST[txt_16]','$_POST[txt_17]','$producto_series','$expiracion_producto','$_POST[txt_18]','default.png','$producto_activo','$fecha','$iva_producto','$id_user')";					
+				$sql ="insert into productos values ('$id','$_POST[txt_1]','$_POST[txt_8]','".strtoupper($_POST['txt_2'])."','$valor1','$_POST[txt_3]','$_POST[txt_10]','$valor2','$valor3','$_POST[txt_5]','$_POST[txt_12]','$_POST[txt_6]','$_POST[txt_13]','$_POST[txt_7]','$_POST[txt_14]','$sin_existencia','$_POST[txt_16]','$_POST[txt_17]','$producto_series','$expiracion_producto','$_POST[txt_18]','default.png','$producto_activo','$fecha','$_POST[$iva_producto]','$id_user','$incluye_iva')";					
 			}else{					
 				$resp = img_64("img",$_POST['img'],'png',$id);					
 				if($resp == "true"){
-					$sql ="insert into productos values ('$id','$_POST[txt_1]','$_POST[txt_8]','".strtoupper($_POST['txt_2'])."','$valor1','$_POST[txt_3]','$_POST[txt_10]','$valor2','$valor3','$_POST[txt_5]','$_POST[txt_12]','$_POST[txt_6]','$_POST[txt_13]','$_POST[txt_7]','$_POST[txt_14]','$sin_existencia','$_POST[txt_16]','$_POST[txt_17]','$producto_series','$expiracion_producto','$_POST[txt_18]','".$id.".png','$producto_activo','$fecha','$iva_producto','$id_user')";			
+					$sql ="insert into productos values ('$id','$_POST[txt_1]','$_POST[txt_8]','".strtoupper($_POST['txt_2'])."','$valor1','$_POST[txt_3]','$_POST[txt_10]','$valor2','$valor3','$_POST[txt_5]','$_POST[txt_12]','$_POST[txt_6]','$_POST[txt_13]','$_POST[txt_7]','$_POST[txt_14]','$sin_existencia','$_POST[txt_16]','$_POST[txt_17]','$producto_series','$expiracion_producto','$_POST[txt_18]','".$id.".png','$producto_activo','$fecha','$_POST[$iva_producto]','$id_user','$incluye_iva')";			
 				}
 				else{
-					$sql ="insert into productos values ('$id','$_POST[txt_1]','$_POST[txt_8]','".strtoupper($_POST['txt_2'])."','$valor1','$_POST[txt_3]','$_POST[txt_10]','$valor2','$valor3','$_POST[txt_5]','$_POST[txt_12]','$_POST[txt_6]','$_POST[txt_13]','$_POST[txt_7]','$_POST[txt_14]','$sin_existencia','$_POST[txt_16]','$_POST[txt_17]','$producto_series','$expiracion_producto','$_POST[txt_18]','default.png','$producto_activo','$fecha','$iva_producto','$id_user')";		
+					$sql ="insert into productos values ('$id','$_POST[txt_1]','$_POST[txt_8]','".strtoupper($_POST['txt_2'])."','$valor1','$_POST[txt_3]','$_POST[txt_10]','$valor2','$valor3','$_POST[txt_5]','$_POST[txt_12]','$_POST[txt_6]','$_POST[txt_13]','$_POST[txt_7]','$_POST[txt_14]','$sin_existencia','$_POST[txt_16]','$_POST[txt_17]','$producto_series','$expiracion_producto','$_POST[txt_18]','default.png','$producto_activo','$fecha','$_POST[$iva_producto]','$id_user','$incluye_iva')";		
 				}
 			}
 			$guardar = guardarSql($conexion,$sql);
-			$sql_nuevo = "select (id_productos,codigo,codigo_barras,descripcion,precio,utilidad_minorista,utilidad_mayorista,precio_minorista,precio_mayorista,id_tipo,stock,id_categoria,id_marca,id_bodega,id_unidad,facturar_existencia,cantidad_minima,cantidad_maxima,id_series_venta,id_lotes,comentario,imagen,estado,fecha_creacion,iva_producto,id_usuario) from productos where id_productos = '$id'";        
+			$sql_nuevo = "select (id_productos,codigo,codigo_barras,descripcion,precio,utilidad_minorista,utilidad_mayorista,precio_minorista,precio_mayorista,id_tipo,stock,id_categoria,id_marca,id_bodega,id_unidad,facturar_existencia,cantidad_minima,cantidad_maxima,id_series_venta,id_lotes,comentario,imagen,estado,fecha_creacion,id_porcentaje_iva,id_usuario,incluye_iva) from productos where id_productos = '$id'";        
         	$sql_nuevo = sql_array($conexion,$sql_nuevo);
         	auditoria_sistema($conexion,'productos',$id_user,'Insert',$id,$fecha_larga,$fecha,$sql_nuevo,'');
 			if( $guardar == 'true'){
