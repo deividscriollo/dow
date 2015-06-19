@@ -506,22 +506,23 @@ function inicio (){
                                     }
                                 }
                               }else{
-                                  if (dd['iva'] == 0) {                                               
-                                      subtotal = dd['total'];
-                                      sub = subtotal;
+                                if (dd['iva'] == 0) {                                               
+                                    subtotal = dd['total'];
+                                    sub = subtotal;
 
-                                      subtotal0 = parseFloat(subtotal0) + parseFloat(sub);
-                                      subtotal12 = parseFloat(subtotal12) + 0;
-                                      iva12 = parseFloat(iva12) + 0;
-                                      descu_total = parseFloat(descu_total) + dd['cal_des'];
-                                      
-                                      subtotal0 = parseFloat(subtotal0).toFixed(3);
-                                      subtotal12 = parseFloat(subtotal12).toFixed(3);
-                                      iva12 = parseFloat(iva12).toFixed(3);
-                                      descu_total = parseFloat(descu_total).toFixed(3);                                  
-                                  }       
-                              }
-                          }                                                          
+                                    subtotal0 = parseFloat(subtotal0) + parseFloat(sub);
+                                    subtotal12 = parseFloat(subtotal12) + 0;
+                                    iva12 = parseFloat(iva12) + 0;
+                                    descu_total = parseFloat(descu_total) + dd['cal_des'];
+                                    
+                                    subtotal0 = parseFloat(subtotal0).toFixed(3);
+                                    subtotal12 = parseFloat(subtotal12).toFixed(3);
+                                    iva12 = parseFloat(iva12).toFixed(3);
+                                    descu_total = parseFloat(descu_total).toFixed(3);                                  
+                                }       
+                            }
+                          }  
+                                                                                  
                           total_total = parseFloat(total_total) + (parseFloat(subtotal0) + parseFloat(subtotal12) + parseFloat(iva12));
                           total_total = parseFloat(total_total).toFixed(3);
 
@@ -648,7 +649,7 @@ colModel:[
                 }
             } 
         }
-        
+
          $("#tarifa12").val(sub_total);
          $("#iva").val(iva_total);
          $("#descuento_total").val(descu_total3);
