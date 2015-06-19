@@ -398,6 +398,7 @@ function inicio (){
 	        
 	        caption: "LISTA CLIENTES"
 	    });
+
 		jQuery(grid_selector).jqGrid('hideCol', "txt_0");
 		jQuery(grid_selector).jqGrid('hideCol', "txt_11");		
 

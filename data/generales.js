@@ -3,6 +3,7 @@ function fecha_actual (input){
     var strDate = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
     $("#"+input).text(strDate);    
 }
+
 function mostrar(input) {///funcion para mostrar la hora se necesita un nombre de campo como parametro
     var Digital = new Date();
     var hours = Digital.getHours();
@@ -23,6 +24,7 @@ function mostrar(input) {///funcion para mostrar la hora se necesita un nombre d
     //$("#"+input).val(hours + ":" + minutes + ":" + seconds + " " + dn);    
     setTimeout("mostrar('"+input+"')", 1000);    
 }
+
 function comprobarCamposRequired(form){
     var correcto=true;
     var campos_text=$('#'+form+' input:required');    
@@ -54,12 +56,14 @@ function enter(e) {
     }
     return true;
 }
+
 function actualizar_form(){    
     setTimeout(function() {
       location.reload();
     }, 2000);
     
 }
+
 function limpiar_form(e){
     if(e != undefined)
     {
@@ -79,6 +83,7 @@ function limpiar_form(e){
                 form = e;
             }
         }
+
         if(form == "form_usuario"){
             $("#btn_0").text("");
             $("#btn_0").append("<span class='glyphicon glyphicon-log-in'></span> Guardar");
@@ -464,6 +469,7 @@ function ci_ruc_pass(campo,valor,documento){
         p8 = d8 * 3;
         p9 = d9 * 2;            
     }
+
     suma = p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8 + p9;                
     residuo = suma % modulo;                                         
     var digitoVerificador = residuo==0 ? 0: modulo - residuo; 
@@ -528,7 +534,7 @@ function ci_ruc_pass(campo,valor,documento){
     }         
 }
 
-function atras(id,carpeta,archivo){
+function atras(id,carpeta,archivo) {
     var url = '';    
     //url = "../secuencia.php?id="+id+"&fn=0";    
     url = "../"+carpeta+"/"+archivo+"?id="+id+"&fn=0"; 
@@ -545,7 +551,7 @@ function atras(id,carpeta,archivo){
     return resp;
 }
 
-function adelante(id,carpeta,archivo){
+function adelante(id,carpeta,archivo) {
     var url = '';    
     //url = "../secuencia.php?id="+id+"&fn=1";    
     url = "../"+carpeta+"/"+archivo+"?id="+id+"&fn=1"; 
@@ -588,20 +594,23 @@ function appendToChosen_cliente(id,value,text,extra,extra1,extra2,extra3,chosen,
 }
 
 function limpiar_chosen_codigo(){
+    $('#codigo_barras').html("");
+    $('#codigo_barras').append($("<option></option>"));          
+    $('#codigo_barras').trigger('chosen:updated');
     $('#codigo').html("");
     $('#codigo').append($("<option></option>"));          
     $('#codigo').trigger('chosen:updated')
     $('#producto').html("");
     $('#producto').append($("<option></option>"));          
     $('#producto').trigger('chosen:updated');     
-    $('#codigo_barras').html("");
-    $('#codigo_barras').append($("<option></option>"));          
-    $('#codigo_barras').trigger('chosen:updated');     
     $("#id_productos").val("");
     $("#precio").val("");   
     $("#stock").val("");    
     $("#cantidad").val(""); 
-    $("#descuento").val(0);   
+    $("#descuento").val(0);
+    $("#iva_producto").val(""); 
+    $("#incluye").val(""); 
+    $("#inventar").val("");  
     $("#codigo").trigger("chosen:close");
     $("#codigo").trigger("chosen:open");                  
 }

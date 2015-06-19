@@ -494,6 +494,7 @@ function inicio (){
 	$('#txt_12').ace_spinner({value:0,min:0,step:1,max:9999,btn_up_class:'btn btn-success' , btn_down_class:'btn btn-danger'})
 	$('#txt_16').ace_spinner({value:0,min:0,max:9999,step:1, btn_up_class:'btn btn-success' , btn_down_class:'btn btn-danger'})
 	$('#txt_17').ace_spinner({value:0,min:0,step:1,max:9999, btn_up_class:'btn btn-success' , btn_down_class:'btn btn-danger'})	
+	$('#descuento').ace_spinner({value:0,min:0,step:1,max:9999, btn_up_class:'btn btn-success' , btn_down_class:'btn btn-danger'})	
 	// fin dar valor inicial a los espinner		
 	carga_detalles_productos("txt_5",'7');//el producto es y el numero de funcion
 	carga_detalles_productos("txt_6",'8');//categorias y el numero de funcion

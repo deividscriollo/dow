@@ -217,6 +217,12 @@
 																							</div>
 																						</div>
 																						<div class="form-group">
+																							<label class="col-sm-5 control-label no-padding-right" for="txt_16"> Descuento:</label>
+																							<div class="col-sm-7">
+																								<input type="text" id="descuento" name="descuento"  placeholder="" class="form-control" data-toggle="tooltip" data-original-title="" required pattern="[0-9]{1,}" />																						
+																							</div>
+																						</div>
+																						<div class="form-group">
 																							<label class="col-sm-5 control-label no-padding-right" for="incluye_iva"> Incluye Iva: </label>
 																							<div class="col-sm-7">																								
 																								<label>
