@@ -648,6 +648,7 @@ colModel:[
                 }
             } 
         }
+        
          $("#tarifa12").val(sub_total);
          $("#iva").val(iva_total);
          $("#descuento_total").val(descu_total3);
@@ -672,8 +673,7 @@ colModel:[
             $("#descuento_total").val(descu_total3);
             $("#total").val(t_fc_total);
         }
-        var su = jQuery("#list").jqGrid('delRowData', rowid);
-
+           var su = jQuery("#list").jqGrid('delRowData', rowid);
            if (su === true) {
            rp_ge.processing = true;
            $(".ui-icon-closethick").trigger('click'); 
@@ -689,10 +689,3 @@ jQuery("#list").setGridWidth(jQuery('#grid_container').width(), true);
 }).trigger('resize');
 
 }
-
-
-
-
-
-
-/*---------------------------------*/
