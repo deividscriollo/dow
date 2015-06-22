@@ -18,7 +18,7 @@
 	///////////////////////guardar factura venta////////////////////
     $num_serie = "001-001-".$_POST['serie3'];
 
-	$sql = "insert into factura_venta values ('$id','".$_POST['id_cliente']."','".$id_session."','".$_POST['serie3']."','$fecha','".$_POST['hora']."','".$num_serie."','".$_POST['fecha_cancelacion']."','".$_POST['tipo']."','".$_POST['formas']."','".$_POST['tarifa0']."','".$_POST['tarifa12']."','".$_POST['iva']."','".$_POST['descuento_total']."','".$_POST['total']."','Activo','$fecha','".$_POST['termino_pago']."')";	
+	$sql = "insert into factura_venta values ('$id','".$_POST['id_cliente']."','".$id_session."','','".$_POST['fecha_actual']."','".$_POST['hora_actual']."','".$num_serie."','".$_POST['fecha_cancelacion']."','".$_POST['tipo']."','".$_POST['formas']."','".$_POST['termino_pago']."','".$_POST['tarifa0']."','".$_POST['tarifa12']."','".$_POST['iva']."','".$_POST['descuento_total']."','".$_POST['total']."','$fecha','Activo')";	
 	
 	$guardar = guardarSql($conexion,$sql);
 	if( $guardar == 'true'){
@@ -29,27 +29,30 @@
 
 	/////datos detalle factura/////
 	$campo1 = $_POST['campo1'];
-	$campo2 = $_POST['campo2'];
-	$campo3 = $_POST['campo3'];
-	$campo4 = $_POST['campo4'];
-	$campo5 = $_POST['campo5'];
+    $campo2 = $_POST['campo2'];
+    $campo3 = $_POST['campo3'];
+    $campo4 = $_POST['campo4'];
+    $campo5 = $_POST['campo5'];
+    $campo6 = $_POST['campo6'];
 	///////////////////////////////
 
 	////////////descomponer detalle_factura_compra////////
-	$arreglo1 = explode(',', $campo1);
-	$arreglo2 = explode(',', $campo2);
-	$arreglo3 = explode(',', $campo3);
-	$arreglo4 = explode(',', $campo4);
-	$arreglo5 = explode(',', $campo5);
-	$nelem = count($arreglo1);
+	$arreglo1 = explode('|', $campo1);
+    $arreglo2 = explode('|', $campo2);
+    $arreglo3 = explode('|', $campo3);
+    $arreglo4 = explode('|', $campo4);
+    $arreglo5 = explode('|', $campo5);
+    $arreglo6 = explode('|', $campo6);
+    $nelem = count($arreglo1);
 
-	for ($i = 0; $i < $nelem; $i++) {		
+	for ($i = 1; $i < $nelem; $i++) {
+
 	$id2 = unique($fecha_larga);
 	$stock = 0;
 	$cal = 0;
 	///guardar detalle_factura/////
     $sql2 = "insert into detalle_factura_venta values (
-   	'$id2','$id','".$arreglo1[$i]."','".$arreglo2[$i]."','".$arreglo3[$i]."','".$arreglo4[$i]."','".$arreglo5[$i]."','Activo','$fecha')";       
+   	'$id2','$id','".$arreglo1[$i]."','".$arreglo2[$i]."','".$arreglo3[$i]."','".$arreglo4[$i]."','".$arreglo5[$i]."','".$arreglo6[$i]."','$fecha','Activo')";       
 	$guardar = guardarSql($conexion,$sql2);
 	//////////////////////////////	    
 
@@ -58,9 +61,10 @@
     while ($row = pg_fetch_row($consulta)) {
         $stock = $row[0];
     }
+
     $cal = $stock - $arreglo2[$i];    
 
-    $sql3 = "update productos set precio='".$arreglo3[$i]."', stock='$cal' where id_productos='".$arreglo1[$i]."'";								
+    $sql3 = "update productos set stock='$cal' where id_productos='".$arreglo1[$i]."'";								
 	$guardar = guardarSql($conexion, $sql3);
     ///////////////////////////////////////////
 	//
@@ -73,7 +77,7 @@
 
 //validando_xml($id,'fecha','total','detalle','cliente','ruc_ced','total_sin inpuestos','descuento','iva','diferencia','telefono','num_factu','dir-client','orden_num');
 
-$l='localhost/sistema_dow/data/reportes/factura_venta.php?id='.$id;
-envio_correo_ventas($_POST['correo'],$_POST['nombre'],$_POST['total'],$l, $num_serie);
+// $l='localhost/sistema_dow/data/reportes/factura_venta.php?id='.$id;
+// envio_correo_ventas($_POST['correo'],$_POST['nombre'],$_POST['total'],$l, $num_serie);
 echo $data;
 ?>

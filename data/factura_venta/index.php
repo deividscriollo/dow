@@ -93,7 +93,7 @@ while ($row = pg_fetch_row($consulta)) {
 																<label class="col-sm-4 no-padding-right" for="hora_actual">Hora Actual:</label>
 																<div class="col-sm-8">
 																	<div class="input-group">
-																		<lavel class="form-control" type="text" id="hora_actual" name="hora_actual"  readonly />
+																		<input class="form-control" type="text" id="hora_actual" name="hora_actual"  readonly />
 																		<span class="input-group-addon">
 																			<i class="fa fa-clock-o bigger-110"></i>
 																		</span>
