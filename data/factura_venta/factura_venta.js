@@ -3,7 +3,6 @@ $(document).on("ready",inicio);
 function guardar_factura(){
   var tam = jQuery("#list").jqGrid("getRowData");
 
-
   if($("#id_cliente").val() == ""){
       $("#txt_nro_identificacion").trigger("chosen:open");    
       alert("Seleccione un cliente");
@@ -18,37 +17,38 @@ function guardar_factura(){
                 $("#codigo").trigger("chosen:open");
                 alert("Ingrese productos a la Factura");  
             }else{
-              var v1 = new Array();
-              var v2 = new Array();
-              var v3 = new Array();
-              var v4 = new Array();
-              var v5 = new Array();
-              var v6 = new Array();
-              var string_v1 = "";
-              var string_v2 = "";
-              var string_v3 = "";
-              var string_v4 = "";
-              var string_v5 = "";
-              var string_v6 = "";
-              var fil = jQuery("#list").jqGrid("getRowData");
-              for (var i = 0; i < fil.length; i++) {
-                  var datos = fil[i];
-                  v1[i] = datos['cod_producto'];
-                  v2[i] = datos['cantidad'];
-                  v3[i] = datos['precio_u'];
-                  v4[i] = datos['descuento'];
-                  v5[i] = datos['total'];
-                  v6[i] = datos['pendiente'];
-              }
-              
-              for (i = 0; i < fil.length; i++) {
-                  string_v1 = string_v1 + "|" + v1[i];
-                  string_v2 = string_v2 + "|" + v2[i];
-                  string_v3 = string_v3 + "|" + v3[i];
-                  string_v4 = string_v4 + "|" + v4[i];
-                  string_v5 = string_v5 + "|" + v5[i];
-                  string_v6 = string_v6 + "|" + v6[i];
-              }
+                var v1 = new Array();
+                var v2 = new Array();
+                var v3 = new Array();
+                var v4 = new Array();
+                var v5 = new Array();
+                var v6 = new Array();
+                var string_v1 = "";
+                var string_v2 = "";
+                var string_v3 = "";
+                var string_v4 = "";
+                var string_v5 = "";
+                var string_v6 = "";
+                var fil = jQuery("#list").jqGrid("getRowData");
+                for (var i = 0; i < fil.length; i++) {
+                    var datos = fil[i];
+                    v1[i] = datos['cod_producto'];
+                    v2[i] = datos['cantidad'];
+                    v3[i] = datos['precio_u'];
+                    v4[i] = datos['descuento'];
+                    v5[i] = datos['total'];
+                    v6[i] = datos['pendiente'];
+                }
+                
+                for (i = 0; i < fil.length; i++) {
+                    string_v1 = string_v1 + "|" + v1[i];
+                    string_v2 = string_v2 + "|" + v2[i];
+                    string_v3 = string_v3 + "|" + v3[i];
+                    string_v4 = string_v4 + "|" + v4[i];
+                    string_v5 = string_v5 + "|" + v5[i];
+                    string_v6 = string_v6 + "|" + v6[i];
+                }
+
                 var a = autocompletar($("#serie3").val());
                 $("#serie3").val(a + "" + $("#serie3").val());
                 $.ajax({        
@@ -58,9 +58,9 @@ function guardar_factura(){
                     success: function(data) { 
                         if( data == 0 ){
                             alert('Datos Agregados Correctamente');     
-                            // setTimeout(function() {
-                            //     location.reload();
-                            // }, 1000);
+                            setTimeout(function() {
+                                location.reload();
+                            }, 1000);
                         }
                     }
                 }); 
@@ -209,7 +209,8 @@ function inicio (){
             		$('#codigo').html("");            
             		for (var i = 0; i < data.length; i = i + 10) {                                                 
               			appendToChosenProducto(data[i],data[i+1],data[i+2],data[i+3],data[i+4],data[i+5],data[i+6],data[i+7],data[i+8],data[i+9],text,"codigo","codigo_chosen");
-            		}           
+            		}   
+
             		$('#producto').html("");
             		$('#producto').append($("<option data-barras='"+data[2]+"' data-codigo='"+data[1]+"' data-precio='"+data[4]+"' data-stock='"+data[5]+"' data-iva='"+data[6]+"' data-inventariable='"+data[7]+"' data-incluye_iva='"+data[8]+"' data-descuento='"+data[9]+"' ></option>").val(data[0]).html(data[3])).trigger('chosen:updated');            
 	    	        $("#id_productos").val(data[0]);
@@ -289,7 +290,7 @@ function inicio (){
 	$("#producto").chosen().change(function (event,params){    
     	if(params == undefined){         
       		$('#codigo').html("");
-	    	$('#codigo').append($("<option></option>"));          
+	    	  $('#codigo').append($("<option></option>"));          
       		$('#codigo').trigger('chosen:updated')
 	      	$('#producto').html("");
     	  	$('#producto').append($("<option></option>"));          
@@ -335,9 +336,7 @@ function inicio (){
       		if($("#cantidad").val() != ""){
         		if($("#precio").val() != ""){
           			if($("#id_productos").val() != ""){
-            		//agregar_fila(id_tabla,id_productos,codigo_producto,detalle_producto,cantidad_producto,limite,precio_unitario,descuento,total,inventariable);            			
                   var a = $("#producto option:selected");      
-                  //console.log($("#cantidad").val() <= $(a).data('stock'))
                   if($(a).data('inventariable') == 'Si' && $("#cantidad").val() <= $(a).data('stock')) {
                       var filas = jQuery("#list").jqGrid("getRowData");
                       var descuento = 0;
@@ -530,8 +529,6 @@ function inicio (){
                           $("#total").val(total_total);
                         /////////////////////////////////////////////////////
                       
-                      // agregar_fila("detalle_factura",$("#id_productos").val(),$(a).data("codigo"),$(a).text(),$("#cantidad").val(),$(a).data("stock"),$("#precio").val(),$("#descuento").val(),$(a).data("iva"),$(a).data("inventariable"));                                    
-            			 // agregar_fila("detalle_factura",$("#id_productos").val(),$(a).data("codigo"),$(a).text(),$("#cantidad").val(),$(a).data("stock"),$("#precio").val(),$("#descuento").val(),$(a).data("iva"),$(a).data("inventariable"));            
                   }else{
                     if($(a).data('inventariable') == 'No') {
                       var filas = jQuery("#list").jqGrid("getRowData");
@@ -724,23 +721,21 @@ function inicio (){
                           $("#descuento_total").val(descu_total);
                           $("#total").val(total_total);
                         /////////////////////////////////////////////////////
-                      
-                      // agregar_fila("detalle_factura",$("#id_productos").val(),$(a).data("codigo"),$(a).text(),$("#cantidad").val(),$(a).data("stock"),$("#precio").val(),$("#descuento").val(),$(a).data("iva"),$(a).data("inventariable"));                                  
-                    }else{
+                    } else {
                       alert('Fuera de stock el límite del productos es: '+$(a).data('stock'));
                       $("#cantidad").val('');
                       $("#cantidad").focus();
                     }
                   }
-          			}else{
+          			} else {
             			alert("Seleccione un producto antes de continuar");                        
     	        		$('#codigo_chosen').trigger('mousedown');
         	  		}
-        		}else{
+        		} else {
 	          		alert("Ingrese un precio");
     	      		$("#precio").focus();  
         		}
-      		}else{
+      		} else {
 	        	alert("Ingrese una cantidad");
     	    	$("#cantidad").focus();
       		}
@@ -865,13 +860,13 @@ colModel:[
         $("#descuento_total").val(descu_total);
         $("#total").val(total_total);
 
-           var su = jQuery("#list").jqGrid('delRowData', rowid);
-           if (su === true) {
-           rp_ge.processing = true;
-           $(".ui-icon-closethick").trigger('click'); 
-           }
-        return true;
-    },
+         var su = jQuery("#list").jqGrid('delRowData', rowid);
+         if (su === true) {
+         rp_ge.processing = true;
+         $(".ui-icon-closethick").trigger('click'); 
+         }
+      return true;
+      },
     processing: true
 }
 });

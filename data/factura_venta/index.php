@@ -23,7 +23,6 @@ while ($row = pg_fetch_row($consulta)) {
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="../../dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="../../dist/css/font-awesome.min.css" />
-		<!-- Select -->
 		<link rel="stylesheet" href="../../dist/css/chosen.min.css" />		
 		<link rel="stylesheet" href="../../dist/css/ui.jqgrid.min.css" />
 		<link rel="stylesheet" href="../../dist/css/bootstrap-datetimepicker.min.css" />
@@ -159,7 +158,6 @@ while ($row = pg_fetch_row($consulta)) {
 																	<label class="col-sm-4 no-padding-right" for="form-field-1"> Dirección: </label>
 																	<div class="col-sm-8">
 																		<input type="text" id="lbl_client_direccion" name="lbl_client_direccion" class="form-control" readonly data-toggle="tooltip"  value="" /> 
-																		<!-- <h5 class="blue" id="lbl_client_direccion"></h5> -->
 																	</div>																													
 																</div>																												
 															</div>
@@ -169,7 +167,6 @@ while ($row = pg_fetch_row($consulta)) {
 																	<label class="col-sm-4 no-padding-right" for="form-field-1"> Teléfono:</label>
 																	<div class="col-sm-8">
 																	    <input type="text" id="lbl_client_telefono" name="lbl_client_telefono" class="form-control" readonly data-toggle="tooltip"  value="" /> 
-																		<!-- <h5 class="blue" id="lbl_client_telefono"></h5> -->
 																	</div>																													
 																</div>																												
 															</div>
@@ -179,7 +176,6 @@ while ($row = pg_fetch_row($consulta)) {
 																	<label class="col-sm-3 no-padding-right" for="form-field-1"> Correo:</label>
 																	<div class="col-sm-9">
 																		<input type="text" id="lbl_client_correo" name="lbl_client_correo" class="form-control" readonly data-toggle="tooltip"  value="" /> 
-																		<!-- <h5 class="blue" id="lbl_client_correo"></h5> -->
 																	</div>																													
 																</div>																												
 															</div>																
@@ -249,9 +245,10 @@ while ($row = pg_fetch_row($consulta)) {
 															</div>
 														</div>
 													</div>
+													
 													<div class="row">
 														<div class="col-xs-12">
-															<div class="col-xs-3">
+															<div class="col-xs-2">
 																<div class="row">
 																	<div class="col-xs-12">
 																		<label> Codigo de Barra:</label>
@@ -279,7 +276,7 @@ while ($row = pg_fetch_row($consulta)) {
 																	</div>
 																</div>
 															</div>
-															<div class="col-xs-3">
+															<div class="col-xs-4">
 																<div class="row">
 																	<div class="col-xs-12">
 																		<label> Producto:</label>
@@ -329,11 +326,11 @@ while ($row = pg_fetch_row($consulta)) {
 																			<div class="row">
 																				<div class="col-xs-12">
 																					<input type="number" id="descuento" name="descuento" class="form-control" data-toggle="tooltip" onkeydown="return validarNumeros(event)" value="0" /> 
-																					<input type="hidden" id="stock" name="stock" class="form-control" data-toggle="tooltip" /> 
-																					<input type="hidden" id="id_productos" name="id_productos" class="form-control" data-toggle="tooltip" /> 
-																					<input type="hidden" id="iva_producto" name="iva_producto" class="form-control" data-toggle="tooltip" /> 
-																					<input type="hidden" id="incluye" name="incluye" class="form-control" data-toggle="tooltip" />
-																					<input type="hidden" id="inventar" name="inventar" class="form-control" data-toggle="tooltip" />  
+																					<input type="text" id="stock" name="stock" class="form-control" data-toggle="tooltip" /> 
+																					<input type="text" id="id_productos" name="id_productos" class="form-control" data-toggle="tooltip" /> 
+																					<input type="text" id="iva_producto" name="iva_producto" class="form-control" data-toggle="tooltip" /> 
+																					<input type="text" id="incluye" name="incluye" class="form-control" data-toggle="tooltip" />
+																					<input type="text" id="inventar" name="inventar" class="form-control" data-toggle="tooltip" />  
 																				</div>
 																			</div>
 																		</div>
@@ -351,35 +348,8 @@ while ($row = pg_fetch_row($consulta)) {
 													<div class="col-md-12">
 							                            <div id="grid_container">
 							                                <table id="list"></table>
-							                                <!--<div id="pager"></div>-->   
 							                            </div>
-							                         </div>
-													
-													<!-- <div class="row">														
-														<div class="col-xs-12">
-														 	<div class="col-sm-12">
-														 		<table id="list"></table>
-
-																<table id="detalle_factura" class="table table-striped table-bordered table-hover">
-																	<thead>
-																		<tr style="background-color: #428BCA; color: white;">
-																			<th class="center" style="display:none;"><i class="ace-icon fa fa-bars"></i></th>
-																			<th class="center" width="15%">Codigo</th>
-																			<th class="center" width="35%">Detalle</th>
-																			<th class="center" width="10%">Cantidad</th>
-																			<th class="center" width="10%">Precio U.</th>
-																			<th class="center" width="10%">Descuento</th>
-																			<th class="center" width="10%">Total</th>
-																			<th class="center" width="10%"><i class="ace-icon fa fa-cogs"></i> Accion</th>
-																		</tr>
-																	</thead>
-																	<tbody>
-																		
-																	</tbody>
-																</table>
-															</div>
-														</div>														
-													</div> -->
+							                        </div>
 
 													<div class="row">
 														<div class="col-md-12">
@@ -389,7 +359,6 @@ while ($row = pg_fetch_row($consulta)) {
 																	<label class="col-sm-4 no-padding-right" for="tarifa0"> Tarifa 0:</label>
 																	<div class="col-sm-8">
 																		<input type="text" id="tarifa0" name="tarifa0" class="form-control" readonly value="0.000" /> 
-																		<!-- <h5 class="blue" id="lbl_client_correo"></h5> -->
 																	</div>																													
 																</div>	
 
@@ -397,7 +366,6 @@ while ($row = pg_fetch_row($consulta)) {
 																	<label class="col-sm-4 no-padding-right" for="tarifa12"> Tarifa 12:</label>
 																	<div class="col-sm-8">
 																		<input type="text" id="tarifa12" name="tarifa12" class="form-control" readonly value="0.000" /> 
-																		<!-- <h5 class="blue" id="lbl_client_correo"></h5> -->
 																	</div>																													
 																</div>
 
@@ -405,7 +373,6 @@ while ($row = pg_fetch_row($consulta)) {
 																	<label class="col-sm-4 no-padding-right" for="iva"> 12 % Iva:</label>
 																	<div class="col-sm-8">
 																		<input type="text" id="iva" name="iva" class="form-control" readonly value="0.000" /> 
-																		<!-- <h5 class="blue" id="lbl_client_correo"></h5> -->
 																	</div>																													
 																</div>
 
@@ -413,7 +380,6 @@ while ($row = pg_fetch_row($consulta)) {
 																	<label class="col-sm-4 no-padding-right" for="descuento_total"> Descuento:</label>
 																	<div class="col-sm-8">
 																		<input type="text" id="descuento_total" name="descuento_total" class="form-control" readonly value="0.000" /> 
-																		<!-- <h5 class="blue" id="lbl_client_correo"></h5> -->
 																	</div>																													
 																</div>
 
@@ -421,15 +387,13 @@ while ($row = pg_fetch_row($consulta)) {
 																	<label class="col-sm-4 no-padding-right" for="total"> Total:</label>
 																	<div class="col-sm-8">
 																		<input type="text" id="total" name="total" class="form-control" readonly value="0.000" /> 
-																		<!-- <h5 class="blue" id="lbl_client_correo"></h5> -->
 																	</div>																													
 																</div>																											
 															</div>																	
 														</div>
 													</div>
-
-													
 												</form>
+
 												<div class="row">
 													<div class="center">													 
 														<button type="button" class="btn btn-primary" id="btn_0">
