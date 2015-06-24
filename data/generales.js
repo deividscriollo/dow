@@ -85,6 +85,21 @@ function actualizar_form(){
     
 }
 
+function limpiar_input() {
+    $("#codigo_barras").val("");
+    $("#id_productos").val("");
+    $("#codigo").val("");
+    $("#producto").val("");
+    $("#cantidad").val("");
+    $("#precio").val("");
+    $("#descuento").val("");
+    $("#stock").val("");
+    $("#iva_producto").val("");
+    $("#inventar").val("");
+    $("#incluye").val("");
+    $("#codigo_barras").focus();
+}
+
 function limpiar_form(e){
     if(e != undefined)
     {

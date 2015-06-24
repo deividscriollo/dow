@@ -203,8 +203,8 @@ while ($row = pg_fetch_row($consulta)) {
 																	<label class="col-sm-4 no-padding-right" for="tipo"> Tipo de precio:</label>
 																	<div class="col-sm-8">
 																		<select class="chosen-select form-control" id="tipo" name="tipo" data-placeholder="Forma de Pago">
+	                                                                        <option value="MINORISTA" selected>MINORISTA</option>
 	                                                                        <option value="MAYORISTA">MAYORISTA</option>
-	                                                                        <option value="MINORISTA">MINORISTA</option>
 	                                                                    </select>
 																	</div>																														
 																</div>														 
@@ -256,9 +256,7 @@ while ($row = pg_fetch_row($consulta)) {
 																</div>
 																<div class="row">
 																	<div class="col-xs-12">
-																		<select class="chosen-select form-control" id="codigo_barras" name="codigo_barras" data-placeholder="Código de Barras del Producto">
-																			<option value=""></option>
-																		</select>
+																		<input type="text" id="codigo_barras" name="codigo_barras"  class="form-control" data-toggle="tooltip"  /> 
 																	</div>
 																</div>
 															</div>
@@ -270,9 +268,7 @@ while ($row = pg_fetch_row($consulta)) {
 																</div>
 																<div class="row">
 																	<div class="col-xs-12">
-																		<select class="chosen-select form-control" id="codigo" name="codigo" data-placeholder="Código del Producto">
-																			<option value=""></option>
-																		</select>
+																		<input type="text" id="codigo" name="codigo"  class="form-control" data-toggle="tooltip"  /> 
 																	</div>
 																</div>
 															</div>
@@ -284,9 +280,7 @@ while ($row = pg_fetch_row($consulta)) {
 																</div>
 																<div class="row">
 																	<div class="col-xs-12">
-																		<select class="chosen-select form-control" id="producto" name="producto" data-placeholder="Descripción del Producto">
-																			<option value=""></option>
-																		</select>
+																		<input type="text" id="producto" name="producto"  class="form-control" data-toggle="tooltip"  /> 
 																	</div>
 																</div>
 															</div>
@@ -313,7 +307,7 @@ while ($row = pg_fetch_row($consulta)) {
 																			</div>
 																			<div class="row">
 																				<div class="col-xs-12">
-																					<input type="text" id="precio" name="precio" onkeydown="return validarNumeros(event)" value="0.00" class="form-control" data-toggle="tooltip"  /> 
+																					<input type="text" id="precio" name="precio" value="" class="form-control" data-toggle="tooltip"  /> 
 																				</div>
 																			</div>
 																		</div>
@@ -325,12 +319,12 @@ while ($row = pg_fetch_row($consulta)) {
 																			</div>
 																			<div class="row">
 																				<div class="col-xs-12">
-																					<input type="number" id="descuento" name="descuento" class="form-control" data-toggle="tooltip" onkeydown="return validarNumeros(event)" value="0" /> 
-																					<input type="text" id="stock" name="stock" class="form-control" data-toggle="tooltip" /> 
-																					<input type="text" id="id_productos" name="id_productos" class="form-control" data-toggle="tooltip" /> 
-																					<input type="text" id="iva_producto" name="iva_producto" class="form-control" data-toggle="tooltip" /> 
-																					<input type="text" id="incluye" name="incluye" class="form-control" data-toggle="tooltip" />
-																					<input type="text" id="inventar" name="inventar" class="form-control" data-toggle="tooltip" />  
+																					<input type="number" id="descuento" name="descuento" class="form-control" data-toggle="tooltip" min="1" value="" /> 
+																					<input type="hidden" id="stock" name="stock" class="form-control" data-toggle="tooltip" /> 
+																					<input type="hidden" id="id_productos" name="id_productos" class="form-control" data-toggle="tooltip" /> 
+																					<input type="hidden" id="iva_producto" name="iva_producto" class="form-control" data-toggle="tooltip" /> 
+																					<input type="hidden" id="incluye" name="incluye" class="form-control" data-toggle="tooltip" />
+																					<input type="hidden" id="inventar" name="inventar" class="form-control" data-toggle="tooltip" />  
 																				</div>
 																			</div>
 																		</div>

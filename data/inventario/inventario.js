@@ -76,6 +76,7 @@ function inicio (){
         	});     
     	}
   	});
+
   	$("#codigo_chosen").children().next().children().click(function (){
     	$("#cantidad").focus(); 
   	});
