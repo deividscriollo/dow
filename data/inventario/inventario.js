@@ -47,9 +47,7 @@ function guardar_inventario(){
 
 
 function inicio (){		
-  mostrar("estado");  
-  fecha_actual("fecha_actual"); 
-
+  show(); 
 	/*buscador del codigo del producto*/
   	var input_codigoProducto = $("#codigo_chosen").children().next().children();    
   	$(input_codigoProducto).on("keyup",function(input_ci){

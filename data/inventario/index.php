@@ -28,8 +28,6 @@
 		<!-- ace styles -->
 		<link rel="stylesheet" href="../../dist/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
 		<link type="text/css" rel="stylesheet" id="ace-skins-stylesheet" href="../../dist/css/ace-skins.min.css">
-
-		<!-- ace settings handler -->
 		<script src="../../dist/js/ace-extra.min.js"></script>
 	</head>
 
@@ -73,37 +71,42 @@
 											<div class="row">
 												<form class="form-horizontal" role="form" rol="form" action="" method="POST" id="form_inventario">	
 													<div class="row">
-														<div class="col-xs-12 pull-right">														
-															<div class="col-sm-3">
-																<span class="bigger-120" id>
-																	<span class="blue bolder">Fecha Actual:</span>
-																	<span id="fecha_actual"></span>
-																</span>
+														<div class="col-md-12 pull-right">
+															<div class="col-md-4">
+																<label class="col-sm-4 no-padding-right" for="fecha_actual">Fecha Actual:</label>
+																<div class="col-sm-8">
+																	<div class="input-group">
+																		<input class="form-control date-picker" id="fecha_actual" name="fecha_actual" type="text" readonly data-date-format="yyyy-mm-dd" />
+																		<span class="input-group-addon">
+																			<i class="fa fa-calendar bigger-110"></i>
+																		</span>
+																	</div>
+																</div>
 															</div>
-															<div class="col-sm-3">
-																<span class="bigger-120" id>
-																	<span class="blue bolder">Hora Actual:</span>
-																	<spani id="estado"></span>
-																</span>
+
+															<div class="col-md-4">
+																<label class="col-sm-4 no-padding-right" for="hora_actual">Hora Actual:</label>
+																<div class="col-sm-8">
+																	<div class="input-group">
+																		<input class="form-control" type="text" id="hora_actual" name="hora_actual"  readonly />
+																		<span class="input-group-addon">
+																			<i class="fa fa-clock-o bigger-110"></i>
+																		</span>
+																	</div>
+																</div>
 															</div>
-															<div class="col-sm-3">
-																<span class="bigger-120" id>
+
+															<div class="col-md-4">
+																<span class="bigger-120">
 																	<span class="red bolder">Responsable:</span>
 																	<span ><?php print($_SESSION['nombrescompletosdow']); ?></span>
 																</span>
 															</div>
 														</div>
 													</div>
+
 													<div class="hr"></div>
-													<div class="row ">
-														<div class="col-xs-12">
-															<div class="col-xs-12">
-																<h3 class="header smaller lighter green">
-																	Productos
-																</h3>
-															</div>
-														</div>
-													</div>
+													
 													<div class="row">
 														<div class="col-xs-12">
 															<div class="col-xs-3">
