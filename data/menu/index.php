@@ -1027,20 +1027,21 @@ function menu_lateral(){
 					Privilegios
 				</a>
 				<b class="arrow"></b>
-<<<<<<< HEAD
 			</li>';
 			print '<li ';
 				if ($acus[3]=='plan_cuentas') {				
 					print('class="hover active"');
 				}else print('class="hover"');
 			print'>
-=======
+
 			</li>';								
 			print '</ul>			
 		</li>';	
-		print '<li ';if ($acus[3]=='plan_cuentas') {
-		print('class="active open"');
-		}print'>
+		print '<li ';
+			if ($acus[3]=='plan_cuentas') {
+				print('class="hover active open"');
+			}else print('class="hover"');
+		print'>
 			<a href="#" class="dropdown-toggle">
 				<i class="menu-icon fa fa-print ranger"></i>
 				<span class="menu-text">
@@ -1050,19 +1051,23 @@ function menu_lateral(){
 			</a>
 			<b class="arrow"></b>
 			<ul class="submenu">';			
-			print '<li ';if ($acus[3]=='plan_cuentas') {				
-				print('class="active"');
-			}print'>
->>>>>>> origin/master
+			print '<li ';
+				if ($acus[3]=='plan_cuentas') {				
+					print('class="hover active"');
+				}else print('class="hover"');
+			print'>
+
 				<a href="../plan_cuentas/">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Plan de Cuentas
 				</a>
 				<b class="arrow"></b>
 			</li>';	
-			print '<li ';if ($acus[3]=='grupos') {				
-				print('class="active"');
-			}print'>
+			print '<li ';
+				if ($acus[3]=='grupos') {				
+					print('class="hover active"');
+				}else print('class="hover"');
+			print'>
 				<a href="../grupos/">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Grupos Contables
