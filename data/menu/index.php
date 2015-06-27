@@ -26,7 +26,7 @@ function menu_arriba(){
 					<a href="../inici/" class="navbar-brand">
 						<small>
 							<i class="fa fa-database"></i>
-							';print empresa(); print'
+							Contabilidad Web ';print empresa(); print'
 						</small>
 					</a>
 
@@ -47,23 +47,9 @@ function menu_arriba(){
 					</button>
 				</div>
 
-				<div class="navbar-buttons navbar-header pull-right  collapse navbar-collapse" role="navigation">
-					<ul class="nav ace-nav">
-						<li class="light-blue user-min">
-							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="../../dist/avatars/user.jpg" />
-								<span class="user-info">
-									<small>Bienvenido,</small>
-									'.$_SESSION['nombrescompletosdow'].'
-								</span>
-							</a>
-							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-							</ul>
-						</li>
-					</ul>
-				</div>
+				
 
-				<nav role="navigation" class="navbar-menu pull-left collapse navbar-collapse">
+				<nav role="navigation" class="navbar-menu pull-right collapse navbar-collapse">
 					<ul class="nav navbar-nav">
 						<li>
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -1043,7 +1029,7 @@ function menu_lateral(){
 			}else print('class="hover"');
 		print'>
 			<a href="#" class="dropdown-toggle">
-				<i class="menu-icon fa fa-print ranger"></i>
+				<i class="menu-icon fa fa-database ranger"></i>
 				<span class="menu-text">
 					Contabilidad
 				</span>
