@@ -26,13 +26,12 @@
 
 		<!-- ace styles -->
 		<link rel="stylesheet" href="../../dist/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
-		<link type="text/css" rel="stylesheet" id="ace-skins-stylesheet" href="../../dist/css/ace-skins.min.css">
+        <link type="text/css" rel="stylesheet" id="ace-skins-stylesheet" href="../../dist/css/ace-skins.min.css">
+        <link type="text/css" rel="stylesheet" id="ace-rtl-stylesheet" href="../../dist/css/ace-rtl.min.css">
+        <script src="../../dist/js/ace-extra.min.js"></script>
+    </head>
 
-		<!-- ace settings handler -->
-		<script src="../../dist/js/ace-extra.min.js"></script>
-	</head>
-
-	<body class="skin-1">
+    <body class="skin-2 rtl">
 		<?php menu_arriba(); ?>
 		<div class="main-container" id="main-container">
 			<?php menu_lateral(); ?>

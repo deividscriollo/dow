@@ -36,7 +36,7 @@ $conexion = conectarse();
 		$_SESSION['nivel3'] = explode(",", $_SESSION['nivel3']);		
 		
 		$_SESSION['empresa_dow']="09594354b7d5df18f18";//en caso de multiempresa modificar este parametro asesor legal cambiado por fecha autorizacion
-		$_SESSION['nombre_empresa_dow']="TOTORA SISA";
+		$_SESSION['nombre_empresa_dow']="NELTEX";
 		if ($acu==0) {
 			print(0);
 		}else print(1);
