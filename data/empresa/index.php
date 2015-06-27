@@ -158,7 +158,7 @@
 																						<div class="form-group">
 																							<label class="col-sm-4 control-label no-padding-right" for="txt_7">Fax:</label>
 																							<div class="col-sm-8">
-																								<input type="text" id="txt_7" name="txt_7" placeholder="Fax" class="form-control" data-toggle="tooltip" data-original-title="Nombres de usuario"  />
+																								<input type="text" id="txt_7" name="txt_7" placeholder="Fax" class="form-control" data-toggle="tooltip" data-original-title=""  />
 																							</div>
 																						</div>
 																						<div class="form-group">
@@ -242,15 +242,27 @@
 																				</div>
 																				<div class="col-sm-5">
 																					<div class="form-group ">
-																						<label class="col-sm-4 control-label no-padding-right" for="txt_17">Contador:</label>
+																						<label class="col-sm-4 control-label no-padding-right" for="txt_21">RUC. Contador:</label>
 																						<div class="col-sm-8">
-																							<input type="text" id="txt_17" name="txt_17" placeholder="Contador" class="form-control" pattern="[A-Za-záéíóúÁÉÍÓÚñÑ0-9]{1,}" data-toggle="tooltip" data-original-title="Digite la contraseña del usuario mínimo 5 carácteres"/>
+																							<input type="text" id="txt_21" name="txt_21" placeholder="RUC. Contador" class="form-control" pattern="[A-Za-záéíóúÁÉÍÓÚñÑ0-9]{1,}" data-toggle="tooltip" data-original-title="Digite la contraseña del usuario mínimo 5 carácteres"/>
 																						</div>
-																					</div>
+																					</div>																					
 																					<div class="form-group">
-																						<label class="col-sm-4 control-label no-padding-right" for="txt_18">Autorizacion SRI:</label>
+																						<label class="col-sm-4 control-label no-padding-right" for="txt_18">Autorizacion Factura:</label>
 																						<div class="col-sm-8">
-																							<input type="text" id="txt_18" name="txt_18" placeholder="Autorizacion SRI" class="form-control" pattern="[0-9]{1,}" data-toggle="tooltip" data-original-title="Autorizacion SRI"  />
+																							<input type="text" id="txt_18" name="txt_18" placeholder="Autorizacion Factura" class="form-control" pattern="[0-9]{1,}" data-toggle="tooltip" data-original-title="Autorizacion Factura"  />
+																						</div>
+																					</div>		
+																					<div class="form-group">
+																						<label class="col-sm-4 control-label no-padding-right" for="txt_22">Serie Retención</label>
+																						<div class="col-sm-8">
+																							<input type="text" id="txt_22" name="txt_22" placeholder="Serie Retención" class="form-control" pattern="[0-9]{1,}" data-toggle="tooltip" data-original-title="Autorizacion Factura"  />
+																						</div>
+																					</div>			
+																					<div class="form-group">
+																						<label class="col-sm-4 control-label no-padding-right" for="txt_23">Autorización Retención</label>
+																						<div class="col-sm-8">
+																							<input type="text" id="txt_23" name="txt_23" placeholder="Autorización Retención" class="form-control" pattern="[0-9]{1,}" data-toggle="tooltip" data-original-title="Autorizacion Factura"  />
 																						</div>
 																					</div>																																									
 																					<div class="form-group">
@@ -270,6 +282,24 @@
 																					</div>
 																				</div>
 																				<div class="col-sm-5">																					
+																					<div class="form-group ">
+																						<label class="col-sm-4 control-label no-padding-right" for="txt_17">Contador:</label>
+																						<div class="col-sm-8">
+																							<input type="text" id="txt_17" name="txt_17" placeholder="Contador" class="form-control" pattern="[A-Za-záéíóúÁÉÍÓÚñÑ0-9]{1,}" data-toggle="tooltip" data-original-title="Digite la contraseña del usuario mínimo 5 carácteres"/>
+																						</div>
+																					</div>
+																					<div class="form-group">
+																						<label class="col-sm-4 control-label no-padding-right" for="txt_24">Serie Nota Crédito</label>
+																						<div class="col-sm-8">
+																							<input type="text" id="txt_24" name="txt_24" placeholder="Serie Nota de Crédito" class="form-control" pattern="[0-9]{1,}" data-toggle="tooltip" data-original-title="Autorizacion Factura"  />
+																						</div>
+																					</div>			
+																					<div class="form-group">
+																						<label class="col-sm-4 control-label no-padding-right" for="txt_25">Autorización Nota Crédito</label>
+																						<div class="col-sm-8">
+																							<input type="text" id="txt_25" name="txt_25" placeholder="Autorización Nota Crédito" class="form-control" pattern="[0-9]{1,}" data-toggle="tooltip" data-original-title="Autorizacion Factura"  />
+																						</div>
+																					</div>			
 																					<div class="form-group">
 																						<label class="col-sm-4 control-label no-padding-right" for="form-field-1">Inicio Factura:</label>
 																						<div class="col-sm-8">
@@ -431,29 +461,12 @@
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
-			/*funcion inicial de la imagen y  buscadores del select no topar plz*/			
-			$('.chosen-select').chosen({allow_single_deselect:true}); 
-			$(window)
-			.off('resize.chosen')
-			.on('resize.chosen', function() {
-				$('.chosen-select').each(function() {
-					 var $this = $(this);
-					 $this.next().css({'width': $this.parent().width()});
-				})
-			}).trigger('resize.chosen');
-			//resize chosen on sidebar collapse/expand
-			$(document).on('settings.ace.chosen', function(e, event_name, event_val) {
-				if(event_name != 'sidebar_collapsed') return;
-				$('.chosen-select').each(function() {
-					 var $this = $(this);
-					 $this.next().css({'width': $this.parent().width()});
-				})
-			});
-			/*-----------------------*/
+			
+			
 			/*funcion inicial spinner para objetos de subir y bajar con intervalos automaticos*/
-			$('#spinner1').ace_spinner({value:0,min:0,step:1, btn_up_class:'btn btn-success' , btn_down_class:'btn btn-danger'});
-			$('#spinner2').ace_spinner({value:0,min:0,step:1, btn_up_class:'btn btn-success' , btn_down_class:'btn btn-danger'});
-			$('#spinner3').ace_spinner({value:2015,min:2015,max:2050,step:1, btn_up_class:'btn btn-success' , btn_down_class:'btn btn-danger'});			
+			$('#spinner1').ace_spinner({value:0,min:0,max:900050,step:1, btn_up_class:'btn btn-success' , btn_down_class:'btn btn-danger'});
+			$('#spinner2').ace_spinner({value:0,min:0,max:900050,step:1, btn_up_class:'btn btn-success' , btn_down_class:'btn btn-danger'});
+			$('#spinner3').ace_spinner({value:2015,min:1015,max:900050,step:1, btn_up_class:'btn btn-success' , btn_down_class:'btn btn-danger'});			
 				
 			/*-----------------------*/			
 			/*funcion inicial proceso*/

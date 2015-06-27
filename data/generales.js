@@ -3,6 +3,7 @@ function fecha_actual (input){
     var strDate = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
     $("#"+input).text(strDate);    
 }
+
 function mostrar(input) {///funcion para mostrar la hora se necesita un nombre de campo como parametro
     var Digital = new Date();
     var hours = Digital.getHours();
@@ -23,6 +24,28 @@ function mostrar(input) {///funcion para mostrar la hora se necesita un nombre d
     //$("#"+input).val(hours + ":" + minutes + ":" + seconds + " " + dn);    
     setTimeout("mostrar('"+input+"')", 1000);    
 }
+
+function show() {
+    var Digital = new Date();
+    var hours = Digital.getHours();
+    var minutes = Digital.getMinutes();
+    var seconds = Digital.getSeconds();
+    var dn = "AM";    
+    if (hours > 12) {
+        dn = "PM";
+        hours = hours - 12;
+    }
+    if (hours === 0)
+        hours = 12;
+    if (minutes <= 9)
+        minutes = "0" + minutes;
+    if (seconds <= 9)
+        seconds = "0" + seconds;
+    $("#hora_actual").val(hours + ":" + minutes + ":" + seconds + " " + dn);
+
+    setTimeout("show()", 1000);
+}
+
 function comprobarCamposRequired(form){
     var correcto=true;
     var campos_text=$('#'+form+' input:required');    
@@ -54,12 +77,29 @@ function enter(e) {
     }
     return true;
 }
+
 function actualizar_form(){    
     setTimeout(function() {
       location.reload();
     }, 2000);
     
 }
+
+function limpiar_input() {
+    $("#codigo_barras").val("");
+    $("#id_productos").val("");
+    $("#codigo").val("");
+    $("#producto").val("");
+    $("#cantidad").val("");
+    $("#precio").val("");
+    $("#descuento").val("");
+    $("#stock").val("");
+    $("#iva_producto").val("");
+    $("#inventar").val("");
+    $("#incluye").val("");
+    $("#codigo_barras").focus();
+}
+
 function limpiar_form(e){
     if(e != undefined)
     {
@@ -79,6 +119,7 @@ function limpiar_form(e){
                 form = e;
             }
         }
+
         if(form == "form_usuario"){
             $("#btn_0").text("");
             $("#btn_0").append("<span class='glyphicon glyphicon-log-in'></span> Guardar");
@@ -117,6 +158,18 @@ function limpiar_form(e){
                             $("#txt_1").val('');
                             $("#txt_2").val('');
                             $("#txt_3").val('');                                                                                    
+                        }else{
+                            if(form == "form_grupos"){
+                                $("#btn_0").text("");
+                                $("#btn_0").append("<span class='glyphicon glyphicon-log-in'></span> Guardar");                                                        
+                                $("#txt_0").val('');
+                                $("#txt_1").val('');
+                                $("#txt_2").val('');
+                                $("#td_grupos tbody").html("");
+                                $("#table").trigger('reloadGrid');   
+                                $("#table1").trigger('reloadGrid');   
+
+                            }   
                         }   
                     }   
                 }   
@@ -452,6 +505,7 @@ function ci_ruc_pass(campo,valor,documento){
         p8 = d8 * 3;
         p9 = d9 * 2;            
     }
+
     suma = p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8 + p9;                
     residuo = suma % modulo;                                         
     var digitoVerificador = residuo==0 ? 0: modulo - residuo; 
@@ -516,7 +570,7 @@ function ci_ruc_pass(campo,valor,documento){
     }         
 }
 
-function atras(id,carpeta,archivo){
+function atras(id,carpeta,archivo) {
     var url = '';    
     //url = "../secuencia.php?id="+id+"&fn=0";    
     url = "../"+carpeta+"/"+archivo+"?id="+id+"&fn=0"; 
@@ -533,7 +587,7 @@ function atras(id,carpeta,archivo){
     return resp;
 }
 
-function adelante(id,carpeta,archivo){
+function adelante(id,carpeta,archivo) {
     var url = '';    
     //url = "../secuencia.php?id="+id+"&fn=1";    
     url = "../"+carpeta+"/"+archivo+"?id="+id+"&fn=1"; 
@@ -550,8 +604,8 @@ function adelante(id,carpeta,archivo){
     return resp;
 }
 
-function appendToChosenProducto(id,val1,val2,val3,val4,val5,val6,val7,text,chosen,chosen1){      
-    $('#'+chosen).append($("<option data-barras='"+val2+"' data-codigo='"+val3+"' data-precio='"+val4+"' data-stock='"+val5+"' data-iva='"+val6+"' data-inventariable='"+val7+"' ></option>").val(id).html(val1)).trigger('chosen:updated');
+function appendToChosenProducto(id,val1,val2,val3,val4,val5,val6,val7,val8,val9,text,chosen,chosen1){      
+    $('#'+chosen).append($("<option data-barras='"+val2+"' data-codigo='"+val3+"' data-precio='"+val4+"' data-stock='"+val5+"' data-iva='"+val6+"' data-inventariable='"+val7+"' data-incluye_iva='"+val8+"' data-descuento='"+val9+"' ></option>").val(id).html(val1)).trigger('chosen:updated');
     var input = $("#"+chosen1).children().next().children(); 
     $(input).children().val(text);            
 }
@@ -576,20 +630,23 @@ function appendToChosen_cliente(id,value,text,extra,extra1,extra2,extra3,chosen,
 }
 
 function limpiar_chosen_codigo(){
+    $('#codigo_barras').html("");
+    $('#codigo_barras').append($("<option></option>"));          
+    $('#codigo_barras').trigger('chosen:updated');
     $('#codigo').html("");
     $('#codigo').append($("<option></option>"));          
     $('#codigo').trigger('chosen:updated')
     $('#producto').html("");
     $('#producto').append($("<option></option>"));          
     $('#producto').trigger('chosen:updated');     
-    $('#codigo_barras').html("");
-    $('#codigo_barras').append($("<option></option>"));          
-    $('#codigo_barras').trigger('chosen:updated');     
     $("#id_productos").val("");
     $("#precio").val("");   
     $("#stock").val("");    
     $("#cantidad").val(""); 
-    $("#descuento").val(0);   
+    $("#descuento").val(0);
+    $("#iva_producto").val(""); 
+    $("#incluye").val(""); 
+    $("#inventar").val("");  
     $("#codigo").trigger("chosen:close");
     $("#codigo").trigger("chosen:open");                  
 }
@@ -791,7 +848,7 @@ if(contador == 0){
     diferencia = (parseInt( $("#cantidad").val()) - Math.abs(parseInt( $("#stock").val())));
     $("#"+id_tabla+" tbody").append( "<tr>" +"<td align=center>" + id_productos +"</td>" +"<td align=center>" + codigo_producto + "</td>" +"<td align=center>" + detalle_producto +"</td>" +"<td align=center>" + precio_costo +"</td>" +"<td align=center>" + stock +"</td>" +"<td align=center>" + existencia +"</td>" +"<td align=center>" + diferencia + "</td>" +"<td align=center>" + "<div class=hidden-sm hidden-xs action-buttons> <a class='red dc_btn_accion tooltip-error' data-rel='tooltip' data-original-title='Eliminar'><i class='ace-icon fa fa-trash-o bigger-130' onclick='return eliminar_fila2(event)' ></i></a></div>" +"</tr>" ); 
     }else{
-      $("#"+id_tabla+" tbody tr").each(function (index) {                                                                 
+       $("#"+id_tabla+" tbody tr").each(function (index) {                                                                 
             $(this).children("td").each(function (index) {                               
                 switch (index) {                                            
                     case 0:

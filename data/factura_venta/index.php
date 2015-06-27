@@ -23,7 +23,6 @@ while ($row = pg_fetch_row($consulta)) {
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="../../dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="../../dist/css/font-awesome.min.css" />
-		<!-- Select -->
 		<link rel="stylesheet" href="../../dist/css/chosen.min.css" />		
 		<link rel="stylesheet" href="../../dist/css/ui.jqgrid.min.css" />
 		<link rel="stylesheet" href="../../dist/css/bootstrap-datetimepicker.min.css" />
@@ -32,12 +31,8 @@ while ($row = pg_fetch_row($consulta)) {
 		<link rel="stylesheet" href="../../dist/css/daterangepicker.min.css" />
 		<link rel="stylesheet" href="../../dist/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="../../dist/css/fontdc.css" />
-
-		<!-- ace styles -->
 		<link rel="stylesheet" href="../../dist/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
 		<link type="text/css" rel="stylesheet" id="ace-skins-stylesheet" href="../../dist/css/ace-skins.min.css">
-
-		<!-- ace settings handler -->
 		<script src="../../dist/js/ace-extra.min.js"></script>
 	</head>
 
@@ -80,21 +75,33 @@ while ($row = pg_fetch_row($consulta)) {
 											<div class="row">
 												<form class="form-horizontal" role="form" rol="form" action="" method="POST" id="form_facturaVenta">	
 													<div class="row">
-														<div class="col-xs-12 pull-right">
-															<div class="col-sm-3">
-																<span class="bigger-120" id>
-																	<span class="blue bolder">Fecha Actual:</span>
-																	<span id="fecha_actual"></span>
-																</span>
+														<div class="col-md-12 pull-right">
+															<div class="col-md-4">
+																<label class="col-sm-4 no-padding-right" for="fecha_actual">Fecha Actual:</label>
+																<div class="col-sm-8">
+																	<div class="input-group">
+																		<input class="form-control date-picker" id="fecha_actual" name="fecha_actual" type="text" readonly data-date-format="yyyy-mm-dd" />
+																		<span class="input-group-addon">
+																			<i class="fa fa-calendar bigger-110"></i>
+																		</span>
+																	</div>
+																</div>
 															</div>
-															<div class="col-sm-3">
-																<span class="bigger-120" id>
-																	<span class="blue bolder">Hora Actual:</span>
-																	<span id="estado"></span>
-																</span>
+
+															<div class="col-md-4">
+																<label class="col-sm-4 no-padding-right" for="hora_actual">Hora Actual:</label>
+																<div class="col-sm-8">
+																	<div class="input-group">
+																		<input class="form-control" type="text" id="hora_actual" name="hora_actual"  readonly />
+																		<span class="input-group-addon">
+																			<i class="fa fa-clock-o bigger-110"></i>
+																		</span>
+																	</div>
+																</div>
 															</div>
-															<div class="col-sm-3">
-																<span class="bigger-120" id>
+
+															<div class="col-md-4">
+																<span class="bigger-120">
 																	<span class="red bolder">Responsable:</span>
 																	<span ><?php print($_SESSION['nombrescompletosdow']); ?></span>
 																</span>
@@ -104,145 +111,128 @@ while ($row = pg_fetch_row($consulta)) {
 													
 													<div class="hr"></div>
 													<div class="row">
-														<div class="col-xs-12">
-															<div class="col-sm-6">
-																<div class="row">
-																	<div class="col-xs-12">																		
-																		<div class="form-group">
-																			<label class="col-sm-5 control-label no-padding-right" for="txt_nro_identificacion"> Cedula de Identidad o Ruc:</label>
-																			<div class="col-sm-7">
-																			<input type="hidden" id="id_cliente" name="id_cliente">																				
-																				<select class="chosen-select form-control" id="txt_nro_identificacion" name="txt_nro_identificacion" data-placeholder="Nro de identifiación">	     
-			                                                                        <option value=""></option>	                                                                        
-			                                                                    </select>
-																			</div>																													
-																		</div>																												
-																	</div>
-																</div>																
+														<div class="col-md-12">
+															<div class="col-md-6">
+																<div class="form-group">
+																	<label class="col-sm-5 no-padding-right" for="serie3"> Nro factura preimpresa: 001-001</label>																			
+																	<div class="col-sm-5">
+																		<input type="text" id="serie3" name="serie3" class="form-control" data-toggle="tooltip" data-original-title="" required />																		
+																		<input type="hidden" id="num_oculto" name="num_oculto" class="form-control" data-toggle="tooltip" data-original-title="" value="<?php echo $num_factura ?>" />																		
+																	</div>																														
+																</div>
+															</div>																	
+														</div>
+													</div>
+
+													<div class="row">
+														<div class="col-md-12">
+															<div class="col-md-5">
+																<div class="form-group">
+																	<label class="col-sm-6 no-padding-right" for="txt_nro_identificacion"> Cédula de Identidad o Ruc: <font color="red">*</font></label>
+																	<div class="col-sm-6">
+																	<input type="hidden" id="id_cliente" name="id_cliente">																				
+																		<select class="chosen-select form-control" id="txt_nro_identificacion" name="txt_nro_identificacion" data-placeholder="Nro de identifiación">	     
+	                                                                        <option value=""></option>	                                                                        
+	                                                                    </select>
+																	</div>																													
+																</div>																												
 															</div>
-															<div class="col-sm-6">
-																<div class="row">
-																	<div class="col-xs-12">																		
-																		<div class="form-group">
-																			<label class="col-sm-5 control-label no-padding-right" for="txt_nombre_cliente"> Nombres O Apellido:</label>
-																			<div class="col-sm-7">
-																				<select class="chosen-select form-control" id="txt_nombre_cliente" name="txt_nombre_cliente" data-placeholder="Nombres Completos">	                                                                        
-			                                                                        <option value=""> </option>	                                                                        
-			                                                                    </select>
-																			</div>																													
-																		</div>																												
-																	</div>
-																</div>																
+
+															<div class="col-md-7">
+																<div class="form-group">
+																	<label class="col-sm-5 control-label no-padding-right" for="txt_nombre_cliente"> Nombres Completos: <font color="red">*</font></label>
+																	<div class="col-sm-7">
+																		<select class="chosen-select form-control" id="txt_nombre_cliente" name="txt_nombre_cliente" data-placeholder="Nombres Completos">	                                                                        
+	                                                                        <option value=""> </option>	                                                                        
+	                                                                    </select>
+																	</div>																													
+																</div>																												
 															</div>
 														</div>
-													</div>													
+													</div>
+
 													<div class="row">	
-														<div class="col-xs-12">
-															<div class="col-sm-4">																		
+														<div class="col-md-12">
+															<div class="col-md-4">																		
 																<div class="form-group">
-																	<label class="col-sm-4 control-label no-padding-right" for="form-field-1"> Dirección:</label>
+																	<label class="col-sm-4 no-padding-right" for="form-field-1"> Dirección: </label>
 																	<div class="col-sm-8">
-																		<h5 class="blue" id="lbl_client_direccion"></h5>
+																		<input type="text" id="lbl_client_direccion" name="lbl_client_direccion" class="form-control" readonly data-toggle="tooltip"  value="" /> 
 																	</div>																													
 																</div>																												
 															</div>
-															<div class="col-sm-4">																		
+
+															<div class="col-md-4">																		
 																<div class="form-group">
-																	<label class="col-sm-4 control-label no-padding-right" for="form-field-1"> Teléfono:</label>
+																	<label class="col-sm-4 no-padding-right" for="form-field-1"> Teléfono:</label>
 																	<div class="col-sm-8">
-																		<h5 class="blue" id="lbl_client_telefono"></h5>
+																	    <input type="text" id="lbl_client_telefono" name="lbl_client_telefono" class="form-control" readonly data-toggle="tooltip"  value="" /> 
 																	</div>																													
 																</div>																												
 															</div>
-															<div class="col-sm-4">																		
+
+															<div class="col-md-4">																		
 																<div class="form-group">
-																	<label class="col-sm-4 control-label no-padding-right" for="form-field-1"> Correo:</label>
-																	<div class="col-sm-8">
-																		<h5 class="blue" id="lbl_client_correo"></h5>
+																	<label class="col-sm-3 no-padding-right" for="form-field-1"> Correo:</label>
+																	<div class="col-sm-9">
+																		<input type="text" id="lbl_client_correo" name="lbl_client_correo" class="form-control" readonly data-toggle="tooltip"  value="" /> 
 																	</div>																													
 																</div>																												
 															</div>																
 														</div>
 													</div>	
+
 													<div class="row">
-														<div class="col-xs-8">
-															<div class="row">
-																<div class="col-xs-12">
-																	<div class="col-sm-6">
-																		<div class="form-group">
-																			<label class="col-sm-6 control-label no-padding-right" for="form-field-1"> Nro factura preimpresa:</label>																			
-																			<div class="col-sm-1">
-																				<h5 class="red">001-</h5>																				
-																			</div>
-																			<div class="col-sm-1">
-																				<h5 class="red">001-</h5>
-																			</div>
-																			<div class="col-sm-4">
-																				<input type="text" id="serie3" name="serie3" class="form-control" data-toggle="tooltip" data-original-title="" required />																		
-																				<input type="hidden" id="num_oculto" name="num_oculto" class="form-control" data-toggle="tooltip" data-original-title="" value="<?php echo $num_factura ?>" />																		
-																			</div>																														
+														<div class="col-md-12">
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label class="col-sm-4 no-padding-right" for="fecha_cancelacion"> Fecha cancelación:</label>
+																	<div class="col-sm-8">
+																		<div class="input-group">
+																			<input class="form-control date-picker" id="fecha_cancelacion" name="fecha_cancelacion" type="text" readonly data-date-format="yyyy-mm-dd" />
+																			<span class="input-group-addon">
+																				<i class="fa fa-calendar bigger-110"></i>
+																			</span>
 																		</div>
-																	</div>
-																	<div class="col-sm-6">
-																		<div class="form-group">
-																			<label class="col-sm-6 control-label no-padding-right" for="fecha_cancelacion"> Fecha cancelación:</label>
-																			<div class="col-sm-6">
-																				<div class="input-group">
-																					<input class="form-control date-picker" id="fecha_cancelacion" name="fecha_cancelacion" type="text" readonly data-date-format="yyyy-mm-dd" />
-																					<span class="input-group-addon">
-																						<i class="fa fa-calendar bigger-110"></i>
-																					</span>
-																				</div>
-																			</div>																														
-																		</div>
-																	</div>																	
+																	</div>																														
 																</div>
 															</div>
-														</div>
-														<div class="col-xs-4">
-															<div class="row">
-																<div class="col-xs-12">
-																	<div class="col-sm-12">
-																		<div class="form-group">
-																			<label class="col-sm-5 control-label no-padding-right" for="tipo"> Tipo de precio:</label>
-																			<div class="col-sm-7">
-																				<select class="chosen-select form-control" id="tipo" name="tipo" data-placeholder="Forma de Pago">
-			                                                                        <option value="MAYORISTA">MAYORISTA</option>
-			                                                                        <option value="MINORISTA">MINORISTA</option>
-			                                                                    </select>
-																			</div>																														
-																		</div>														
-																	</div>
-																</div>
-															</div>															
-														</div>
+
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label class="col-sm-4 no-padding-right" for="tipo"> Tipo de precio:</label>
+																	<div class="col-sm-8">
+																		<select class="chosen-select form-control" id="tipo" name="tipo" data-placeholder="Forma de Pago">
+	                                                                        <option value="MINORISTA" selected>MINORISTA</option>
+	                                                                        <option value="MAYORISTA">MAYORISTA</option>
+	                                                                    </select>
+																	</div>																														
+																</div>														 
+															</div>
+
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label class="col-sm-4 control-label no-padding-right" for="formas"> Forma de Pago:</label>
+																	<div class="col-sm-8">
+																		<select class="chosen-select form-control" id="formas" name="formas" data-placeholder="Forma de Pago">			                                                                        
+	                                                                    </select>
+																	</div>																														
+																</div>														
+															</div>
+														</div>	
 													</div>
+
 													<div class="row">
-														<div class="col-xs-12">
-															<div class="row">
-																<div class="col-xs-6">
-																	<div class="col-sm-12">
-																		<div class="form-group">
-																			<label class="col-sm-5 control-label no-padding-right" for="formas"> Forma de Pago:</label>
-																			<div class="col-sm-7">
-																				<select class="chosen-select form-control" id="formas" name="formas" data-placeholder="Forma de Pago">			                                                                        
-			                                                                    </select>
-																			</div>																														
-																		</div>														
-																	</div>
-																</div>		
-																<div class="col-xs-6">
-																	<div class="col-sm-12">
-																		<div class="form-group">
-																			<label class="col-sm-5 control-label no-padding-right" for="termino_pago"> Términos de Pago:</label>
-																			<div class="col-sm-7">
-																				<select class="chosen-select form-control" id="termino_pago" name="termino_pago" data-placeholder="Términos de Pago">			                                                                        
-			                                                                    </select>
-																			</div>																														
-																		</div>														
-																	</div>
-																</div>																
-															</div>
+														<div class="col-md-12">
+															<div class="col-md-4">
+																<div class="form-group">
+																	<label class="col-sm-4 no-padding-right" for="termino_pago"> Términos de Pago:</label>
+																	<div class="col-sm-8">
+																		<select class="chosen-select form-control" id="termino_pago" name="termino_pago" data-placeholder="Términos de Pago">			                                                                        
+	                                                                    </select>
+																	</div>																														
+																</div>														
+															</div>																
 														</div>
 													</div>	
 													
@@ -250,15 +240,15 @@ while ($row = pg_fetch_row($consulta)) {
 														<div class="col-xs-12">
 															<div class="col-xs-12">
 																<h3 class="header smaller lighter green">
-																	<i class="ace-icon fa fa-bullhorn"></i>
 																	Detalle Factura
 																</h3>
 															</div>
 														</div>
 													</div>
+													
 													<div class="row">
 														<div class="col-xs-12">
-															<div class="col-xs-3">
+															<div class="col-xs-2">
 																<div class="row">
 																	<div class="col-xs-12">
 																		<label> Codigo de Barra:</label>
@@ -266,9 +256,7 @@ while ($row = pg_fetch_row($consulta)) {
 																</div>
 																<div class="row">
 																	<div class="col-xs-12">
-																		<select class="chosen-select form-control" id="codigo_barras" name="codigo_barras" data-placeholder="Código de Barras del Producto">
-																			<option value=""></option>
-																		</select>
+																		<input type="text" id="codigo_barras" name="codigo_barras"  class="form-control" data-toggle="tooltip"  /> 
 																	</div>
 																</div>
 															</div>
@@ -280,13 +268,11 @@ while ($row = pg_fetch_row($consulta)) {
 																</div>
 																<div class="row">
 																	<div class="col-xs-12">
-																		<select class="chosen-select form-control" id="codigo" name="codigo" data-placeholder="Código del Producto">
-																			<option value=""></option>
-																		</select>
+																		<input type="text" id="codigo" name="codigo"  class="form-control" data-toggle="tooltip"  /> 
 																	</div>
 																</div>
 															</div>
-															<div class="col-xs-3">
+															<div class="col-xs-4">
 																<div class="row">
 																	<div class="col-xs-12">
 																		<label> Producto:</label>
@@ -294,9 +280,7 @@ while ($row = pg_fetch_row($consulta)) {
 																</div>
 																<div class="row">
 																	<div class="col-xs-12">
-																		<select class="chosen-select form-control" id="producto" name="producto" data-placeholder="Descripción del Producto">
-																			<option value=""></option>
-																		</select>
+																		<input type="text" id="producto" name="producto"  class="form-control" data-toggle="tooltip"  /> 
 																	</div>
 																</div>
 															</div>
@@ -323,7 +307,7 @@ while ($row = pg_fetch_row($consulta)) {
 																			</div>
 																			<div class="row">
 																				<div class="col-xs-12">
-																					<input type="text" id="precio" name="precio" onkeydown="return validarNumeros(event)" value="0.00" class="form-control" data-toggle="tooltip"  /> 
+																					<input type="text" id="precio" name="precio" value="" class="form-control" data-toggle="tooltip"  /> 
 																				</div>
 																			</div>
 																		</div>
@@ -335,8 +319,12 @@ while ($row = pg_fetch_row($consulta)) {
 																			</div>
 																			<div class="row">
 																				<div class="col-xs-12">
-																					<input type="number" id="descuento" name="descuento" class="form-control" data-toggle="tooltip" onkeydown="return validarNumeros(event)" value="0" /> 
+																					<input type="number" id="descuento" name="descuento" class="form-control" data-toggle="tooltip" min="1" value="" /> 
+																					<input type="hidden" id="stock" name="stock" class="form-control" data-toggle="tooltip" /> 
 																					<input type="hidden" id="id_productos" name="id_productos" class="form-control" data-toggle="tooltip" /> 
+																					<input type="hidden" id="iva_producto" name="iva_producto" class="form-control" data-toggle="tooltip" /> 
+																					<input type="hidden" id="incluye" name="incluye" class="form-control" data-toggle="tooltip" />
+																					<input type="hidden" id="inventar" name="inventar" class="form-control" data-toggle="tooltip" />  
 																				</div>
 																			</div>
 																		</div>
@@ -346,91 +334,60 @@ while ($row = pg_fetch_row($consulta)) {
 														</div>
 													</div>
 													<div class="row">
-														<div class="col-xs-12">
-															<div class="col-sm-12">
-																<div class="hr hr-18 dotted hr-double"></div>
-															</div>
+														<div class="col-md-12">
+															<div class="hr hr-18 dotted hr-double"></div>
 														</div>
 													</div>
-													
-													<div class="row">														
-														<div class="col-xs-12">
-														 	<div class="col-sm-12">
-																<table id="detalle_factura" class="table table-striped table-bordered table-hover">
-																	<thead>
-																		<tr style="background-color: #428BCA; color: white;">
-																			<th class="center" width="2px"><i class="ace-icon fa fa-bars"></i></th>
-																			<th class="center" width="100px"><i class="ace-icon fa fa-barcode"></i> Codigo</th>
-																			<th class="center"><i class="ace-icon fa fa-info"></i> Detalle</th>
-																			<th class="center" width="100px"><i class="ace-icon fa fa-list-ol"></i> Cantidad</th>
-																			<th class="center" width="100px"><i class="ace-icon fa fa-money"></i> Precio U.</th>
-																			<th class="center" width="100px"><i class="ace-icon fa fa-area-chart"> Descuento</th>
-																			<th class="center" width="100px"><i class="ace-icon fa fa-usd"> Total</th>
-																			<th class="center" width="90px"><i class="ace-icon fa fa-cogs"></i> Accion</th>
-																		</tr>
-																	</thead>
-																	<tbody>
-																		
-																	</tbody>
-																</table>
-															</div>
-															<div class="row">
-																<div class="col-xs-12">
-																	<div class="col-sm-9"></div>
-																	<div class="col-sm-3">
-																		<div class="form-group">
-																			<label class="col-sm-3 control-label no-padding-right" for="tarifa0"> Tarifa 0:</label>
-																			<div class="col-sm-9">
-																				<span class="input-icon">
-																					<input type="text" value="00.00" id="tarifa0" name="tarifa0" readonly>
-																					<i class="ace-icon fa fa-usd purple"></i>
-																				</span>
-																			</div>
-																		</div>
-																		<div class="form-group">
-																			<label class="col-sm-3 control-label no-padding-right" for="tarifa12"> Tarifa 12:</label>
-																			<div class="col-sm-9">
-																				<span class="input-icon">
-																					<input type="text" value="00.00" id="tarifa12" name="tarifa12" readonly>
-																					<i class="ace-icon fa fa fa-usd orange"></i>
-																				</span>
-																			</div>
-																		</div>
-																		<div class="form-group">
-																			<label class="col-sm-3 control-label no-padding-right" for="iva"> 12 % Iva</label>
-																			<div class="col-sm-9">
-																				<span class="input-icon">
-																					<input type="text" value="00.00" id="iva" name="iva" readonly>
-																					<i class="ace-icon fa fa fa-usd red"></i>
-																				</span>
-																			</div>
-																		</div>
-																		<div class="form-group">
-																			<label class="col-sm-3 control-label no-padding-right" for="descuento_total"> Descuento</label>
-																			<div class="col-sm-9">
-																				<span class="input-icon">
-																					<input type="text" value="00.00" id="descuento_total" name="descuento_total" readonly>
-																					<i class="ace-icon fa fa fa-usd green"></i>
-																				</span>
-																			</div>
-																		</div>
-																		<div class="form-group">
-																			<label class="col-sm-3 control-label no-padding-right" for="total"> Total</label>
-																			<div class="col-sm-9">
-																				<span class="input-icon">
-																					<input type="text" value="00.00" id="total" name="total" readonly>
-																					<i class="ace-icon fa fa-money blue"></i> 
-																				</span>
-																			</div>
-																		</div>
-																	</div>																	
-																</div>
-															</div>
-														</div>														
-													</div>
 
-													
+													<div class="col-md-12">
+							                            <div id="grid_container">
+							                                <table id="list"></table>
+							                            </div>
+							                        </div>
+
+													<div class="row">
+														<div class="col-md-12">
+															<div class="col-md-9"></div>
+															<div class="col-md-3">																		
+																<div class="form-group">
+																	<label class="col-sm-4 no-padding-right" for="tarifa0"> Tarifa 0:</label>
+																	<div class="col-sm-8">
+																		<input type="text" id="tarifa0" name="tarifa0" class="form-control" readonly value="0.000" /> 
+																	</div>																													
+																</div>	
+
+																<div class="form-group">
+																	<label class="col-sm-4 no-padding-right" for="tarifa12"> Tarifa 12:</label>
+																	<div class="col-sm-8">
+																		<input type="text" id="tarifa12" name="tarifa12" class="form-control" readonly value="0.000" /> 
+																	</div>																													
+																</div>
+
+																<div class="form-group">
+																	<label class="col-sm-4 no-padding-right" for="iva"> 12 % Iva:</label>
+																	<div class="col-sm-8">
+																		<input type="text" id="iva" name="iva" class="form-control" readonly value="0.000" /> 
+																	</div>																													
+																</div>
+
+																<div class="form-group">
+																	<label class="col-sm-4 no-padding-right" for="descuento_total"> Descuento:</label>
+																	<div class="col-sm-8">
+																		<input type="text" id="descuento_total" name="descuento_total" class="form-control" readonly value="0.000" /> 
+																	</div>																													
+																</div>
+
+																<div class="form-group">
+																	<label class="col-sm-4 no-padding-right" for="total"> Total:</label>
+																	<div class="col-sm-8">
+																		<input type="text" id="total" name="total" class="form-control" readonly value="0.000" /> 
+																	</div>																													
+																</div>																											
+															</div>																	
+														</div>
+													</div>
 												</form>
+
 												<div class="row">
 													<div class="center">													 
 														<button type="button" class="btn btn-primary" id="btn_0">
@@ -484,7 +441,6 @@ while ($row = pg_fetch_row($consulta)) {
 							<div class="row">
 								<div class="col-sm-5 col-sm-offset-1 white">
 									<h3 class="lighter">Imprimir &amp; Factura</h3>
-									
 								</div>
 
 								<div class="col-sm-5 text-center line-height-2">									

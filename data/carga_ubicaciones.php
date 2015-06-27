@@ -117,17 +117,16 @@
 														else{
 															if($_GET['fun'] == "15"){//para la busqueda del codigo del producto
 																if($_GET['tipo'] == "0"){
-																	$sql = "select id_productos,codigo,codigo_barras,descripcion,precio_minorista,stock,iva_producto,facturar_existencia from productos where codigo like '%$_GET[val]%'";																	
-																	cargarSelect_8($conexion,$sql);//select de 5 datos
+																	$sql = "select P.id_productos, P.codigo,codigo_barras, P.descripcion, P.precio_minorista, P.stock, I.porcentaje, P.facturar_existencia, P.incluye_iva, P.descuento from productos P , porcentaje_iva I where P.id_porcentaje_iva = I.id_porcentaje_iva and codigo like '%$_GET[val]%'";																	
+																	cargarSelect_10($conexion,$sql);//select de 10 datos
 																}else{
 																	
 																}
 															}else{
 																if($_GET['fun'] == "16"){//para la busqueda del nombre del producto
 																	if($_GET['tipo'] == "0"){
-																		$sql = "select id_productos,codigo,codigo_barras,descripcion,precio_minorista,stock,iva_producto,facturar_existencia from productos where descripcion like '%$_GET[val]%'";
-																		
-																		cargarSelect_8($conexion,$sql);//select de 5 datos
+																		$sql = "select P.id_productos, P.codigo,codigo_barras, P.descripcion, P.precio_minorista, P.stock, I.porcentaje, P.facturar_existencia, P.incluye_iva, P.descuento from productos P , porcentaje_iva I where P.id_porcentaje_iva = I.id_porcentaje_iva and descripcion like '%$_GET[val]%'";
+																		cargarSelect_10($conexion,$sql);//select de 10 datos
 																	}else{
 																		
 																	}
@@ -150,8 +149,8 @@
 																		}else{
 																			if($_GET['fun'] == "19"){//para la busqueda del codigo del producto
 																				if($_GET['tipo'] == "0"){
-																					$sql = "select id_productos,codigo,codigo_barras,descripcion,precio,stock,iva_producto,facturar_existencia from productos where codigo like '%$_GET[val]%'";																	
-																					cargarSelect_8($conexion,$sql);//select de 5 datos
+																					$sql = "select id_productos, codigo, codigo_barras, descripcion, precio,stock from productos where codigo like '%$_GET[val]%'";																	
+																					cargarSelect_6($conexion,$sql);//select de 5 datos
 																				}else{
 																					
 																				}
@@ -237,7 +236,36 @@
 																															
 																														}
 																													}else{
+																														if($_GET['fun'] == "30"){//detales de los grupos
+																															if($_GET['tipo'] == "0"){
+																																$sql = "select cuentas_grupos.id_plan,codigo_cuenta,nombre_cuenta,id from cuentas_grupos,plan_cuentas where cuentas_grupos.id_plan = plan_cuentas.id_plan and cuentas_grupos.id_grupo = '".$_GET['val']."'";
+																																buscar_nombres($conexion,$sql);//select de 4 datos
+																															}else{
+																																
+																															}
+																														}else{
+																															if($_GET['fun'] == "31"){//detales de los grupos
+																																if($_GET['tipo'] == "0"){
+																																	$sql = "SELECT id_porcentaje_iva, porcentaje  FROM porcentaje_iva order by porcentaje desc ";
+																																	cargarSelect($conexion,$sql);//select de 3 datos
+																																}else{
+																																	
+																																}
+																															}else{
+																																if($_GET['fun'] == "32"){//para la busqueda del nombre del producto
+																																	if($_GET['tipo'] == "0"){
+																																		$sql = "select P.id_productos, P.codigo, P.codigo_barras, P.descripcion, P.precio_minorista, P.stock, I.porcentaje, P.facturar_existencia, P.incluye_iva, P.descuento from productos P , porcentaje_iva I where P.id_porcentaje_iva = I.id_porcentaje_iva and codigo_barras like '%$_GET[val]%'";
+																																		cargarSelect_10($conexion,$sql);//select de 10 datos
+																																	}else{
+																																		
+																																	}
+																																}else{
 
+																																}
+
+
+																															}
+																														}
 																													}
 																												}	
 																											}	

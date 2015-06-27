@@ -76,6 +76,7 @@ function carga_tabla_7($conexion, $sql) {
         echo $lista = json_encode($lista);
     }
 }
+
 function cargarSelect_8($conexion, $sql) {
     $lista = array();
     $data = 0;
@@ -90,6 +91,27 @@ function cargarSelect_8($conexion, $sql) {
             $lista[] = $row[5];
             $lista[] = $row[6];
             $lista[] = $row[7];
+        }
+        echo $lista = json_encode($lista);
+    }
+}
+
+function cargarSelect_10($conexion, $sql) {
+    $lista = array();
+    $data = 0;
+    $sql = pg_query($conexion, $sql);
+    if ($sql) {
+        while ($row = pg_fetch_row($sql)) {
+            $lista[] = $row[0];
+            $lista[] = $row[1];
+            $lista[] = $row[2];
+            $lista[] = $row[3];
+            $lista[] = $row[4];
+            $lista[] = $row[5];
+            $lista[] = $row[6];
+            $lista[] = $row[7];
+            $lista[] = $row[8];
+            $lista[] = $row[9]; 
         }
         echo $lista = json_encode($lista);
     }
@@ -168,6 +190,7 @@ function repetidos($conexion, $campo, $valor, $tabla, $tipo, $id, $id_campo) {//
     }
     return $repetidos;
 }
+
 function repetidos_1($conexion, $campo, $valor, $tabla, $tipo, $id, $id_campo ,$extra_campo,$extra_campo_1) {///conexion,campo a comparar,valor campo,tabla,tipo g o m id si tiene, id campo si tiene
     $repetidos = 'true';
     if ($tipo == "g") {
@@ -191,11 +214,13 @@ function repetidos_1($conexion, $campo, $valor, $tabla, $tipo, $id, $id_campo ,$
     }
     return $repetidos;
 }
+
 function atras_adelente($conexion,$sql){     
     $sql = pg_query($sql);
     $sql = pg_fetch_row($sql);
     return $sql;
 }
+
 function buscar_nombres($conexion, $sql) {
     $lista = array();
     $data = 0;
@@ -234,7 +259,7 @@ function carga_json_1($conexion,$sql){
     $sql = pg_fetch_row($sql);
     return $sql;
 }       
-function sql_array($conexion,$sql){        
+function sql_array($conexion,$sql){            
     $sql = pg_fetch_row(pg_query($sql));                                 
     $sql = "array['".implode("', '", $sql)."']";   
     return $sql;     
