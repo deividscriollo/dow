@@ -1042,7 +1042,6 @@ function menu_lateral(){
 					print('class="hover active"');
 				}else print('class="hover"');
 			print'>
-
 				<a href="../plan_cuentas/">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Plan de Cuentas
@@ -1060,7 +1059,39 @@ function menu_lateral(){
 				</a>
 				<b class="arrow"></b>
 			</li>';							
-					
+			print '<li ';
+				if ($acus[3]=='sustento_tributario') {				
+					print('class="hover active"');
+				}else print('class="hover"');
+			print'>
+				<a href="../sustento_tributario/">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Sustento Tributario
+				</a>
+				<b class="arrow"></b>
+			</li>';					
+			print '<li ';
+				if ($acus[3]=='tipo_comprobante') {				
+					print('class="hover active"');
+				}else print('class="hover"');
+			print'>
+				<a href="../tipo_comprobante/">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Tipos de Comprobantes
+				</a>
+				<b class="arrow"></b>
+			</li>';		
+			print '<li ';
+				if ($acus[3]=='retencion_fuente') {				
+					print('class="hover active"');
+				}else print('class="hover"');
+			print'>
+				<a href="../retencion_fuente/">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Retención en la fuente
+				</a>
+				<b class="arrow"></b>
+			</li>';		
 			print '</ul>
 		</li>';				
 	
