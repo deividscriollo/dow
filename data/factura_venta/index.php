@@ -163,29 +163,29 @@ while ($row = pg_fetch_row($consulta)) {
 																</div>																												
 															</div>
 
-															<div class="col-md-4">																		
-																<div class="form-group">
-																	<label class="col-sm-4 no-padding-right" for="form-field-1"> Teléfono:</label>
-																	<div class="col-sm-8">
-																	    <input type="text" id="lbl_client_telefono" name="lbl_client_telefono" class="form-control" readonly data-toggle="tooltip"  value="" /> 
-																	</div>																													
-																</div>																												
+															<div class="col-sm-4">
+																<div class="form-group">																	
+																	<label class="col-sm-5 control-label no-padding-right" for="lbl_client_telefono"> Teléfono:</label>
+																	<div class="col-sm-7">
+																		<input type="text" id="lbl_client_telefono" name="lbl_client_telefono" class="form-control" data-toggle="tooltip" required readonly /> 
+																	</div>																														
+																</div>
 															</div>
 
-															<div class="col-md-4">																		
-																<div class="form-group">
-																	<label class="col-sm-3 no-padding-right" for="form-field-1"> Correo:</label>
+															<div class="col-sm-4">
+																<div class="form-group">																	
+																	<label class="col-sm-3 control-label no-padding-right" for="lbl_client_correo"> Correo:</label>
 																	<div class="col-sm-9">
-																		<input type="text" id="lbl_client_correo" name="lbl_client_correo" class="form-control" readonly data-toggle="tooltip"  value="" /> 
-																	</div>																													
-																</div>																												
+																		<input type="text" id="lbl_client_correo" name="lbl_client_correo" class="form-control" data-toggle="tooltip" required readonly /> 
+																	</div>																														
+																</div>
 															</div>																
 														</div>
 													</div>	
 
 													<div class="row">
 														<div class="col-md-12">
-															<div class="col-md-4">
+															<div class="col-sm-4">
 																<div class="form-group">
 																	<label class="col-sm-4 no-padding-right" for="fecha_cancelacion"> Fecha cancelación:</label>
 																	<div class="col-sm-8">
@@ -199,19 +199,19 @@ while ($row = pg_fetch_row($consulta)) {
 																</div>
 															</div>
 
-															<div class="col-md-4">
-																<div class="form-group">
-																	<label class="col-sm-4 no-padding-right" for="tipo"> Tipo de precio:</label>
-																	<div class="col-sm-8">
+															<div class="col-sm-4">
+																<div class="form-group">																	
+																	<label class="col-sm-5 control-label no-padding-right" for="tipo"> Tipo de precio:</label>
+																	<div class="col-sm-7">
 																		<select class="chosen-select form-control" id="tipo" name="tipo" data-placeholder="Forma de Pago">
 	                                                                        <option value="MINORISTA" selected>MINORISTA</option>
 	                                                                        <option value="MAYORISTA">MAYORISTA</option>
 	                                                                    </select>
 																	</div>																														
-																</div>														 
+																</div>
 															</div>
 
-															<div class="col-md-4">
+															<div class="col-sm-4">
 																<div class="form-group">
 																	<label class="col-sm-4 control-label no-padding-right" for="formas"> Forma de Pago:</label>
 																	<div class="col-sm-8">
