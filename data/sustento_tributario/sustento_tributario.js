@@ -12,7 +12,7 @@ function inicio (){
 	/*----*/
 	$("#btn_0").on('click',guardar_sustento);	
 	/*------------*/	
-	$("input").on("keyup click",function (e){//campos requeridos		
+	$("#form_sustento input").on("keyup click",function (e){//campos requeridos		
 		comprobarCamposRequired(e.currentTarget.form.id)
 	});	
 	/*--------*/
@@ -26,6 +26,7 @@ function inicio (){
         $("#btn_0").append("<span class='glyphicon glyphicon-log-in'></span> Modificar");     
         comprobarCamposRequired("form_sustento");
 	});
+	$("#btn_1").on("click",limpiar_form);
 }
 function guardar_sustento(){
 	var resp=comprobarCamposRequired("form_sustento");

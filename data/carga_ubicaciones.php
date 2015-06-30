@@ -260,10 +260,34 @@
 																																		
 																																	}
 																																}else{
+																																	if($_GET['fun'] == "33"){//para sustemnto
+																																		if($_GET['tipo'] == "0"){//indica que se carga al inicio de la pagina
+																																			$sql = "select id_sustento,codigo_sustento,nombre_sustento from sustento_tributario order by codigo_sustento asc";
+																																			cargarSelect_1_1($conexion,$sql);
+																																		}else{
 
+																																		}
+																																	}else{
+																																		if($_GET['fun'] == "34"){//para tipo comprobante
+																																			if($_GET['tipo'] == "0"){//indica que se carga al inicio de la pagina
+																																				$sql = "select id_comprobante,codigo_comprobante,nombre_comprobante from tipo_comprobante order by codigo_comprobante asc";
+																																				cargarSelect_1_1($conexion,$sql);
+																																			}else{
+
+																																			}
+																																		}else{
+																																			if($_GET['fun'] == "35"){//para la tabla
+																																				if($_GET['tipo'] == "0"){//indica que se carga al inicio de la pagina
+																																					$sql = "select sustento_comprobante.id_sustento,codigo_sustento,nombre_sustento,sustento_comprobante.id_comprobante,codigo_comprobante,nombre_comprobante from sustento_comprobante  , sustento_tributario , tipo_comprobante  where sustento_comprobante.id_sustento = sustento_tributario.id_sustento and sustento_comprobante.id_comprobante = tipo_comprobante.id_comprobante and sustento_comprobante.id_sustento = '".$_GET['id']."' order by sustento_comprobante.id_sustento asc";
+																																					cargarSelect_6($conexion,$sql);
+																																				}else{
+
+																																				}
+																																			}else{
+																																			}
+																																		}
+																																	}
 																																}
-
-
 																															}
 																														}
 																													}

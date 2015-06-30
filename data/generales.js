@@ -169,6 +169,22 @@ function limpiar_form(e){
                                 $("#table").trigger('reloadGrid');   
                                 $("#table1").trigger('reloadGrid');   
 
+                            }else{
+                                if(form == "form_sustento"){
+                                    $("#btn_0").text("");
+                                    $("#btn_0").append("<span class='glyphicon glyphicon-log-in'></span> Guardar");                                                        
+                                    $("#txt_0").val('');
+                                    $("#txt_1").val('');
+                                    $("#txt_2").val('');                                                                        
+                                }else{
+                                    if(form == "form_tipo_comprobante"){
+                                        $("#btn_0").text("");
+                                        $("#btn_0").append("<span class='glyphicon glyphicon-log-in'></span> Guardar");                                                        
+                                        $("#txt_0").val('');
+                                        $("#txt_1").val('');
+                                        $("#txt_2").val('');                                                                        
+                                    }   
+                                }   
                             }   
                         }   
                     }   
