@@ -1102,7 +1102,18 @@ function menu_lateral(){
 					Tipos de Comprobantes
 				</a>
 				<b class="arrow"></b>
-			</li>';		
+			</li>';
+			print '<li ';
+				if ($acus[3]=='sustento_comprobante') {				
+					print('class="hover active"');
+				}else print('class="hover"');
+			print'>
+				<a href="../sustento_comprobante/">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Sustento - Comprobantes 
+				</a>
+				<b class="arrow"></b>
+			</li>';					
 			print '<li ';
 				if ($acus[3]=='retencion_fuente') {				
 					print('class="hover active"');

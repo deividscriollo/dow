@@ -20,7 +20,7 @@
 	    	if ($repetidos == 'true') {
 	        	$data = 2; /// este nombre ya existe;
 	    	}else{
-	    		$sql = "insert into tipo_comprobante values ('$id','". strtoupper($_POST['txt_1']) ."','". strtoupper($_POST['txt_2']) ."','$fecha','1')";
+	    		$sql = "insert into tipo_comprobante values ('$id','". strtoupper($_POST['txt_1']) ."','". strtoupper($_POST['txt_2']) ."','$fecha','1')";	    		
 		        if($guardar = guardarSql($conexion, $sql)){
 		        	$sql_nuevo = "SELECT (id_comprobante,codigo_comprobante,nombre_comprobante,fecha_creacion,estado)  FROM tipo_comprobante where id_comprobante = '".$id."'";        
 			        $sql_nuevo = sql_array($conexion,$sql_nuevo);

@@ -26,6 +26,8 @@ function inicio (){
         $("#btn_0").append("<span class='glyphicon glyphicon-log-in'></span> Modificar");     
         comprobarCamposRequired("form_tipo_comprobante");
 	});
+	/*----------*/
+	$("#btn_1").on("click",limpiar_form);
 }
 function guardar_comprobante(){
 	var resp=comprobarCamposRequired("form_tipo_comprobante");
@@ -57,9 +59,16 @@ function datos_comprobante(valores,tipo,p){
 	    		if( data == 1 ){
 	    			alert('El ' +$("#txt_1").val()+  ' ya existe ingrese otro');	
 	    			$("#txt_1").val("")	    			
+	    			$("#txt_1").focus();
 	    		}else{
-	    			alert("Error al momento de enviar los datos la página se recargara");	    			
-	    			//actualizar_form();
+	    			if( data == 2 ){
+	    				alert('El ' +$("#txt_2").val()+  ' ya existe ingrese otro');	
+	    				$("#txt_2").val("")	    			
+	    				$("#txt_2").focus();
+	    			}else{
+	    				alert("Error al momento de enviar los datos la página se recargara");	    			
+	    				actualizar_form();
+	    			}	    			
 	    		}
 	    	}
 		}

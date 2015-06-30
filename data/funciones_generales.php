@@ -30,6 +30,18 @@ function cargarSelect($conexion, $sql) {
         echo $lista = json_encode($lista);
     }
 }
+function cargarSelect_1_1($conexion, $sql) {
+    $lista = array();
+    $data = 0;
+    $sql = pg_query($conexion, $sql);
+    if ($sql) {
+        while ($row = pg_fetch_row($sql)) {
+            $lista[] = $row[0];
+            $lista[] = $row[1]. " - " .$row[2];
+        }
+        echo $lista = json_encode($lista);
+    }
+}
 function cargarSelect_1($conexion, $sql) {
     $lista = array();
     $data = 0;
@@ -43,6 +55,9 @@ function cargarSelect_1($conexion, $sql) {
         echo $lista = json_encode($lista);
     }
 }
+
+
+
 function cargarSelect_6($conexion, $sql) {
     $lista = array();
     $data = 0;
@@ -120,9 +135,9 @@ function cargarSelect_10($conexion, $sql) {
 function unique($fecha_larga) {
     $id = uniqid();
     $id = $fecha_larga . $id;
-    return $id;
+    return $id;    
 }
-
+//echo unique($fecha_larga) ;
 function guardarSql($conexion, $sql) {
     $resp = true;    
     if (pg_query($conexion, $sql)) {

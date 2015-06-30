@@ -59,7 +59,7 @@ if(!isset($_SESSION))
                                 <a href="../inicio/">Inicio</a>
                             </li>
                             <li class="active">Contabilidad</li>
-                            <li class="active">Grupos Contables</li>
+                            <li class="active">Sustento - Comprobante</li>
                         </ul>
                     </div>
 					<div class="page-content">
@@ -67,7 +67,7 @@ if(!isset($_SESSION))
 							<div class="col-xs-12 col-sm-12 widget-container-col">
 								<div class="widget-box">
 									<div class="widget-header">
-										<h5 class="widget-title">Grupos Contables</h5>
+										<h5 class="widget-title">Sustento - Comprobante </h5>
 										<div class="widget-toolbar">
 											<a href="#" data-action="fullscreen" class="orange2">
 												<i class="ace-icon fa fa-expand"></i>
@@ -80,15 +80,17 @@ if(!isset($_SESSION))
 									<div class="widget-body">
 										<div class="widget-main">
 											<div class="row">
-												<form class="form-horizontal" role="form" rol="form" action="" method="POST" id="form_grupos">										
+												<form class="form-horizontal" role="form" rol="form" action="" method="POST" id="form_sust_compro">										
 													<div class="col-xs-6">														
 														<div class="col-sm-12">
 															<div class="row">
 																<div class="col-sm-12">
 																	<div class="form-group">
-																		<label class="col-sm-4 control-label no-padding-right" for="form-field-1">Código de Grupo:</label>
+																		<label class="col-sm-4 control-label no-padding-right" for="form-field-1">Sustento Tributario:</label>
 																		<div class="col-sm-8">
-																			<input class="form-control"  type="text" name="txt_1" id="txt_1" placeholder="Código de Grupo" required pattern="[0-9.]{1,}" autocomplete= 'off' minlength='1' />	
+																			<select class="chosen-select form-control" id="txt_1" name="txt_1" data-placeholder="Sustento Tributario">	     
+	                                                                        
+	                                                                    </select>
 																			<input type="hidden" id="txt_0" name="txt_0" />
 																		</div>
 																	</div>	
@@ -99,9 +101,11 @@ if(!isset($_SESSION))
 															<div class="row">
 																<div class="col-sm-12">
 																	<div class="form-group">
-																		<label class="col-sm-4 control-label no-padding-right" for="form-field-1">Descripción:</label>
+																		<label class="col-sm-4 control-label no-padding-right" for="form-field-1">Tipo de Comprobante:</label>
 																		<div class="col-sm-8">
-																			<input class="form-control" type="text" name="txt_2" id="txt_2" required pattern="[0-9a-zA-ZñÑ.áéíóúÁÉÍÓÚ ]{1,}"  placeholder="Descripción del grupo" autocomplete= 'off' />	
+																			<select class="chosen-select form-control" id="txt_2" name="txt_2" data-placeholder="Tipo de Comprobante">	     
+	                                                                        
+	                                                                    </select>
 																		</div>
 																	</div>	
 																</div>																						
@@ -110,14 +114,14 @@ if(!isset($_SESSION))
 													</div>	
 													<div class="col-xs-6">	
 														<div>
-															<table id="td_grupos" class="table table-striped table-bordered table-hover">
+															<table id="td_sust_compro" class="table table-striped table-bordered table-hover">
 																<thead>
 																	<tr>
-																		<th class="hidden">id</th>
-																		<th>Código</th>
-																		<th>Cuenta</th>
+																		<th class="hidden">id_sust</th>
+																		<th>Sustento</th>
+																		<th class="hidden">id_compro</th>
+																		<th>Comprobante</th>
 																		<th></th>
-																		<th class="hidden">id</th>
 																	</tr>
 																</thead>
 																<tbody>														
@@ -135,13 +139,10 @@ if(!isset($_SESSION))
 																<button type="button" id="btn_1" class="btn btn-primary">
 																	<i class="ace-icon fa fa-file-o bigger-120 write"></i>
 																	Limpiar
-																</button>																
-																<button data-toggle="modal" href="#myModal1" type="button" id="btn_2" class="btn btn-primary"><i class="ace-icon fa fa-search bigger-120 white"></i>
-																Buscar
-																</button>
+																</button>																															
 																<button type="button" id="btn_3" class="btn btn-primary">
 																	<i class="ace-icon fa fa-gear bigger-120 write"></i>
-																	Agregar Cuenta
+																	Agregar Comprobante
 																</button>														
 															</div>
 														</div>
@@ -156,43 +157,7 @@ if(!isset($_SESSION))
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- Modal -->
-			  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			    <div class="modal-dialog">
-			      <div class="modal-content">
-			        <div class="modal-header">
-			          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			          <h4 class="modal-title">PLAN DE CUENTAS</h4>
-			        </div>
-			        <div class="modal-body">
-			            <table id="table"></table>
-						<div id="pager"></div>
-			        </div>
-			        <div class="modal-footer">
-			          <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
-			        </div>
-			      </div><!-- /.modal-content -->
-			    </div><!-- /.modal-dialog -->
-		  	</div><!-- /.modal -->
-		  	<!-- Modal -->
-			<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			    <div class="modal-dialog">
-			      <div class="modal-content">
-			        <div class="modal-header">
-			          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			          <h4 class="modal-title">GRUPOS</h4>
-			        </div>
-			        <div class="modal-body">
-			            <table id="table_1"></table>
-						<div id="pager_1"></div>
-			        </div>
-			        <div class="modal-footer">
-			          <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
-			        </div>
-			      </div><!-- /.modal-content -->
-			    </div><!-- /.modal-dialog -->
-		  	</div><!-- /.modal -->
+			</div>			  	
 			<?php footer(); ?>
 
 			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
@@ -234,8 +199,35 @@ if(!isset($_SESSION))
 		<script src="../../dist/js/ace-elements.min.js"></script>
 		<script src="../../dist/js/ace.min.js"></script>
 		<script src="../generales.js"></script>
-		<script src="grupos.js"></script>
+		<script src="sustento_comprobante.js"></script>
 		<!-- inline scripts related to this page -->
-		
+		<script type="text/javascript">
+			// tooltips 
+			$('[data-rel=tooltip]').tooltip();
+			//calendario
+			var f = new Date();
+			$('.date-picker').datepicker({
+				autoclose: true,
+				format:'yyyy-mm-dd',
+				startView:0		
+			});
+			$('.date-picker').val(f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate());
+			$('#txt_fecha_actual').val(f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate());
+			// seclect chosen 
+			$('.chosen-select').chosen({
+				allow_single_deselect:true,
+				no_results_text:'No encontrado'		
+			});
+			$('.modal.aside').ace_aside();
+						
+			$('#aside-inside-modal').addClass('aside').ace_aside({container: '#my-modal > .modal-dialog'});
+			
+			$(document).one('ajaxloadstart.page', function(e) {
+				//in ajax mode, remove before leaving page
+				$('.modal.aside').remove();
+				$(window).off('.aside')
+			});
+			//$('#dob').datepicker('setDate', new Date(2006, 11, 24));
+		</script>
 	</body>
 </html>

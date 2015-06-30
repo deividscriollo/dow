@@ -3,7 +3,7 @@ var tipo = 0;
 var temp_fila = 0;
 function inicio (){
 	$("#btn_0").on("click",guardar_grupos);
-	$("input").on("keyup click",function (e){//campos requeridos		
+	$("#form_grupos input").on("keyup click",function (e){//campos requeridos		
 		comprobarCamposRequired(e.currentTarget.form.id);
 	});	
 	$("#btn_3").on('click',function(){
@@ -16,6 +16,7 @@ function inicio (){
 		}
 		
 	});
+	$("#btn_1").on("click",limpiar_form);
 	 /*jqgrid*/    
 	jQuery(function($) {
 	    var grid_selector = "#table";
@@ -56,7 +57,7 @@ function inicio (){
 	        pager: pager_selector,        
 	        sortname: 'id_plan',
 	        sortorder: 'asc',
-	        caption: 'PLAN DE CUENTAS',	        
+	        caption: 'Lista de Grupos',	        
 	        
 	        altRows: true,
 	        multiselect: false,
