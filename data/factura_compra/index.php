@@ -473,7 +473,6 @@
 		<script src="../../dist/js/date-time/moment.min.js"></script>
 		<script src="../../dist/js/date-time/daterangepicker.min.js"></script>
 		<script src="../../dist/js/date-time/bootstrap-datetimepicker.min.js"></script>
-		<script src="../../dist/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
 
 		<!-- ace scripts -->
 		<script src="../../dist/js/ace-elements.min.js"></script>

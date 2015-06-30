@@ -484,7 +484,6 @@ while ($row = pg_fetch_row($consulta)) {
 		<script src="../../dist/js/ace.min.js"></script>
 		<script src="../../dist/js/jqGrid/jquery.jqGrid.min.js"></script>
         <script src="../../dist/js/jqGrid/i18n/grid.locale-en.js"></script>
-        <script src="../../dist/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
 		
 		<script src="../generales.js"></script>
 		<script src="factura_venta.js"></script>
