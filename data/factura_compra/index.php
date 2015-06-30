@@ -176,7 +176,7 @@
 
 															<div class="col-md-4">
 																<div class="form-group">
-																	<label class="col-sm-5 no-padding-right" for="fecha_emision"> Fecha Emisión: </label>
+																	<label class="col-sm-5 no-padding-right" for="fecha_emision">Fecha Emisión: </label>
 																	<div class="col-sm-7">
 																		<div class="input-group">
 																			<input class="form-control date-picker" id="fecha_emision" name="fecha_emision" readonly type="text" data-date-format="yyyy-mm-dd" />
