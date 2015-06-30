@@ -852,17 +852,11 @@ function menu_lateral(){
 		print '</ul>
 		</li>';
 		
-<<<<<<< HEAD
-		print '<li ';if ($acus[3]=='factura_compra' || $acus[3]=='devolucion_compra' || $acus[3]=='factura_venta'|| $acus[3]=='nota_credito'|| $acus[3]=='kardex' || $acus[3]=='inventario' || $acus[3]=='proforma' ) {
-			print('class="active open"');
-			}print'>
-=======
 		print '<li ';
 			if ($acus[3]=='factura_compra' || $acus[3]=='devolucion_compra' || $acus[3]=='factura_venta'|| $acus[3]=='nota_credito'|| $acus[3]=='kardex'|| $acus[3]=='inventario' ) {
 				print('class="hover active open"');
 			}else print('class="hover"');
 			print'>
->>>>>>> origin/master
 			<a href="#" class="dropdown-toggle">
 				<i class="menu-icon fa fa-cubes ranger"></i>
 				<span class="menu-text">
@@ -872,48 +866,44 @@ function menu_lateral(){
 			</a>
 			<b class="arrow"></b>
 			<ul class="submenu">';			
-			print '<li ';
-				if ($acus[3]=='inventario') {
-					print('class="hover active"');
-				}else print('class="hover"');
-			print'>
-				<a href="../inventario/">
-					<i class="menu-icon fa fa-caret-right"></i>
-					Inventario
-				</a>
-				<b class="arrow"></b>
-<<<<<<< HEAD
-			</li>';	
-			print '<li ';if ($acus[3]=='proforma') {
-				print('class="active"');
-				}print'>
-				<a href="../proforma/">
-					<i class="menu-icon fa fa-caret-right"></i>
-					Proforma
-				</a>
-				<b class="arrow"></b>
-			</li>';					
-			print '<li ';if ($acus[3]=='factura_compra'||$acus[3]=='devolucion_compra') {
-				print('class="active open"');
-				}print'>
-=======
-			</li>';						
-			print '<li ';
-				if ($acus[3]=='factura_compra'||$acus[3]=='devolucion_compra') {
-					print('class="hover active open"');
-				}else print('class="hover"');
-			print'>
->>>>>>> origin/master
-				<a href="#" class="dropdown-toggle">
+				print '<li ';
+					if ($acus[3]=='inventario') {
+						print('class=" hover active"');
+					}else print('class="hover"');
+				print'>
+					<a href="../inventario/">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Inventario
+					</a>
+					<b class="arrow"></b>
+				</li>';			
+
+				print '<li ';
+					if ($acus[3]=='proforma') {
+						print('class=" hover active"');
+					}else print('class="hover"');
+				print'>
+					<a href="../proforma/">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Proforma
+					</a>
+					<b class="arrow"></b>
+				</li>';	
+				print '<li ';
+					if ($acus[3]=='factura_compra'||$acus[3]=='devolucion_compra') {
+						print('class="hover active open"');
+					}else print('class="hover"');
+				print'>
+					<a href="#" class="dropdown-toggle">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Compras
 					<b class="arrow fa fa-angle-down"></b>
-				</a>
-				<b class="arrow"></b>
+					</a>
+					<b class="arrow"></b>
 				<ul class="submenu">';					
 				print '<li ';
 					if ($acus[3]=='factura_compra') {
-						print('class="active hover"');
+						print('class="hover active"');
 					}else print('class="hover"');
 				print'>
 					<a href="../factura_compra/">
@@ -921,10 +911,10 @@ function menu_lateral(){
 						Productos Bodega
 					</a>
 					<b class="arrow"></b>
-				</li>';									
+				</li>';				
 				print '<li ';
 					if ($acus[3]=='devolucion_compra') {
-							print('class="active hover"');
+						print('class="hover active"');
 					}else print('class="hover"');
 				print'>
 					<a href="../devolucion_compra/">
@@ -932,20 +922,22 @@ function menu_lateral(){
 						Devolución Compras
 					</a>
 					<b class="arrow"></b>
-				</li>';										
+				</li>';																													
 				print '</ul>
-			</li>';						
-			print '<li ';
-				if ($acus[3]=='factura_venta'||$acus[3]=='nota_credito') {
-					print('class="hover active open"');
-				}else print('class="hover"');
-			print'>
-				<a href="#" class="dropdown-toggle">
+				</li>';
+
+				
+				print '<li ';
+					if ($acus[3]=='factura_venta'||$acus[3]=='nota_credito') {
+						print('class="hover active open"');
+					}else print('class="hover"');
+				print'>
+					<a href="#" class="dropdown-toggle">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Ventas
 					<b class="arrow fa fa-angle-down"></b>
-				</a>
-				<b class="arrow"></b>
+					</a>
+					<b class="arrow"></b>
 				<ul class="submenu">';					
 				print '<li ';
 					if ($acus[3]=='factura_venta') {
@@ -959,12 +951,12 @@ function menu_lateral(){
 					<b class="arrow"></b>
 				</li>';																													
 				print '</ul>
-			</li>';												
-			print '<li ';
+				</li>';												
+				print '<li ';
 				if ($acus[3]=='kardex') {
 					print('class=" hover active"');
 				}else print('class="hover"');
-			print'>
+				print'>
 				<a href="../kardex/">
 					<i class="menu-icon fa fa-caret-right"></i>
 					Kardex

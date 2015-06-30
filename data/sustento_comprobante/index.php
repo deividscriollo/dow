@@ -64,7 +64,7 @@ if(!isset($_SESSION))
                     </div>
 					<div class="page-content">
 						<div class="row">
-							<div class="col-xs-12 col-sm-12 widget-container-col">
+							<div class="col-xs-12 col-sm-12 col-md-12 widget-container-col">
 								<div class="widget-box">
 									<div class="widget-header">
 										<h5 class="widget-title">Sustento - Comprobante </h5>
@@ -81,8 +81,8 @@ if(!isset($_SESSION))
 										<div class="widget-main">
 											<div class="row">
 												<form class="form-horizontal" role="form" rol="form" action="" method="POST" id="form_sust_compro">										
-													<div class="col-xs-6">														
-														<div class="col-sm-12">
+													<div class="col-xs-12">														
+														<div class="col-sm-6">
 															<div class="row">
 																<div class="col-sm-12">
 																	<div class="form-group">
@@ -97,7 +97,7 @@ if(!isset($_SESSION))
 																</div>
 															</div>
 														</div>
-														<div class="col-sm-12">
+														<div class="col-sm-6">
 															<div class="row">
 																<div class="col-sm-12">
 																	<div class="form-group">
@@ -112,7 +112,7 @@ if(!isset($_SESSION))
 															</div>																														
 														</div>														
 													</div>	
-													<div class="col-xs-6">	
+													<div class="col-xs-12">	
 														<div>
 															<table id="td_sust_compro" class="table table-striped table-bordered table-hover">
 																<thead>
