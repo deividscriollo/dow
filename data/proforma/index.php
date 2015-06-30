@@ -37,7 +37,7 @@ while ($row = pg_fetch_row($consulta)) {
 		<script src="../../dist/js/ace-extra.min.js"></script>
 	</head>
 
-	<body class="skin-1">
+	<body class="skin-2">
 		<?php menu_arriba(); ?>
 		<div class="main-container" id="main-container">
 			<?php menu_lateral(); ?>
@@ -439,7 +439,7 @@ while ($row = pg_fetch_row($consulta)) {
 		<script src="../../dist/js/ace.min.js"></script>
 		<script src="../../dist/js/jqGrid/jquery.jqGrid.min.js"></script>
         <script src="../../dist/js/jqGrid/i18n/grid.locale-en.js"></script>
-        <script src="../../dist/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+        // <script src="../../dist/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
 		
 		<script src="../generales.js"></script>
 		<script src="inventario.js"></script>

@@ -160,7 +160,7 @@
 
 													<div class="row">
 														<div class="col-md-12">
-															<div class="col-md-4">
+															<div class="col-sm-4">
 																<div class="form-group">
 																	<label class="col-sm-5 no-padding-right" for="fecha_registro"> Fecha Registro:</label>
 																	<div class="col-sm-7">
@@ -174,9 +174,9 @@
 																</div>
 															</div>
 
-															<div class="col-md-4">
-																<div class="form-group">
-																	<label class="col-sm-5 no-padding-right" for="fecha_emision">Fecha Emisión: </label>
+															<div class="col-sm-4">
+																<div class="form-group">																	
+																	<label class="col-sm-5 control-label no-padding-right" for="fecha_emision">Fecha Emisión:</label>
 																	<div class="col-sm-7">
 																		<div class="input-group">
 																			<input class="form-control date-picker" id="fecha_emision" name="fecha_emision" readonly type="text" data-date-format="yyyy-mm-dd" />
@@ -184,11 +184,11 @@
 																				<i class="fa fa-calendar bigger-110"></i>
 																			</span>
 																		</div>
-																	</div>
+																	</div>																														
 																</div>
-															</div>	
+															</div>
 
-															<div class="col-md-4">
+															<div class="col-sm-4">
 																<div class="form-group">
 																	<label class="col-sm-5 control-label no-padding-right" for="fecha_caducidad">Fecha Caducidad:</label>
 																	<div class="col-sm-7">
@@ -206,7 +206,7 @@
 
 													<div class="row">
 														<div class="col-md-12">
-															<div class="col-md-4">
+															<div class="col-sm-4">
 																<div class="form-group">
 																	<label class="col-sm-5 no-padding-right" for="fecha_cancelacion"> Fecha cancelación:</label>
 																		<div class="col-sm-7">
@@ -243,7 +243,7 @@
 
 													<div class="row">
 														<div class="col-md-12">																													
-															<div class="col-md-4">
+															<div class="col-sm-4">
 																<div class="form-group">
 																	<label class="col-sm-5 no-padding-right" for="termino_pago"> Términos de Pago:</label>
 																	<div class="col-sm-7">

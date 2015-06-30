@@ -666,8 +666,8 @@ function inicio (){
                 
                 var datarow = {
                     cod_producto: $("#id_productos").val(), 
-                    codigo: $(a).data("codigo"), 
-                    detalle: $(a).text(), 
+                    codigo: $("#codigo").val(), 
+                    detalle: $("#producto").val(), 
                     cantidad: $("#cantidad").val(), 
                     precio_u: precio, 
                     descuento: desc, 
@@ -705,8 +705,8 @@ function inicio (){
                 
                     datarow = {
                         cod_producto: $("#id_productos").val(), 
-                        codigo: $(a).data("codigo"), 
-                        detalle: $(a).text(), 
+                        codigo: $("#codigo").val(), 
+                        detalle: $("#producto").val(), 
                         cantidad: $("#cantidad").val(), 
                         precio_u: precio, 
                         descuento: desc, 
@@ -735,8 +735,8 @@ function inicio (){
               
                   datarow = {
                       cod_producto: $("#id_productos").val(), 
-                      codigo: $(a).data("codigo"), 
-                      detalle: $(a).text(), 
+                      codigo: $("#codigo").val(), 
+                      detalle: $("#producto").val(), 
                       cantidad: $("#cantidad").val(), 
                       precio_u: precio, 
                       descuento: desc, 
