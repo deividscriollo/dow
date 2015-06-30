@@ -631,6 +631,7 @@ function  menu_lateral2(){
 
 	';
 }
+
 function menu_lateral(){	
 	error_reporting(0);
 	$url = $_SERVER['PHP_SELF'];
