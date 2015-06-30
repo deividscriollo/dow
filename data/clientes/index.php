@@ -16,11 +16,12 @@
 		<link rel="stylesheet" href="../../dist/css/ui.jqgrid.min.css" />
 		<link rel="stylesheet" href="../../dist/css/fontdc.css" />
 		<link rel="stylesheet" href="../../dist/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
-		<link type="text/css" rel="stylesheet" id="ace-skins-stylesheet" href="../../dist/css/ace-skins.min.css">
-		<script src="../../dist/js/ace-extra.min.js"></script>
-	</head>
+        <link type="text/css" rel="stylesheet" id="ace-skins-stylesheet" href="../../dist/css/ace-skins.min.css">
+        <link type="text/css" rel="stylesheet" id="ace-rtl-stylesheet" href="../../dist/css/ace-rtl.min.css">
+        <script src="../../dist/js/ace-extra.min.js"></script>
+    </head>
 
-	<body class="skin-1">
+    <body class="skin-2 ">
 		<?php menu_arriba(); ?>
 		<div class="main-container" id="main-container">
 			<?php menu_lateral(); ?>

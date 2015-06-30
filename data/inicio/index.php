@@ -40,12 +40,10 @@ if(!isset($_SESSION))
 		<script src="../../dist/js/ace-extra.min.js"></script>
 	</head>
 
-	<body class="no-skin">
+	<body class="skin-2">
 		<?php menu_arriba(); ?>
 
 		<div class="main-container" id="main-container">
-			
-
 			<?php menu_lateral(); ?>
 
 			 <div class="main-content">

@@ -42,7 +42,7 @@ if(!isset($_SESSION))
 		<script src="../../dist/js/ace-extra.min.js"></script>
 	</head>
 
-	<body class="skin-2">
+	<body class="skin-1">
 		<?php menu_arriba(); ?>
 		<div class="main-container" id="main-container">
 			<?php menu_lateral(); ?>
@@ -57,8 +57,8 @@ if(!isset($_SESSION))
                                 <i class="ace-icon fa fa-home home-icon"></i>
                                 <a href="../inicio/">Inicio</a>
                             </li>
-                            <li class="active">Procesos</li>
-                            <li class="active">Plan de Cuentas</li>
+                            <li class="active">Contabilidad</li>
+                            <li class="active">Retención en la fuente (Impuesto a la venta)</li>
                         </ul>
                     </div>
 					<div class="page-content">
@@ -66,7 +66,7 @@ if(!isset($_SESSION))
 							<div class="col-xs-12 col-sm-12 widget-container-col">
 								<div class="widget-box">
 									<div class="widget-header">
-										<h5 class="widget-title">Plan de Cuentas</h5>
+										<h5 class="widget-title">Retención en la fuente</h5>
 										<div class="widget-toolbar">
 											<a href="#" data-action="fullscreen" class="orange2">
 												<i class="ace-icon fa fa-expand"></i>
@@ -79,19 +79,16 @@ if(!isset($_SESSION))
 									<div class="widget-body">
 										<div class="widget-main">
 											<div class="row">
-												<form class="form-horizontal" role="form" rol="form" action="" method="POST" id="form_plan_cuentas">										
+												<form class="form-horizontal" role="form" rol="form" action="" method="POST" id="form_retencion_fuente">										
 													<div class="col-xs-12">
 														<div class="col-sm-6">
 															<div class="row">
 																<div class="col-sm-12">
 																	<div class="form-group">
-																		<label class="col-sm-4 control-label no-padding-right" for="form-field-1"> Cuenta de:</label>
+																		<label class="col-sm-4 control-label no-padding-right" for="form-field-1"> Código Sustento Tributario:</label>
 																		<div class="col-sm-8">
 																			<input type="hidden"  id="txt_0" name="txt_0" />
-																			<select class="chosen-select form-control" id="codigo" name="codigo" data-placeholder="Cuenta de">	                                                                        
-			                                                                    <option value="G">Grupo</option>
-			                                                                    <option value="M">Movimiento</option>
-			                                                                </select>
+																			<input class="form-control"  type="text" name="txt_1" id="txt_1" placeholder="Código de Cuenta" required pattern="[A-Za-záéíóúÁÉÍÓÚñÑ0-9. ]{1,}" autocomplete= 'off' minlength='1' />
 																		</div>																													
 																	</div>	
 																</div>
@@ -101,34 +98,15 @@ if(!isset($_SESSION))
 															<div class="row">
 																<div class="col-sm-12">																															
 																	<div class="form-group">
-																		<label class="col-sm-4 control-label no-padding-right" for="form-field-1">Código de Cuenta:</label>
-																		<div class="col-sm-8">
-																			<input class="form-control"  type="text" name="txt_1" id="txt_1" placeholder="Código de Cuenta" required pattern="[0-9.]{1,}[.]{1}" autocomplete= 'off' minlength='1' />	
-																		</div>																													
-																	</div>	
-																</div>
-															</div>																														
-														</div>
-														<div class="col-sm-12">
-															<div class="row">
-																<div class="col-sm-6">																															
-																	<div class="form-group">
 																		<label class="col-sm-4 control-label no-padding-right" for="form-field-1">Descripción:</label>
 																		<div class="col-sm-8">
-																			<input class="form-control" type="text" name="txt_2" id="txt_2" required pattern="[0-9a-zA-ZñÑ.áéíóúÁÉÍÓÚ ]{1,}"  placeholder="Descripción de la cuenta" />	
-																		</div>																													
-																	</div>	
-																</div>
-																<div class="col-sm-6">																															
-																	<div class="form-group">
-																		<label class="col-sm-4 control-label no-padding-right" for="form-field-1">Archivo Excel:</label>
-																		<div class="col-sm-8">
-																			<input class="form-control" type="file" name="txt_3" id="txt_3" />	
+																			<input class="form-control"  type="text" name="txt_2" id="txt_2" placeholder="Descripción" required pattern="[A-Za-záéíóúÁÉÍÓÚñÑ0-9. ]{1,}" autocomplete= 'off' minlength='1' />	
 																		</div>																													
 																	</div>	
 																</div>
 															</div>																														
 														</div>
+														
 														<div class="col-sm-12">
 															<div class="row">
 																<div class="center">													 
@@ -143,12 +121,7 @@ if(!isset($_SESSION))
 																	<button type="button" id="btn_2" class="btn btn-primary">
 																		<i class="ace-icon fa fa-refresh bigger-120 write"></i>
 																		Actualizar
-																	</button>																															
-																	<button type="button" id="btn_3" class="btn btn-primary">
-																		<i class="ace-icon fa fa-upload bigger-120 write"></i>
-																		Subir Acrivho Excel
-																	</button>
-																	
+																	</button>														
 																</div>
 															</div>
 														</div>
@@ -161,17 +134,12 @@ if(!isset($_SESSION))
 														<div class="pull-right tableTools-container"></div>
 													</div>
 													<div>
-														<table id="td_cuentas" class="table table-striped table-bordered table-hover">
+														<table id="td_sustento" class="table table-striped table-bordered table-hover">
 															<thead>
 																<tr>
-																	<th>Código</th>																	
-																	<th>Cuenta</th>																																		
-																	<th>Nombre Cuenta</th>																																																			
-																	<th>tipo_cuenta</th>																	
-																	<th>Tipo Cuenta</th>																	
-																	<th>Fecha Modificación</th>																																		
-																	<th>estado</th>
-																	<th>Estado</th>																																																		
+																	<th>Código</th>
+																	<th>Código Sustento</th>
+																	<th>Nombre Sustento</th>
 																</tr>
 															</thead>
 															<tbody>
@@ -228,8 +196,9 @@ if(!isset($_SESSION))
 		<script src="../../dist/js/ace-elements.min.js"></script>
 		<script src="../../dist/js/ace.min.js"></script>
 		<script src="../generales.js"></script>
-		<script src="plan_cuentas.js"></script>
+		<script src="retencion_fuente.js"></script>
 		<!-- inline scripts related to this page -->
+
 		<script type="text/javascript">
 			$(function(){
 				//accion boton Buscar
@@ -252,12 +221,12 @@ if(!isset($_SESSION))
 		
 			jQuery(function($) {
 				//initiate dataTables plugin
-				var oTable1 = $('#td_cuentas')
+				var oTable1 = $('#td_sustento')
 				//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
 				.dataTable( {					
 					bAutoWidth: false,
 					"aoColumns": [
-					  { "bSortable": false },null, null,null, null, null,null,null
+					  { "bSortable": false },null, null
 					],
 					"aaSorting": [],			
 					language: {
@@ -297,38 +266,10 @@ if(!isset($_SESSION))
 			            {
 			                "targets": [ 2 ],
 			                "visible": true,			                
-			            },			            
-			            {
-			                "targets": [ 3 ],
-			                "visible": false,
-			                "bVisible":false,
-			                		                
-			            },			            
-			            {
-			                "targets": [ 4 ],
-			                "visible": true,			                
-			            },			            
-			            {
-			                "targets": [ 5 ],
-			                "visible": true,			                
-			            },			      
-			            {
-			                "targets": [ 6 ],
-			                "visible": false,
-			                "bVisible":false,
-			                
-			            },			            
-			            {
-			                "targets": [ 7 ],
-			                "visible": true,			                
-			            },			                  
-			            
-			            
-			            
+			            },
 			        ],
 			    } );
-				//oTable1.fnAdjustColumnSizing();
-			
+				//oTable1.fnAdjustColumnSizing();		
 			
 				//TableTools settings
 				TableTools.classes.container = "btn-group btn-overlap";
@@ -372,7 +313,7 @@ if(!isset($_SESSION))
 						{
 							"sExtends": "csv",
 							"sToolTip": "Exportar a CSV",
-							"mColumns":[1, 2, 4, 5, 7],
+							"mColumns":[1, 2, 3],
 							"sButtonClass": "btn btn-white btn-primary  btn-bold",
 							"sButtonText": "<i class='fa fa-file-excel-o bigger-110 green'></i>"
 						},
@@ -380,7 +321,7 @@ if(!isset($_SESSION))
 						{
 							"sExtends": "pdf",
 							"sToolTip": "Exportar a PDF",							
-							"mColumns":[1, 2, 4, 5, 7],
+							"mColumns":[1,2],
 							"sButtonClass": "btn btn-white btn-primary  btn-bold",
 							"sButtonText": "<i class='fa fa-file-pdf-o bigger-110 red'></i>"
 						},
@@ -418,7 +359,7 @@ if(!isset($_SESSION))
 				//ColVis extension
 				var colvis = new $.fn.dataTable.ColVis( oTable1, {
 					"buttonText": "<i class='fa fa-search'></i>",
-					"aiExclude": [0, 3, 6],
+					"aiExclude": [0],
 					"bShowAll": true,
 					//"bRestore": true,
 					"sAlign": "right",
