@@ -53,7 +53,7 @@ while ($row = pg_fetch_row($consulta)) {
                                 <a href="../inicio/">Inicio</a>
                             </li>
                             <li class="active">Procesos</li>
-                            <li class="active">Factura Venta</li>
+                            <li class="active">Proformas</li>
                         </ul>
                     </div>
 					<div class="page-content">
@@ -61,7 +61,7 @@ while ($row = pg_fetch_row($consulta)) {
 							<div class="col-xs-12 col-sm-12 widget-container-col">
 								<div class="widget-box">
 									<div class="widget-header">
-										<h5 class="widget-title">Factura Venta</h5>
+										<h5 class="widget-title">Proformas</h5>
 										<div class="widget-toolbar">
 											<a href="#" data-action="fullscreen" class="orange2">
 												<i class="ace-icon fa fa-expand"></i>
@@ -111,19 +111,6 @@ while ($row = pg_fetch_row($consulta)) {
 													</div>
 													
 													<div class="hr"></div>
-													<div class="row">
-														<div class="col-md-12">
-															<div class="col-md-6">
-																<div class="form-group">
-																	<label class="col-sm-5 no-padding-right" for="serie3"> Nro factura preimpresa: 001-001</label>																			
-																	<div class="col-sm-5">
-																		<input type="text" id="serie3" name="serie3" class="form-control" data-toggle="tooltip" data-original-title="" required />																		
-																		<input type="hidden" id="num_oculto" name="num_oculto" class="form-control" data-toggle="tooltip" data-original-title="" value="<?php echo $num_factura ?>" />																		
-																	</div>																														
-																</div>
-															</div>																	
-														</div>
-													</div>
 
 													<div class="row">
 														<div class="col-md-12">
@@ -181,24 +168,10 @@ while ($row = pg_fetch_row($consulta)) {
 																</div>																												
 															</div>																
 														</div>
-													</div>	
+													</div>
 
 													<div class="row">
 														<div class="col-md-12">
-															<div class="col-md-4">
-																<div class="form-group">
-																	<label class="col-sm-4 no-padding-right" for="fecha_cancelacion"> Fecha cancelación:</label>
-																	<div class="col-sm-8">
-																		<div class="input-group">
-																			<input class="form-control date-picker" id="fecha_cancelacion" name="fecha_cancelacion" type="text" readonly data-date-format="yyyy-mm-dd" />
-																			<span class="input-group-addon">
-																				<i class="fa fa-calendar bigger-110"></i>
-																			</span>
-																		</div>
-																	</div>																														
-																</div>
-															</div>
-
 															<div class="col-md-4">
 																<div class="form-group">
 																	<label class="col-sm-4 no-padding-right" for="tipo"> Tipo de precio:</label>
@@ -209,30 +182,6 @@ while ($row = pg_fetch_row($consulta)) {
 	                                                                    </select>
 																	</div>																														
 																</div>														 
-															</div>
-
-															<div class="col-md-4">
-																<div class="form-group">
-																	<label class="col-sm-4 control-label no-padding-right" for="formas"> Forma de Pago:</label>
-																	<div class="col-sm-8">
-																		<select class="chosen-select form-control" id="formas" name="formas" data-placeholder="Forma de Pago">			                                                                        
-	                                                                    </select>
-																	</div>																														
-																</div>														
-															</div>
-														</div>	
-													</div>
-
-													<div class="row">
-														<div class="col-md-12">
-															<div class="col-md-4">
-																<div class="form-group">
-																	<label class="col-sm-4 no-padding-right" for="termino_pago"> Términos de Pago:</label>
-																	<div class="col-sm-8">
-																		<select class="chosen-select form-control" id="termino_pago" name="termino_pago" data-placeholder="Términos de Pago">			                                                                        
-	                                                                    </select>
-																	</div>																														
-																</div>														
 															</div>																
 														</div>
 													</div>	
@@ -241,7 +190,7 @@ while ($row = pg_fetch_row($consulta)) {
 														<div class="col-xs-12">
 															<div class="col-xs-12">
 																<h3 class="header smaller lighter green">
-																	Detalle Factura
+																	Detalle Proforma
 																</h3>
 															</div>
 														</div>
@@ -388,6 +337,12 @@ while ($row = pg_fetch_row($consulta)) {
 															</div>																	
 														</div>
 													</div>
+
+													<div class="row">
+														<div class="col-md-12">
+															<div class="hr hr-18 dotted hr-double"></div>
+														</div>
+													</div>
 												</form>
 
 												<div class="row">
@@ -487,7 +442,7 @@ while ($row = pg_fetch_row($consulta)) {
         <script src="../../dist/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
 		
 		<script src="../generales.js"></script>
-		<script src="factura_venta.js"></script>
+		<script src="inventario.js"></script>
         <script src="../../dist/js/validCampoFranz.js" ></script>
 	</body>
 </html>  

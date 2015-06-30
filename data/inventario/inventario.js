@@ -1,37 +1,37 @@
 $(document).on("ready",inicio);
 
 function guardar_inventario(){
-    var vect1 = new Array();
-    var vect2 = new Array();
-    var vect3 = new Array();
-    var vect4 = new Array();
-    var cont=0;
-    $("#detalle_inventario tbody tr").each(function (index) {                                                                 
-        $(this).children("td").each(function (index) {                               
-            switch (index) {                                            
-                case 0:
-                    vect1[cont] = $(this).text();   
-                    break; 
-                case 4:
-                    vect2[cont] = $(this).text();                                       
-                    break; 
-                case 5:
-                    vect3[cont] = $(this).text();                                       
-                    break;
-                case 6:
-                    vect4[cont] = $(this).text();                                       
-                    break;      
-            }                          
-        });
-        cont++;  
-    });
+    var tam = jQuery("#list").jqGrid("getRowData");
 
-    if(vect1.length == 0){
+    if(tam.length === 0){
         alert("Ingrese productos al inventario");  
     }else{
+        var v1 = new Array();
+        var v2 = new Array();
+        var v3 = new Array();
+        var v4 = new Array();
+        var string_v1 = "";
+        var string_v2 = "";
+        var string_v3 = "";
+        var string_v4 = "";
+        var fil = jQuery("#list").jqGrid("getRowData");
+        for (var i = 0; i < fil.length; i++) {
+            var datos = fil[i];
+            v1[i] = datos['cod_producto'];
+            v2[i] = datos['stock'];
+            v3[i] = datos['existencia'];
+            v4[i] = datos['diferencia'];
+        }
+        for (i = 0; i < fil.length; i++) {
+            string_v1 = string_v1 + "|" + v1[i];
+            string_v2 = string_v2 + "|" + v2[i];
+            string_v3 = string_v3 + "|" + v3[i];
+            string_v4 = string_v4 + "|" + v4[i];
+        }
+
         $.ajax({        
             type: "POST",
-            data: $("#form_facturaCompra").serialize()+"&campo1="+vect1+"&campo2="+vect2+"&campo3="+vect3+"&campo4="+vect4+"&hora="+$("#estado").text(),                
+            data: $("#form_inventario").serialize()+"&campo1="+string_v1+"&campo2="+string_v2+"&campo3="+string_v3+"&campo4="+string_v4,                
             url: "inventario.php",      
             success: function(data) { 
                 if( data == 0 ){
@@ -48,129 +48,191 @@ function guardar_inventario(){
 
 function inicio (){		
   show(); 
-	/*buscador del codigo del producto*/
-  	var input_codigoProducto = $("#codigo_chosen").children().next().children();    
-  	$(input_codigoProducto).on("keyup",function(input_ci){
-    	var text = $(this).children().val();
-      	if(text != ""){
-	        $.ajax({        
-    	    	type: "POST",
-        		dataType: 'json',        
-          		url: "../carga_ubicaciones.php?tipo=0&id=0&fun=19&val="+text,        
-          		success: function(data, status) {
-            		$('#codigo').html("");            
-            		for (var i = 0; i < data.length; i=i+8) {                                                 
-              			appendToChosenProducto(data[i],data[i+1],data[i+2],data[i+3],data[i+4],data[i+5],data[i+6],data[i+7],text,"codigo","codigo_chosen");
-            		}           
-            		$('#producto').html("");
-            		$('#producto').append($("<option data-barras='"+data[2]+"' data-codigo='"+data[1]+"' data-precio='"+data[4]+"' data-stock='"+data[5]+"' data-iva='"+data[6]+"' data-inventariable='"+data[7]+"' ></option>").val(data[0]).html(data[3])).trigger('chosen:updated');            
-	    	        $("#id_productos").val(data[0]);
-    		        $('#barras').html("");
-	        	    $('#barras').append($("<option data-barras='"+data[3]+"' data-codigo='"+data[1]+"' data-precio='"+data[4]+"' data-stock='"+data[5]+"' data-iva='"+data[6]+"' data-inventariable='"+data[7]+"' ></option>").val(data[0]).html(data[2])).trigger('chosen:updated');                        
-            		$("#precio").val(data[4]);
-            		$("#stock").val(data[5]);
-          		},
-          		error: function (data) {
-            		 console.log(data);
-          		}         
-        	});     
-    	}
-  	});
 
-  	$("#codigo_chosen").children().next().children().click(function (){
-    	$("#cantidad").focus(); 
-  	});
-  	$("#codigo").chosen().change(function (event,params){    
-    	if(params == undefined){     
-    		limpiar_chosen_codigo(); 
-    		$("#stock").val("");
-	    }else{              
-    		var a = $("#codigo option:selected");            
-    	  	$('#producto').html("");                   
-	      	$('#barras').html("");             
-    	  	$('#producto').append($("<option data-barras='"+$(a).data("barras")+"' data-codigo='"+$(a).text()+"' data-precio='"+$(a).data("precio")+"' data-stock='"+$(a).data("stock")+"' data-iva='"+$(a).data("iva")+"' data-inventariable='"+$(a).data("inventariable")+"' ></option>").val($(a).val()).html($(a).data("codigo"))).trigger('chosen:updated');                  
-	      	$('#barras').append($("<option data-barras='"+$(a).data("codigo")+"' data-codigo='"+$(a).text()+"' data-precio='"+$(a).data("precio")+"' data-stock='"+$(a).data("stock")+"' data-iva='"+$(a).data("iva")+"' data-inventariable='"+$(a).data("inventariable")+"' ></option>").val($(a).val()).html($(a).data("barras"))).trigger('chosen:updated');                  
-      		$("#id_productos").val($(a).val());
-    	  	$("#precio").val($(a).data("precio"));       
-    	  	$("#stock").val($(a).data("stock"));       
-	      	$("#cantidad").focus();
-    	}
-  	}); 
-  	/*buscador del nombre del producto*/
-	var input_nombreProducto = $("#producto_chosen").children().next().children();    
-  	$(input_nombreProducto).on("keyup",function(input_ci){    
-    	var text = $(this).children().val();
-    	if(text != ""){
-      		$.ajax({        
-	        	type: "POST",
-	    	    dataType: 'json',        
-    	    	url: "../carga_ubicaciones.php?tipo=0&id=0&fun=20&val="+text,        
-        		success: function(data, status) {
-          			$('#producto').html("");            
-          			for (var i = 0; i < data.length; i=i+8) {                                                 
-	            		appendToChosenProducto(data[i],data[i+3],data[i+2],data[i+1],data[i+4],data[i+5],data[i+6],data[i+7],text,"producto","producto_chosen");
-    	      		}           
-        	  		$('#codigo').html("");
-          			$('#codigo').append($("<option data-barras='"+data[2]+"' data-codigo='"+data[3]+"' data-precio='"+data[4]+"' data-stock='"+data[5]+"' data-iva='"+data[6]+"' data-inventariable='"+data[7]+"' ></option>").val(data[0]).html(data[1])).trigger('chosen:updated');            
-          			$("#id_productos").val(data[0]);
-	          		$('#barras').html("");
-    	      		$('#barras').append($("<option data-barras='"+data[3]+"' data-codigo='"+data[1]+"' data-precio='"+data[4]+"' data-stock='"+data[5]+"' data-iva='"+data[6]+"' data-inventariable='"+data[7]+"' ></option>").val(data[0]).html(data[2])).trigger('chosen:updated');                        
-        	  		$("#precio").val(data[4]);
-          			$("#stock").val(data[5]);
-	        	},
-    	    	error: function (data) {
-        	  		 console.log(data);
-        		}          
-	      	});
-    	}
-  	}); 
-  	$("#producto_chosen").children().next().children().click(function (){
-    	$("#cantidad").focus(); 
-  	});
-      
-	$("#producto").chosen().change(function (event,params){    
-    	if(params == undefined){         
-      		$('#codigo').html("");
-	    	$('#codigo').append($("<option></option>"));          
-      		$('#codigo').trigger('chosen:updated')
-	      	$('#producto').html("");
-    	  	$('#producto').append($("<option></option>"));          
-      		$('#producto').trigger('chosen:updated');     
-	      	$('#barras').html("");
-    	  	$('#barras').append($("<option></option>"));          
-      		$('#barras').trigger('chosen:updated');     
-	      	$("#id_productos").val("");
-    	  	$("#precio").val("");   
-    	  	$("#stock").val("");
-    	}else{              
-      		var a = $("#producto option:selected");            
-	      	$('#codigo').html("");                   
-    	  	$('#barras').html("");             
-      		$('#codigo').append($("<option data-barras='"+$(a).data("barras")+"' data-codigo='"+$(a).text()+"' data-precio='"+$(a).data("precio")+"' data-stock='"+$(a).data("stock")+"' data-iva='"+$(a).data("iva")+"' data-inventariable='"+$(a).data("inventariable")+"' ></option>").val($(a).val()).html($(a).data("codigo"))).trigger('chosen:updated');                  
-	      	$('#barras').append($("<option data-barras='"+$(a).data("codigo")+"' data-codigo='"+$(a).text()+"' data-precio='"+$(a).data("precio")+"' data-stock='"+$(a).data("stock")+"' data-iva='"+$(a).data("iva")+"' data-inventariable='"+$(a).data("inventariable")+"' ></option>").val($(a).val()).html($(a).data("barras"))).trigger('chosen:updated');                  
-    	  	$("#id_productos").val($(a).val());
-      		$("#precio").val($(a).data("precio"));      
-      		$("#stock").val($(a).data("stock"));
-	      	$("#cantidad").focus(); 
-    	}
-  	});   	
+  $("#cantidad").validCampoFranz("0123456789");
 
-    $("#cantidad").validCampoFranz("0123456789");
+   /////////////////bucador barras///////////////////////////
+    $("#codigo_barras").keyup(function(e) {
+      var codigo = $("#codigo_barras").val();
+      $.getJSON('search.php?codigo_barras=' + codigo, function(data) {
+          var tama = data.length;
+          if (tama !== 0) {
+              for (var i = 0; i < tama; i = i + 9) {
+                  $("#id_productos").val(data[i]);
+                  $("#codigo").val(data[i+1]);
+                  $("#producto").val(data[i + 2]);
+                  $("#precio").val(data[i + 3]);
+                  $("#descuento").val(data[i + 4]);
+                  $("#stock").val(data[i + 5]);
+                  $("#p_venta").val(data[i + 6]);
+                  $("#cantidad").focus();
+              }
+          }else{
+              $("#id_productos").val("");
+              $("#codigo").val("");
+              $("#producto").val("");
+              $("#precio").val("");
+              $("#descuento").val("");
+              $("#stock").val("");
+              $("#p_venta").val("");
+          }
+      });
+    });
+    ////////////////////////////////////////
 
-    $("#cantidad").on("keypress",function (e){
+    ///////////////////////busqueda productos codigo/////////
+      $("#codigo").autocomplete({
+          source: "buscar_codigo.php",
+          minLength: 1,
+          focus: function(event, ui) {
+          $("#id_productos").val(ui.item.id_productos); 
+          $("#codigo").val(ui.item.value); 
+          $("#codigo_barras").val(ui.item.codigo_barras);
+          $("#producto").val(ui.item.producto);
+          $("#precio").val(ui.item.precio);
+          $("#descuento").val(ui.item.descuento);
+          $("#stock").val(ui.item.stock);
+          $("#p_venta").val(ui.item.p_venta);
+          return false;
+          },
+          select: function(event, ui) {
+          $("#id_productos").val(ui.item.id_productos); 
+          $("#codigo").val(ui.item.value); 
+          $("#codigo_barras").val(ui.item.codigo_barras);
+          $("#producto").val(ui.item.producto);
+          $("#precio").val(ui.item.precio);
+          $("#descuento").val(ui.item.descuento);
+          $("#stock").val(ui.item.stock);
+          $("#p_venta").val(ui.item.p_venta);
+          $("#cantidad").focus();
+          return false;
+          }
+
+          }).data("ui-autocomplete")._renderItem = function(ul, item) {
+          return $("<li>")
+          .append("<a>" + item.value + "</a>")
+          .appendTo(ul);
+      };
+    /////////////////////////////////////////
+
+    ///////////////////////busqueda productos nombres/////////
+      $("#producto").autocomplete({
+          source: "buscar_producto.php",
+          minLength: 1,
+          focus: function(event, ui) {
+          $("#id_productos").val(ui.item.id_productos); 
+          $("#codigo").val(ui.item.codigo); 
+          $("#codigo_barras").val(ui.item.codigo_barras);
+          $("#producto").val(ui.item.value);
+          $("#precio").val(ui.item.precio);
+          $("#descuento").val(ui.item.descuento);
+          $("#stock").val(ui.item.stock);
+          $("#p_venta").val(ui.item.p_venta);
+          return false;
+          },
+          select: function(event, ui) {
+          $("#id_productos").val(ui.item.id_productos); 
+          $("#codigo").val(ui.item.codigo); 
+          $("#codigo_barras").val(ui.item.codigo_barras);
+          $("#producto").val(ui.item.value);
+          $("#precio").val(ui.item.precio);
+          $("#descuento").val(ui.item.descuento);
+          $("#stock").val(ui.item.stock);
+          $("#p_venta").val(ui.item.p_venta);
+          $("#cantidad").focus();
+          return false;
+          }
+
+          }).data("ui-autocomplete")._renderItem = function(ul, item) {
+          return $("<li>")
+          .append("<a>" + item.value + "</a>")
+          .appendTo(ul);
+      };
+    /////////////////////////////////////////
+
+  $("#cantidad").on("keypress",function (e){
     if(e.keyCode == 13){//tecla del alt para el entrer poner 13
         if($("#cantidad").val() != ""){
             if($("#id_productos").val() != ""){
-                var a = $("#producto option:selected");
-                agregar_fila_inventario("detalle_inventario",$("#id_productos").val(),$(a).data("codigo"),$(a).text(),$("#precio").val(),$(a).data("stock"),$("#cantidad").val());
+                var filas = jQuery("#list").jqGrid("getRowData");
+                var su = 0;
+                var dife = 0;
+                if (filas.length === 0) {
+                   dife = (parseInt( $("#cantidad").val()) - Math.abs(parseInt( $("#stock").val())))
+                    var datarow = {
+                        cod_producto: $("#id_productos").val(), 
+                        codigo: $("#codigo").val(), 
+                        nombre_producto: $("#producto").val(), 
+                        precio_compra: $("#precio").val(), 
+                        precio_venta: $("#p_venta").val(), 
+                        stock: $("#stock").val(), 
+                        existencia:  $("#cantidad").val(), 
+                        diferencia: dife
+                    };
+                    su = jQuery("#list").jqGrid('addRowData', $("#id_productos").val(), datarow);
+                    limpiar_input();
+                }
+                else {
+                    var repe = 0;
+                    for (var i = 0; i < filas.length; i++) {
+                        var id = filas[i];
+                        if (id['cod_producto'] === $("#id_productos").val()) {
+                            repe = 1;
+                        }
+                    }
+                    if (repe === 1) {
+                       dife = (parseInt( $("#cantidad").val()) - Math.abs(parseInt( $("#stock").val())))
+                        datarow = {
+                            cod_producto: $("#id_productos").val(), 
+                            codigo: $("#codigo").val(), 
+                            nombre_producto: $("#producto").val(), 
+                            precio_compra: $("#precio").val(), 
+                            precio_venta: $("#p_venta").val(), 
+                            stock: $("#stock").val(), 
+                            existencia:  $("#cantidad").val(), 
+                            diferencia: dife
+                        };
+                        su = jQuery("#list").jqGrid('setRowData', $("#id_productos").val(), datarow);
+                        limpiar_input();
+                    }
+                    else {
+                        dife = (parseInt( $("#cantidad").val()) - Math.abs(parseInt( $("#stock").val())))
+                        datarow = {
+                            cod_producto: $("#id_productos").val(), 
+                            codigo: $("#codigo").val(), 
+                            nombre_producto: $("#producto").val(), 
+                            precio_compra: $("#precio").val(), 
+                            precio_venta: $("#p_venta").val(), 
+                            stock: $("#stock").val(), 
+                            existencia:  $("#cantidad").val(), 
+                            diferencia: dife
+                        };
+                        su = jQuery("#list").jqGrid('addRowData', $("#id_productos").val(), datarow);
+                        limpiar_input();
+                    }
+                }
+                
+                ///////////////////calcular valores//////////////
+                var valor_cos = 0;
+                var valor_ven = 0;
+                var fil = jQuery("#list").jqGrid("getRowData");
+                for (var t = 0; t < fil.length; t++) {
+                    var dd = fil[t];
+                    valor_cos = (valor_cos + parseFloat(dd['precio_compra']));
+                    var valor_costo = (valor_cos).toFixed(2);
+                    valor_ven = (valor_ven + parseFloat(dd['precio_venta']));
+                    var valor_venta = (valor_ven).toFixed(2);
+                    }
+                $("#total_costo").val(valor_costo);
+                $("#total_venta").val(valor_venta);
+
             }else{
-                alert("Seleccione un producto antes de continuar");                        
-                //$('#codigo').trigger('chosen:open');            
-                $('#codigo_chosen').trigger('mousedown');
+                $("#codigo_barras").focus();
+                alert("Seleccione un producto antes de continuar");
             }
         }else{
             alert("Ingrese una cantidad");
-            $("#cantidad").focus();
+            
         }
     }
 });
@@ -178,4 +240,103 @@ function inicio (){
 /*-----guardar factura compra--*/
   $("#btn_0").on("click",guardar_inventario);
 
+      jQuery("#list").jqGrid({
+        datatype: "local",
+        colNames: ['','ID', 'CÓDIGO', 'PRODUCTO', 'P. COSTO', 'P. VENTA', 'STOCK', 'EXISTENCIA', 'DIFERENCIA'],
+        colModel: [
+            {name: 'myac', width: 50, fixed: true, sortable: false, search: false, resize: false, formatter: 'actions', formatoptions: {keys: false, delbutton: true, editbutton: false}},
+            {name: 'cod_producto', index: 'cod_producto', editable: false, search: false, hidden: true, editrules: {edithidden: false}, align: 'center', frozen: true, width: 50},
+            {name: 'codigo', index: 'codigo', editable: false, search: true, hidden: false, editrules: {edithidden: false}, align: 'center', frozen: true, width: 200},
+            {name: 'nombre_producto', index: 'nombre_producto', editable: false, search: true, hidden: false, editrules: {edithidden: false}, align: 'center', frozen: true, width: 450},
+            {name: 'precio_compra', index: 'precio_compra', editable: false, search: false, hidden: false, editrules: {edithidden: false}, align: 'center', frozen: true, width: 110},
+            {name: 'precio_venta', index: 'precio_venta', editable: false, search: false, hidden: false, editrules: {edithidden: false}, align: 'center', frozen: true, width: 110},
+            {name: 'stock', index: 'stock', editable: false, search: false, hidden: false, editrules: {edithidden: false}, align: 'center', frozen: true, width: 100},
+            {name: 'existencia', index: 'existencia', editable: false, search: false, hidden: false, editrules: {edithidden: false}, align: 'center', frozen: true, width: 110},
+            {name: 'diferencia', index: 'diferencia', editable: false, search: false, hidden: false, editrules: {edithidden: false}, align: 'center', frozen: true, width: 110}
+        ],
+        rowNum: 30,
+        width: 900,
+        height: 400,
+        sortable: true,
+        rowList: [10, 20, 30],
+        pager: jQuery('#pager'),
+        sortname: 'cod_producto',
+        sortorder: 'asc',
+        viewrecords: true,
+        cellEdit: true,
+        cellsubmit: 'clientArray',
+        shrinkToFit: true,
+        delOptions: {
+            modal: true,
+            jqModal: true,
+            onclickSubmit: function(rp_ge, rowid) {
+                var id = jQuery("#list").jqGrid('getGridParam', 'selrow');
+                jQuery('#list').jqGrid('restoreRow', id);
+                var ret = jQuery("#list").jqGrid('getRowData', id);
+                
+                rp_ge.processing = true;
+                var su = jQuery("#list").jqGrid('delRowData', rowid);
+                
+                var total_costo = 0;
+                var total_venta = 0;
+                if (su === true) {
+                    total_costo = (parseFloat($("#total_costo").val()) - ret.precio_compra).toFixed(2);
+                    total_venta = (parseFloat($("#total_venta").val()) - ret.precio_venta).toFixed(2);
+                    $("#total_costo").val(total_costo);
+                    $("#total_venta").val(total_venta);  
+                }
+                $(".ui-icon-closethick").trigger('click');
+                return true;
+            },
+            processing: true
+        },
+        gridComplete: function () {
+            if (jQuery("div.ui-jqgrid-bdiv > DIV").height() < 249) {
+                jQuery("#list").parents('div.ui-jqgrid-bdiv').css("height", 250);
+            }
+            else {
+                jQuery("#list").parents('div.ui-jqgrid-bdiv').css("height", "100%");
+            }
+        }
+    }).jqGrid('navGrid', '#pager',
+            {
+                add: false,
+                edit: false,
+                del: false,
+                refresh: false,
+                search: true,
+                view: true,
+                searchtext: "Buscar",
+                viewtext: "Ver"
+            },
+    {
+        recreateForm: true, closeAfterEdit: true, checkOnUpdate: true, reloadAfterSubmit: true, closeOnEscape: true
+         
+    },
+    {
+        reloadAfterSubmit: true, closeAfterAdd: true, checkOnUpdate: true, closeOnEscape: true,
+        bottominfo: "Los campos marcados con (*) son obligatorios", width: 350, checkOnSubmit: false
+       
+    },
+    {
+        width: 300, closeOnEscape: true
+    },
+    {
+        closeOnEscape: true,
+        multipleSearch: false, overlay: false
+    },
+    {
+        closeOnEscape: true,
+        width: 400
+    },
+    {
+        closeOnEscape: true
+    });
+
+    jQuery(window).bind('resize', function () {
+      jQuery("#list").setGridWidth(jQuery('#grid_container').width(), true);
+  }).trigger('resize');
+
 }
+
+

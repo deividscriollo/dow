@@ -501,182 +501,118 @@ function inicio (){
   });   
   /////////////////////////////////////////////////////////////
 
-  /*buscador codigo barras del producto*/
-  var input_codigoBarras = $("#codigo_barras_chosen").children().next().children();    
-    $(input_codigoBarras).on("keyup",function(input_ci){
-      var text = $(this).children().val();
-        if(text != ""){
-          $.ajax({        
-            type: "POST",
-            dataType: 'json',        
-              url: "../carga_ubicaciones.php?tipo=0&id=0&fun=32&val="+text,        
-              success: function(data, status) {                
-                $('#codigo_barras').html("");            
-                for (var i = 0; i < data.length; i = i + 10) {                                                 
-                    appendToChosenProducto(data[i],data[i+2],data[i+3],data[i+1],data[i+4],data[i+5],data[i+6],data[i+7],data[i+8],data[i+9],text,"codigo_barras","codigo_barras_chosen");
-                }                           
-                $('#codigo').html("");
-                $('#producto').html("");
-                $('#codigo').append($("<option data-barras='"+data[2]+"' data-codigo='"+data[3]+"' data-precio='"+data[4]+"' data-stock='"+data[5]+"' data-iva='"+data[6]+"' data-inventariable='"+data[7]+"' data-incluye_iva='"+data[8]+"' data-descuento='"+data[9]+"' ></option>").val(data[0]).html(data[1])).trigger('chosen:updated');            
-                $('#producto').append($("<option data-barras='"+data[2]+"' data-codigo='"+data[1]+"' data-precio='"+data[4]+"' data-stock='"+data[5]+"' data-iva='"+data[6]+"' data-inventariable='"+data[7]+"' data-incluye_iva='"+data[8]+"' data-descuento='"+data[9]+"' ></option>").val(data[0]).html(data[3])).trigger('chosen:updated');            
-                $("#id_productos").val(data[0]);
-                $("#precio").val(data[4]);
-                $("#stock").val(data[5]);
-                $("#descuento").val(data[9]);
-                $("#iva_producto").val(data[6]);
-                $("#incluye").val(data[8]);
-                $("#inventar").val(data[7]);                
-                $("#codigo_barras_chosen").children().next().children().children().blur();
-                $("#codigo_barras").trigger('chosen:close');                    
-                $("#cantidad").focus();
-              },
-              error: function (data) {
-                 // console.log(data);
-              }         
-          });     
-      }
-    });
-    
-    $("#codigo_barras").chosen().change(function (event,params){    
-      if(params == undefined){     
-        limpiar_chosen_codigo();          
-      }else{              
-        var a = $("#codigo_barras option:selected");               
-          console.log($(a).data())
-          $('#codigo').html("");  
-          $('#producto').html("");
-          $('#codigo').append($("<option data-barras='"+$(a).text()+"' data-codigo='"+$(a).data("codigo")+"' data-precio='"+$(a).data("precio")+"' data-stock='"+$(a).data("stock")+"' data-iva='"+$(a).data("iva")+"' data-inventariable='"+$(a).data("inventariable")+"' data-incluye_iva='"+$(a).data("incluye_iva")+"' data-descuento='"+$(a).data("descuento")+"' ></option>").val($(a).val()).html($(a).data("barras"))).trigger('chosen:updated');                  
-          $('#producto').append($("<option data-barras='"+$(a).text()+"' data-codigo='"+$(a).data("barras")+"' data-precio='"+$(a).data("precio")+"' data-stock='"+$(a).data("stock")+"' data-iva='"+$(a).data("iva")+"' data-inventariable='"+$(a).data("inventariable")+"' data-incluye_iva='"+$(a).data("incluye_iva")+"' data-descuento='"+$(a).data("descuento")+"' ></option>").val($(a).val()).html($(a).data("codigo"))).trigger('chosen:updated');                  
-          $("#id_productos").val($(a).val());
-          $("#precio").val($(a).data("precio")); 
-          $("#stock").val($(a).data("stock"));      
-          $("#descuento").val($(a).data("descuento"));
-          $("#iva_producto").val($(a).data("iva"));
-          $("#incluye").val($(a).data("incluye_iva"));
-          $("#inventar").val($(a).data("inventariable"));
-          $("#cantidad").focus();
-      }
-    });
-    $("#codigo_barras_chosen").children().next().children().click(function (){
-      $("#cantidad").focus(); 
-    }); 
-  /////////////////////////////////////////////////////////////////// 
-
-/*buscador codigo del producto*/
-  var input_codigoProducto = $("#codigo_chosen").children().next().children();    
-    $(input_codigoProducto).on("keyup",function(input_ci){
-      var text = $(this).children().val();
-        if(text != ""){
-          $.ajax({        
-            type: "POST",
-            dataType: 'json',        
-              url: "../carga_ubicaciones.php?tipo=0&id=0&fun=15&val="+text,        
-              success: function(data, status) {
-                $('#codigo').html("");            
-                for (var i = 0; i < data.length; i = i + 10) {                                                 
-                    appendToChosenProducto(data[i],data[i+1],data[i+2],data[i+3],data[i+4],data[i+5],data[i+6],data[i+7],data[i+8],data[i+9],text,"codigo","codigo_chosen");
-                }   
-                        
-                $('#producto').html("");
-                $('#codigo_barras').html("");
-                $('#producto').append($("<option data-barras='"+data[2]+"' data-codigo='"+data[1]+"' data-precio='"+data[4]+"' data-stock='"+data[5]+"' data-iva='"+data[6]+"' data-inventariable='"+data[7]+"' data-incluye_iva='"+data[8]+"' data-descuento='"+data[9]+"' ></option>").val(data[0]).html(data[3])).trigger('chosen:updated');            
-                $('#codigo_barras').append($("<option data-barras='"+data[3]+"' data-codigo='"+data[1]+"' data-precio='"+data[4]+"' data-stock='"+data[5]+"' data-iva='"+data[6]+"' data-inventariable='"+data[7]+"' data-incluye_iva='"+data[8]+"' data-descuento='"+data[9]+"' ></option>").val(data[0]).html(data[2])).trigger('chosen:updated');                        
-                $("#id_productos").val(data[0]);
-                $("#precio").val(data[4]);
-                $("#stock").val(data[5]);
-                $("#descuento").val(data[9]);
-                $("#iva_producto").val(data[6]);
-                $("#incluye").val(data[8]);
-                $("#inventar").val(data[7]);
-              },
-              error: function (data) {
-                 // console.log(data);
-              }         
-          });     
-      }
-    });
-    
-    $("#codigo").chosen().change(function (event,params){    
-      if(params == undefined){     
-        limpiar_chosen_codigo();          
-      }else{              
-        var a = $("#codigo option:selected");            
-          $('#producto').html("");  
-          $('#codigo_barras').html("");                 
-          $('#producto').append($("<option data-barras='"+$(a).data("barras")+"' data-codigo='"+$(a).text()+"' data-precio='"+$(a).data("precio")+"' data-stock='"+$(a).data("stock")+"' data-iva='"+$(a).data("iva")+"' data-inventariable='"+$(a).data("inventariable")+"' data-incluye_iva='"+$(a).data("incluye_iva")+"' data-descuento='"+$(a).data("descuento")+"' ></option>").val($(a).val()).html($(a).data("codigo"))).trigger('chosen:updated');                  
-          $('#codigo_barras').append($("<option data-barras='"+$(a).data("codigo")+"' data-codigo='"+$(a).text()+"' data-precio='"+$(a).data("precio")+"' data-stock='"+$(a).data("stock")+"' data-iva='"+$(a).data("iva")+"' data-inventariable='"+$(a).data("inventariable")+"' data-incluye_iva='"+$(a).data("incluye_iva")+"' data-descuento='"+$(a).data("descuento")+"' ></option>").val($(a).val()).html($(a).data("barras"))).trigger('chosen:updated');                  
-          $("#id_productos").val($(a).val());
-          $("#precio").val($(a).data("precio")); 
-          $("#stock").val($(a).data("stock"));      
-          $("#descuento").val($(a).data("descuento"));
-          $("#iva_producto").val($(a).data("iva"));
-          $("#incluye").val($(a).data("incluye_iva"));
-          $("#inventar").val($(a).data("inventariable"));
-          $("#cantidad").focus();
-      }
-    });
-    $("#codigo_chosen").children().next().children().click(function (){
-      $("#cantidad").focus(); 
-    }); 
-  /////////////////////////////////////////////////////////////////// 
-
-  /*buscador del nombre del producto*/
-  var input_nombreProducto = $("#producto_chosen").children().next().children();    
-  $(input_nombreProducto).on("keyup",function(input_ci){    
-    var text = $(this).children().val();
-    if(text != ""){
-      $.ajax({        
-        type: "POST",
-        dataType: 'json',        
-        url: "../carga_ubicaciones.php?tipo=0&id=0&fun=16&val="+text,        
-        success: function(data, status) {
-          $('#producto').html("");            
-          for (var i = 0; i < data.length; i = i + 10) {                                                 
-            appendToChosenProducto(data[i],data[i+3],data[i+2],data[i+1],data[i+4],data[i+5],data[i+6],data[i+7],data[i+8],data[i+9],text,"producto","producto_chosen");
-          } 
-
-          $('#codigo').html("");
-          $('#codigo_barras').html("");
-          $('#codigo').append($("<option data-barras='"+data[2]+"' data-codigo='"+data[3]+"' data-precio='"+data[4]+"' data-stock='"+data[5]+"' data-iva='"+data[6]+"' data-inventariable='"+data[7]+"' data-incluye_iva='"+data[8]+"' data-descuento='"+data[9]+"' ></option>").val(data[0]).html(data[1])).trigger('chosen:updated');            
-          $('#codigo_barras').append($("<option data-barras='"+data[3]+"' data-codigo='"+data[1]+"' data-precio='"+data[4]+"' data-stock='"+data[5]+"' data-iva='"+data[6]+"' data-inventariable='"+data[7]+"' data-incluye_iva='"+data[8]+"' data-descuento='"+data[9]+"' ></option>").val(data[0]).html(data[2])).trigger('chosen:updated');                        
-          $("#id_productos").val(data[0]);
-          $("#precio").val(data[4]);
-          $("#stock").val(data[5]);
-          $("#descuento").val(data[9]);
-          $("#iva_producto").val(data[6]);
-          $("#incluye").val(data[8]);
-          $("#inventar").val(data[7]);
-        },
-        error: function (data) {
-          // alert(data);
-        }          
+  /////////////////bucador barras///////////////////////////
+    $("#codigo_barras").keyup(function(e) {
+      var codigo = $("#codigo_barras").val();
+      $.getJSON('search.php?codigo_barras=' + codigo, function(data) {
+          var tama = data.length;
+          if (tama !== 0) {
+              for (var i = 0; i < tama; i = i + 9) {
+                  $("#id_productos").val(data[i]);
+                  $("#codigo").val(data[i+1]);
+                  $("#producto").val(data[i + 2]);
+                  $("#precio").val(data[i + 3]);
+                  $("#descuento").val(data[i + 4]);
+                  $("#stock").val(data[i + 5]);
+                  $("#iva_producto").val(data[i + 6]);
+                  $("#inventar").val(data[i + 7]);
+                  $("#incluye").val(data[i + 8]);
+                  $("#cantidad").focus();
+              }
+          }else{
+              $("#id_productos").val("");
+              $("#codigo").val("");
+              $("#producto").val("");
+              $("#precio").val("");
+              $("#descuento").val("");
+              $("#stock").val("");
+              $("#iva_producto").val("");
+              $("#inventar").val("");
+              $("#incluye").val("");
+          }
       });
-    }
-  }); 
+    });
+    ////////////////////////////////////////
 
-  $("#producto").chosen().change(function (event,params){    
-    if(params == undefined){         
-      limpiar_chosen_codigo();
-    }else{              
-      var a = $("#producto option:selected");            
-      $('#codigo').html("");                   
-      $('#codigo_barras').html("");             
-      $('#codigo').append($("<option data-barras='"+$(a).data("barras")+"' data-codigo='"+$(a).text()+"' data-precio='"+$(a).data("precio")+"' data-stock='"+$(a).data("stock")+"' data-iva='"+$(a).data("iva")+"' data-inventariable='"+$(a).data("inventariable")+"' data-incluye_iva='"+$(a).data("incluye_iva")+"' data-descuento='"+$(a).data("descuento")+"' ></option>").val($(a).val()).html($(a).data("codigo"))).trigger('chosen:updated');                  
-      $('#codigo_barras').append($("<option data-barras='"+$(a).data("codigo")+"' data-codigo='"+$(a).text()+"' data-precio='"+$(a).data("precio")+"' data-stock='"+$(a).data("stock")+"' data-iva='"+$(a).data("iva")+"' data-inventariable='"+$(a).data("inventariable")+"' data-incluye_iva='"+$(a).data("incluye_iva")+"' data-descuento='"+$(a).data("descuento")+"' ></option>").val($(a).val()).html($(a).data("barras"))).trigger('chosen:updated');                  
-      $("#id_productos").val($(a).val());
-      $("#precio").val($(a).data("precio")); 
-      $("#stock").val($(a).data("stock"));      
-      $("#descuento").val($(a).data("descuento"));
-      $("#iva_producto").val($(a).data("iva"));
-      $("#incluye").val($(a).data("incluye_iva"));
-      $("#inventar").val($(a).data("inventariable"));
-      $("#cantidad").focus(); 
-    }
-  }); 
-  $("#producto_chosen").children().next().children().click(function (){
-    $("#cantidad").focus(); 
-  });  
-  /////////////////////////////////////////
+    ///////////////////////busqueda productos codigo/////////
+      $("#codigo").autocomplete({
+          source: "buscar_codigo.php",
+          minLength: 1,
+          focus: function(event, ui) {
+          $("#id_productos").val(ui.item.id_productos); 
+          $("#codigo").val(ui.item.value); 
+          $("#codigo_barras").val(ui.item.codigo_barras);
+          $("#producto").val(ui.item.producto);
+          $("#precio").val(ui.item.precio);
+          $("#descuento").val(ui.item.descuento);
+          // $("#descuento").attr("max",ui.item.descuento);
+          $("#stock").val(ui.item.stock);
+          $("#iva_producto").val(ui.item.iva_producto);
+          $("#inventar").val(ui.item.inventar);
+          $("#incluye").val(ui.item.incluye);
+          return false;
+          },
+          select: function(event, ui) {
+          $("#id_productos").val(ui.item.id_productos); 
+          $("#codigo").val(ui.item.value); 
+          $("#codigo_barras").val(ui.item.codigo_barras);
+          $("#producto").val(ui.item.producto);
+          $("#precio").val(ui.item.precio);
+          $("#descuento").val(ui.item.descuento);
+          $("#stock").val(ui.item.stock);
+          $("#iva_producto").val(ui.item.iva_producto);
+          $("#inventar").val(ui.item.inventar);
+          $("#incluye").val(ui.item.incluye);
+          $("#cantidad").focus();
+          return false;
+          }
+
+          }).data("ui-autocomplete")._renderItem = function(ul, item) {
+          return $("<li>")
+          .append("<a>" + item.value + "</a>")
+          .appendTo(ul);
+      };
+    /////////////////////////////////////////
+
+    ///////////////////////busqueda productos nombres/////////
+      $("#producto").autocomplete({
+          source: "buscar_producto.php",
+          minLength: 1,
+          focus: function(event, ui) {
+          $("#id_productos").val(ui.item.id_productos); 
+          $("#codigo").val(ui.item.codigo); 
+          $("#codigo_barras").val(ui.item.codigo_barras);
+          $("#producto").val(ui.item.value);
+          $("#precio").val(ui.item.precio);
+          $("#descuento").val(ui.item.descuento);
+          // $("#descuento").attr("max",ui.item.descuento);
+          $("#stock").val(ui.item.stock);
+          $("#iva_producto").val(ui.item.iva_producto);
+          $("#inventar").val(ui.item.inventar);
+          $("#incluye").val(ui.item.incluye);
+          return false;
+          },
+          select: function(event, ui) {
+          $("#id_productos").val(ui.item.id_productos); 
+          $("#codigo").val(ui.item.codigo); 
+          $("#codigo_barras").val(ui.item.codigo_barras);
+          $("#producto").val(ui.item.value);
+          $("#precio").val(ui.item.precio);
+          $("#descuento").val(ui.item.descuento);
+          $("#stock").val(ui.item.stock);
+          $("#iva_producto").val(ui.item.iva_producto);
+          $("#inventar").val(ui.item.inventar);
+          $("#incluye").val(ui.item.incluye);
+          $("#cantidad").focus();
+          return false;
+          }
+
+          }).data("ui-autocomplete")._renderItem = function(ul, item) {
+          return $("<li>")
+          .append("<a>" + item.value + "</a>")
+          .appendTo(ul);
+      };
+    /////////////////////////////////////////
 
   /*---agregar a la tabla---*/
   $("#cantidad").on("keypress",function (e){
@@ -742,7 +678,7 @@ function inicio (){
                 };
 
                 su = jQuery("#list").jqGrid('addRowData', $("#id_productos").val(), datarow);
-                limpiar_chosen_codigo();
+                limpiar_input();
             } else {
                 for (var i = 0; i < filas.length; i++) {
                     var id = filas[i];
@@ -781,7 +717,7 @@ function inicio (){
                     };
                 
                     su = jQuery("#list").jqGrid('setRowData', $("#id_productos").val(), datarow);
-                    limpiar_chosen_codigo();
+                    limpiar_input();
                 } else {
                   if ($("#descuento").val() !== "") {
                     desc = $("#descuento").val();
@@ -810,7 +746,7 @@ function inicio (){
                       incluye: $("#incluye").val()
                   };
                   su = jQuery("#list").jqGrid('addRowData', $("#id_productos").val(), datarow);
-                  limpiar_chosen_codigo();
+                  limpiar_input();
                 }
               }
 
@@ -827,7 +763,7 @@ function inicio (){
               for (var t = 0; t < fil.length; t++) {
                   var dd = fil[t];
                   if (dd['iva'] != 0) {
-                      if(dd['incluye'] == "No"){
+                      if(dd['incluye'] == "No") {
                           subtotal = dd['total'];
                           sub1 = subtotal;
                           iva1 = (sub1 * 0.12).toFixed(3);                                          
@@ -841,8 +777,8 @@ function inicio (){
                           subtotal12 = parseFloat(subtotal12).toFixed(3);
                           iva12 = parseFloat(iva12).toFixed(3);
                           descu_total = parseFloat(descu_total).toFixed(3);
-                      }else{
-                          if(dd['incluye'] == "Si"){
+                      } else {
+                          if(dd['incluye'] == "Si") {
                               subtotal = dd['total'];
                               sub2 = (subtotal / 1.12).toFixed(3);
                               iva2 = (sub2 * 0.12).toFixed(3);
@@ -858,7 +794,7 @@ function inicio (){
                               descu_total = parseFloat(descu_total).toFixed(3);
                           }
                       }
-                    }else{
+                    } else {
                       if (dd['iva'] == 0) {                                               
                           subtotal = dd['total'];
                           sub = subtotal;
@@ -886,16 +822,16 @@ function inicio (){
                 $("#total").val(total_total);
               /////////////////////////////////////////////////////
           } else {
+            $('#codigo_barras').focus();
             alert("Seleccione un producto antes de continuar");                        
-            $('#codigo_chosen').trigger('mousedown');
           }
         } else {
-          alert("Ingrese un precio");
           $("#precio").focus();  
+          alert("Ingrese un precio");
         }
       } else {
-        alert("Ingrese una cantidad");
         $("#cantidad").focus();
+        alert("Ingrese una cantidad");
       }
     }
   });

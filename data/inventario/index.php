@@ -24,6 +24,7 @@
 		<link rel="stylesheet" href="../../dist/css/daterangepicker.min.css" />
 		<link rel="stylesheet" href="../../dist/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="../../dist/css/fontdc.css" />
+		<link rel="stylesheet" href="../../dist/css/jquery-ui.custom.min.css" type="text/css"/>
 
 		<!-- ace styles -->
 		<link rel="stylesheet" href="../../dist/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
@@ -109,7 +110,7 @@
 													
 													<div class="row">
 														<div class="col-xs-12">
-															<div class="col-xs-3">
+															<div class="col-xs-2">
 																<div class="row">
 																	<div class="col-xs-12">
 																		<label> Codigo de Barra:</label>
@@ -117,9 +118,7 @@
 																</div>
 																<div class="row">
 																	<div class="col-xs-12">
-																		<select class="chosen-select form-control" id="barras" name="barras" data-placeholder="Código de barras">	     
-  	                                                                        <option value=""></option>	                                                                        
-			                                                            </select>																		
+																		<input type="text" id="codigo_barras" name="codigo_barras"  class="form-control" data-toggle="tooltip"  /> 																																							
 																	</div>
 																</div>
 															</div>
@@ -131,14 +130,11 @@
 																</div>
 																<div class="row">
 																	<div class="col-xs-12">
-																		<input type="hidden" id="id_productos" name="id_productos" /> 
-																		<select class="chosen-select form-control" id="codigo" name="codigo" data-placeholder="Código del producto">	     
-  	                                                                        <option value=""></option>	                                                                        
-			                                                            </select>																		
+																		<input type="text" id="codigo" name="codigo"  class="form-control" data-toggle="tooltip"  /> 																																				
 																	</div>
 																</div>
 															</div>
-															<div class="col-xs-3">
+															<div class="col-xs-4">
 																<div class="row">
 																	<div class="col-xs-12">
 																		<label> Producto:</label>
@@ -146,9 +142,7 @@
 																</div>
 																<div class="row">
 																	<div class="col-xs-12">
-																		<select class="chosen-select form-control" id="producto" name="producto" data-placeholder="Nombre del producto">	     
-  	                                                                        <option value=""></option>	                                                                        
-			                                                            </select>																		
+																		<input type="text" id="producto" name="producto"  class="form-control" data-toggle="tooltip"  /> 																																																						
 																	</div>
 																</div>
 															</div>
@@ -187,7 +181,10 @@
 																			</div>
 																			<div class="row">
 																				<div class="col-xs-12">
-																					<input type="text" id="stock" name="stock" class="form-control" data-toggle="tooltip" required readonly /> 
+																					<input type="hidden" id="descuento" name="descuento" class="form-control" data-toggle="tooltip" value="0" min="0" maxlength="3" /> 
+																					<input type="text" id="stock" name="stock" class="form-control" data-toggle="tooltip" readonly /> 
+																					<input type="hidden" id="id_productos" name="id_productos" class="form-control" data-toggle="tooltip" /> 
+																					<input type="hidden" id="p_venta" name="p_venta" class="form-control" data-toggle="tooltip" />
 																				</div>
 																			</div>
 																		</div>
@@ -196,6 +193,20 @@
 															</div>
 														</div>
 													</div>
+
+													<div class="row">
+														<div class="col-md-12">
+															<div class="hr hr-18 dotted hr-double"></div>
+														</div>
+													</div>
+
+													<div class="col-md-12">
+							                            <div id="grid_container">
+							                                <table id="list"></table>
+							                            </div>
+							                        </div>
+
+
 													<div class="row">
 														<div class="col-xs-12">
 															<div class="col-sm-12">
@@ -203,56 +214,8 @@
 															</div>
 														</div>
 													</div>
-													
-													<div class="row">														
-														<div class="col-xs-12">
-														 	<div class="col-sm-12">
-																<table id="detalle_inventario" class="table table-striped table-bordered table-hover">
-																	<thead>
-																		<tr style="background-color: #428BCA; color: white;">
-																			<th class="center" width="2px"><i class="ace-icon fa fa-bars"></i></th>
-																			<th class="center" width="100px"><i class="ace-icon fa fa-barcode"></i> Codigo</th>
-																			<th class="center"><i class="ace-icon fa fa-info"></i> Detalle</th>
-																			<th class="center" width="100px"><i class="ace-icon fa fa-money"></i>P. Costo</th>
-																			<!-- <th class="center" width="100px"><i class="ace-icon fa fa-money"></i>P. Venta</th> -->
-																			<th class="center" width="100px"><i class="ace-icon fa fa-area-chart"> Stock</th>
-																			<th class="center" width="100px"><i class="ace-icon fa fa-usd"> Existencia</th>
-																			<th class="center" width="100px"><i class="ace-icon fa fa-usd"> Diferencia</th>
-																			<th class="center" width="90px"><i class="ace-icon fa fa-cogs"></i> Accion</th>
-																		</tr>
-																	</thead>
-																	<tbody>
-																	</tbody>
-																</table>
-															</div>
-															<!-- <div class="row">
-																<div class="col-xs-12">
-																	<div class="col-sm-9"></div>
-																	<div class="col-sm-3">																		
-																		<div class="form-group">
-																			<label class="col-sm-3 control-label no-padding-right" for="form-field-facebook"> Total</label>
-																			<div class="col-sm-9">
-																				<span class="input-icon">
-																					<input type="text" value="00.00" id="form-field-facebook">
-																					<i class="ace-icon fa fa-usd blue"></i>
-																				</span>
-																			</div>
-																		</div>
-																	</div>																	
-																</div>
-															</div> -->
-														</div>														
-													</div>
-
-													<br />
-                                                    <br />
-                                                    <br />
-                                                    <br />
-                                                    <br />
-                                                    <br />
-                                                    <br />
-                                                    <br />
 												</form>
+
 												<div class="row">
 													<div class="center">													 
 														<button type="button" class="btn btn-primary" id="btn_0">
@@ -345,6 +308,7 @@
 		<script src="../../dist/js/date-time/moment.min.js"></script>
 		<script src="../../dist/js/date-time/daterangepicker.min.js"></script>
 		<script src="../../dist/js/date-time/bootstrap-datetimepicker.min.js"></script>
+		<script src="../../dist/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
 
 		<!-- ace scripts -->
 		<script src="../../dist/js/ace-elements.min.js"></script>

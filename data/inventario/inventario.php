@@ -12,7 +12,7 @@
 	$id_session = sesion_activa();///datos session
 	$id = unique($fecha_larga);
 
-	$sql = "insert into inventario values ('$id','$id_session','$fecha','$_POST[hora]','Activo','$fecha')";	
+	$sql = "insert into inventario values ('$id','$id_session','$fecha','$_POST[hora_actual]','Activo','$fecha')";	
 		
 	$guardar = guardarSql($conexion,$sql);
 	if( $guardar == 'true'){
@@ -29,14 +29,14 @@
 	///////////////////////////////
 
 	/////descomponer detalle_inventario////
-	$arreglo1 = explode(',', $campo1);
-	$arreglo2 = explode(',', $campo2);
-	$arreglo3 = explode(',', $campo3);
-	$arreglo4 = explode(',', $campo4);
+	$arreglo1 = explode('|', $campo1);
+	$arreglo2 = explode('|', $campo2);
+	$arreglo3 = explode('|', $campo3);
+	$arreglo4 = explode('|', $campo4);
 	$nelem = count($arreglo1);
 	/////////////////////////////////////
 
-	for ($i = 0; $i < $nelem; $i++) {
+	for ($i = 1; $i < $nelem; $i++) {
 		$id2 = unique($fecha_larga);
 
 		///guardar detalle_factura/////

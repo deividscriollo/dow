@@ -23,7 +23,7 @@
 		<link rel="stylesheet" href="../../dist/css/daterangepicker.min.css" />
 		<link rel="stylesheet" href="../../dist/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="../../dist/css/fontdc.css" />
-
+		<link rel="stylesheet" href="../../dist/css/jquery-ui.custom.min.css" type="text/css"/>
 		<!-- ace styles -->
 		<link rel="stylesheet" href="../../dist/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
 		<link type="text/css" rel="stylesheet" id="ace-skins-stylesheet" href="../../dist/css/ace-skins.min.css">
@@ -275,9 +275,7 @@
 																</div>
 																<div class="row">
 																	<div class="col-xs-12">
-																		<select class="chosen-select form-control" id="codigo_barras" name="codigo_barras" data-placeholder="Código de Barras del Producto">
-																			<option value=""></option>
-																		</select>																					
+																		<input type="text" id="codigo_barras" name="codigo_barras"  class="form-control" data-toggle="tooltip"  /> 																					
 																	</div>
 																</div>
 															</div>
@@ -289,9 +287,7 @@
 																</div>
 																<div class="row">
 																	<div class="col-xs-12">
-																		<select class="chosen-select form-control" id="codigo" name="codigo" data-placeholder="Código del Producto">
-																			<option value=""></option>
-																		</select>																		
+																		<input type="text" id="codigo" name="codigo"  class="form-control" data-toggle="tooltip"  /> 																		
 																	</div>
 																</div>
 															</div>
@@ -303,9 +299,7 @@
 																</div>
 																<div class="row">
 																	<div class="col-xs-12">
-																		<select class="chosen-select form-control" id="producto" name="producto" data-placeholder="Descripción del Producto">
-																			<option value=""></option>
-																		</select>																																				
+																		<input type="text" id="producto" name="producto"  class="form-control" data-toggle="tooltip"  /> 																																				
 																	</div>
 																</div>
 															</div>
@@ -480,6 +474,7 @@
 		<script src="../../dist/js/date-time/moment.min.js"></script>
 		<script src="../../dist/js/date-time/daterangepicker.min.js"></script>
 		<script src="../../dist/js/date-time/bootstrap-datetimepicker.min.js"></script>
+		<script src="../../dist/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
 
 		<!-- ace scripts -->
 		<script src="../../dist/js/ace-elements.min.js"></script>

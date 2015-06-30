@@ -92,6 +92,7 @@ function limpiar_input() {
     $("#producto").val("");
     $("#cantidad").val("");
     $("#precio").val("");
+    $("#p_venta").val("");
     $("#descuento").val("");
     $("#stock").val("");
     $("#iva_producto").val("");

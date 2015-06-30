@@ -248,7 +248,7 @@ function menu_lateral(){
 			print '</ul>
 		</li>';
 		
-		print '<li ';if ($acus[3]=='factura_compra' || $acus[3]=='devolucion_compra' || $acus[3]=='factura_venta'|| $acus[3]=='nota_credito'|| $acus[3]=='kardex'|| $acus[3]=='inventario' ) {
+		print '<li ';if ($acus[3]=='factura_compra' || $acus[3]=='devolucion_compra' || $acus[3]=='factura_venta'|| $acus[3]=='nota_credito'|| $acus[3]=='kardex' || $acus[3]=='inventario' || $acus[3]=='proforma' ) {
 			print('class="active open"');
 			}print'>
 			<a href="#" class="dropdown-toggle">
@@ -268,7 +268,16 @@ function menu_lateral(){
 					Inventario
 				</a>
 				<b class="arrow"></b>
-			</li>';						
+			</li>';	
+			print '<li ';if ($acus[3]=='proforma') {
+				print('class="active"');
+				}print'>
+				<a href="../proforma/">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Proforma
+				</a>
+				<b class="arrow"></b>
+			</li>';					
 			print '<li ';if ($acus[3]=='factura_compra'||$acus[3]=='devolucion_compra') {
 				print('class="active open"');
 				}print'>
