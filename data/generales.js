@@ -184,6 +184,16 @@ function limpiar_form(e){
                                         $("#txt_0").val('');
                                         $("#txt_1").val('');
                                         $("#txt_2").val('');                                                                        
+                                    }else{
+                                        if(form == "form_sust_compro"){
+                                            $("#btn_0").text("");
+                                            $("#btn_0").append("<span class='glyphicon glyphicon-log-in'></span> Guardar");                                                        
+                                            $("#txt_0").val('');
+                                            $("#txt_1").attr("disabled",false);
+                                            $("#txt_1").trigger("chosen:updated");                      
+                                            $("#td_sust_compro tbody").html(''); 
+
+                                        }
                                     }   
                                 }   
                             }   

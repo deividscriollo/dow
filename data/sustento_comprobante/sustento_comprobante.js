@@ -30,8 +30,8 @@ function inicio (){
 				        url: "../carga_ubicaciones.php?tipo=0&fun=35&id="+$("#txt_1").val(),        
 				        success: function(response) {        
 				        $("#td_sust_compro tbody").html(''); 
-				            for (var i = 0; i < response.length; i=i+6) {
-				             	$("#td_sust_compro tbody").append('<tr><td class="hidden">'+response[0]+'</td><td>'+response[1] + " - "+ response[2] +'</td><td class="hidden">'+response[3]+'</td><td>'+response[4] + " - "+ response[5]+'</td></tr>');            		   
+				            for (var i = 0; i < response.length; i=i+6) {				             	 		   
+				             	$("#td_sust_compro tbody").append('<tr><td class="hidden">'+response[i]+'</td><td>'+response[i + 1] + " - "+ response[i + 2] +'</td><td class="hidden">'+response[i + 3]+'</td><td>'+response[i + 4] + " - "+ response[i + 5]+'</td></tr>');            		  
 				            }   				            
 				        }                   
 				    });    
@@ -48,7 +48,7 @@ function inicio (){
 	        success: function(response) {        
 	        $("#td_sust_compro tbody").html(''); 
 	            for (var i = 0; i < response.length; i=i+6) {
-	             	$("#td_sust_compro tbody").append('<tr><td class="hidden">'+response[0]+'</td><td>'+response[1] + " - "+ response[2] +'</td><td class="hidden">'+response[3]+'</td><td>'+response[4] + " - "+ response[5]+'</td></tr>');            		   
+	             	$("#td_sust_compro tbody").append('<tr><td class="hidden">'+response[i]+'</td><td>'+response[i + 1] + " - "+ response[i + 2] +'</td><td class="hidden">'+response[i + 3]+'</td><td>'+response[i + 4] + " - "+ response[i + 5]+'</td></tr>');            		   
 	            }   				            
 	        }                   
 	    });    
@@ -123,23 +123,15 @@ function datos_sustCompro(valores,tipo,p){
 		data: valores+"&tipo="+tipo+"&vect1="+vect1+"&vect2="+vect2,		
 		url: "sustento_comprobante.php",			
 	    success: function(data) {		    	
-    		if(data == 0){
+    		if(data == 1){
     			alert('Datos guardados correctamente');			
     			limpiar_form(p);		    		
     		}else{
-    			if( data == 1 ){
-		    		alert('El código del grupo esta repetido. Ingrese nuevamente');			
-		    		$("#txt_1").focus();		    		
+    			if( data == 0 ){
+		    		alert('No se han realizado cambios.. ');			
+		    		actualizar_form();	
 		    	}else{
-		    		if( data == 2 ){
-			    		alert('El nombre del grupo esta repetido. Ingrese nuevamente');			
-			    		$("#txt_8").focus();			    		
-			    	}else{
-			    		if( data == 3 ){				    		
-				    		alert('Error al momento de guardar... El formulario se recargara')
-				    		actualizar_form();
-				    	}
-			    	}
+		    		
 		    	}
     		}	    		    	
 		}

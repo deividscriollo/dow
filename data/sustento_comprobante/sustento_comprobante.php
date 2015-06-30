@@ -21,11 +21,16 @@
 	if($_POST['tipo'] == "g"){						                		        
     	for ($i = 0; $i < $nelem; $i++) {		
 			$id_sust_compro = unique($fecha_larga);	
-			$sql = "insert into  sustento_comprobante values('".$id_sust_compro."','".$arreglo1[$i]."','".$arreglo2[$i]."','0')";	
-			guardarSql($conexion, $sql);
-			$sql_nuevo = "SELECT (id_sust_compro,id_sustento,id_comprobante,estado)  FROM  sustento_comprobante where id_sust_compro = '".$id_sust_compro."'";			
-    		$sql_nuevo = sql_array($conexion,$sql_nuevo);		        		    		
-    		$data = 1;
+			$repetidos = repetidos_1($conexion, "id_sustento", $arreglo1[$i], "sustento_comprobante", "g", "", "" ,"id_comprobante",$arreglo2[$i]);
+			if( $repetidos == 'false'){
+				$sql = "insert into  sustento_comprobante values('".$id_sust_compro."','".$arreglo1[$i]."','".$arreglo2[$i]."','0')";	
+				guardarSql($conexion, $sql);
+				$sql_nuevo = "SELECT (id_sust_compro,id_sustento,id_comprobante,estado)  FROM  sustento_comprobante where id_sust_compro = '".$id_sust_compro."'";			
+	    		$sql_nuevo = sql_array($conexion,$sql_nuevo);		        		    		
+	    		$data = 1;
+			}else{
+				$data = 0;
+			}			
 		}		        
 	}else{
 	}	

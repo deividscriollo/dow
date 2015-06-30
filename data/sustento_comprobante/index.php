@@ -112,23 +112,6 @@ if(!isset($_SESSION))
 															</div>																														
 														</div>														
 													</div>	
-													<div class="col-xs-12">	
-														<div>
-															<table id="td_sust_compro" class="table table-striped table-bordered table-hover">
-																<thead>
-																	<tr>
-																		<th class="hidden">id_sust</th>
-																		<th>Sustento</th>
-																		<th class="hidden">id_compro</th>
-																		<th>Comprobante</th>
-																		<th></th>
-																	</tr>
-																</thead>
-																<tbody>														
-																</tbody>
-														</table>
-														</div>												
-													</div>	
 													<div class="col-sm-12">
 														<div class="row">
 															<div class="center">
@@ -146,7 +129,25 @@ if(!isset($_SESSION))
 																</button>														
 															</div>
 														</div>
-													</div>												
+													</div>														
+													<div class="col-xs-12">
+														<br>	
+														<div>
+															<table id="td_sust_compro" class="table table-striped table-bordered table-hover">
+																<thead>
+																	<tr>
+																		<th class="hidden">id_sust</th>
+																		<th>Sustento</th>
+																		<th class="hidden">id_compro</th>
+																		<th>Comprobante</th>
+																		<th></th>
+																	</tr>
+																</thead>
+																<tbody>														
+																</tbody>
+														</table>
+														</div>												
+													</div>																									
 												</form>
 											</div>											
 											
@@ -203,25 +204,28 @@ if(!isset($_SESSION))
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
 			// tooltips 
-			$('[data-rel=tooltip]').tooltip();
-			//calendario
-			var f = new Date();
-			$('.date-picker').datepicker({
-				autoclose: true,
-				format:'yyyy-mm-dd',
-				startView:0		
-			});
-			$('.date-picker').val(f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate());
-			$('#txt_fecha_actual').val(f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate());
-			// seclect chosen 
-			$('.chosen-select').chosen({
-				allow_single_deselect:true,
-				no_results_text:'No encontrado'		
-			});
+			$('[data-rel=tooltip]').tooltip();									
 			$('.modal.aside').ace_aside();
 						
 			$('#aside-inside-modal').addClass('aside').ace_aside({container: '#my-modal > .modal-dialog'});
 			
+			$('.chosen-select').chosen({allow_single_deselect:true}); 
+				$(window)
+				.off('resize.chosen')
+				.on('resize.chosen', function() {
+					$('.chosen-select').each(function() {
+						 var $this = $(this);
+						 $this.next().css({'width': $this.parent().width()});
+					})
+				}).trigger('resize.chosen');
+				//resize chosen on sidebar collapse/expand
+				$(document).on('settings.ace.chosen', function(e, event_name, event_val) {
+					if(event_name != 'sidebar_collapsed') return;
+					$('.chosen-select').each(function() {
+						 var $this = $(this);
+						 $this.next().css({'width': $this.parent().width()});
+					})
+			});
 			$(document).one('ajaxloadstart.page', function(e) {
 				//in ajax mode, remove before leaving page
 				$('.modal.aside').remove();

@@ -210,6 +210,7 @@ function repetidos_1($conexion, $campo, $valor, $tabla, $tipo, $id, $id_campo ,$
     $repetidos = 'true';
     if ($tipo == "g") {
         $sql = "select " . $campo . " from " . $tabla . " where " . $campo . " = '" . $valor . "' and " . $extra_campo . " = '" .$extra_campo_1. "'";        
+                
         if (pg_num_rows(pg_query($conexion, $sql))) {
             $repetidos = 'true';
         } else {

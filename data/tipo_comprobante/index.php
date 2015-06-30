@@ -88,7 +88,7 @@ if(!isset($_SESSION))
 																		<label class="col-sm-4 control-label no-padding-right" for="form-field-1"> Código Comprobante:</label>
 																		<div class="col-sm-8">
 																			<input type="hidden"  id="txt_0" name="txt_0" />
-																			<input class="form-control"  type="text" name="txt_1" id="txt_1" placeholder="Código de Comprobante" required pattern="[A-Za-záéíóúÁÉÍÓÚñÑ0-9. ]{1,}" autocomplete= 'off' minlength='1' />
+																			<input class="form-control"  type="text" name="txt_1" id="txt_1" placeholder="Código de Comprobante" required pattern="[A-Za-záéíóúÁÉÍÓÚñÑ0-9./(), -'']{1,}" autocomplete= 'off' minlength='1' />
 																		</div>																													
 																	</div>	
 																</div>
@@ -100,7 +100,7 @@ if(!isset($_SESSION))
 																	<div class="form-group">
 																		<label class="col-sm-4 control-label no-padding-right" for="form-field-1">Descripción:</label>
 																		<div class="col-sm-8">
-																			<input class="form-control"  type="text" name="txt_2" id="txt_2" placeholder="Descripción" required pattern="[A-Za-záéíóúÁÉÍÓÚñÑ0-9. ]{1,}" autocomplete= 'off' minlength='1' />	
+																			<input class="form-control"  type="text" name="txt_2" id="txt_2" placeholder="Descripción" required pattern="[A-Za-záéíóúÁÉÍÓÚñÑ0-9./(), -'']{1,}" autocomplete= 'off' minlength='1' />	
 																		</div>																													
 																	</div>	
 																</div>
