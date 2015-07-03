@@ -73,7 +73,6 @@
 																				Detalles Adicionales
 																			</a>
 																		</li>
-																		
 																	</ul>
 
 																	<div class="tab-content">
