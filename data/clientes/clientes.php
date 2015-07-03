@@ -18,6 +18,7 @@
 			$sql = "insert into cliente values ('$id','$_POST[txt_1]','$_POST[txt_2]','$_POST[txt_3]','$_POST[txt_8]','$_POST[txt_4]','$_POST[txt_5]','$_POST[txt_11]','$_POST[txt_12]','$_POST[txt_6]','$_POST[txt_13]','$_POST[txt_7]','0','$id_user','$fecha')";			
 				
 			$guardar = guardarSql($conexion,$sql);
+			
 			$sql_nuevo = "select (id_cliente,tipo_documento,identificacion,nombres_completos,tipo,telefono1,telefono2,ciudad,direccion,correo,comentario,cupo_credito,estado,id_usuario,fecha_creacion) from cliente where id_cliente = '$id'";        
         	$sql_nuevo = sql_array($conexion,$sql_nuevo);
         	auditoria_sistema($conexion,'cliente',$id_user,'Insert',$id,$fecha_larga,$fecha,$sql_nuevo,'');

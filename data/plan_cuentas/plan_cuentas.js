@@ -1,4 +1,5 @@
 $(document).on("ready",inicio);
+
 function inicio (){			
 	$(window)
 	.off('resize.chosen')
@@ -77,6 +78,7 @@ function datos_plan(valores,tipo,p){
 		}
 	}); 
 }
+
 function cargar_cuentas(){		
 	var dataTable = $('#td_cuentas').dataTable();
     $("#dynamic-table tbody").empty(); 
@@ -105,6 +107,7 @@ function cargar_cuentas(){
                                 
    	});      
 }
+
 function subir_archivos(){    	
     var archivos = document.getElementById("txt_3");
     var archivo = archivos.files;
