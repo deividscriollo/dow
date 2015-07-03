@@ -170,8 +170,7 @@ sti
 										</div>
 									</div><!-- /.widget-body -->
 								</div><!-- /.forgot-box -->
-							</div><!-- /.position-relative -->
-							
+							</div><!-- /.position-relative -->						
 						</div>
 					</div><!-- /.col -->
 				</div><!-- /.row -->
