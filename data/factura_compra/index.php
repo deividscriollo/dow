@@ -37,412 +37,452 @@
 			<?php menu_lateral(); ?>
 			 <div class="main-content">
 				<div class="main-content-inner">
-					<div class="breadcrumbs" id="breadcrumbs">
-                        <script type="text/javascript">
-                            try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
-                        </script>
-                        <ul class="breadcrumb">
-                            <li>
-                                <i class="ace-icon fa fa-home home-icon"></i>
-                                <a href="../inicio/">Inicio</a>
-                            </li>
-                            <li class="active">Ingresos</li>
-                            <li class="active">Factura Compra</li>
-                        </ul>
-                    </div>
-
 					<div class="page-content">
 						<div class="row">
-							<div class="col-xs-12 col-sm-12 widget-container-col">
-								<div class="widget-box">
-									<div class="widget-header">
-										<h5 class="widget-title">Factura Compra</h5>
-										<div class="widget-toolbar">
-											<a href="#" data-action="fullscreen" class="orange2">
-												<i class="ace-icon fa fa-expand"></i>
+							<div class="col-sm-12">
+								<div class="tabbable">
+									<ul class="nav nav-tabs" id="myTab">
+										<li class="active pull-right">
+											<a data-toggle="tab" href="#factura">
+												<i class="green ace-icon fa fa-home bigger-120"></i>
+												Factura
 											</a>
-											<a href="#" data-action="reload">
-												<i class="ace-icon fa fa-refresh"></i>
-											</a>
-										</div>
-									</div>		
+										</li>
 
-									<div class="widget-body">
-										<div class="widget-main">
+										<li class="pull-right">
+											<a data-toggle="tab" href="#otros1">
+												otros1
+												<span class="badge badge-danger">4</span>
+											</a>
+										</li>
+
+										<li class="dropdown pull-right">
+											<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+												Dropdown &nbsp;
+												<i class="ace-icon fa fa-caret-down bigger-110 width-auto"></i>
+											</a>
+
+											<ul class="dropdown-menu dropdown-info">
+												<li>
+													<a data-toggle="tab" href="#dropdown1">@fat</a>
+												</li>
+
+												<li>
+													<a data-toggle="tab" href="#dropdown2">@mdo</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+
+									<div class="tab-content">
+										<div id="factura" class="tab-pane fade in active">
 											<div class="row">
-												<form class="form-horizontal" role="form" rol="form" action="" method="POST" id="form_facturaCompra">	
-													<div class="row">
-														<div class="col-md-12 pull-right">
-															<div class="col-md-4">
-																<label class="col-sm-4 no-padding-right" for="fecha_actual">Fecha Actual:</label>
-																<div class="col-sm-8">
-																	<div class="input-group">
-																		<input class="form-control date-picker" id="fecha_actual" name="fecha_actual" type="text" readonly data-date-format="yyyy-mm-dd" />
-																		<span class="input-group-addon">
-																			<i class="fa fa-calendar bigger-110"></i>
-																		</span>
-																	</div>
-																</div>
+												<div class="col-xs-12 col-sm-12 widget-container-col">
+													<div class="widget-box">
+														<div class="widget-header">
+															<h5 class="widget-title">Factura Compra</h5>
+															<div class="widget-toolbar">
+																<a href="#" data-action="fullscreen" class="orange2">
+																	<i class="ace-icon fa fa-expand"></i>
+																</a>
+																<a href="#" data-action="reload">
+																	<i class="ace-icon fa fa-refresh"></i>
+																</a>
 															</div>
+														</div>		
 
-															<div class="col-md-4">
-																<label class="col-sm-4 no-padding-right" for="hora_actual">Hora Actual:</label>
-																<div class="col-sm-8">
-																	<div class="input-group">
-																		<input class="form-control" type="text" id="hora_actual" name="hora_actual"  readonly />
-																		<span class="input-group-addon">
-																			<i class="fa fa-clock-o bigger-110"></i>
-																		</span>
-																	</div>
-																</div>
-															</div>
-
-															<div class="col-md-4">
-																<span class="bigger-120">
-																	<span class="red bolder">Responsable:</span>
-																	<span ><?php print($_SESSION['nombrescompletosdow']); ?></span>
-																</span>
-															</div>
-														</div>
-													</div>
-
-													<div class="hr"></div>
-													<div class="row">
-														<div class="col-md-12">
-															<div class="col-md-5">
-																<div class="form-group">
-																	<label class="col-sm-4 no-padding-right" for="serie3"> Numero de serie:</label>																			
-																	<div class="col-sm-8">
-																		<input type="text" id="serie" name="serie" class="form-control" data-toggle="tooltip" data-original-title="" required />																		
-																	</div>																														
-																</div>
-															</div>
-															<div class="col-md-7">
-																<div class="form-group">
-																	<label class="col-sm-5 control-label no-padding-right" for="tipo_comprobante">Tipo de Comprobante</label>
-																	<div class="col-sm-7">
-																		<select class="chosen-select form-control" id="tipo_comprobante" name="tipo_comprobante" data-placeholder="Tipo de Comprobante">
-	                                                                        <option value="Factura"> Factura</option>
-	                                                                        <option value="Notaventa"> Nota o boleta de venta</option>
-	                                                                    </select>
-																	</div>																	
-																</div>
-															</div>
-														</div>
-													</div>	
-
-													<div class="row">
-														<div class="col-md-12">
-															<div class="col-md-5">
-																<div class="form-group">
-																	<label class="col-sm-6 no-padding-right" for="txt_nro_identificacion"> Cédula de Identidad o Ruc: <font color="red">*</font></label>
-																	<div class="col-sm-6">
-																	<input type="hidden" id="id_proveedor" name="id_proveedor">																				
-																		<select class="chosen-select form-control" id="txt_nro_identificacion" name="txt_nro_identificacion" data-placeholder="Nro de identifiación">	     
-	                                                                        <option value=""></option>	                                                                        
-	                                                                    </select>
-																	</div>																													
-																</div>																												
-															</div>
-
-															<div class="col-md-7">
-																<div class="form-group">
-																	<label class="col-sm-5 control-label no-padding-right" for="txt_nombre_proveedor"> Proveedor:<font color="red">*</font></label>
-																	<div class="col-sm-7">
-																		<select class="chosen-select form-control" id="txt_nombre_proveedor" name="txt_nombre_proveedor" data-placeholder="Nombres Completos">	                                                                        
-	                                                                        <option value=""> </option>	                                                                        
-	                                                                    </select>
-																	</div>																													
-																</div>																												
-															</div>
-														</div>
-													</div>	
-
-													<div class="row">
-														<div class="col-md-12">
-															<div class="col-sm-4">
-																<div class="form-group">
-																	<label class="col-sm-5 no-padding-right" for="fecha_registro"> Fecha Registro:</label>
-																	<div class="col-sm-7">
-																		<div class="input-group">
-																			<input class="form-control date-picker" id="fecha_registro" name="fecha_registro" readonly type="text" data-date-format="yyyy-mm-dd" />
-																			<span class="input-group-addon">
-																				<i class="fa fa-calendar bigger-110"></i>
-																			</span>
-																		</div>
-																	</div>																													
-																</div>
-															</div>
-
-															<div class="col-sm-4">
-																<div class="form-group">																	
-																	<label class="col-sm-5 control-label no-padding-right" for="fecha_emision">Fecha Emisión:</label>
-																	<div class="col-sm-7">
-																		<div class="input-group">
-																			<input class="form-control date-picker" id="fecha_emision" name="fecha_emision" readonly type="text" data-date-format="yyyy-mm-dd" />
-																			<span class="input-group-addon">
-																				<i class="fa fa-calendar bigger-110"></i>
-																			</span>
-																		</div>
-																	</div>																														
-																</div>
-															</div>
-
-															<div class="col-sm-4">
-																<div class="form-group">
-																	<label class="col-sm-5 control-label no-padding-right" for="fecha_caducidad">Fecha Caducidad:</label>
-																	<div class="col-sm-7">
-																		<div class="input-group">
-																			<input class="form-control date-picker" id="fecha_caducidad" name="fecha_caducidad" readonly type="text" data-date-format="yyyy-mm-dd" />
-																			<span class="input-group-addon">
-																				<i class="fa fa-calendar bigger-110"></i>
-																			</span>
-																		</div>
-																	</div>																	
-																</div>
-															</div>															
-														</div>
-													</div>
-
-													<div class="row">
-														<div class="col-md-12">
-															<div class="col-sm-4">
-																<div class="form-group">
-																	<label class="col-sm-5 no-padding-right" for="fecha_cancelacion"> Fecha cancelación:</label>
-																		<div class="col-sm-7">
-																			<div class="input-group">
-																			<input class="form-control date-picker" id="fecha_cancelacion" name="fecha_cancelacion" readonly type="text" data-date-format="yyyy-mm-dd" />
-																			<span class="input-group-addon">
-																				<i class="fa fa-calendar bigger-110"></i>
-																			</span>
-																		</div>
-																	</div>																														
-																</div>
-															</div>
-
-															<div class="col-sm-4">
-																<div class="form-group">																	
-																	<label class="col-sm-5 control-label no-padding-right" for="autorizacion"> Nro de Autorización:</label>
-																	<div class="col-sm-7">
-																		<input type="text" id="autorizacion" name="autorizacion" class="form-control" data-toggle="tooltip" required /> 
-																	</div>																														
-																</div>
-															</div>
-
-															<div class="col-sm-4">
-																<div class="form-group">
-																	<label class="col-sm-5 control-label no-padding-right" for="formas"> Forma de Pago:</label>
-																	<div class="col-sm-7">
-																		<select class="chosen-select form-control" id="formas" name="formas" data-placeholder="Forma de Pago">                                                                        
-	                                                                    </select>
-																	</div>																														
-																</div>														
-															</div>
-														</div>
-													</div>
-
-													<div class="row">
-														<div class="col-md-12">																													
-															<div class="col-sm-4">
-																<div class="form-group">
-																	<label class="col-sm-5 no-padding-right" for="termino_pago"> Términos de Pago:</label>
-																	<div class="col-sm-7">
-																		<select class="chosen-select form-control" id="termino_pago" name="termino_pago" data-placeholder="Términos de Pago">
-	                                                                    </select>
-																	</div>																														
-																</div>
-															</div>
-														</div>
-													</div>
-
-													<div class="row ">
-														<div class="col-xs-12">
-															<div class="col-xs-12">
-																<h3 class="header smaller lighter green">
-																	Detalle Factura
-																</h3>
-															</div>
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-xs-12">
-															<div class="col-xs-2">
+														<div class="widget-body">
+															<div class="widget-main">
 																<div class="row">
-																	<div class="col-xs-12">
-																		<label> Codigo de Barra:</label>
-																	</div>
-																</div>
-																<div class="row">
-																	<div class="col-xs-12">
-																		<input type="text" id="codigo_barras" name="codigo_barras"  class="form-control" data-toggle="tooltip"  /> 																					
-																	</div>
-																</div>
-															</div>
-															<div class="col-xs-3">
-																<div class="row">
-																	<div class="col-xs-12">
-																		<label> Código:</label>
-																	</div>
-																</div>
-																<div class="row">
-																	<div class="col-xs-12">
-																		<input type="text" id="codigo" name="codigo"  class="form-control" data-toggle="tooltip"  /> 																		
-																	</div>
-																</div>
-															</div>
-															<div class="col-xs-4">
-																<div class="row">
-																	<div class="col-xs-12">
-																		<label> Producto:</label>
-																	</div>
-																</div>
-																<div class="row">
-																	<div class="col-xs-12">
-																		<input type="text" id="producto" name="producto"  class="form-control" data-toggle="tooltip"  /> 																																				
-																	</div>
-																</div>
-															</div>
-
-															<div class="col-xs-3">
-																<div class="row">
-																	<div class="col-xs-12">
-																		<div class="col-sm-4">
-																			<div class="row">
-																				<div class="col-xs-12">
-																					<label> Cantidad:</label>
+																	<form class="form-horizontal" role="form" rol="form" action="" method="POST" id="form_facturaCompra">	
+																		<div class="row">
+																			<div class="col-md-12 pull-right">
+																				<div class="col-md-4">
+																					<label class="col-sm-4 no-padding-right" for="fecha_actual">Fecha Actual:</label>
+																					<div class="col-sm-8">
+																						<div class="input-group">
+																							<input class="form-control date-picker" id="fecha_actual" name="fecha_actual" type="text" readonly data-date-format="yyyy-mm-dd" />
+																							<span class="input-group-addon">
+																								<i class="fa fa-calendar bigger-110"></i>
+																							</span>
+																						</div>
+																					</div>
 																				</div>
-																			</div>
-																			<div class="row">
-																				<div class="col-xs-12">
-																					<input type="text" id="cantidad" name="cantidad" class="form-control" data-toggle="tooltip"  value="" /> 
+
+																				<div class="col-md-4">
+																					<label class="col-sm-4 no-padding-right" for="hora_actual">Hora Actual:</label>
+																					<div class="col-sm-8">
+																						<div class="input-group">
+																							<input class="form-control" type="text" id="hora_actual" name="hora_actual"  readonly />
+																							<span class="input-group-addon">
+																								<i class="fa fa-clock-o bigger-110"></i>
+																							</span>
+																						</div>
+																					</div>
+																				</div>
+
+																				<div class="col-md-4">
+																					<span class="bigger-120">
+																						<span class="red bolder">Responsable:</span>
+																						<span ><?php print($_SESSION['nombrescompletosdow']); ?></span>
+																					</span>
 																				</div>
 																			</div>
 																		</div>
-																		<div class="col-sm-4">
-																			<div class="row">
-																				<div class="col-xs-12">
-																					<label> Precio:</label>
+
+																		<div class="hr"></div>
+																		<div class="row">
+																			<div class="col-md-12">
+																				<div class="col-md-5">
+																					<div class="form-group">
+																						<label class="col-sm-4 no-padding-right" for="serie3"> Numero de serie:</label>																			
+																						<div class="col-sm-8">
+																							<input type="text" id="serie" name="serie" class="form-control" data-toggle="tooltip" data-original-title="" required />																		
+																						</div>																														
+																					</div>
+																				</div>
+																				<div class="col-md-7">
+																					<div class="form-group">
+																						<label class="col-sm-5 control-label no-padding-right" for="tipo_comprobante">Tipo de Comprobante</label>
+																						<div class="col-sm-7">
+																							<select class="chosen-select form-control" id="tipo_comprobante" name="tipo_comprobante" data-placeholder="Tipo de Comprobante">
+						                                                                        <option value="Factura"> Factura</option>
+						                                                                        <option value="Notaventa"> Nota o boleta de venta</option>
+						                                                                    </select>
+																						</div>																	
+																					</div>
 																				</div>
 																			</div>
-																			<div class="row">
-																				<div class="col-xs-12">
-																					<input type="text" id="precio" name="precio" onkeydown="return validarNumeros(event)" value="0.00" class="form-control" data-toggle="tooltip"  /> 
+																		</div>	
+
+																		<div class="row">
+																			<div class="col-md-12">
+																				<div class="col-md-5">
+																					<div class="form-group">
+																						<label class="col-sm-6 no-padding-right" for="txt_nro_identificacion"> Cédula de Identidad o Ruc: <font color="red">*</font></label>
+																						<div class="col-sm-6">
+																						<input type="hidden" id="id_proveedor" name="id_proveedor">																				
+																							<select class="chosen-select form-control" id="txt_nro_identificacion" name="txt_nro_identificacion" data-placeholder="Nro de identifiación">	     
+						                                                                        <option value=""></option>	                                                                        
+						                                                                    </select>
+																						</div>																													
+																					</div>																												
+																				</div>
+
+																				<div class="col-md-7">
+																					<div class="form-group">
+																						<label class="col-sm-5 control-label no-padding-right" for="txt_nombre_proveedor"> Proveedor:<font color="red">*</font></label>
+																						<div class="col-sm-7">
+																							<select class="chosen-select form-control" id="txt_nombre_proveedor" name="txt_nombre_proveedor" data-placeholder="Nombres Completos">	                                                                        
+						                                                                        <option value=""> </option>	                                                                        
+						                                                                    </select>
+																						</div>																													
+																					</div>																												
+																				</div>
+																			</div>
+																		</div>	
+
+																		<div class="row">
+																			<div class="col-md-12">
+																				<div class="col-sm-4">
+																					<div class="form-group">
+																						<label class="col-sm-5 no-padding-right" for="fecha_registro"> Fecha Registro:</label>
+																						<div class="col-sm-7">
+																							<div class="input-group">
+																								<input class="form-control date-picker" id="fecha_registro" name="fecha_registro" readonly type="text" data-date-format="yyyy-mm-dd" />
+																								<span class="input-group-addon">
+																									<i class="fa fa-calendar bigger-110"></i>
+																								</span>
+																							</div>
+																						</div>																													
+																					</div>
+																				</div>
+
+																				<div class="col-sm-4">
+																					<div class="form-group">																	
+																						<label class="col-sm-5 control-label no-padding-right" for="fecha_emision">Fecha Emisión:</label>
+																						<div class="col-sm-7">
+																							<div class="input-group">
+																								<input class="form-control date-picker" id="fecha_emision" name="fecha_emision" readonly type="text" data-date-format="yyyy-mm-dd" />
+																								<span class="input-group-addon">
+																									<i class="fa fa-calendar bigger-110"></i>
+																								</span>
+																							</div>
+																						</div>																														
+																					</div>
+																				</div>
+
+																				<div class="col-sm-4">
+																					<div class="form-group">
+																						<label class="col-sm-5 control-label no-padding-right" for="fecha_caducidad">Fecha Caducidad:</label>
+																						<div class="col-sm-7">
+																							<div class="input-group">
+																								<input class="form-control date-picker" id="fecha_caducidad" name="fecha_caducidad" readonly type="text" data-date-format="yyyy-mm-dd" />
+																								<span class="input-group-addon">
+																									<i class="fa fa-calendar bigger-110"></i>
+																								</span>
+																							</div>
+																						</div>																	
+																					</div>
+																				</div>															
+																			</div>
+																		</div>
+
+																		<div class="row">
+																			<div class="col-md-12">
+																				<div class="col-sm-4">
+																					<div class="form-group">
+																						<label class="col-sm-5 no-padding-right" for="fecha_cancelacion"> Fecha cancelación:</label>
+																							<div class="col-sm-7">
+																								<div class="input-group">
+																								<input class="form-control date-picker" id="fecha_cancelacion" name="fecha_cancelacion" readonly type="text" data-date-format="yyyy-mm-dd" />
+																								<span class="input-group-addon">
+																									<i class="fa fa-calendar bigger-110"></i>
+																								</span>
+																							</div>
+																						</div>																														
+																					</div>
+																				</div>
+
+																				<div class="col-sm-4">
+																					<div class="form-group">																	
+																						<label class="col-sm-5 control-label no-padding-right" for="autorizacion"> Nro de Autorización:</label>
+																						<div class="col-sm-7">
+																							<input type="text" id="autorizacion" name="autorizacion" class="form-control" data-toggle="tooltip" required /> 
+																						</div>																														
+																					</div>
+																				</div>
+
+																				<div class="col-sm-4">
+																					<div class="form-group">
+																						<label class="col-sm-5 control-label no-padding-right" for="formas"> Forma de Pago:</label>
+																						<div class="col-sm-7">
+																							<select class="chosen-select form-control" id="formas" name="formas" data-placeholder="Forma de Pago">                                                                        
+						                                                                    </select>
+																						</div>																														
+																					</div>														
 																				</div>
 																			</div>
 																		</div>
-																		<div class="col-sm-4">
-																			<div class="row">
-																				<div class="col-xs-12">
-																					<label> Descuento:</label>
+
+																		<div class="row">
+																			<div class="col-md-12">																													
+																				<div class="col-sm-4">
+																					<div class="form-group">
+																						<label class="col-sm-5 no-padding-right" for="termino_pago"> Términos de Pago:</label>
+																						<div class="col-sm-7">
+																							<select class="chosen-select form-control" id="termino_pago" name="termino_pago" data-placeholder="Términos de Pago">
+						                                                                    </select>
+																						</div>																														
+																					</div>
 																				</div>
 																			</div>
-																			<div class="row">
+																		</div>
+
+																		<div class="row ">
+																			<div class="col-xs-12">
 																				<div class="col-xs-12">
-																					<input type="number" id="descuento" name="descuento" class="form-control" data-toggle="tooltip" value="0" min="0" maxlength="3" /> 
-																					<input type="hidden" id="stock" name="stock" class="form-control" data-toggle="tooltip" /> 
-																					<input type="hidden" id="id_productos" name="id_productos" class="form-control" data-toggle="tooltip" /> 
-																					<input type="hidden" id="iva_producto" name="iva_producto" class="form-control" data-toggle="tooltip" /> 
-																					<input type="hidden" id="incluye" name="incluye" class="form-control" data-toggle="tooltip" />
-																					<input type="hidden" id="inventar" name="inventar" class="form-control" data-toggle="tooltip" />  
+																					<h3 class="header smaller lighter green">
+																						Detalle Factura
+																					</h3>
 																				</div>
 																			</div>
+																		</div>
+																		<div class="row">
+																			<div class="col-xs-12">
+																				<div class="col-xs-2">
+																					<div class="row">
+																						<div class="col-xs-12">
+																							<label> Codigo de Barra:</label>
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-xs-12">
+																							<input type="text" id="codigo_barras" name="codigo_barras"  class="form-control" data-toggle="tooltip"  /> 																					
+																						</div>
+																					</div>
+																				</div>
+																				<div class="col-xs-3">
+																					<div class="row">
+																						<div class="col-xs-12">
+																							<label> Código:</label>
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-xs-12">
+																							<input type="text" id="codigo" name="codigo"  class="form-control" data-toggle="tooltip"  /> 																		
+																						</div>
+																					</div>
+																				</div>
+																				<div class="col-xs-4">
+																					<div class="row">
+																						<div class="col-xs-12">
+																							<label> Producto:</label>
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-xs-12">
+																							<input type="text" id="producto" name="producto"  class="form-control" data-toggle="tooltip"  /> 																																				
+																						</div>
+																					</div>
+																				</div>
+
+																				<div class="col-xs-3">
+																					<div class="row">
+																						<div class="col-xs-12">
+																							<div class="col-sm-4">
+																								<div class="row">
+																									<div class="col-xs-12">
+																										<label> Cantidad:</label>
+																									</div>
+																								</div>
+																								<div class="row">
+																									<div class="col-xs-12">
+																										<input type="text" id="cantidad" name="cantidad" class="form-control" data-toggle="tooltip"  value="" /> 
+																									</div>
+																								</div>
+																							</div>
+																							<div class="col-sm-4">
+																								<div class="row">
+																									<div class="col-xs-12">
+																										<label> Precio:</label>
+																									</div>
+																								</div>
+																								<div class="row">
+																									<div class="col-xs-12">
+																										<input type="text" id="precio" name="precio" onkeydown="return validarNumeros(event)" value="0.00" class="form-control" data-toggle="tooltip"  /> 
+																									</div>
+																								</div>
+																							</div>
+																							<div class="col-sm-4">
+																								<div class="row">
+																									<div class="col-xs-12">
+																										<label> Descuento:</label>
+																									</div>
+																								</div>
+																								<div class="row">
+																									<div class="col-xs-12">
+																										<input type="number" id="descuento" name="descuento" class="form-control" data-toggle="tooltip" value="0" min="0" maxlength="3" /> 
+																										<input type="hidden" id="stock" name="stock" class="form-control" data-toggle="tooltip" /> 
+																										<input type="hidden" id="id_productos" name="id_productos" class="form-control" data-toggle="tooltip" /> 
+																										<input type="hidden" id="iva_producto" name="iva_producto" class="form-control" data-toggle="tooltip" /> 
+																										<input type="hidden" id="incluye" name="incluye" class="form-control" data-toggle="tooltip" />
+																										<input type="hidden" id="inventar" name="inventar" class="form-control" data-toggle="tooltip" />  
+																									</div>
+																								</div>
+																							</div>
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="row">
+																			<div class="col-xs-12">
+																				<div class="col-sm-12">
+																					<div class="hr hr-18 dotted hr-double"></div>
+																				</div>
+																			</div>
+																		</div>
+
+																		<div class="col-md-12">
+												                            <div id="grid_container">
+												                                <table id="list"></table>
+												                            </div>
+												                        </div>
+
+												                        <div class="row">
+																			<div class="col-md-12">
+																				<div class="col-md-9"></div>
+																				<div class="col-md-3">																		
+																					<div class="form-group">
+																						<label class="col-sm-4 no-padding-right" for="tarifa0"> Tarifa 0:</label>
+																						<div class="col-sm-8">
+																							<input type="text" id="tarifa0" name="tarifa0" class="form-control" readonly value="0.000" /> 
+																						</div>																													
+																					</div>	
+
+																					<div class="form-group">
+																						<label class="col-sm-4 no-padding-right" for="tarifa12"> Tarifa 12:</label>
+																						<div class="col-sm-8">
+																							<input type="text" id="tarifa12" name="tarifa12" class="form-control" readonly value="0.000" /> 
+																						</div>																													
+																					</div>
+
+																					<div class="form-group">
+																						<label class="col-sm-4 no-padding-right" for="iva"> 12 % Iva:</label>
+																						<div class="col-sm-8">
+																							<input type="text" id="iva" name="iva" class="form-control" readonly value="0.000" /> 
+																						</div>																													
+																					</div>
+
+																					<div class="form-group">
+																						<label class="col-sm-4 no-padding-right" for="descuento_total"> Descuento:</label>
+																						<div class="col-sm-8">
+																							<input type="text" id="descuento_total" name="descuento_total" class="form-control" readonly value="0.000" /> 
+																						</div>																													
+																					</div>
+
+																					<div class="form-group">
+																						<label class="col-sm-4 no-padding-right" for="total"> Total:</label>
+																						<div class="col-sm-8">
+																							<input type="text" id="total" name="total" class="form-control" readonly value="0.000" /> 
+																						</div>																													
+																					</div>																											
+																				</div>																	
+																			</div>
+																		</div>
+																	</form>
+
+																	<div class="row">
+																		<div class="center">													 
+																			<button type="submit" class="btn btn-primary" id="btn_0">
+																				<i class="ace-icon fa fa-floppy-o bigger-120 write"></i>
+																				Guardar
+																			</button>
+																			<button type="button" id="btn_1" class="btn btn-primary">
+																				<i class="ace-icon fa fa-file-o bigger-120 write"></i>
+																				Limpiar
+																			</button>
+																			<button type="button" id="btn_2" class="btn btn-primary">
+																				<i class="ace-icon fa fa-refresh bigger-120 write"></i>
+																				Actualizar
+																			</button>														
+																			<button data-toggle="modal" href="#myModal" type="button" id="btn_3" class="btn btn-primary">
+																				<i class="ace-icon fa fa-search bigger-120 write"></i>
+																				Buscar
+																			</button>
+																			<button type="button" id="btn_4" class="btn btn-primary">
+																				<i class="ace-icon fa fa-arrow-circle-left bigger-120 write"></i>
+																				Atras
+																			</button>
+																			<button type="button" id="btn_5" class="btn btn-primary">
+																				<i class="ace-icon fa fa fa-arrow-circle-right bigger-120 write"></i>
+																				Adelante
+																			</button>
 																		</div>
 																	</div>
 																</div>
 															</div>
 														</div>
 													</div>
-													<div class="row">
-														<div class="col-xs-12">
-															<div class="col-sm-12">
-																<div class="hr hr-18 dotted hr-double"></div>
-															</div>
-														</div>
-													</div>
-
-													<div class="col-md-12">
-							                            <div id="grid_container">
-							                                <table id="list"></table>
-							                            </div>
-							                        </div>
-
-							                        <div class="row">
-														<div class="col-md-12">
-															<div class="col-md-9"></div>
-															<div class="col-md-3">																		
-																<div class="form-group">
-																	<label class="col-sm-4 no-padding-right" for="tarifa0"> Tarifa 0:</label>
-																	<div class="col-sm-8">
-																		<input type="text" id="tarifa0" name="tarifa0" class="form-control" readonly value="0.000" /> 
-																	</div>																													
-																</div>	
-
-																<div class="form-group">
-																	<label class="col-sm-4 no-padding-right" for="tarifa12"> Tarifa 12:</label>
-																	<div class="col-sm-8">
-																		<input type="text" id="tarifa12" name="tarifa12" class="form-control" readonly value="0.000" /> 
-																	</div>																													
-																</div>
-
-																<div class="form-group">
-																	<label class="col-sm-4 no-padding-right" for="iva"> 12 % Iva:</label>
-																	<div class="col-sm-8">
-																		<input type="text" id="iva" name="iva" class="form-control" readonly value="0.000" /> 
-																	</div>																													
-																</div>
-
-																<div class="form-group">
-																	<label class="col-sm-4 no-padding-right" for="descuento_total"> Descuento:</label>
-																	<div class="col-sm-8">
-																		<input type="text" id="descuento_total" name="descuento_total" class="form-control" readonly value="0.000" /> 
-																	</div>																													
-																</div>
-
-																<div class="form-group">
-																	<label class="col-sm-4 no-padding-right" for="total"> Total:</label>
-																	<div class="col-sm-8">
-																		<input type="text" id="total" name="total" class="form-control" readonly value="0.000" /> 
-																	</div>																													
-																</div>																											
-															</div>																	
-														</div>
-													</div>
-												</form>
-
-												<div class="row">
-													<div class="center">													 
-														<button type="submit" class="btn btn-primary" id="btn_0">
-															<i class="ace-icon fa fa-floppy-o bigger-120 write"></i>
-															Guardar
-														</button>
-														<button type="button" id="btn_1" class="btn btn-primary">
-															<i class="ace-icon fa fa-file-o bigger-120 write"></i>
-															Limpiar
-														</button>
-														<button type="button" id="btn_2" class="btn btn-primary">
-															<i class="ace-icon fa fa-refresh bigger-120 write"></i>
-															Actualizar
-														</button>														
-														<button data-toggle="modal" href="#myModal" type="button" id="btn_3" class="btn btn-primary">
-															<i class="ace-icon fa fa-search bigger-120 write"></i>
-															Buscar
-														</button>
-														<button type="button" id="btn_4" class="btn btn-primary">
-															<i class="ace-icon fa fa-arrow-circle-left bigger-120 write"></i>
-															Atras
-														</button>
-														<button type="button" id="btn_5" class="btn btn-primary">
-															<i class="ace-icon fa fa fa-arrow-circle-right bigger-120 write"></i>
-															Adelante
-														</button>
-													</div>
-												</div>
+												</div>							
 											</div>
+										</div>
+										<div id="otros1" class="tab-pane fade">
+											<p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.</p>
+										</div>
+
+										<div id="dropdown1" class="tab-pane fade">
+											<p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade.</p>
+										</div>
+
+										<div id="dropdown2" class="tab-pane fade">
+											<p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin.</p>
 										</div>
 									</div>
 								</div>
-							</div>							
-						</div>
+							</div><!-- /.col -->
+						</div><!-- /.row -->
 					</div>
 				</div>
 			</div>
