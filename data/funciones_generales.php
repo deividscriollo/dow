@@ -18,6 +18,7 @@ function img_64($destino,$img_64,$extension,$nombre){
         return "false";
     }
 }
+
 function cargarSelect($conexion, $sql) {
     $lista = array();
     $data = 0;
