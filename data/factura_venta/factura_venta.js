@@ -510,6 +510,7 @@ function inicio (){
                                   repe = 1;
                               }
                           }
+
                           if (repe === 1) {
                               if ($("#descuento").val() !== "") {
                                   desc = $("#descuento").val();
@@ -587,7 +588,6 @@ function inicio (){
                         var iva = 0;
                         var iva1 = 0;
                         var iva2 = 0;
-
 
                         var fil = jQuery("#list").jqGrid("getRowData");
                         for (var t = 0; t < fil.length; t++) {
