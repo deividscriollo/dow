@@ -68,10 +68,54 @@ function guardar_factura(){
 function inicio (){		
   show();
 
+  // mask
   $('#serie').mask('999-999-999999999');
  
+  // cargar combos
   carga_forma_pago("formas");
   carga_termino_pago("termino_pago");
+
+  // modal
+  $('.modal.aside').ace_aside();
+  $('#aside-inside-modal').addClass('aside').ace_aside({container: '#my-modal > .modal-dialog'});
+
+  /////////////cambiar idioma///////
+  //  $.datepicker.regional['es'] = {
+  //     closeText: 'Cerrar',
+  //     prevText: '<Ant',
+  //     nextText: 'Sig>',
+  //     currentText: 'Hoy',
+  //     monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+  //     monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+  //     dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+  //     dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+  //     dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+  //     weekHeader: 'Sm',
+  //     dateFormat: 'dd/mm/yy',
+  //     firstDay: 1,
+  //     isRTL: false,
+  //     showMonthAfterYear: false,
+  //     yearSuffix: ''
+  // };
+  // $.datepicker.setDefaults($.datepicker.regional['es']);
+
+  // formato calendario
+  $('.date-picker').datepicker({
+    autoclose: true,
+    showOtherMonths: true,
+    format:'yyyy-mm-dd',
+    startView:0   
+  }).datepicker('setDate', 'today');
+
+  // chosen
+  $('.chosen-select').chosen({
+    allow_single_deselect:true,
+    no_results_text:'No encontrado'   
+  });  
+
+  // toltip   
+  $('[data-rel=tooltip]').tooltip();
+
   /*jqgrid*/    
   // jQuery(function($) {
   //   var grid_selector = "#table";
@@ -409,6 +453,8 @@ function inicio (){
   //         $('.ui-jqdialog').remove();
   //     });
   // });  
+
+  
 	////////////////validaciones/////////////////
 	$("#cantidad").validCampoFranz("0123456789");
 	$("#autorizacion").validCampoFranz("0123456789");
@@ -483,7 +529,7 @@ function inicio (){
     }
   }); 
 
-  $("#txt_nombre_proveedor").chosen().change(function (event,params){    
+  $("#txt_nombre_proveedor").chosen().change(function (event, params){    
     if(params == undefined){      
       $('#txt_nro_identificacion').html("");
       $('#txt_nro_identificacion').append($("<option></option>"));          

@@ -189,7 +189,7 @@
 																						<label class="col-sm-5 no-padding-right" for="fecha_registro"> Fecha Registro:</label>
 																						<div class="col-sm-7">
 																							<div class="input-group">
-																								<input class="form-control date-picker" id="fecha_registro" name="fecha_registro" readonly type="text" data-date-format="yyyy-mm-dd" />
+																								<input type="text" id="fecha_registro" name="fecha_registro" readonly class="form-control date-picker" />
 																								<span class="input-group-addon">
 																									<i class="fa fa-calendar bigger-110"></i>
 																								</span>
@@ -203,7 +203,7 @@
 																						<label class="col-sm-5 control-label no-padding-right" for="fecha_emision">Fecha Emisión:</label>
 																						<div class="col-sm-7">
 																							<div class="input-group">
-																								<input class="form-control date-picker" id="fecha_emision" name="fecha_emision" readonly type="text" data-date-format="yyyy-mm-dd" />
+																								<input type="text" id="fecha_emision" name="fecha_emision" readonly class="form-control date-picker" />
 																								<span class="input-group-addon">
 																									<i class="fa fa-calendar bigger-110"></i>
 																								</span>
@@ -217,7 +217,7 @@
 																						<label class="col-sm-5 control-label no-padding-right" for="fecha_caducidad">Fecha Caducidad:</label>
 																						<div class="col-sm-7">
 																							<div class="input-group">
-																								<input class="form-control date-picker" id="fecha_caducidad" name="fecha_caducidad" readonly type="text" data-date-format="yyyy-mm-dd" />
+																								<input type="text" id="fecha_caducidad" name="fecha_caducidad" readonly class="form-control date-picker" />
 																								<span class="input-group-addon">
 																									<i class="fa fa-calendar bigger-110"></i>
 																								</span>
@@ -235,7 +235,7 @@
 																						<label class="col-sm-5 no-padding-right" for="fecha_cancelacion"> Fecha cancelación:</label>
 																							<div class="col-sm-7">
 																								<div class="input-group">
-																								<input class="form-control date-picker" id="fecha_cancelacion" name="fecha_cancelacion" readonly type="text" data-date-format="yyyy-mm-dd" />
+																								<input type="text" id="fecha_cancelacion" name="fecha_cancelacion" readonly class="form-control date-picker" />
 																								<span class="input-group-addon">
 																									<i class="fa fa-calendar bigger-110"></i>
 																								</span>
@@ -276,18 +276,6 @@
 																						</div>																														
 																					</div>
 																				</div>
-
-																				<div class="col-sm-4">
-																					<div class="form-group">
-																						<label class="col-sm-3 control-label no-padding-right">Typeahead.js</label>
-
-																						<div class="col-sm-9">
-																							<div class="pos-rel">
-																								<input class="typeahead scrollable" type="text" placeholder="States of USA" />
-																							</div>
-																						</div>
-																					</div>
-																				</div>
 																			</div>
 																		</div>
 
@@ -300,6 +288,7 @@
 																				</div>
 																			</div>
 																		</div>
+																		
 																		<div class="row">
 																			<div class="col-xs-12">
 																				<div class="col-xs-2">
@@ -512,8 +501,7 @@
 		</script>
 		<script src="../../dist/js/bootstrap.min.js"></script>
 
-		<script src="../../dist/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
-		<script src="../../dist/js/jquery-ui.custom.min.js"></script>
+		<script src="../../dist/js/jquery-ui.min.js"></script>
 		<script src="../../dist/js/jquery.ui.touch-punch.min.js"></script>
 		<script src="../../dist/js/jquery.easypiechart.min.js"></script>
 		<script src="../../dist/js/jquery.sparkline.min.js"></script>
@@ -523,11 +511,9 @@
 		<script src="../../dist/js/chosen.jquery.min.js"></script>
 		<script src="../../dist/js/date-time/bootstrap-datepicker.min.js"></script>
 		<script src="../../dist/js/date-time/bootstrap-timepicker.min.js"></script>
-		<script src="../../dist/js/date-time/moment.min.js"></script>
 		<script src="../../dist/js/date-time/daterangepicker.min.js"></script>
-		<script src="../../dist/js/date-time/bootstrap-datetimepicker.min.js"></script>
-		
-
+		<script src="../../dist/js/date-time/moment.min.js"></script>
+				
 		<!-- ace scripts -->
 		<script src="../../dist/js/ace-elements.min.js"></script>
 		<script src="../../dist/js/ace.min.js"></script>
@@ -538,7 +524,6 @@
         <script src="../../dist/js/jquery.raty.min.js"></script>
         <script src="../../dist/js/select2.min.js"></script>
         <script src="../../dist/js/bootstrap-multiselect.min.js"></script>
-        <script src="../../dist/js/typeahead.jquery.min.js"></script>
 		
 		<script src="../generales.js"></script>
 		<script src="factura_compra.js"></script>
@@ -546,7 +531,7 @@
 	</body>
 </html>  
   <!-- Modal -->
- <!--  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -554,8 +539,8 @@
           <h4 class="modal-title">BUSCAR FACTURAS COMPRAS</h4>
         </div>
         <div class="modal-body">
-            <table id="table"></table>
-			<div id="pager"></div>
+            <table id="table2"></table>
+			<div id="pager2"></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -563,7 +548,7 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
 
   <div id="top-menu" class="modal aside" data-fixed="true" data-placement="top" data-background="true" data-backdrop="invisible" tabindex="-1">
 	<div class="modal-dialog">
@@ -591,131 +576,3 @@
 	</div>
  </div>
 
- <!-- inline scripts related to this page -->
-		<script type="text/javascript">
-			jQuery(function($){
-			 //    var demo1 = $('select[name="duallistbox_demo1[]"]').bootstrapDualListbox({infoTextFiltered: '<span class="label label-purple label-lg">Filtered</span>'});
-				// var container1 = demo1.bootstrapDualListbox('getContainer');
-				// container1.find('.btn').addClass('btn-white btn-info btn-bold');
-			
-				// /**var setRatingColors = function() {
-				// 	$(this).find('.star-on-png,.star-half-png').addClass('orange2').removeClass('grey');
-				// 	$(this).find('.star-off-png').removeClass('orange2').addClass('grey');
-				// }*/
-				// $('.rating').raty({
-				// 	'cancel' : true,
-				// 	'half': true,
-				// 	'starType' : 'i'
-				// 	/**,
-					
-				// 	'click': function() {
-				// 		setRatingColors.call(this);
-				// 	},
-				// 	'mouseover': function() {
-				// 		setRatingColors.call(this);
-				// 	},
-				// 	'mouseout': function() {
-				// 		setRatingColors.call(this);
-				// 	}*/
-				// })//.find('i:not(.star-raty)').addClass('grey');
-				
-				
-				
-				// //////////////////
-				// //select2
-				// $('.select2').css('width','200px').select2({allowClear:true})
-				// $('#select2-multiple-style .btn').on('click', function(e){
-				// 	var target = $(this).find('input[type=radio]');
-				// 	var which = parseInt(target.val());
-				// 	if(which == 2) $('.select2').addClass('tag-input-style');
-				// 	 else $('.select2').removeClass('tag-input-style');
-				// });
-				
-				// //////////////////
-				// $('.multiselect').multiselect({
-				//  enableFiltering: true,
-				//  buttonClass: 'btn btn-white btn-primary',
-				//  templates: {
-				// 	button: '<button type="button" class="multiselect dropdown-toggle" data-toggle="dropdown"></button>',
-				// 	ul: '<ul class="multiselect-container dropdown-menu"></ul>',
-				// 	filter: '<li class="multiselect-item filter"><div class="input-group"><span class="input-group-addon"><i class="fa fa-search"></i></span><input class="form-control multiselect-search" type="text"></div></li>',
-				// 	filterClearBtn: '<span class="input-group-btn"><button class="btn btn-default btn-white btn-grey multiselect-clear-filter" type="button"><i class="fa fa-times-circle red2"></i></button></span>',
-				// 	li: '<li><a href="javascript:void(0);"><label></label></a></li>',
-				// 	divider: '<li class="multiselect-item divider"></li>',
-				// 	liGroup: '<li class="multiselect-item group"><label class="multiselect-group"></label></li>'
-				//  }
-				// });
-				
-				
-				///////////////////
-					
-				//typeahead.js
-				//example taken from plugin's page at: https://twitter.github.io/typeahead.js/examples/
-				var substringMatcher = function(strs) {
-					return function findMatches(q, cb) {
-						var matches, substringRegex;
-					 
-						// an array that will be populated with substring matches
-						matches = [];
-					 
-						// regex used to determine if a string contains the substring `q`
-						substrRegex = new RegExp(q, 'i');
-					 
-						// iterate through the pool of strings and for any string that
-						// contains the substring `q`, add it to the `matches` array
-						$.each(strs, function(i, str) {
-							if (substrRegex.test(str)) {
-								// the typeahead jQuery plugin expects suggestions to a
-								// JavaScript object, refer to typeahead docs for more info
-								matches.push({ value: str });
-							}
-						});
-			
-						cb(matches);
-					}
-				 }
-			
-				 $('input.typeahead').typeahead({
-					hint: true,
-					highlight: true,
-					minLength: 1
-				 }, {
-					name: 'states',
-					displayKey: 'value',
-					source: substringMatcher(ace.vars['US_STATES'])
-				 });
-					
-					
-				///////////////
-				
-				
-				//in ajax mode, remove remaining elements before leaving page
-				// $(document).one('ajaxloadstart.page', function(e) {
-				// 	$('[class*=select2]').remove();
-				// 	$('select[name="duallistbox_demo1[]"]').bootstrapDualListbox('destroy');
-				// 	$('.rating').raty('destroy');
-				// 	$('.multiselect').multiselect('destroy');
-				// });
-			
-			});
-		</script>
-
-<script type="text/javascript">
-$('.modal.aside').ace_aside();
-	$('#aside-inside-modal').addClass('aside').ace_aside({container: '#my-modal > .modal-dialog'});
-	
-	// tooltips 
-	$('[data-rel=tooltip]').tooltip();
-	var f = new Date();
-	$('.date-picker').datepicker({
-		autoclose: true,
-		format:'yyyy-mm-dd',
-		startView:0		
-	});
-	$('.date-picker').val(f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate());
-	// seclect chosen 
-	$('.chosen-select').chosen({
-		allow_single_deselect:true,
-		no_results_text:'No encontrado'		
-	});
-</script>
