@@ -193,6 +193,7 @@
 																				</div>
 																			</div>
 																		</div>
+																		
 																		<div id="deta_adici" class="tab-pane fade ">
 																			<div class="col-xs-12">
 																				<div class="row-fluid">

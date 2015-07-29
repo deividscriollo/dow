@@ -17,8 +17,6 @@
 		<link rel="stylesheet" href="../../dist/css/chosen.min.css" />
 		<link rel="stylesheet" href="../../dist/css/ui.jqgrid.min.css" />
 
-		<!-- page specific plugin styles -->
-
 		<!-- text fonts -->
 		<link rel="stylesheet" href="../../dist/css/fontdc.css" />
 
@@ -80,153 +78,258 @@
 											<div class="row">
 												<form class="form-horizontal" role="form" rol="form" action="" method="POST" id="form_proveedores">												
 													<div class="row">
-														<div class="col-xs-12">															
-															<div class="col-sm-6">
-																<div class="form-group">
-																	<label class="col-sm-4 control-label no-padding-right" for="form-field-1-1"> Tipo Documento: </label>
-																	<div class="col-sm-8">
-																		<select class="chosen-select form-control" id="txt_1" name="txt_1" data-placeholder="País">
-																			<option value="Cedula">Cédula</option>	
-																			<option value="RUC">RUC</option>	
-																			<option value="Pasaporte">Pasaporte</option>																				
-																		</select>						
-																		<input type="hidden" id="txt_0" name="txt_0" />																
-																	</div>
-																</div>
+														<div class="col-xs-12">	
+															<div class="col-sm-12">
+																<div class="tabbable">
+																	<ul class="nav nav-tabs" id="myTab">
+																		<li class="active">
+																			<a data-toggle="tab" href="#info_pro">
+																				<i class="green ace-icon fa fa-pencil-square-o bigger-125"></i>
+																				Información Proveedor
+																			</a>
+																		</li>
 
-																<div class="form-group has-error">
-																	<label class="col-sm-4 control-label no-padding-right" for="form-field-1"> RUC/CI.:</label>
-																	<div class="col-sm-8">
-																		<input type="text" id="txt_2" name="txt_2"  placeholder="Identificación" class="form-control" data-toggle="tooltip" data-original-title="" required pattern="[0-9]{10,10}" maxlength="10" minlength="10" />
-																	</div>
-																</div>
+																		<li>
+																			<a data-toggle="tab" href="#deta_adici">
+																			<i class="purple ace-icon fa fa-cubes bigger-120"></i>
+																				Detalles Adicionales
+																			</a>
+																		</li>
+																	</ul>
 
-																<div class="form-group has-error">
-																	<label class="col-sm-4 control-label no-padding-right" for="form-field-1"> Empresa: </label>
-																	<div class="col-sm-8">
-																		<input type="text" id="txt_3" name="txt_3" placeholder="Empresa" class="form-control" required pattern="[A-Za-záéíóúÁÉÍÓÚñÑ0-9 ]{1,}" data-toggle="tooltip" data-original-title="Empresa"  />
-																	</div>
-																</div>	
+																	<div class="tab-content">
+																		<div id="info_pro" class="tab-pane fade in active">
+																			<div class="col-sm-6">
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_1"> Tipo Documento: </label>
+																					<div class="col-sm-8">
+																						<select class="chosen-select form-control" id="txt_1" name="txt_1" data-placeholder="País">
+																							<option value="Cedula">Cédula</option>	
+																							<option value="RUC">RUC</option>	
+																							<option value="Pasaporte">Pasaporte</option>																				
+																						</select>						
+																						<input type="hidden" id="txt_0" name="txt_0" />																
+																					</div>
+																				</div>
 
-																<div class="form-group">
-																	<label class="col-sm-4 control-label no-padding-right" for="form-field-1"> Teléfono: </label>
-																	<div class="col-sm-8">
-																		<span class="block input-icon input-icon-right">
-	                                                                    	<input type="text" id="txt_5" name="txt_5" placeholder="Teléfono" class="form-control" />
-	                                                                    	<i class="ace-icon fa fa-phone fa-flip-horizontal"></i>
-	                                                                    </span>																		
-																	</div>
-																</div>
+																				<div class="form-group has-error">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_2"> RUC/CI.:</label>
+																					<div class="col-sm-8">
+																						<input type="text" id="txt_2" name="txt_2"  placeholder="Identificación" class="form-control" data-toggle="tooltip" data-original-title="" required pattern="[0-9]{10,10}" maxlength="10" minlength="10" />
+																					</div>
+																				</div>
 
-																<div class="form-group">
-																	<label class="col-sm-4 control-label no-padding-right" for="form-field-1-1"> Celular: </label>
-																	<div class="col-sm-8">	
-																		<span class="block input-icon input-icon-right">
-																			<input type="text" id="txt_6" name="txt_6" placeholder="Celular" class="form-control" />
-																			<i class="ace-icon fa fa-mobile fa-flip-horizontal"></i>					
-																		</span>																																																						
-																	</div>
-																</div>
+																				<div class="form-group has-error">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_3"> Empresa: </label>
+																					<div class="col-sm-8">
+																						<input type="text" id="txt_3" name="txt_3" placeholder="Empresa" class="form-control" required pattern="[A-Za-záéíóúÁÉÍÓÚñÑ0-9 ]{1,}" data-toggle="tooltip" data-original-title="Empresa"  />
+																					</div>
+																				</div>	
 
-																<div class="form-group">
-																	<label class="col-sm-4 control-label no-padding-right" for="form-field-1-1"> Correo: </label>
-																	<div class="col-sm-8">
-																	  <span class="block input-icon input-icon-right">
-																	  	<input type="mail" id="txt_7" name="txt_7" placeholder="Correo" class="form-control" />
-																	  	<i class="ace-icon fa fa-envelope"></i>
-																	  </span>
-																	</div>
-																</div>	
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_5"> Teléfono: </label>
+																					<div class="col-sm-8">
+																						<span class="block input-icon input-icon-right">
+					                                                                    	<input type="text" id="txt_5" name="txt_5" placeholder="Teléfono" class="form-control" />
+					                                                                    	<i class="ace-icon fa fa-phone fa-flip-horizontal"></i>
+					                                                                    </span>																		
+																					</div>
+																				</div>
 
-																<div class="form-group">
-																	<label class="col-sm-4 control-label no-padding-right" for="form-field-1-1"> Fax: </label>
-																	<div class="col-sm-8">
-																		<input type="text" id="txt_13" name="txt_13" placeholder="Fax:" class="form-control" />
-																	</div>
-																</div>			
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_6"> Celular: </label>
+																					<div class="col-sm-8">	
+																						<span class="block input-icon input-icon-right">
+																							<input type="text" id="txt_6" name="txt_6" placeholder="Celular" class="form-control" />
+																							<i class="ace-icon fa fa-mobile fa-flip-horizontal"></i>					
+																						</span>																																																						
+																					</div>
+																				</div>
 
-																<div class="form-group">
-																	<label class="col-sm-4 control-label no-padding-right" for="form-field-1-1"> Forma de Pago: </label>
-																	<div class="col-sm-8">
-																		<select class="chosen-select form-control" id="txt_8" name="txt_8" data-placeholder="Forma de Pago">
-																		<option value="Contado">CONTADO</option>
-																		<option value="Credito">CRÉDITO</option>																		
-																		</select>
-																	</div>
-																</div>	
-															</div>
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_7"> Correo: </label>
+																					<div class="col-sm-8">
+																					  <span class="block input-icon input-icon-right">
+																					  	<input type="mail" id="txt_7" name="txt_7" placeholder="Correo" class="form-control" />
+																					  	<i class="ace-icon fa fa-envelope"></i>
+																					  </span>
+																					</div>
+																				</div>	
 
-															<div class="col-sm-6">
-																<div class="form-group">
-																	<label class="col-sm-4 control-label no-padding-right" for="form-field-1-1"> Representante Legal: </label>
-																	<div class="col-sm-8">
-																		<input type="text" id="txt_12" name="txt_12" placeholder="Representante Legal" class="form-control" />
-																	</div>
-																</div>
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_13"> Fax: </label>
+																					<div class="col-sm-8">
+																						<input type="text" id="txt_13" name="txt_13" placeholder="Fax:" class="form-control" />
+																					</div>
+																				</div>			
 
-																<div class="form-group">
-																	<label class="col-sm-4 control-label no-padding-right" for="form-field-1"> Visitador : </label>
-																	<div class="col-sm-8">
-																		<input type="text" id="txt_4" name="txt_4" placeholder="Nombre Visitador" class="form-control" data-toggle="tooltip" data-original-title="Visitador"  />
-																	</div>
-																</div>	
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_8"> Forma de Pago: </label>
+																					<div class="col-sm-8">
+																						<select class="chosen-select form-control" id="txt_8" name="txt_8" data-placeholder="Forma de Pago">
+																						<option value="Contado">CONTADO</option>
+																						<option value="Credito">CRÉDITO</option>																		
+																						</select>
+																					</div>
+																				</div>	
+																			</div>
 
-																<div class="form-group">
-																	<label class="col-sm-4 control-label no-padding-right" for="form-field-1-1"> Tipo Proveedor: </label>
-																	<div class="col-sm-8">
-																		<select class="chosen-select form-control" id="txt_18" name="txt_18" data-placeholder="Tipo Proveedor">																			
-																			<option value="Natural">Natural</option>	
-																			<option value="Juridico">Jurídico</option>	
-																		</select>
-																	</div>
-																</div>	
+																			<div class="col-sm-6">
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_12"> Representante Legal: </label>
+																					<div class="col-sm-8">
+																						<input type="text" id="txt_12" name="txt_12" placeholder="Representante Legal" class="form-control" />
+																					</div>
+																				</div>
 
-																<div class="form-group">
-																	<label class="col-sm-4 control-label no-padding-right" for="form-field-1-1"> País: </label>
-																	<div class="col-sm-8">
-																		<select class="chosen-select form-control" id="txt_9" name="txt_9" data-placeholder="País">
-																		</select>																	
-																	</div>
-																</div>
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_4"> Visitador : </label>
+																					<div class="col-sm-8">
+																						<input type="text" id="txt_4" name="txt_4" placeholder="Nombre Visitador" class="form-control" data-toggle="tooltip" data-original-title="Visitador"  />
+																					</div>
+																				</div>	
 
-																<div class="form-group">
-																	<label class="col-sm-4 control-label no-padding-right" for="form-field-1-1"> Provincia: </label>
-																	<div class="col-sm-8">
-																		<select class="chosen-select form-control" id="txt_10" name="txt_10" data-placeholder="Provincia">
-																		</select>
-																	</div>
-																</div>
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_18"> Tipo Proveedor: </label>
+																					<div class="col-sm-8">
+																						<select class="chosen-select form-control" id="txt_18" name="txt_18" data-placeholder="Tipo Proveedor">																			
+																							<option value="Natural">Natural</option>	
+																							<option value="Juridico">Jurídico</option>	
+																						</select>
+																					</div>
+																				</div>	
 
-																<div class="form-group">
-																	<label class="col-sm-4 control-label no-padding-right" for="form-field-1-1"> Ciudad: </label>
-																	<div class="col-sm-8">
-																		<select class="chosen-select form-control" id="txt_11" name="txt_11" data-placeholder="Ciudad">
-																		</select>
-																	</div>
-																</div>
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_9"> País: </label>
+																					<div class="col-sm-8">
+																						<select class="chosen-select form-control" id="txt_9" name="txt_9" data-placeholder="País">
+																						</select>																	
+																					</div>
+																				</div>
 
-																<div class="form-group has-error">
-																	<label class="col-sm-4 control-label no-padding-right" for="form-field-1-1"> Dirección: </label>
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_10"> Provincia: </label>
+																					<div class="col-sm-8">
+																						<select class="chosen-select form-control" id="txt_10" name="txt_10" data-placeholder="Provincia">
+																						</select>
+																					</div>
+																				</div>
 
-																	<div class="col-sm-8">
-																		<input type="text" id="txt_15" name="txt_15" placeholder="Dirección" class="form-control"  required pattern="[A-Za-záéíóúÁÉÍÓÚñÑ0-9 ]{1,}" data-toggle="tooltip" data-original-title="Ingrese la dirección del proveedor" />
-																	</div>
-																</div>
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_11"> Ciudad: </label>
+																					<div class="col-sm-8">
+																						<select class="chosen-select form-control" id="txt_11" name="txt_11" data-placeholder="Ciudad">
+																						</select>
+																					</div>
+																				</div>
 
-																<div class="form-group">
-																	<label class="col-sm-4 control-label no-padding-right" for="form-field-1-1"> Proveedor principal: </label>
-																	<div class="col-sm-8">
-																		<select class="chosen-select form-control" id="txt_16" name="txt_16" data-placeholder="Proveedor principal">																		
-																		<option value="SI">SI</option>
-																		<option value="NO">NO</option>
-																		</select>
-																	</div>
-																</div>	
+																				<div class="form-group has-error">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_15"> Dirección: </label>
 
-																<div class="form-group">
-																	<label class="col-sm-4 control-label no-padding-right" for="form-field-1-1"> Observacion: </label>
-																	<div class="col-sm-8">																	
-																		<textarea class="col-sm-12"  id="txt_17" name="txt_17" placeholder="Observacion"></textarea>
+																					<div class="col-sm-8">
+																						<input type="text" id="txt_15" name="txt_15" placeholder="Dirección" class="form-control"  required pattern="[A-Za-záéíóúÁÉÍÓÚñÑ0-9 ]{1,}" data-toggle="tooltip" data-original-title="Ingrese la dirección del proveedor" />
+																					</div>
+																				</div>
+
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_16"> Proveedor principal: </label>
+																					<div class="col-sm-8">
+																						<select class="chosen-select form-control" id="txt_16" name="txt_16" data-placeholder="Proveedor principal">																		
+																						<option value="SI">SI</option>
+																						<option value="NO">NO</option>
+																						</select>
+																					</div>
+																				</div>	
+																			</div>
+																		</div>
+																		
+																		<div id="deta_adici" class="tab-pane fade ">
+																			<div class="col-sm-6">
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_12"> Cupo Crédito: </label>
+																					<div class="col-sm-8">
+																						<input type="text" id="txt_12" name="txt_12" placeholder="Cupo Crédito" class="form-control" />
+																					</div>
+																				</div>
+
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_12"> Serie Comprobante: </label>
+																					<div class="col-sm-8">
+																						<input type="text" id="txt_12" name="txt_12" placeholder="Cupo Crédito" class="form-control" />
+																					</div>
+																				</div>	
+
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_12"> Autorización SRI: </label>
+																					<div class="col-sm-8">
+																						<input type="text" id="txt_12" name="txt_12" placeholder="Cupo Crédito" class="form-control" />
+																					</div>
+																				</div>
+
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_12"> Código Retención Fuente : </label>
+																					<div class="col-sm-6">
+																						<span class="block input-icon input-icon-right">
+																							<input type="mail" id="txt_7" name="txt_7" placeholder="Buscar..." class="form-control" />
+																						  	<i class="ace-icon fa fa-search"></i>
+																						</span>
+																					</div>
+																					<div class="col-sm-2 btn btn-sm btn-success" id="btn_agr_mar" data-toggle="modal" href="#modal_marcas"> Agregar</div>
+																				</div>
+
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_12"> Código Retención Iva: </label>
+																					<div class="col-sm-6">
+																						<span class="block input-icon input-icon-right">
+																							<input type="mail" id="txt_7" name="txt_7" placeholder="Buscar..." class="form-control" />
+																						  	<i class="ace-icon fa fa-search"></i>
+																						</span>
+																					</div>
+																					<div class="col-sm-2 btn btn-sm btn-success" id="btn_agr_mar" data-toggle="modal" href="#modal_marcas"> Agregar</div>
+																				</div>
+																			</div>
+
+																			<div class="col-sm-6">
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_12"> Grupo: </label>
+																					<div class="col-sm-8">
+																						<input type="text" id="txt_12" name="txt_12" placeholder="Cupo Crédito" class="form-control" />
+																					</div>
+																				</div>
+
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_18"> Sustento Tribuario: </label>
+																					<div class="col-sm-8">
+																						<input type="text" id="txt_12" name="txt_12" placeholder="Cupo Crédito" class="form-control" />
+																					</div>
+																				</div>
+
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_18"> Tipo Comprobante: </label>
+																					<div class="col-sm-8">
+																						<input type="text" id="txt_12" name="txt_12" placeholder="Cupo Crédito" class="form-control" />
+																					</div>
+																				</div>
+
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_12"> Código compras: </label>
+																					<div class="col-sm-6">
+																						<span class="block input-icon input-icon-right">
+																							<input type="mail" id="txt_7" name="txt_7" placeholder="Buscar..." class="form-control" />
+																						  	<i class="ace-icon fa fa-search"></i>
+																						</span>
+																					</div>
+																					<div class="col-sm-2 btn btn-sm btn-success" id="btn_agr_mar" data-toggle="modal" href="#modal_marcas"> Agregar</div>
+																				</div>
+
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_17"> Observacion: </label>
+																					<div class="col-sm-8">																	
+																						<textarea class="form-control"  id="txt_17" name="txt_17" placeholder="Observacion"></textarea>
+																					</div>
+																				</div>	
+																			</div>	
+																		</div>	
 																	</div>
 																</div>
 															</div>
