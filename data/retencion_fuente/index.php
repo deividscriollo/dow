@@ -37,7 +37,7 @@ if(!isset($_SESSION))
 		<!-- ace styles -->
 		<link rel="stylesheet" href="../../dist/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
 		<link type="text/css" rel="stylesheet" id="ace-skins-stylesheet" href="../../dist/css/ace-skins.min.css">
-
+		<link rel="stylesheet" href="../../dist/css/jquery.gritter.min.css" />
 		<!-- ace settings handler -->
 		<script src="../../dist/js/ace-extra.min.js"></script>
 	</head>
@@ -250,6 +250,8 @@ if(!isset($_SESSION))
 		<script src="../../dist/js/dataTables/extensions/ColVis/js/dataTables.colVis.min.js"></script>
 		<script src="../../dist/js/jqGrid/jquery.jqGrid.min.js"></script>
         <script src="../../dist/js/jqGrid/i18n/grid.locale-en.js"></script>
+   		
+		<script src="../../dist/js/jquery.gritter.min.js"></script>
 
 		<!-- ace scripts -->
 		<script src="../../dist/js/ace-elements.min.js"></script>

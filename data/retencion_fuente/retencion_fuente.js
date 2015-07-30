@@ -41,12 +41,27 @@ function inicio (){
 
 	    jQuery(grid_selector).jqGrid({	        
 	        datatype: "xml",
-	        url: '../grupos/xml_plan.php',        
-	        colNames: ['ID','CÓDIGO','CUENTA'],
+	        url: '../grupos/xml_plan.php',        	        
+	        colNames: ['ID','CÓDIGO','CUENTA','GRUPO'],
 	        colModel:[      
-            	{name:'id_plan',index:'id_plan',frozen:true,align:'left',search:false},
-            	{name:'codigo_cuenta',index:'codigo_cuenta',frozen:true,align:'left',search:true},
-            	{name:'nombre_cuenta',index:'nombre_cuenta',frozen:true,align:'left',search:true},            	
+            	{name:'id_plan',index:'id_plan',frozen:true,align:'left',search:false,editable: true},            	
+            	{name:'codigo_cuenta',index:'codigo_cuenta',frozen:true,align:'left',search:true,editable: true, editrules: {required: true},editoptions:{
+            		dataInit:function (element,response){
+            			$(element).keyup(function(){            				            				
+            				var pattern = new RegExp("^[0-9.]{1,}[.]{1}$");        
+					        if($(this).val() != '' && pattern.test($(this).val())){            					        	
+					            $("#FormError").css("display","none");
+					            $("#FormError").children().text("");
+					        }else{					            					            
+					        	$("#FormError").css("display","table-row");
+					            $("#FormError").children().text("Formato Requerido: 1.");
+					        }  
+            			});            			
+            		}
+            	}},
+            	{name:'nombre_cuenta',index:'nombre_cuenta',frozen:true,align:'left',search:true,editable: true,editrules: {required: true}},            	            	
+            	{name:'grupo_cuenta',index:'grupo_cuenta', width:90, editable: true,edittype:"select",editoptions:{value:"G:Grupo;M:Movimiento"}},
+            	
 
             ],
            	rowNum: 10,       
@@ -58,6 +73,7 @@ function inicio (){
 	        sortname: 'id_plan',
 	        sortorder: 'asc',
 	        caption: 'Lista de Grupos',	        
+	        editurl:'../plan_cuentas/plan_grid.php',
 	        
 	        altRows: true,
 	        multiselect: false,
@@ -92,9 +108,9 @@ function inicio (){
 	    //navButtons
 	    jQuery(grid_selector).jqGrid('navGrid',pager_selector,
 	    {   //navbar options
-	        edit: false,
+	        edit: true,
 	        editicon : 'ace-icon fa fa-pencil blue',
-	        add: false,
+	        add: true,
 	        addicon : 'ace-icon fa fa-plus-circle purple',
 	        del: false,
 	        delicon : 'ace-icon fa fa-trash-o red',
@@ -106,29 +122,70 @@ function inicio (){
 	        viewicon : 'ace-icon fa fa-search-plus grey'
 	    },
 	    {	        
+	    	jqModal:true,
+	    	width: 500,	        
+	        closeAfterEdit : true,
+    		reloadAfterSubmit:true,
 	        recreateForm: true,
-	        beforeShowForm : function(e) {
-	            var form = $(e[0]);
-	            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
-	            style_edit_form(form);
-	        }
+	        overlay: false,   
+			beforeShowForm : function(e) {
+				var form = $(e[0]);
+				form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+				style_edit_form(form);
+			},
+	        afterSubmit: function (response){
+	        	if(response.responseText == 0){
+	        		$.gritter.add({
+						title: 'Mensaje',
+						text: 'Registro Guardado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
+						time: 1000				
+					});
+	        		return [true,"",""];
+
+	        	}else{
+	        		if(response.responseText == 1){	
+	        			$("#codigo_cuenta").val("");
+	        			return [false,"Error.. Este código ya existe"];
+		        	}	
+	        	}
+	        }, 
+	        onClose: function() {
+                alert('Hi ^_^');
+            }   
 	    },
 	    {
-	        //new record form
+	        //new record form,
 	        //width: 700,
 	        closeAfterAdd: true,
-	        recreateForm: true,
-	        viewPagerButtons: false,
+	        recreateForm: true,	  	        
+	        viewPagerButtons: false,	     
+	        jqModal:true,
+	        overlay: false,   
 	        beforeShowForm : function(e) {
-	            var form = $(e[0]);
+	            var form = $(e[0]);	            
 	            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar')
 	            .wrapInner('<div class="widget-header" />')
-	            style_edit_form(form);
-	        }
+	            style_edit_form(form);	            
+	        },	    
+	        afterSubmit: function (response){
+	        	if(response.responseText == 0){
+	        		$.gritter.add({
+						title: 'Mensaje',
+						text: 'Registro Guardado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
+						time: 1000				
+					});
+	        		return true;
+	        	}else{
+	        		if(response.responseText == 1){	
+	        			$("#codigo_cuenta").val("");
+	        			return [false,"Error.. Este código ya existe"];
+		        	}	
+	        	}
+	        },    
 	    },
 	    {
 	        //delete record form
-	        recreateForm: true,
+	        recreateForm: true,	        
 	        beforeShowForm : function(e) {
 	            var form = $(e[0]);
 	            if(form.data('styled')) return false;
@@ -154,7 +211,8 @@ function inicio (){
 	        }
 	        ,
 	        //multipleSearch: true
-	        overlay: false,
+	        //overlay: false,
+	        jqModal:false,
 	        sopt: ['eq', 'cn'],
             defaultSearch: 'eq',            	       
 	    },
@@ -162,7 +220,7 @@ function inicio (){
 	        //view record form
 	        recreateForm: true,
 	        beforeShowForm: function(e){
-	            var form = $(e[0]);
+	            var form = $(e[0]);	            
 	            form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
 	        }
 	    })	    

@@ -42,15 +42,16 @@ function inicio (){
 	    jQuery(grid_selector).jqGrid({	        
 	        datatype: "xml",
 	        url: 'xml_plan.php',        
-	        colNames: ['ID','CÓDIGO','CUENTA'],
+	        colNames: ['ID','CÓDIGO','CUENTA','GRUPO'],
 	        colModel:[      
             	{name:'id_plan',index:'id_plan',frozen:true,align:'left',search:false},
             	{name:'codigo_cuenta',index:'codigo_cuenta',frozen:true,align:'left',search:true},
             	{name:'nombre_cuenta',index:'nombre_cuenta',frozen:true,align:'left',search:true},            	
+            	{name:'grupo_cuenta',index:'grupo_cuenta',frozen:true,align:'left',search:true},            	
 
             ],
            	rowNum: 10,       
-	        width:600,
+	        //width:600,
 	        shrinkToFit: true,
 	        height:200,
 	        rowList: [10,20,30],
@@ -738,7 +739,8 @@ function datos_grupos(valores,tipo,p){
 	    success: function(data) {		    	
     		if(data == 0){
     			alert('Datos guardados correctamente');			
-    			limpiar_form(p);		    		
+    			limpiar_form(p);	
+    			$("#table_1").trigger('reloadGrid')	    		
     		}else{
     			if( data == 1 ){
 		    		alert('El código del grupo esta repetido. Ingrese nuevamente');			

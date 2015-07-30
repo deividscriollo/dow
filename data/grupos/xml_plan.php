@@ -25,15 +25,15 @@ $start = $limit * $page - $limit;
 if ($start < 0)
     $start = 0;
 if ($search == 'false') {
-    $SQL = "select id_plan,codigo_cuenta,nombre_cuenta from plan_cuentas ORDER BY  $sidx $sord offset $start limit $limit";
+    $SQL = "select id_plan,codigo_cuenta,nombre_cuenta,tipo_cuenta from plan_cuentas ORDER BY  $sidx $sord offset $start limit $limit";
 } else {
     $campo = $_GET['searchField'];
   
     if ($_GET['searchOper'] == 'eq') {
-        $SQL = "select id_plan,codigo_cuenta,nombre_cuenta from plan_cuentas where $campo = '$_GET[searchString]' ORDER BY $sidx $sord offset $start limit $limit";
+        $SQL = "select id_plan,codigo_cuenta,nombre_cuenta,tipo_cuenta from plan_cuentas where $campo = '$_GET[searchString]' ORDER BY $sidx $sord offset $start limit $limit";
     }         
     if ($_GET['searchOper'] == 'cn') {
-        $SQL = "select id_plan,codigo_cuenta,nombre_cuenta from plan_cuentas where $campo like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
+        $SQL = "select id_plan,codigo_cuenta,nombre_cuenta,tipo_cuenta from plan_cuentas where $campo like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
     }
   
 }
@@ -49,6 +49,7 @@ while ($row = pg_fetch_row($result)) {
     $s .= "<cell>" . $row[0] . "</cell>";
     $s .= "<cell>" . $row[1] . "</cell>";
     $s .= "<cell>" . $row[2] . "</cell>";      
+    $s .= "<cell>" . $row[3] . "</cell>";      
     $s .= "</row>";
 }
 $s .= "</rows>";
