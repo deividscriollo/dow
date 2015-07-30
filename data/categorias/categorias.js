@@ -138,8 +138,8 @@
 						time: 1000				
 					});
 	        		return true;
-	        	}else{
-	        		if(response.responseText == 1){	
+	        	} else {
+	        		if(response.responseText == 1) {	
 	        			$("#nombre_categoria").val("");
 	        			return [false,"Error.. La Categoria ya existe"];
 		        	}	
