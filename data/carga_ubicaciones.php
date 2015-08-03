@@ -284,6 +284,60 @@
 
 																																				}
 																																			}else{
+																																				if($_GET['fun'] == "36"){//para la tabla
+																																					if($_GET['tipo'] == "0"){//indica que se carga al inicio de la pagina
+																																						$sql = "select id_sustento,codigo_sustento,nombre_sustento from sustento_tributario order by fecha_creacion";
+																																						cargarSelect_1($conexion,$sql);
+																																					}else{
+
+																																					}
+																																				}else{
+																																					if($_GET['fun'] == "37"){//para la tabla
+																																						if($_GET['tipo'] == "0"){//indica que se carga al inicio de la pagina
+																																							$sql = "select tipo_comprobante.id_comprobante,codigo_comprobante,nombre_comprobante from sustento_comprobante,tipo_comprobante where sustento_comprobante.id_comprobante = tipo_comprobante.id_comprobante  and id_sustento = '".$_GET['id']."'";
+																																							cargarSelect_1($conexion,$sql);
+																																						}else{
+
+																																						}
+																																					}else{
+																																						if($_GET['fun'] == "38"){//para la tabla
+																																							if($_GET['tipo'] == "0"){//indica que se carga al inicio de la pagina
+																																								$sql = "select id,codigo_grupo,nombre_grupo from grupos order by fecha asc";
+																																								cargarSelect_1($conexion,$sql);
+																																							}else{
+
+																																							}
+																																						}else{
+																																							if($_GET['fun'] == "39"){//para la tabla
+																																								if($_GET['tipo'] == "0"){//indica que se carga al inicio de la pagina
+																																									$sql = "select id_plan,codigo_cuenta,nombre_cuenta from plan_cuentas order by fecha asc";
+																																									cargarSelect_1($conexion,$sql);
+																																								}else{
+
+																																								}
+																																							}else{
+																																								if($_GET['fun'] == "40"){//para la tabla
+																																									if($_GET['tipo'] == "0"){//indica que se carga al inicio de la pagina
+																																										$sql = "select id_retencion,formulario_103,descripcion from retenciones order by fecha_creacion asc";
+																																										cargarSelect_1($conexion,$sql);
+																																									}else{
+
+																																									}
+																																								}else{
+																																									if($_GET['fun'] == "41"){//para la tabla
+																																										if($_GET['tipo'] == "0"){//indica que se carga al inicio de la pagina
+																																											$sql = "select id_plan,codigo_cuenta,nombre_cuenta from plan_cuentas order by fecha asc";
+																																											cargar_select_grid($conexion,$sql);
+																																										}else{
+
+																																										}
+																																									}else{
+																																									}
+																																								}
+																																							}
+																																						}
+																																					}
+																																				}
 																																			}
 																																		}
 																																	}

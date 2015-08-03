@@ -26,6 +26,30 @@
 
 		<!-- ace settings handler -->
 		<script src="../../dist/js/ace-extra.min.js"></script>
+
+		//				
+
+		<!-- page specific plugin styles -->
+		<link rel="stylesheet" href="../../dist/css/jquery-ui.custom.min.css" />
+		
+		<link rel="stylesheet" href="../../dist/css/datepicker.min.css" />
+		<link rel="stylesheet" href="../../dist/css/bootstrap-timepicker.min.css" />
+		<link rel="stylesheet" href="../../dist/css/daterangepicker.min.css" />
+		<link rel="stylesheet" href="../../dist/css/bootstrap-datetimepicker.min.css" />
+		<link rel="stylesheet" href="../../dist/css/colorpicker.min.css" />				
+
+		<link rel="stylesheet" href="../../dist/css/jquery.gritter.min.css" />
+		<!-- ace styles -->		
+
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" href="../../dist/css/ace-part2.min.css" class="ace-main-stylesheet" />
+		<![endif]-->
+
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="../../dist/css/ace-ie.min.css" />
+		<![endif]-->				
+		
+		//
 	</head>
 
 	<body class="skin-2">
@@ -127,39 +151,39 @@
 																				</div>	
 
 																				<div class="form-group">
-																					<label class="col-sm-4 control-label no-padding-right" for="txt_5"> Teléfono: </label>
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_4"> Teléfono: </label>
 																					<div class="col-sm-8">
 																						<span class="block input-icon input-icon-right">
-					                                                                    	<input type="text" id="txt_5" name="txt_5" placeholder="Teléfono" class="form-control" />
+					                                                                    	<input type="text" id="txt_4" name="txt_4" placeholder="Teléfono" class="form-control" />
 					                                                                    	<i class="ace-icon fa fa-phone fa-flip-horizontal"></i>
 					                                                                    </span>																		
 																					</div>
 																				</div>
 
 																				<div class="form-group">
-																					<label class="col-sm-4 control-label no-padding-right" for="txt_6"> Celular: </label>
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_5"> Celular: </label>
 																					<div class="col-sm-8">	
 																						<span class="block input-icon input-icon-right">
-																							<input type="text" id="txt_6" name="txt_6" placeholder="Celular" class="form-control" />
+																							<input type="text" id="txt_5" name="txt_5" placeholder="Celular" class="form-control" />
 																							<i class="ace-icon fa fa-mobile fa-flip-horizontal"></i>					
 																						</span>																																																						
 																					</div>
 																				</div>
 
 																				<div class="form-group">
-																					<label class="col-sm-4 control-label no-padding-right" for="txt_7"> Correo: </label>
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_6"> Correo: </label>
 																					<div class="col-sm-8">
 																					  <span class="block input-icon input-icon-right">
-																					  	<input type="mail" id="txt_7" name="txt_7" placeholder="Correo" class="form-control" />
+																					  	<input type="mail" id="txt_6" name="txt_6" placeholder="Correo" class="form-control" />
 																					  	<i class="ace-icon fa fa-envelope"></i>
 																					  </span>
 																					</div>
 																				</div>	
 
 																				<div class="form-group">
-																					<label class="col-sm-4 control-label no-padding-right" for="txt_13"> Fax: </label>
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_7"> Fax: </label>
 																					<div class="col-sm-8">
-																						<input type="text" id="txt_13" name="txt_13" placeholder="Fax:" class="form-control" />
+																						<input type="text" id="txt_7" name="txt_7" placeholder="Fax:" class="form-control" />
 																					</div>
 																				</div>			
 
@@ -183,16 +207,16 @@
 																				</div>
 
 																				<div class="form-group">
-																					<label class="col-sm-4 control-label no-padding-right" for="txt_4"> Visitador : </label>
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_13"> Visitador : </label>
 																					<div class="col-sm-8">
-																						<input type="text" id="txt_4" name="txt_4" placeholder="Nombre Visitador" class="form-control" data-toggle="tooltip" data-original-title="Visitador"  />
+																						<input type="text" id="txt_13" name="txt_13" placeholder="Nombre Visitador" class="form-control" data-toggle="tooltip" data-original-title="Visitador"  />
 																					</div>
 																				</div>	
 
 																				<div class="form-group">
-																					<label class="col-sm-4 control-label no-padding-right" for="txt_18"> Tipo Proveedor: </label>
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_14"> Tipo Proveedor: </label>
 																					<div class="col-sm-8">
-																						<select class="chosen-select form-control" id="txt_18" name="txt_18" data-placeholder="Tipo Proveedor">																			
+																						<select class="chosen-select form-control" id="txt_14" name="txt_14" data-placeholder="Tipo Proveedor">																			
 																							<option value="Natural">Natural</option>	
 																							<option value="Juridico">Jurídico</option>	
 																						</select>
@@ -201,7 +225,7 @@
 
 																				<div class="form-group">
 																					<label class="col-sm-4 control-label no-padding-right" for="txt_9"> País: </label>
-																					<div class="col-sm-8">
+																					<div class="col-sm-8">																						
 																						<select class="chosen-select form-control" id="txt_9" name="txt_9" data-placeholder="País">
 																						</select>																	
 																					</div>
@@ -246,86 +270,91 @@
 																		<div id="deta_adici" class="tab-pane fade ">
 																			<div class="col-sm-6">
 																				<div class="form-group">
-																					<label class="col-sm-4 control-label no-padding-right" for="txt_12"> Cupo Crédito: </label>
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_17"> Cupo Crédito: </label>
 																					<div class="col-sm-8">
-																						<input type="text" id="txt_12" name="txt_12" placeholder="Cupo Crédito" class="form-control" />
+																						<input type="text" id="txt_17" name="txt_17" placeholder="Cupo Crédito" class="form-control" onkeydown="return validarNumeros(event)" />
 																					</div>
 																				</div>
 
 																				<div class="form-group">
-																					<label class="col-sm-4 control-label no-padding-right" for="txt_12"> Serie Comprobante: </label>
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_18"> Serie Comprobante: </label>
 																					<div class="col-sm-8">
-																						<input type="text" id="txt_12" name="txt_12" placeholder="Cupo Crédito" class="form-control" />
+																						<input type="text" id="txt_18" name="txt_18" placeholder="Serie Comprobante" class="form-control" onkeydown="return validarNumeros(event)" />
 																					</div>
 																				</div>	
 
 																				<div class="form-group">
-																					<label class="col-sm-4 control-label no-padding-right" for="txt_12"> Autorización SRI: </label>
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_19"> Autorización SRI: </label>
 																					<div class="col-sm-8">
-																						<input type="text" id="txt_12" name="txt_12" placeholder="Cupo Crédito" class="form-control" />
+																						<input type="text" id="txt_19" name="txt_19" placeholder="Autorización Sri" class="form-control" onkeydown="return validarNumeros(event)" />
 																					</div>
 																				</div>
 
 																				<div class="form-group">
-																					<label class="col-sm-4 control-label no-padding-right" for="txt_12"> Código Retención Fuente : </label>
-																					<div class="col-sm-6">
-																						<span class="block input-icon input-icon-right">
-																							<input type="mail" id="txt_7" name="txt_7" placeholder="Buscar..." class="form-control" />
-																						  	<i class="ace-icon fa fa-search"></i>
-																						</span>
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_20"> Código Retención Fuente : </label>
+																					<div class="col-sm-7">
+																						<select class="chosen-select form-control" id="txt_20" name="txt_20" data-placeholder="Código Retención Fuente">
+																						</select>
 																					</div>
-																					<div class="col-sm-2 btn btn-sm btn-success" id="btn_agr_mar" data-toggle="modal" href="#modal_marcas"> Agregar</div>
+																					<div class="btn-group col-sm-1">
+																						<button type="button" class="btn btn-sm btn-primary" id="btn_agr_ret_fuente" data-toggle="modal" href="#modal_retenciones">...</button>																						
+																					</div>
+																					
 																				</div>
 
 																				<div class="form-group">
-																					<label class="col-sm-4 control-label no-padding-right" for="txt_12"> Código Retención Iva: </label>
-																					<div class="col-sm-6">
-																						<span class="block input-icon input-icon-right">
-																							<input type="mail" id="txt_7" name="txt_7" placeholder="Buscar..." class="form-control" />
-																						  	<i class="ace-icon fa fa-search"></i>
-																						</span>
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_21"> Código Retención Iva: </label>
+																					<div class="col-sm-7">
+																						<select class="chosen-select form-control" id="txt_21" name="txt_21" data-placeholder="Código Retención Iva">
+																						</select>
 																					</div>
-																					<div class="col-sm-2 btn btn-sm btn-success" id="btn_agr_mar" data-toggle="modal" href="#modal_marcas"> Agregar</div>
+																					<div class="btn-group col-sm-1">
+																						<button type="button" class="btn btn-sm btn-primary" id="btn_ret_iva" data-toggle="modal" href="#modal_retenciones">...</button>																						
+																					</div>																					
 																				</div>
 																			</div>
 
 																			<div class="col-sm-6">
 																				<div class="form-group">
-																					<label class="col-sm-4 control-label no-padding-right" for="txt_12"> Grupo: </label>
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_22"> Grupo: </label>
 																					<div class="col-sm-8">
-																						<input type="text" id="txt_12" name="txt_12" placeholder="Cupo Crédito" class="form-control" />
+																						<select class="chosen-select form-control" id="txt_22" name="txt_22" data-placeholder="Grupo Contable">
+																						</select>	
 																					</div>
 																				</div>
 
 																				<div class="form-group">
-																					<label class="col-sm-4 control-label no-padding-right" for="txt_18"> Sustento Tribuario: </label>
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_23"> Sustento Tribuario: </label>
+																					<div class="col-sm-8">																						
+																						<select class="chosen-select form-control" id="txt_23" name="txt_23" data-placeholder="Sustento Tributario">
+																						</select>
+																					</div>
+																				</div>
+
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_24"> Tipo Comprobante: </label>
 																					<div class="col-sm-8">
-																						<input type="text" id="txt_12" name="txt_12" placeholder="Cupo Crédito" class="form-control" />
+																						<select class="chosen-select form-control" id="txt_24" name="txt_24" data-placeholder="Tipo Comprobante">
+																							<option>Seleccione....</option>
+																						</select>																						
 																					</div>
 																				</div>
 
 																				<div class="form-group">
-																					<label class="col-sm-4 control-label no-padding-right" for="txt_18"> Tipo Comprobante: </label>
-																					<div class="col-sm-8">
-																						<input type="text" id="txt_12" name="txt_12" placeholder="Cupo Crédito" class="form-control" />
+																					<label class="col-sm-4 control-label no-padding-right" for="txt__25"> Código compras: </label>
+																					<div class="col-sm-7">
+																						<select class="chosen-select form-control" id="txt_25" name="txt_25" data-placeholder="Código compras">																							
+																						</select>																							
 																					</div>
+																					<div class="btn-group col-sm-1">
+																						<button type="button" class="btn btn-sm btn-primary" id="btn_agr_cod" data-toggle="modal" href="#modal_plan">...</button>																						
+																					</div>																																										
 																				</div>
 
 																				<div class="form-group">
-																					<label class="col-sm-4 control-label no-padding-right" for="txt_12"> Código compras: </label>
-																					<div class="col-sm-6">
-																						<span class="block input-icon input-icon-right">
-																							<input type="mail" id="txt_7" name="txt_7" placeholder="Buscar..." class="form-control" />
-																						  	<i class="ace-icon fa fa-search"></i>
-																						</span>
-																					</div>
-																					<div class="col-sm-2 btn btn-sm btn-success" id="btn_agr_mar" data-toggle="modal" href="#modal_marcas"> Agregar</div>
-																				</div>
-
-																				<div class="form-group">
-																					<label class="col-sm-4 control-label no-padding-right" for="txt_17"> Observacion: </label>
+																					<label class="col-sm-4 control-label no-padding-right" for="txt_26"> Observacion: </label>
 																					<div class="col-sm-8">																	
-																						<textarea class="form-control"  id="txt_17" name="txt_17" placeholder="Observacion"></textarea>
+																						<textarea class="form-control"  id="txt_26" name="txt_26" placeholder="Observacion"></textarea>
 																					</div>
 																				</div>	
 																			</div>	
@@ -382,7 +411,7 @@
 		</div><!-- /.main-container -->
 
 		<!-- Modal -->
-		  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		    <div class="modal-dialog">
 		      <div class="modal-content">
 		        <div class="modal-header">
@@ -398,8 +427,43 @@
 		        </div>
 		      </div><!-- /.modal-content -->
 		    </div><!-- /.modal-dialog -->
-		  </div><!-- /.modal -->
+		</div><!-- /.modal -->
 
+		<div class="modal fade" id="modal_plan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		    <div class="modal-dialog">
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		          <h4 class="modal-title">PLAN DE CUENTAS</h4>
+		        </div>
+		        <div class="modal-body">
+		            <table id="table_1"></table>
+					<div id="pager_1"></div>
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+		        </div>
+		      </div><!-- /.modal-content -->
+		    </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<div class="modal fade" id="modal_retenciones" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		    <div class="modal-dialog">
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		          <h4 class="modal-title">RETENCIONES</h4>
+		        </div>
+		        <div class="modal-body">
+		            <table id="table_2"></table>
+					<div id="pager_2"></div>
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+		        </div>
+		      </div><!-- /.modal-content -->
+		    </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
 
 		<script type="text/javascript">
 			window.jQuery || document.write("<script src='../../dist/js/jquery.min.js'>"+"<"+"/script>");
@@ -417,14 +481,29 @@
 		<script src="../../dist/js/flot/jquery.flot.min.js"></script>
 		<script src="../../dist/js/flot/jquery.flot.pie.min.js"></script>
 		<script src="../../dist/js/flot/jquery.flot.resize.min.js"></script>
-		<script src="../../dist/js/chosen.jquery.min.js"></script>
+		<script src="../../dist/js/chosen.jquery.min.js"></script>				
+		
+		<script src="../../dist/js/date-time/bootstrap-datepicker.min.js"></script>
+		<script src="../../dist/js/date-time/bootstrap-timepicker.min.js"></script>
+		<script src="../../dist/js/date-time/moment.min.js"></script>
+		<script src="../../dist/js/date-time/daterangepicker.min.js"></script>
+		<script src="../../dist/js/date-time/bootstrap-datetimepicker.min.js"></script>
+		<script src="../../dist/js/bootstrap-colorpicker.min.js"></script>
+		<script src="../../dist/js/jquery.knob.min.js"></script>
+		<script src="../../dist/js/jquery.autosize.min.js"></script>
+		<script src="../../dist/js/jquery.inputlimiter.1.3.1.min.js"></script>
 		<script src="../../dist/js/jquery.maskedinput.min.js"></script>
+		<script src="../../dist/js/bootstrap-tag.min.js"></script>
+
+		<script src="../../dist/js/jqGrid/jquery.jqGrid.min.js"></script>
+        <script src="../../dist/js/jqGrid/i18n/grid.locale-en.js"></script>
+		<script src="../../dist/js/fuelux/fuelux.spinner.min.js"></script>		
+		<script src="../../dist/js/jquery.gritter.min.js"></script>
 
 		<!-- ace scripts -->
 		<script src="../../dist/js/ace-elements.min.js"></script>
 		<script src="../../dist/js/ace.min.js"></script>
-		<script src="../../dist/js/jqGrid/jquery.jqGrid.min.js"></script>
-        <script src="../../dist/js/jqGrid/i18n/grid.locale-en.js"></script>
+
 		
 		<script src="../generales.js"></script>
 		<script src="proveedores.js"></script>

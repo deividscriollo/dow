@@ -1,7 +1,6 @@
 <?php
 	include '../conexion.php';
-	include '../funciones_generales.php';				
-	require_once '../../phpExcel/Classes/PHPExcel/IOFactory.php';
+	include '../funciones_generales.php';					
 	$conexion = conectarse();
 	date_default_timezone_set('America/Guayaquil');
     $fecha=date('Y-m-d H:i:s', time()); 

@@ -31,6 +31,18 @@ function cargarSelect($conexion, $sql) {
         echo $lista = json_encode($lista);
     }
 }
+function cargar_select_grid($conexion, $sql) {
+    $lista = "";
+    $data = 0;
+    $sql = pg_query($conexion, $sql);
+    if ($sql) {
+        while ($row = pg_fetch_row($sql)) {
+            $lista=$lista.$row['0'].":".$row[1].' '.$row[2].";";
+        }
+        $lista=substr($lista,0,strlen($lista)-1);
+        echo utf8_encode($lista);
+    }
+}
 function cargarSelect_1_1($conexion, $sql) {
     $lista = array();
     $data = 0;

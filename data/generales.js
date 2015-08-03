@@ -192,8 +192,19 @@ function limpiar_form(e){
                                             $("#txt_1").attr("disabled",false);
                                             $("#txt_1").trigger("chosen:updated");                      
                                             $("#td_sust_compro tbody").html(''); 
-
+                                        }else{
+                                            if(form == "form_retencion_fuente"){
+                                                $("#btn_0").text("");
+                                                $("#btn_0").append("<span class='glyphicon glyphicon-log-in'></span> Guardar");                                                        
+                                                $("#txt_00").val('');                                                
+                                                $("#txt_1").val('');
+                                                $("#txt_2").val('');
+                                                $("#txt_3").val('');
+                                                $("#txt_4").val('');
+                                                $("#txt_5").val('');
+                                            }
                                         }
+
                                     }   
                                 }   
                             }   
@@ -344,7 +355,7 @@ function punto(e){
     }    
 }
 
-function validarNumeros(e) { // 1    
+function validarNumeros(e) { // 1       
     tecla = (document.all) ? e.keyCode : e.which; // 2
     //console.log(e.keyCode)
     if (tecla==8) return true; // backspace

@@ -2,21 +2,29 @@ $(document).on("ready",inicio);
 var tipo = 0;
 var temp_fila = 0;
 function inicio (){
-	$("#btn_0").on("click",guardar_grupos);
+	$('#txt_3').ace_spinner({value:0,min:0,max:900050,step:1, btn_up_class:'btn btn-success' , btn_down_class:'btn btn-danger'});
+	comprobarCamposRequired("form_retencion_fuente");
+	cargar_rtenciones();
+	$("#btn_0").on("click",guardar_retenciones);
 	$("#form_retencion_fuente input").on("keyup click",function (e){//campos requeridos		
 		comprobarCamposRequired(e.currentTarget.form.id);
 	});	
-	$("#btn_3").on('click',function(){
-		var comp = comprobarCamposRequired("form_retencion_fuente");  
-		if(comp == true){
-			$("#myModal").modal('show');	
-			tipo = 0;
-		}else{
-			alert("Llene todos los campos antes de continuar");
-		}
-		
-	});
+	$('#td_retenciones tbody').on( 'dblclick', 'tr', function () {  		             	    	
+        var data=$("#td_retenciones").dataTable().fnGetData($(this));
+        //console.log(data);        
+        $("#txt_0").val(data[0]);       
+        $("#txt_1").val(data[1]);
+        $("#txt_2").val(data[2]);                
+        $("#txt_3").val(data[3]);                
+        $("#txt_4").val(data[6]+" "+data[7]);                
+        $("#txt_5").val(data[4]);                        
+        $("#txt_00").val(data[5]);                        
+        $("#btn_0").text("");
+        $("#btn_0").append("<span class='glyphicon glyphicon-log-in'></span> Modificar");     
+        comprobarCamposRequired("form_retencion_fuente");
+	});	
 	$("#btn_1").on("click",limpiar_form);
+	$("#btn_3").on("click",actualizar_form);
 	 /*jqgrid*/    
 	jQuery(function($) {
 	    var grid_selector = "#table";
@@ -91,8 +99,10 @@ function inicio (){
 	        ondblClickRow: function(rowid) {
 	            var gsr = jQuery(grid_selector).jqGrid('getGridParam','selrow');
             	var ret = jQuery(grid_selector).jqGrid('getRowData',gsr);
-				$("#txt_4").val(ret.codigo_cuenta);
+				$("#txt_4").val(ret.codigo_cuenta+" "+ret.nombre_cuenta);				
+				$("#txt_00").val(ret.id_plan);
 				$("#myModal").hide();
+				comprobarCamposRequired("form_retencion_fuente");		    	            	    		
 	        },	        
 	        caption: "PLAN DE CUENTRAS"
 	    });
@@ -200,7 +210,7 @@ function inicio (){
 	        }
 	    },
 	    {
-	          recreateForm: true,
+	        recreateForm: true,
 	        afterShowSearch: function(e){
 	            var form = $(e[0]);
 	            form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
@@ -346,57 +356,35 @@ function inicio (){
 	        $('.ui-jqdialog').remove();
 	    });
 	});
-    /**/   
-    
+    /**/       
 }
 
-function guardar_grupos(){
+function guardar_retenciones(){
 	var resp=comprobarCamposRequired("form_retencion_fuente");
 	if(resp==true){
 		$("#form_retencion_fuente").on("submit",function (e){				
 			var valores = $("#form_retencion_fuente").serialize();
 			var texto=($("#btn_0").text()).trim();				
-			if(texto=="Guardar"){					
-				if($('#td_grupos >tbody >tr').length == 0){
-					alert("Ingrese una cuenta antes de continuar");
-					$("#myModal").modal('show');	
-				}else{
-					datos_grupos(valores,"g",e);						
-				}				
+			if(texto=="Guardar"){									
+				datos_retenciones(valores,"g",e);														
 			}else{				
-				datos_grupos(valores,"m",e);					
+				datos_retenciones(valores,"m",e);					
 			}
 			e.preventDefault();
     		$(this).unbind("submit");
 		});
 	}
 }
-function datos_grupos(valores,tipo,p){
-
-	var vect1 = new Array();    
-	var vect4 = new Array();    
-    var cont=0;
-    $("#td_grupos tbody tr").each(function (index) {                                                                 
-        $(this).children("td").each(function (index) {                               
-            switch (index) {                                            
-                case 0:
-                    vect1[cont] = $(this).text();   
-                break; 
-                case 4:
-                    vect4[cont] = $(this).text();   
-                break;                 
-            }                          
-        });
-        cont++;  
-    });
+function datos_retenciones(valores,tipo,p){	
 	$.ajax({				
 		type: "POST",
-		data: valores+"&tipo="+tipo+"&vect1="+vect1+"&vect4="+vect4,		
-		url: "grupos.php",			
-	    success: function(data) {		    	
-    		if(data == 0){
+		data: valores+"&tipo="+tipo,
+		url: "retencion_fuente.php",
+		success: function(data) {
+			if(data == 0){
     			alert('Datos guardados correctamente');			
-    			limpiar_form(p);		    		
+	    		limpiar_form(p);	
+	    		cargar_rtenciones();	    		
     		}else{
     			if( data == 1 ){
 		    		alert('El código del grupo esta repetido. Ingrese nuevamente');			
@@ -415,4 +403,34 @@ function datos_grupos(valores,tipo,p){
     		}	    		    	
 		}
 	}); 
+}
+function cargar_rtenciones(){		
+	var dataTable = $('#td_retenciones').dataTable();
+    $("#dynamic-table tbody").empty(); 
+    $.ajax({
+        type: "POST",
+        url: "retenciones.php",          
+        dataType: 'json',
+        success: function(response) {   
+        	dataTable.fnClearTable();
+			for(var i = 0; i < response.length; i++) {
+				dataTable.fnAddData([
+					response[i][0],
+					response[i][1],
+					response[i][2],	
+					response[i][3],	
+					response[i][4],	
+					response[i][5],	
+					response[i][6],	
+					response[i][7],	
+					response[i][8],	
+					response[i][9],	
+				]);
+			} // End For
+		},
+		error: function(e){
+			console.log(e.responseText);
+		}              	
+                                
+   	});      
 }
