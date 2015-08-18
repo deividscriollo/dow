@@ -47,7 +47,8 @@ function show() {
 }
 
 function comprobarCamposRequired(form){
-    var correcto=true;
+    
+    var correcto=true;    
     var campos_text=$('#'+form+' input:required');    
     $(campos_text).each(function() {
         var pattern = new RegExp("^" + $(this)[0].pattern + "$");        
@@ -57,7 +58,7 @@ function comprobarCamposRequired(form){
             correcto=false;
             $(this).parent().parent().addClass('has-error');
         }   
-    });
+    });        
     return correcto; 
 }
 

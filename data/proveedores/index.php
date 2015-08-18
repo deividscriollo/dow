@@ -13,33 +13,22 @@
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="../../dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="../../dist/css/font-awesome.min.css" />
-		<!-- Select -->
-		<link rel="stylesheet" href="../../dist/css/chosen.min.css" />
-		<link rel="stylesheet" href="../../dist/css/ui.jqgrid.min.css" />
-
-		<!-- text fonts -->
-		<link rel="stylesheet" href="../../dist/css/fontdc.css" />
-
-		<!-- ace styles -->
-		<link rel="stylesheet" href="../../dist/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
-		<link type="text/css" rel="stylesheet" id="ace-skins-stylesheet" href="../../dist/css/ace-skins.min.css">
-
-		<!-- ace settings handler -->
-		<script src="../../dist/js/ace-extra.min.js"></script>
-
-		//				
 
 		<!-- page specific plugin styles -->
-		<link rel="stylesheet" href="../../dist/css/jquery-ui.custom.min.css" />
-		
+		<link rel="stylesheet" href="../../dist/css/jquery-ui.custom.min.css" />		
+		<link rel="stylesheet" href="../../dist/css/chosen.min.css" />
+		<link rel="stylesheet" href="../../dist/css/ui.jqgrid.min.css" />
 		<link rel="stylesheet" href="../../dist/css/datepicker.min.css" />
 		<link rel="stylesheet" href="../../dist/css/bootstrap-timepicker.min.css" />
 		<link rel="stylesheet" href="../../dist/css/daterangepicker.min.css" />
 		<link rel="stylesheet" href="../../dist/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="../../dist/css/colorpicker.min.css" />				
 
-		<link rel="stylesheet" href="../../dist/css/jquery.gritter.min.css" />
-		<!-- ace styles -->		
+		<!-- text fonts -->
+		<link rel="stylesheet" href="../../dist/css/fontdc.css" />
+
+		<!-- ace styles -->
+		<link rel="stylesheet" href="../../dist/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />												
 
 		<!--[if lte IE 9]>
 			<link rel="stylesheet" href="../../dist/css/ace-part2.min.css" class="ace-main-stylesheet" />
@@ -49,7 +38,12 @@
 		  <link rel="stylesheet" href="../../dist/css/ace-ie.min.css" />
 		<![endif]-->				
 		
-		//
+		<link type="text/css" rel="stylesheet" id="ace-skins-stylesheet" href="../../dist/css/ace-skins.min.css">
+		<link rel="stylesheet" href="../../dist/css/jquery.gritter.min.css" />				
+		
+		<!-- ace settings handler -->
+		<script src="../../dist/js/ace-extra.min.js"></script>
+
 	</head>
 
 	<body class="skin-2">
@@ -189,10 +183,10 @@
 
 																				<div class="form-group">
 																					<label class="col-sm-4 control-label no-padding-right" for="txt_8"> Forma de Pago: </label>
-																					<div class="col-sm-8">
-																						<select class="chosen-select form-control" id="txt_8" name="txt_8" data-placeholder="Forma de Pago">
+																					<div class="col-sm-8">																						
+																						<select class="chosen-select form-control" id="txt_8" name="txt_8" data-placeholder="Seleccione una forma de pago">																						
 																						<option value="Contado">CONTADO</option>
-																						<option value="Credito">CRÉDITO</option>																		
+																						<option value="Credito">CRÉDITO</option>																																								
 																						</select>
 																					</div>
 																				</div>	
@@ -294,6 +288,7 @@
 																					<label class="col-sm-4 control-label no-padding-right" for="txt_20"> Código Retención Fuente : </label>
 																					<div class="col-sm-7">
 																						<select class="chosen-select form-control" id="txt_20" name="txt_20" data-placeholder="Código Retención Fuente">
+																						<option value="">  </option>
 																						</select>
 																					</div>
 																					<div class="btn-group col-sm-1">
@@ -306,6 +301,7 @@
 																					<label class="col-sm-4 control-label no-padding-right" for="txt_21"> Código Retención Iva: </label>
 																					<div class="col-sm-7">
 																						<select class="chosen-select form-control" id="txt_21" name="txt_21" data-placeholder="Código Retención Iva">
+																						<option value="">  </option>
 																						</select>
 																					</div>
 																					<div class="btn-group col-sm-1">
@@ -319,6 +315,7 @@
 																					<label class="col-sm-4 control-label no-padding-right" for="txt_22"> Grupo: </label>
 																					<div class="col-sm-8">
 																						<select class="chosen-select form-control" id="txt_22" name="txt_22" data-placeholder="Grupo Contable">
+																						<option value="">  </option>
 																						</select>	
 																					</div>
 																				</div>
@@ -327,6 +324,7 @@
 																					<label class="col-sm-4 control-label no-padding-right" for="txt_23"> Sustento Tribuario: </label>
 																					<div class="col-sm-8">																						
 																						<select class="chosen-select form-control" id="txt_23" name="txt_23" data-placeholder="Sustento Tributario">
+																						<option value="">  </option>
 																						</select>
 																					</div>
 																				</div>
@@ -335,7 +333,7 @@
 																					<label class="col-sm-4 control-label no-padding-right" for="txt_24"> Tipo Comprobante: </label>
 																					<div class="col-sm-8">
 																						<select class="chosen-select form-control" id="txt_24" name="txt_24" data-placeholder="Tipo Comprobante">
-																							<option>Seleccione....</option>
+																						<option value="">  </option>	
 																						</select>																						
 																					</div>
 																				</div>
@@ -344,6 +342,7 @@
 																					<label class="col-sm-4 control-label no-padding-right" for="txt__25"> Código compras: </label>
 																					<div class="col-sm-7">
 																						<select class="chosen-select form-control" id="txt_25" name="txt_25" data-placeholder="Código compras">																							
+																						<option value="">  </option>
 																						</select>																							
 																					</div>
 																					<div class="btn-group col-sm-1">
@@ -509,6 +508,8 @@
 		<script src="proveedores.js"></script>
 
 		<!-- inline scripts related to this page -->
+		
+	
 	</body>
 </html>  
   

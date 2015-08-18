@@ -8,19 +8,38 @@
 	$sql = "";		
 	$id_user = sesion_activa();	
 	$id = unique($fecha_larga);		
-	
-	if($_POST['tipo'] == "g"){
-		$repetidos = repetidos_1($conexion,"identificacion",strtoupper($_POST["txt_2"]),"proveedor","g","","","tipo_documento","$_POST[txt_1]");	
+	$id_compras = unique($fecha_larga);		
+	$id_ret_fuente = unique($fecha_larga);		
+	$id_ret_iva = unique($fecha_larga);			
+	if($_POST['tipo'] == "g"){		
+		$repetidos = repetidos_1($conexion,"identificacion",strtoupper($_POST["txt_2"]),"proveedor","g","","","tipo_documento",$_POST['txt_1']);	
 		if( $repetidos == 'true'){
 			$data = 1; /// este dato ya existe;
 		}else{					
-			$sql = "insert into proveedor values ('$id','$_POST[txt_1]','$_POST[txt_2]','$_POST[txt_12]','$_POST[txt_18]','$_POST[txt_5]','$_POST[txt_6]','$_POST[txt_11]','$_POST[txt_15]','$_POST[txt_3]','$_POST[txt_4]','$_POST[txt_16]','$_POST[txt_17]','0','$fecha','$_POST[txt_13]','$id_user','$_POST[txt_7]','$_POST[txt_8]')";			
+			$sql = "insert into proveedor values ('$id','".$_POST['txt_1']."','".$_POST['txt_2']."','".$_POST['txt_12']."','".$_POST['txt_14']."','".$_POST['txt_4']."','".$_POST['txt_5']."','".$_POST['txt_11']."','".$_POST['txt_15']."','".$_POST['txt_3']."','".$_POST['txt_13']."','".$_POST['txt_7']."','".$_POST['txt_6']."','".$_POST['txt_8']."','".$_POST['txt_16']."','".$_POST['txt_17']."','".$_POST['txt_18']."','".$_POST['txt_19']."','".$_POST['txt_22']."','".$_POST['txt_23']."','".$_POST['txt_24']."','".$id_user."','".$_POST['txt_26']."','0','$fecha','".$_POST['txt_25']."','".$_POST['txt_20']."','".$_POST['txt_21']."')";						
 			$guardar = guardarSql($conexion,$sql);
 			$sql_nuevo = "select (id_proveedor,tipo_documento,identificacion,nombres_completos,tipo,telefono1,telefono2,ciudad,direccion,empresa,visitador,fax,correo,forma_pago,principal,cupo_credito,serie_comprobante,autorizacion_sri,id,id_sustento,id_comprobante,id_usuario,comentario,estado,fecha_creacion) from proveedor where id_proveedor = '$id'";        
         	$sql_nuevo = sql_array($conexion,$sql_nuevo);
         	auditoria_sistema($conexion,'proveedor',$id_user,'Insert',$id,$fecha_larga,$fecha,$sql_nuevo,'');
 			if( $guardar == 'true'){
 				$data = 0; ////datos guardados
+				/*$sql = "insert into relacion_codigo_compras values ('$id_compras','$id','".$_POST['txt_25']."','0','$fecha')";			
+				$guardar = guardarSql($conexion,$sql);
+				$sql_nuevo = "select (id_relacion_codigo_compras,id_proveedor,id_plan,estado,fecha_creacion) from relacion_codigo_compras where id_relacion_codigo_compras = '$id_compras'";        
+	         	$sql_nuevo = sql_array($conexion,$sql_nuevo);
+	         	auditoria_sistema($conexion,'relacion_codigo_compras',$id_user,'Insert',$id_compras,$fecha_larga,$fecha,$sql_nuevo,'');
+
+	         	$sql = "insert into relacion_retencion_fuente values ('$id_ret_fuente','$id','".$_POST['txt_20']."','0','$fecha')";			
+				$guardar = guardarSql($conexion,$sql);
+				$sql_nuevo = "select (id_relacion_retencion_fuente,id_proveedor,id_retencion,estado,fecha_creacion) from relacion_retencion_fuente where id_relacion_retencion_fuente = '$id_ret_fuente'";        
+	         	$sql_nuevo = sql_array($conexion,$sql_nuevo);
+	         	auditoria_sistema($conexion,'relacion_retencion_fuente',$id_user,'Insert',$id_ret_fuente,$fecha_larga,$fecha,$sql_nuevo,'');
+
+	         	$sql = "insert into relacion_retencion_iva values ('$id_ret_iva','$id','".$_POST['txt_21']."','0','$fecha')";			
+				$guardar = guardarSql($conexion,$sql);
+				$sql_nuevo = "select (id_relacion_retencion_iva,id_proveedor,id_retencion,estado,fecha_creacion) from relacion_retencion_iva where id_relacion_retencion_iva = '$id_ret_iva'";        
+	         	$sql_nuevo = sql_array($conexion,$sql_nuevo);
+	         	auditoria_sistema($conexion,'relacion_retencion_iva',$id_user,'Insert',$id_ret_iva,$fecha_larga,$fecha,$sql_nuevo,'');*/
 			}else{
 				$data = 2; /// error al guardar
 			}			

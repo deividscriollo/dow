@@ -2,11 +2,13 @@ $(document).on("ready",inicio);
 function inicio (){	
 	var boton_click ="";
 	// inicializacion de formato txt_ telefono1
-	$('#txt_5').mask('(999) 999-999');
-	$('#txt_6').mask('(999) 999-9999');
+	$('#txt_4').mask('(999) 999-999');
+	$('#txt_5').mask('(999) 999-9999');
+	$(".chosen-select").chosen({allow_single_deselect: true}); // works
 	/*funcion inicial de la imagen y  buscadores del select no topar plz*/	
 	if(!ace.vars['touch']) {
 		$('.chosen-select').chosen({allow_single_deselect:true}); 
+		 //jQuery(".chosen3").chosen({allow_single_deselect: true, });
 		//resize the chosen on window resize
 
 		$(window)
@@ -297,25 +299,37 @@ function inicio (){
 	    jQuery(grid_selector).jqGrid({	        
 	        datatype: "xml",
 	        url: 'xml_proveedores.php',        
-	        colNames: ['ID','DOCUMENTO','CI','NOMBRES','TIPO PROVEEDOR','TELÉFONO','CELULAR','id_ciudad','CIUDAD','DIRECCIÓN','EMPRESA','VISITADOR','PRINCIPAL','COMENTARIO','FAX','CORREO','FORMA PAGO'],
+	        colNames: ['ID','DOCUMENTO','CI','NOMBRES','TIPO PROVEEDOR','TELÉFONO','CELULAR','id_ciudad','DIRECCIÓN','EMPRESA','VISITADOR','FAX','CORREO','FORMA PAGO','PRINCIPAL','CUPO CRÉDITO','SERIE COMPROBANTE','AUTORIZACIÓN SRI', 'id_grupo','id_sustento','id_comprobante','id_usuario','COMENTARIO','estado','FECHA CREACIÓN','ID_COMPRA','ID_RETENCION_FUENTE','ID_RETENCION_IVA'],
 	        colModel:[      
 	            {name:'txt_0',index:'id_proveedor',frozen:true,align:'left',search:false},
 	            {name:'txt_1',index:'tipo_documento',frozen : true,align:'left',search:true},
-	            {name:'txt_2',index:'identificacion',frozen : true,align:'left',search:true},
+	            {name:'txt_2',index:'identificacion',frozen : true,align:'left',search:true},	            
 	            {name:'txt_12',index:'nombres_completos',frozen : true,align:'left',search:false},
-	            {name:'txt_18',index:'tipo',frozen : true,align:'left',search:false},
-	            {name:'txt_5',index:'telefono1',frozen : true,align:'left',search:false},            
-	            {name:'txt_6',index:'telefono2',frozen : true,align:'left',search:false},
-				{name:'txt_11',index:'id_ciudad',frozen : true,align:'left',search:false},	            
-	            {name:'descripcion',index:'descripcion',frozen : true,align:'left',search:false},
+	            {name:'txt_14',index:'tipo',frozen : true,align:'left',search:false},
+	            {name:'txt_4',index:'telefono1',frozen : true,align:'left',search:false},            
+	            {name:'txt_5',index:'telefono2',frozen : true,align:'left',search:false},
+				{name:'txt_11',index:'id_ciudad',frozen : true,align:'left',search:false},	            	            
 	            {name:'txt_15',index:'direccion',frozen : true,align:'left',search:false},
 	            {name:'txt_3',index:'empresa',frozen : true,align:'left',search:false},
-	            {name:'txt_4',index:'visitador',frozen : true,align:'left',search:false},
+	            {name:'txt_13',index:'visitador',frozen : true,align:'left',search:false},
+	            {name:'txt_7',index:'fax',frozen : true,align:'left',search:false},
+	            {name:'txt_6',index:'correo',frozen : true,align:'left',search:false},
+				{name:'txt_8',index:'forma_pago',frozen : true,align:'left',search:false},	            	            				
 	            {name:'txt_16',index:'proveedor_principal',frozen : true,align:'left',search:false},
-	            {name:'txt_17',index:'comentario',frozen : true,align:'left',search:false},
-	            {name:'txt_13',index:'fax',frozen : true,align:'left',search:false},
-	            {name:'txt_7',index:'correo_proveedor',frozen : true,align:'left',search:false},
-	            {name:'txt_8',index:'forma_pago',frozen : true,align:'left',search:false},	            	            
+
+	            {name:'txt_17',index:'cupo_credito',frozen : true,align:'left',search:false},	            
+	            {name:'txt_18',index:'serie_comprobante',frozen : true,align:'left',search:false},	            
+	            {name:'txt_19',index:'autorizacion_sri',frozen : true,align:'left',search:false},	            
+	            {name:'txt_22',index:'id',frozen : true,align:'left',search:false},	           //id grupo 
+	            {name:'txt_23',index:'id_sustento',frozen : true,align:'left',search:false},	            
+	            {name:'txt_24',index:'id_comprobante',frozen : true,align:'left',search:false},	            
+	            {name:'id_usuario',index:'id_usuario',frozen : true,align:'left',search:false},	            
+	            {name:'txt_26',index:'comentario',frozen : true,align:'left',search:false},	            
+	            {name:'estado',index:'estado',frozen : true,align:'left',search:false},	            
+	            {name:'fecha_creacion',index:'fecha_creacion',frozen : true,align:'left',search:false},	            
+	            {name:'txt_25',index:'id_compra',frozen : true,align:'left',search:false},	            
+	            {name:'txt_20',index:'id_retencion_fuente',frozen : true,align:'left',search:false},	            
+	            {name:'txt_21',index:'id_retencion_iva',frozen : true,align:'left',search:false},	            
 
 	        ],          
 	        rowNum: 10,       
@@ -344,7 +358,7 @@ function inicio (){
 	        ondblClickRow: function(rowid) {     	            	            
 	            var gsr = jQuery(grid_selector).jqGrid('getGridParam','selrow');                                              
             	var ret = jQuery(grid_selector).jqGrid('getRowData',gsr);       	            
-            	console.log(ret)
+            	//console.log(ret)
 	            $("#txt_0").val(ret.txt_0);
 	            $("#txt_1").val(ret.txt_1);
 	            $("#txt_1").trigger("chosen:updated");  
@@ -511,7 +525,7 @@ function inicio (){
 	        }
 	    },
 	    {
-	          recreateForm: true,
+	         recreateForm: true,
 	        afterShowSearch: function(e){
 	            var form = $(e[0]);
 	            form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
@@ -1342,8 +1356,8 @@ function inicio (){
         dataType: 'json',        
         url: "../carga_ubicaciones.php?tipo=0&fun=36",        
         success: function(response) {         			        	
-        	$("#txt_23").html("");
-        	$("#txt_23").append("<option>Seleccione un Sustento Tributario</option>");
+        	$("#txt_23").empty(); 
+        	$("#txt_23").append("<option value=''>  </option>");				       	
             for (var i = 0; i < response.length; i=i+3) {            				            	            	
 				$("#txt_23").append("<option value ="+response[i]+">"+response[i+1]+" "+response[i+2]+"</option>");				
             }   
@@ -1356,7 +1370,8 @@ function inicio (){
 	        dataType: 'json',        
 	        url: "../carga_ubicaciones.php?tipo=0&fun=37&id="+$("#txt_23").val(),        
 	        success: function(response) {         			        	
-	        	$("#txt_24").html("");	        	
+	        	$("#txt_24").empty();	        	
+	        	$("#txt_24").append("<option value=''>  </option>");				
 	            for (var i = 0; i < response.length; i=i+3) {            				            	            	
 					$("#txt_24").append("<option value ="+response[i]+">"+response[i+1]+" "+response[i+2]+"</option>");				
 	            }   
@@ -1369,8 +1384,8 @@ function inicio (){
         dataType: 'json',        
         url: "../carga_ubicaciones.php?tipo=0&fun=38",        
         success: function(response) {         			        	
-        	$("#txt_22").html("");  
-        	$("#txt_22").append("<option>Seleccione un Grupo Contable</option>");      	
+        	$("#txt_22").empty();  
+        	$("#txt_22").append("<option value=''>  </option>");				
             for (var i = 0; i < response.length; i=i+3) {            				            	            	
 				$("#txt_22").append("<option value ="+response[i]+">"+response[i+2]+"</option>");				
             }   
@@ -1422,7 +1437,7 @@ function datos_proveedor(valores,tipo,p){
 	    			$("#txt_2").focus();	    			
 	    		}else{
 	    			alert("Error al momento de enviar los datos la página se recargara");	    			
-	    			actualizar_form();
+	    			//actualizar_form();
 	    		}
 	    	}
 		}
@@ -1444,9 +1459,9 @@ function plan_cuentas(){
         type: "POST",
         dataType: 'json',        
         url: "../carga_ubicaciones.php?tipo=0&fun=39",        
-        success: function(response) {         			        	
-        	$("#txt_25").html("");  
-        	$("#txt_25").append("<option>Seleccione una cuenta</option>");      	
+        success: function(response) {         		        	        	
+        	$("#txt_25").empty();          	
+        	$("#txt_25").append("<option value=''>  </option>");				
             for (var i = 0; i < response.length; i=i+3) {            				            	            	
 				$("#txt_25").append("<option value ="+response[i]+">"+response[i+1]+" "+response[i+2]+"</option>");				
             }   
@@ -1460,10 +1475,10 @@ function codigos_retencion(){
         dataType: 'json',        
         url: "../carga_ubicaciones.php?tipo=0&fun=40",        
         success: function(response) {         			        	
-        	$("#txt_20").html("");  
-        	$("#txt_21").html("");  
-        	$("#txt_20").append("<option>Seleccione una cuenta</option>");      	
-        	$("#txt_21").append("<option>Seleccione una cuenta</option>");      	
+        	$("#txt_20").empty();
+        	$("#txt_21").empty();
+        	$("#txt_20").append("<option value=''>  </option>");				
+        	$("#txt_21").append("<option value=''>  </option>");				
             for (var i = 0; i < response.length; i=i+3) {            				            	            	
 				$("#txt_20").append("<option value ="+response[i]+">"+response[i+1]+" "+response[i+2]+"</option>");				
 				$("#txt_21").append("<option value ="+response[i]+">"+response[i+1]+" "+response[i+2]+"</option>");				
