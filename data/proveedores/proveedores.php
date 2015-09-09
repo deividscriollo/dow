@@ -18,28 +18,11 @@
 		}else{					
 			$sql = "insert into proveedor values ('$id','".$_POST['txt_1']."','".$_POST['txt_2']."','".$_POST['txt_12']."','".$_POST['txt_14']."','".$_POST['txt_4']."','".$_POST['txt_5']."','".$_POST['txt_11']."','".$_POST['txt_15']."','".$_POST['txt_3']."','".$_POST['txt_13']."','".$_POST['txt_7']."','".$_POST['txt_6']."','".$_POST['txt_8']."','".$_POST['txt_16']."','".$_POST['txt_17']."','".$_POST['txt_18']."','".$_POST['txt_19']."','".$_POST['txt_22']."','".$_POST['txt_23']."','".$_POST['txt_24']."','".$id_user."','".$_POST['txt_26']."','0','$fecha','".$_POST['txt_25']."','".$_POST['txt_20']."','".$_POST['txt_21']."')";						
 			$guardar = guardarSql($conexion,$sql);
-			$sql_nuevo = "select (id_proveedor,tipo_documento,identificacion,nombres_completos,tipo,telefono1,telefono2,ciudad,direccion,empresa,visitador,fax,correo,forma_pago,principal,cupo_credito,serie_comprobante,autorizacion_sri,id,id_sustento,id_comprobante,id_usuario,comentario,estado,fecha_creacion) from proveedor where id_proveedor = '$id'";        
+			$sql_nuevo = "select (id_proveedor,tipo_documento,identificacion,nombres_completos,tipo,telefono1,telefono2,ciudad,direccion,empresa,visitador,fax,correo,forma_pago,principal,cupo_credito,serie_comprobante,autorizacion_sri,id,id_sustento,id_comprobante,id_usuario,comentario,estado,fecha_creacion,id_compras,id_ret_fuente,id_ret_iva) from proveedor where id_proveedor = '$id'";        
         	$sql_nuevo = sql_array($conexion,$sql_nuevo);
         	auditoria_sistema($conexion,'proveedor',$id_user,'Insert',$id,$fecha_larga,$fecha,$sql_nuevo,'');
 			if( $guardar == 'true'){
-				$data = 0; ////datos guardados
-				/*$sql = "insert into relacion_codigo_compras values ('$id_compras','$id','".$_POST['txt_25']."','0','$fecha')";			
-				$guardar = guardarSql($conexion,$sql);
-				$sql_nuevo = "select (id_relacion_codigo_compras,id_proveedor,id_plan,estado,fecha_creacion) from relacion_codigo_compras where id_relacion_codigo_compras = '$id_compras'";        
-	         	$sql_nuevo = sql_array($conexion,$sql_nuevo);
-	         	auditoria_sistema($conexion,'relacion_codigo_compras',$id_user,'Insert',$id_compras,$fecha_larga,$fecha,$sql_nuevo,'');
-
-	         	$sql = "insert into relacion_retencion_fuente values ('$id_ret_fuente','$id','".$_POST['txt_20']."','0','$fecha')";			
-				$guardar = guardarSql($conexion,$sql);
-				$sql_nuevo = "select (id_relacion_retencion_fuente,id_proveedor,id_retencion,estado,fecha_creacion) from relacion_retencion_fuente where id_relacion_retencion_fuente = '$id_ret_fuente'";        
-	         	$sql_nuevo = sql_array($conexion,$sql_nuevo);
-	         	auditoria_sistema($conexion,'relacion_retencion_fuente',$id_user,'Insert',$id_ret_fuente,$fecha_larga,$fecha,$sql_nuevo,'');
-
-	         	$sql = "insert into relacion_retencion_iva values ('$id_ret_iva','$id','".$_POST['txt_21']."','0','$fecha')";			
-				$guardar = guardarSql($conexion,$sql);
-				$sql_nuevo = "select (id_relacion_retencion_iva,id_proveedor,id_retencion,estado,fecha_creacion) from relacion_retencion_iva where id_relacion_retencion_iva = '$id_ret_iva'";        
-	         	$sql_nuevo = sql_array($conexion,$sql_nuevo);
-	         	auditoria_sistema($conexion,'relacion_retencion_iva',$id_user,'Insert',$id_ret_iva,$fecha_larga,$fecha,$sql_nuevo,'');*/
+				$data = 0; ////datos guardados				
 			}else{
 				$data = 2; /// error al guardar
 			}			
@@ -50,11 +33,11 @@
 			if( $repetidos == 'true'){
 				$data = 1; /// este dato ya existe;
 			}else{						
-				$sql = "update proveedor set tipo_documento='$_POST[txt_1]',identificacion='$_POST[txt_2]',nombres_completos='$_POST[txt_12]',tipo='$_POST[txt_18]',telefono1='$_POST[txt_5]',telefono2='$_POST[txt_6]',ciudad='$_POST[txt_11]',direccion='$_POST[txt_15]',empresa='$_POST[txt_3]',visitador='$_POST[txt_4]',proveedor_principal='$_POST[txt_16]',comentario='$_POST[txt_17]',fax='$_POST[txt_13]','$id_user',correo='$_POST[txt_7]',forma_pago='$_POST[txt_8]' where id_proveedor='$_POST[txt_0]'";							
-				$sql_anterior = "select (id_proveedor,tipo_documento,identificacion,nombres_completos,tipo,telefono1,telefono2,ciudad,direccion,empresa,visitador,fax,correo,forma_pago,principal,cupo_credito,serie_comprobante,autorizacion_sri,id,id_sustento,id_comprobante,id_usuario,comentario,estado,fecha_creacion) from proveedor where id_proveedor = '$_POST[txt_0]'";        
+				$sql = "update proveedor set tipo_documento='".$_POST['txt_1']."',identificacion='".$_POST['txt_2']."',nombres_completos='".$_POST['txt_12']."',tipo='".$_POST['txt_14']."',telefono1='".$_POST['txt_4']."',telefono2='".$_POST['txt_5']."',ciudad='".$_POST['txt_11']."',direccion='".$_POST['txt_15']."',empresa='".$_POST['txt_3']."',visitador='".$_POST['txt_13']."',fax='".$_POST['txt_7']."',correo='".$_POST['txt_6']."',forma_pago='".$_POST['txt_8']."',principal='".$_POST['txt_16']."',cupo_credito='".$_POST['txt_17']."',serie_comprobante='".$_POST['txt_18']."',autorizacion_sri='".$_POST['txt_19']."',id='".$_POST['txt_22']."',id_sustento='".$_POST['txt_23']."',id_comprobante='".$_POST['txt_24']."',id_usuario='".$id_user."',comentario='".$_POST['txt_26']."',estado='0',id_compras='".$_POST['txt_25']."',id_ret_fuente='".$_POST['txt_20']."',id_ret_iva='".$_POST['txt_21']."' where id_proveedor='".$_POST['txt_0']."'";							
+				$sql_anterior = "select (id_proveedor,tipo_documento,identificacion,nombres_completos,tipo,telefono1,telefono2,ciudad,direccion,empresa,visitador,fax,correo,forma_pago,principal,cupo_credito,serie_comprobante,autorizacion_sri,id,id_sustento,id_comprobante,id_usuario,comentario,estado,fecha_creacion,id_compras,id_ret_fuente,id_ret_iva) from proveedor where id_proveedor = '$_POST[txt_0]'";        
         		$sql_anterior = sql_array($conexion,$sql_anterior);
 				$guardar = guardarSql($conexion,$sql);
-				$sql_nuevo = "select (id_proveedor,tipo_documento,identificacion,nombres_completos,tipo,telefono1,telefono2,ciudad,direccion,empresa,visitador,fax,correo,forma_pago,principal,cupo_credito,serie_comprobante,autorizacion_sri,id,id_sustento,id_comprobante,id_usuario,comentario,estado,fecha_creacion) from proveedor where id_proveedor = '$_POST[txt_0]'";        
+				$sql_nuevo = "select (id_proveedor,tipo_documento,identificacion,nombres_completos,tipo,telefono1,telefono2,ciudad,direccion,empresa,visitador,fax,correo,forma_pago,principal,cupo_credito,serie_comprobante,autorizacion_sri,id,id_sustento,id_comprobante,id_usuario,comentario,estado,fecha_creacion,id_compras,id_ret_fuente,id_ret_iva) from proveedor where id_proveedor = '$_POST[txt_0]'";        
             	$sql_nuevo = sql_array($conexion,$sql_nuevo);            
             	auditoria_sistema($conexion,'proveedor',$id_user,'Update',$_POST['txt_0'],$fecha_larga,$fecha,$sql_nuevo,$sql_anterior);
 				if( $guardar == 'true'){

@@ -69,27 +69,60 @@ function inicio (){
 	$("#btn_2").on("click",actualizar_form);
 	$("#btn_4").on("click",function (){		
 		var resp = "";		
-		resp =atras($("#txt_0").val(),"proveedores","secuencia.php");		
+		resp =atras($("#txt_0").val(),"proveedores","secuencia.php");
 		if(resp[0] != false){			
 			$("#txt_0").val(resp[0][0]);
 			$("#txt_1").val(resp[0][1]);
 			$("#txt_1").trigger("chosen:updated"); 	
 			$("#txt_2").val(resp[0][2]);
 			$("#txt_12").val(resp[0][3]);
-			$("#txt_18").val(resp[0][4]);		
-			$("#txt_18").trigger("chosen:updated"); 			
-			$("#txt_5").val(resp[0][5]);		
-			$("#txt_6").val(resp[0][6]);								
+			$("#txt_14").val(resp[0][4]);		
+			$("#txt_14").trigger("chosen:updated"); 			
+			$("#txt_4").val(resp[0][5]);		
+			$("#txt_5").val(resp[0][6]);
+
+			$("#txt_15").val(resp[0][8]);		
 			$("#txt_3").val(resp[0][9]);		
-			$("#txt_4").val(resp[0][10]);		
-			$("#txt_16").val(resp[0][11]);		
+			$("#txt_13").val(resp[0][10]);		
+			$("#txt_7").val(resp[0][11]);		
+			$("#txt_6").val(resp[0][12]);		
+			$("#txt_8").val(resp[0][13]);		
+			$("#txt_8").trigger("chosen:updated"); 
+			$("#txt_16").val(resp[0][14]);		
 			$("#txt_16").trigger("chosen:updated"); 
-			$("#txt_17").val(resp[0][12]);		
-			$("#txt_13").val(resp[0][13]);		
-			$("#txt_7").val(resp[0][14]);		
-			$("#txt_8").val(resp[0][15]);		
-		    $("#txt_8").trigger("chosen:updated"); 
-		    $("#txt_15").val(resp[0][16]);		
+			$("#txt_17").val(resp[0][15]);		
+			$("#txt_18").val(resp[0][16]);		
+			$("#txt_19").val(resp[0][17]);		
+		    $("#txt_22").val(resp[0][18]);		
+			$("#txt_22").trigger("chosen:updated"); 
+			$("#txt_23").val(resp[0][19]);		
+			$("#txt_23").trigger("chosen:updated"); 
+			$.ajax({        
+		        type: "POST",
+		        dataType: 'json',        
+		        url: "../carga_ubicaciones.php?tipo=0&fun=37&id="+$("#txt_23").val(),        
+		        success: function(response) {         			        	
+		        	$("#txt_24").empty();	        	
+		        	$("#txt_24").append("<option value=''>  </option>");				
+		            for (var i = 0; i < response.length; i=i+3) {       
+		            	if(response[i] == resp[0][20]){
+							$("#txt_24").append("<option value ="+response[i]+" selected>"+response[i+1]+" "+response[i+2]+"</option>");				
+		            	}
+						else{
+							$("#txt_24").append("<option value ="+response[i]+">"+response[i+1]+" "+response[i+2]+"</option>");				
+						}     				            	            	
+						
+		            }   
+		            $("#txt_24").trigger("chosen:updated");                                          
+		        }
+	    	}); 
+		    $("#txt_26").val(resp[0][22]);		
+		    $("#txt_25").val(resp[0][25]);		
+			$("#txt_25").trigger("chosen:updated"); 
+			$("#txt_20").val(resp[0][26]);		
+			$("#txt_20").trigger("chosen:updated"); 
+			$("#txt_21").val(resp[0][27]);		
+			$("#txt_21").trigger("chosen:updated"); 
 		    documentos("1");
 		    /**/
 	        var prov = 0;
@@ -173,28 +206,60 @@ function inicio (){
 	$("#btn_5").on("click",function (){		
 		var resp = "";		
 		resp =adelante($("#txt_0").val(),"proveedores","secuencia.php");		
-		if(resp[0] != false){
+		if(resp[0] != false){			
 			$("#txt_0").val(resp[0][0]);
 			$("#txt_1").val(resp[0][1]);
-			$("#txt_1").trigger("chosen:updated");
+			$("#txt_1").trigger("chosen:updated"); 	
 			$("#txt_2").val(resp[0][2]);
 			$("#txt_12").val(resp[0][3]);
-			$("#txt_18").val(resp[0][4]);		
-			$("#txt_18").trigger("chosen:updated"); 			
-			$("#txt_5").val(resp[0][5]);		
-			$("#txt_6").val(resp[0][6]);								
+			$("#txt_14").val(resp[0][4]);		
+			$("#txt_14").trigger("chosen:updated"); 			
+			$("#txt_4").val(resp[0][5]);		
+			$("#txt_5").val(resp[0][6]);
+
+			$("#txt_15").val(resp[0][8]);		
 			$("#txt_3").val(resp[0][9]);		
-			$("#txt_4").val(resp[0][10]);		
-			$("#txt_16").val(resp[0][11]);		
+			$("#txt_13").val(resp[0][10]);		
+			$("#txt_7").val(resp[0][11]);		
+			$("#txt_6").val(resp[0][12]);		
+			$("#txt_8").val(resp[0][13]);		
+			$("#txt_8").trigger("chosen:updated"); 
+			$("#txt_16").val(resp[0][14]);		
 			$("#txt_16").trigger("chosen:updated"); 
-			$("#txt_17").val(resp[0][12]);		
-			$("#txt_13").val(resp[0][13]);		
-			$("#txt_7").val(resp[0][14]);		
-			$("#txt_8").val(resp[0][15]);		
-		    $("#txt_8").trigger("chosen:updated"); 
-		    $("#txt_15").val(resp[0][16]);		
+			$("#txt_17").val(resp[0][15]);		
+			$("#txt_18").val(resp[0][16]);		
+			$("#txt_19").val(resp[0][17]);		
+		    $("#txt_22").val(resp[0][18]);		
+			$("#txt_22").trigger("chosen:updated"); 
+			$("#txt_23").val(resp[0][19]);		
+			$("#txt_23").trigger("chosen:updated"); 
+			$.ajax({        
+		        type: "POST",
+		        dataType: 'json',        
+		        url: "../carga_ubicaciones.php?tipo=0&fun=37&id="+$("#txt_23").val(),        
+		        success: function(response) {         			        	
+		        	$("#txt_24").empty();	        	
+		        	$("#txt_24").append("<option value=''>  </option>");				
+		            for (var i = 0; i < response.length; i=i+3) {       
+		            	if(response[i] == resp[0][20]){
+							$("#txt_24").append("<option value ="+response[i]+" selected>"+response[i+1]+" "+response[i+2]+"</option>");				
+		            	}
+						else{
+							$("#txt_24").append("<option value ="+response[i]+">"+response[i+1]+" "+response[i+2]+"</option>");				
+						}     				            	            	
+						
+		            }   
+		            $("#txt_24").trigger("chosen:updated");                                          
+		        }
+	    	}); 
+		    $("#txt_26").val(resp[0][22]);		
+		    $("#txt_25").val(resp[0][25]);		
+			$("#txt_25").trigger("chosen:updated"); 
+			$("#txt_20").val(resp[0][26]);		
+			$("#txt_20").trigger("chosen:updated"); 
+			$("#txt_21").val(resp[0][27]);		
+			$("#txt_21").trigger("chosen:updated"); 
 		    documentos("1");
-		    
 		    /**/
 	        var prov = 0;
 	        var pais = 0;
@@ -328,8 +393,8 @@ function inicio (){
 	            {name:'estado',index:'estado',frozen : true,align:'left',search:false},	            
 	            {name:'fecha_creacion',index:'fecha_creacion',frozen : true,align:'left',search:false},	            
 	            {name:'txt_25',index:'id_compra',frozen : true,align:'left',search:false},	            
-	            {name:'txt_20',index:'id_retencion_fuente',frozen : true,align:'left',search:false},	            
-	            {name:'txt_21',index:'id_retencion_iva',frozen : true,align:'left',search:false},	            
+	            {name:'txt_20',index:'id_ret_fuente',frozen : true,align:'left',search:false},	            
+	            {name:'txt_21',index:'id_ret_iva',frozen : true,align:'left',search:false},	            
 
 	        ],          
 	        rowNum: 10,       
@@ -369,15 +434,50 @@ function inicio (){
 	            $("#txt_6").val(ret.txt_6);
 	            $("#txt_7").val(ret.txt_7);
 	            $("#txt_8").val(ret.txt_8);	            
+	            $("#txt_8").trigger("chosen:updated");          	            	            	            
+
 	            $("#txt_12").val(ret.txt_12);
 	            $("#txt_13").val(ret.txt_13);	            	            
+				$("#txt_14").val(ret.txt_14);	            
+	            $("#txt_14").trigger("chosen:updated");          	            	            	            	            
 	            $("#txt_15").val(ret.txt_15);	            	            
 	            $("#txt_16").val(ret.txt_16);	            	            
-	            $("#txt_17").val(ret.txt_17);	            	            
-	            $("#txt_18").val(ret.txt_18);	   
 	            $("#txt_16").trigger("chosen:updated");          	            	            	            
-	            $("#txt_8").trigger("chosen:updated");          	            	            	            
-	            $("#txt_18").trigger("chosen:updated");          	            	            	            
+	            $("#txt_17").val(ret.txt_17);	            	            
+	            $("#txt_18").val(ret.txt_18);	            	            
+	            $("#txt_19").val(ret.txt_19);	
+	            $("#txt_22").val(ret.txt_22);	            	            
+	            $("#txt_22").trigger("chosen:updated");          	            	            	            
+	            $("#txt_23").val(ret.txt_23);	            	            
+	            $("#txt_23").trigger("chosen:updated");      
+	            //
+	            $.ajax({        
+			        type: "POST",
+			        dataType: 'json',        
+			        url: "../carga_ubicaciones.php?tipo=0&fun=37&id="+ret.txt_23,        
+			        success: function(response) {         			        	
+			        	$("#txt_24").empty();	        	
+			        	$("#txt_24").append("<option value=''>  </option>");				
+			            for (var i = 0; i < response.length; i=i+3) {       
+			            	if(response[i] == ret.txt_24){
+								$("#txt_24").append("<option value ="+response[i]+" selected>"+response[i+1]+" "+response[i+2]+"</option>");				
+			            	}
+							else{
+								$("#txt_24").append("<option value ="+response[i]+">"+response[i+1]+" "+response[i+2]+"</option>");				
+							}     				            	            	
+							
+			            }   
+			            $("#txt_24").trigger("chosen:updated");                                          
+			        }
+		    	}); 
+	            //
+	            $("#txt_26").val(ret.txt_26);	            	                	            	            	            
+	            $("#txt_25").val(ret.txt_25);	            	            
+	            $("#txt_25").trigger("chosen:updated");      
+	            $("#txt_20").val(ret.txt_20);	            	            
+	            $("#txt_20").trigger("chosen:updated");      
+	            $("#txt_21").val(ret.txt_21);	            	            
+	            $("#txt_21").trigger("chosen:updated");      
 	            documentos("1");
 	            /**/
 	            var prov = 0;
@@ -461,6 +561,14 @@ function inicio (){
 	    });
 		jQuery(grid_selector).jqGrid('hideCol', "txt_0");
 		jQuery(grid_selector).jqGrid('hideCol', "txt_11");		
+		jQuery(grid_selector).jqGrid('hideCol', "txt_25");		
+		jQuery(grid_selector).jqGrid('hideCol', "txt_20");		
+		jQuery(grid_selector).jqGrid('hideCol', "txt_21");		
+		jQuery(grid_selector).jqGrid('hideCol', "estado");	
+		jQuery(grid_selector).jqGrid('hideCol', "txt_22");	
+		jQuery(grid_selector).jqGrid('hideCol', "txt_23");	
+		jQuery(grid_selector).jqGrid('hideCol', "txt_24");		
+		jQuery(grid_selector).jqGrid('hideCol', "id_usuario");		
 
 	    $(window).triggerHandler('resize.jqGrid');//cambiar el tamaño para hacer la rejilla conseguir el tamaño correcto
 
