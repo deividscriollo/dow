@@ -25,18 +25,19 @@ $start = $limit * $page - $limit;
 if ($start < 0)
     $start = 0;
 if ($search == 'false') {
-    $SQL = "select id_proveedor,tipo_documento,identificacion,nombres_completos,tipo,telefono1,telefono2,ciudad,direccion,empresa,visitador,fax,correo,forma_pago,principal,cupo_credito,serie_comprobante,autorizacion_sri,id,id_sustento,id_comprobante,id_usuario,comentario,estado,fecha_creacion,id_compra,id_retencion_fuente,id_retencion_iva from proveedor ORDER BY  $sidx $sord offset $start limit $limit";
+    $SQL = "select id_proveedor,tipo_documento,identificacion,nombres_completos,tipo,telefono1,telefono2,ciudad,direccion,empresa,visitador,fax,correo,forma_pago,principal,cupo_credito,serie_comprobante,autorizacion_sri,id,id_sustento,id_comprobante,id_usuario,comentario,estado,fecha_creacion,id_compras,id_ret_fuente,id_ret_iva from proveedor ORDER BY  $sidx $sord offset $start limit $limit";
 } else {
     $campo = $_GET['searchField'];
   
     if ($_GET['searchOper'] == 'eq') {
-        $SQL = "select id_proveedor,tipo_documento,identificacion,nombres_completos,tipo,telefono1,telefono2,ciudad,direccion,empresa,visitador,fax,correo,forma_pago,principal,cupo_credito,serie_comprobante,autorizacion_sri,id,id_sustento,id_comprobante,id_usuario,comentario,estado,fecha_creacion,id_compra,id_retencion_fuente,id_retencion_iva from proveedor and $campo = '$_GET[searchString]' ORDER BY $sidx $sord offset $start limit $limit";
+        $SQL = "select id_proveedor,tipo_documento,identificacion,nombres_completos,tipo,telefono1,telefono2,ciudad,direccion,empresa,visitador,fax,correo,forma_pago,principal,cupo_credito,serie_comprobante,autorizacion_sri,id,id_sustento,id_comprobante,id_usuario,comentario,estado,fecha_creacion,id_compras,id_ret_fuente,id_ret_iva from proveedor and $campo = '$_GET[searchString]' ORDER BY $sidx $sord offset $start limit $limit";
     }         
     if ($_GET['searchOper'] == 'cn') {
-        $SQL = "select id_proveedor,tipo_documento,identificacion,nombres_completos,tipo,telefono1,telefono2,ciudad,direccion,empresa,visitador,fax,correo,forma_pago,principal,cupo_credito,serie_comprobante,autorizacion_sri,id,id_sustento,id_comprobante,id_usuario,comentario,estado,fecha_creacion,id_compra,id_retencion_fuente,id_retencion_iva from proveedor and $campo like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
+        $SQL = "select id_proveedor,tipo_documento,identificacion,nombres_completos,tipo,telefono1,telefono2,ciudad,direccion,empresa,visitador,fax,correo,forma_pago,principal,cupo_credito,serie_comprobante,autorizacion_sri,id,id_sustento,id_comprobante,id_usuario,comentario,estado,fecha_creacion,id_compras,id_ret_fuente,id_ret_iva from proveedor and $campo like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
     }
   
 }
+
 $result = pg_query($SQL);
 header("Content-type: text/xml;charset=utf-8");
 $s = "<?xml version='1.0' encoding='utf-8'?>";

@@ -136,7 +136,20 @@ function limpiar_form(e){
                 if(form == "form_proveedores"){
                     $("#btn_0").text("");
                     $("#btn_0").append("<span class='glyphicon glyphicon-log-in'></span> Guardar");
-                    $("#table").trigger('reloadGrid');     
+                    $("#table").trigger('reloadGrid');
+                    $("#txt_20").val('')
+                    $("#txt_20").trigger('chosen:updated');
+                    $("#txt_21").val('')
+                    $("#txt_21").trigger('chosen:updated');
+                    $("#txt_22").val('')
+                    $("#txt_22").trigger('chosen:updated');
+                    $("#txt_23").val('')
+                    $("#txt_23").trigger('chosen:updated');
+                    $("#txt_24").val('')
+                    $("#txt_24").trigger('chosen:updated');
+                    $("#txt_25").val('')
+                    $("#txt_25").trigger('chosen:updated');
+
                 }else{
                     if(form == "form_productos"){
                         $("#btn_0").text("");
