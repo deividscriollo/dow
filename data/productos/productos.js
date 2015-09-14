@@ -144,7 +144,7 @@ function inicio (){
 	    jQuery(grid_selector).jqGrid({	        
 	        datatype: "xml",
 	        url: 'xml_producto.php',        
-	        colNames: ['id_producto','CÓDIGO','CÓDIGO BARRAS','NOMBRE PRODUCTO','PRECIO','UTILIDAD MINORISTA','UTILIDAD MAYORISTA','PRECIO MINORISTA','PRECIO MAYORISTA','id_tipo','TIPO PRODUCTO','STOCK','id_bodega','BODEGA','id_unidad','TIPO UNIDAD','facturar_existencia','CANTIDAD','CANTDAD MÍNIMA','CANTIDAD MÁXIMA','iva_producto','id_series_venta','id_lotes','estado','COMENTARIOS','imagen','id_marca','id_categoria'],
+	        colNames: ['id_producto','CÓDIGO','CÓDIGO BARRAS','NOMBRE PRODUCTO','PRECIO','UTILIDAD MINORISTA','UTILIDAD MAYORISTA','PRECIO MINORISTA','PRECIO MAYORISTA','id_tipo','STOCK','id_categoria','id_marca','id_bodega','id_unidad','CANTIDAD','FACTURAR EXITENCIA','CANITDAD MINIMA','CANTIDAD MAXIMA','id_series_venta','EXPIRACION','COMENTARIO','IMAGEN','ESTADO','CREACIÓN','id_porcentaje_iva','id_usuario','INCLUYE IVA','DESCUENTO'],
 	        colModel:[      
 	            {name:'txt_0',index:'txt_0',frozen:true,align:'left',search:false},
 	            {name:'txt_1',index:'codigo',frozen : true,align:'left',search:true},
@@ -155,25 +155,26 @@ function inicio (){
 	            {name:'txt_10',index:'utilidad_mayorista',frozen : true,align:'left',search:false},
 	            {name:'txt_4',index:'precio_minorista',frozen : true,align:'left',search:false},
 	            {name:'txt_11',index:'precio_mayorista',frozen : true,align:'left',search:false},
-	            {name:'txt_5',index:'id_tipo',frozen : true,align:'left',search:false},
-	            {name:'id_tipo',index:'tipo_producto.descripcion',frozen : true,align:'left',search:false},
+	            {name:'txt_5',index:'id_tipo',frozen : true,align:'left',search:false},	            
 	            {name:'txt_12',index:'stock',frozen : true,align:'left',search:false},
+	            {name:'txt_6',index:'id_categoria',frozen : true,align:'left',search:false},	            
+	            {name:'txt_13',index:'id_marca',frozen : true,align:'left',search:false},
 	            {name:'txt_7',index:'id_bodega',frozen : true,align:'left',search:false},
-	            {name:'id_bodega',index:'nombre_bodega',frozen : true,align:'left',search:false},
 	            {name:'txt_14',index:'id_unidad',frozen : true,align:'left',search:false},
-	            {name:'nombre_unidad',index:'unidades_medida.descripcion',frozen : true,align:'left',search:false},
-	            {name:'sin_existencia',index:'facturar_existencia',frozen : true,align:'left',search:false},
 	            {name:'txt_15',index:'cantidad',frozen : true,align:'left',search:false},
+	            {name:'sin_existencia',index:'facturar_existencia',frozen : true,align:'left',search:false},	            
 	            {name:'txt_16',index:'cantidad_minima',frozen : true,align:'left',search:false},
 	            {name:'txt_17',index:'cantidad_maxima',frozen : true,align:'left',search:false},
-	            {name:'iva_producto',index:'iva_producto',frozen : true,align:'left',search:false},
 	            {name:'producto_series',index:'id_series_venta',frozen : true,align:'left',search:false},
-	            {name:'expiracion_producto',index:'id_lotes',frozen : true,align:'left',search:false},
+	            {name:'expiracion_producto',index:'expiracion',frozen : true,align:'left',search:false},	            
+	            {name:'txt_18',index:'comentario',frozen : true,align:'left',search:false},	            
+	            {name:'avatar',index:'imagen',frozen : true,align:'left',search:false},	            
 	            {name:'producto_activo',index:'estado',frozen : true,align:'left',search:false},
-	            {name:'txt_18',index:'comentario',frozen : true,align:'left',search:false},
-	            {name:'imagen',index:'imagen',frozen : true,align:'left',search:false},
-	            {name:'txt_13',index:'id_marca',frozen : true,align:'left',search:false},
-	            {name:'txt_6',index:'id_categoria',frozen : true,align:'left',search:false},	            	            
+	            {name:'fecha_creacion',index:'fecha_creacion',frozen : true,align:'left',search:false},
+	            {name:'iva_producto',index:'id_porcentaje_iva',frozen : true,align:'left',search:false},	            	            
+	            {name:'id_usuario',index:'id_usuario',frozen : true,align:'left',search:false},	            	            
+	            {name:'incluye_iva',index:'incluye_iva',frozen : true,align:'left',search:false},	            	            
+	            {name:'descuento',index:'descuento',frozen : true,align:'left',search:false},	            	            
 
 	        ],          
 	        rowNum: 10,       
@@ -201,57 +202,62 @@ function inicio (){
 	        },
 	        ondblClickRow: function(rowid) {     	            	            
 	            var gsr = jQuery(grid_selector).jqGrid('getGridParam','selrow');                                              
-            	var ret = jQuery(grid_selector).jqGrid('getRowData',gsr);       	            	                       
-	            $("#txt_0").val(ret.txt_0);
-				$("#txt_1").val(ret.txt_1);
-				$("#txt_8").val(ret.txt_8);
-				$("#txt_2").val(ret.txt_2);
-				$("#txt_9").val(ret.txt_9);		
-				$("#txt_3").val(ret.txt_3);
-				$("#txt_10").val(ret.txt_10);
-				$("#txt_4").val(ret.txt_4);		
-				$("#txt_11").val(ret.txt_11);
-				$("#txt_5").val(ret.txt_5);
-				$("#txt_5").trigger("chosen:updated");
-			    $("#txt_12").val(ret.txt_12);
-			    $("#txt_7").val(ret.txt_7);		    
-			    $("#txt_7").trigger("chosen:updated");
-			    $("#txt_14").val(ret.txt_14);		    
-			    $("#txt_14").trigger("chosen:updated");
-			    if(ret.sin_existencia == "on"){
-			    	$("#sin_existencia").prop("checked",true);
-			    }else{
-			    	$("#sin_existencia").prop("checked",false);
-			    }
-			    $("#txt_15").val(ret.txt_15);		    
-			    $("#txt_16").val(ret.txt_16);		    
-			    $("#txt_17").val(ret.txt_17);		    
-			    if(ret.iva_producto == "on"){
-			    	$("#iva_producto").prop("checked",true);
-			    }else{
-			    	$("#iva_producto").prop("checked",false);
-			    }
-			    if(ret.producto_series == "on"){
-			    	$("#producto_series").prop("checked",true);
-			    }else{
-			    	$("#producto_series").prop("checked",false);
-			    }
-			    if(ret.expiracion_producto == "on"){
+            	var ret = jQuery(grid_selector).jqGrid('getRowData',gsr);    
+            	//console.log(ret)   	            	                       
+
+            	$("#avatar").attr("src","img/"+ret.avatar);
+            	$("#descuento").val(ret.descuento);
+            	if(ret.expiracion_producto == "Si"){
 			    	$("#expiracion_producto").prop("checked",true);
 			    }else{
 			    	$("#expiracion_producto").prop("checked",false);
 			    }
-			    if(ret.producto_activo == "on"){
+			    if(ret.incluye_iva == "Si"){
+			    	$("#incluye_iva").prop("checked",true);
+			    }else{
+			    	$("#incluye_iva").prop("checked",false);
+			    }
+			    $("#iva_producto").val(ret.iva_producto);
+				$("#iva_producto").trigger("chosen:updated");
+				if(ret.producto_activo == "Si"){
 			    	$("#producto_activo").prop("checked",true);
 			    }else{
 			    	$("#producto_activo").prop("checked",false);
-			    }			
-				$("#txt_18").val(ret.txt_18);		    
-				$("#avatar").attr("src","img/"+ret.imagen);
-				$("#txt_13").val(ret.txt_13);		    
-			    $("#txt_13").trigger("chosen:updated");
-			    $("#txt_6").val(ret.txt_6);		    
+			    }
+			    if(ret.producto_series == "Si"){
+			    	$("#producto_series").prop("checked",true);
+			    }else{
+			    	$("#producto_series").prop("checked",false);
+			    }
+			    if(ret.sin_existencia == "Si"){
+			    	$("#sin_existencia").prop("checked",true);
+			    }else{
+			    	$("#sin_existencia").prop("checked",false);
+			    }
+			    $("#txt_0").val(ret.txt_0);		    
+			    $("#txt_1").val(ret.txt_1);		    
+			    $("#txt_2").val(ret.txt_2);		    
+			    $("#txt_3").val(ret.txt_3);	
+			    $("#txt_4").val(ret.txt_4);		    	    
+			    $("#txt_5").val(ret.txt_5);		   			     
+			    $("#txt_5").trigger("chosen:updated");		            	          
+			    $("#txt_6").val(ret.txt_6);		   			     
 			    $("#txt_6").trigger("chosen:updated");		            	          
+			    $("#txt_7").val(ret.txt_7);		   			     
+			    $("#txt_7").trigger("chosen:updated");		            	          
+				$("#txt_8").val(ret.txt_8);		    	    
+				$("#txt_9").val(ret.txt_9);		    	    
+				$("#txt_10").val(ret.txt_10);	
+				$("#txt_11").val(ret.txt_11);	
+				$("#txt_12").val(ret.txt_12);	
+				$("#txt_13").val(ret.txt_13);		   			     
+			    $("#txt_13").trigger("chosen:updated");		            	          
+			    $("#txt_14").val(ret.txt_14);		   			     
+			    $("#txt_14").trigger("chosen:updated");		            	          
+			    $("#txt_15").val(ret.txt_15);	
+			    $("#txt_16").val(ret.txt_16);	
+			    $("#txt_17").val(ret.txt_17);	
+			    $("#txt_18").val(ret.txt_18);	
 	            $('#myModal').modal('hide');
 	            comprobarCamposRequired("form_productos");  
 	            $("#btn_0").text("");
@@ -261,25 +267,32 @@ function inicio (){
 	        caption: "LISTA DE PRODUCTOS"
 	    });
 		jQuery(grid_selector).jqGrid('hideCol', "txt_0");		
-		jQuery(grid_selector).jqGrid('hideCol', "txt_3");
-		jQuery(grid_selector).jqGrid('hideCol', "txt_10");
-		jQuery(grid_selector).jqGrid('hideCol', "txt_4");
-		jQuery(grid_selector).jqGrid('hideCol', "txt_14");
-		jQuery(grid_selector).jqGrid('hideCol', "sin_existencia");
-		jQuery(grid_selector).jqGrid('hideCol', "txt_15");
-		jQuery(grid_selector).jqGrid('hideCol', "txt_16");
-		jQuery(grid_selector).jqGrid('hideCol', "txt_17");
+		jQuery(grid_selector).jqGrid('hideCol', "txt_3");		
+		jQuery(grid_selector).jqGrid('hideCol', "txt_10");		
+		jQuery(grid_selector).jqGrid('hideCol', "txt_4");		
+		jQuery(grid_selector).jqGrid('hideCol', "txt_11");		
+		jQuery(grid_selector).jqGrid('hideCol', "txt_5");		
+		jQuery(grid_selector).jqGrid('hideCol', "txt_6");		
+		jQuery(grid_selector).jqGrid('hideCol', "txt_13");		
+		jQuery(grid_selector).jqGrid('hideCol', "txt_7");		
+		jQuery(grid_selector).jqGrid('hideCol', "txt_14");		
+		jQuery(grid_selector).jqGrid('hideCol', "txt_15");	
+		jQuery(grid_selector).jqGrid('hideCol', "txt_16");			
+		jQuery(grid_selector).jqGrid('hideCol', "txt_17");	
+		jQuery(grid_selector).jqGrid('hideCol', "avatar");		
+		jQuery(grid_selector).jqGrid('hideCol', "descuento");	
+		jQuery(grid_selector).jqGrid('hideCol', "producto_series");	
+		jQuery(grid_selector).jqGrid('hideCol', "incluye_iva");	
+		jQuery(grid_selector).jqGrid('hideCol', "id_usuario");	
+		jQuery(grid_selector).jqGrid('hideCol', "fecha_creacion");	
 		jQuery(grid_selector).jqGrid('hideCol', "iva_producto");
-		jQuery(grid_selector).jqGrid('hideCol', "producto_series");
-		jQuery(grid_selector).jqGrid('hideCol', "expiracion_producto");
-		jQuery(grid_selector).jqGrid('hideCol', "producto_activo");
-		jQuery(grid_selector).jqGrid('hideCol', "expiracion_producto");
-		jQuery(grid_selector).jqGrid('hideCol', "txt_5");
-		jQuery(grid_selector).jqGrid('hideCol', "expiracion_producto");
-		jQuery(grid_selector).jqGrid('hideCol', "txt_7");
-		jQuery(grid_selector).jqGrid('hideCol', "imagen");
-		jQuery(grid_selector).jqGrid('hideCol', "txt_13");
-		jQuery(grid_selector).jqGrid('hideCol', "txt_6");
+		jQuery(grid_selector).jqGrid('hideCol', "txt_18");		
+		jQuery(grid_selector).jqGrid('hideCol', "producto_activo");	
+		jQuery(grid_selector).jqGrid('hideCol', "expiracion_producto");	
+		jQuery(grid_selector).jqGrid('hideCol', "sin_existencia");	
+
+
+		
 	    $(window).triggerHandler('resize.jqGrid');//cambiar el tamaño para hacer la rejilla conseguir el tamaño correcto
 
 	    function aceSwitch( cellvalue, options, cell ) {
@@ -528,7 +541,8 @@ function inicio (){
 	$("#btn_2").on("click",actualizar_form);	
 	$("#btn_4").on("click",function (){		
 		var resp = "";		
-		resp =atras($("#txt_0").val(),"productos","secuencia.php");		
+		resp =atras($("#txt_0").val(),"productos","secuencia.php");	
+		//console.log(resp)	
 		if(resp[0] != false){
 			$("#txt_0").val(resp[0][0]);
 			$("#txt_1").val(resp[0][1]);
@@ -541,45 +555,49 @@ function inicio (){
 			$("#txt_11").val(resp[0][8]);
 			$("#txt_5").val(resp[0][9]);
 			$("#txt_5").trigger("chosen:updated");
-		    $("#txt_12").val(resp[0][11]);
+		    $("#txt_12").val(resp[0][10]);
+		    $("#txt_6").val(resp[0][11]);
+			$("#txt_6").trigger("chosen:updated");
 		    $("#txt_7").val(resp[0][12]);		    
 		    $("#txt_7").trigger("chosen:updated");
 		    $("#txt_14").val(resp[0][14]);		    
 		    $("#txt_14").trigger("chosen:updated");
-		    if(resp[0][16] == "on"){
+		    $("#txt_15").val(resp[0][15]);		    
+		    if(resp[0][16] == "Si"){
 		    	$("#sin_existencia").prop("checked",true);
 		    }else{
 		    	$("#sin_existencia").prop("checked",false);
 		    }
-		    $("#txt_15").val(resp[0][17]);		    
-		    $("#txt_16").val(resp[0][18]);		    
-		    $("#txt_17").val(resp[0][19]);		    
-		    if(resp[0][20] == "on"){
-		    	$("#iva_producto").prop("checked",true);
-		    }else{
-		    	$("#iva_producto").prop("checked",false);
-		    }
-		    if(resp[0][21] == "on"){
+
+		    $("#txt_16").val(resp[0][17]);		    
+		    $("#txt_17").val(resp[0][18]);	
+
+		    if(resp[0][19] == "Si"){
 		    	$("#producto_series").prop("checked",true);
 		    }else{
 		    	$("#producto_series").prop("checked",false);
 		    }
-		    if(resp[0][22] == "on"){
+		    if(resp[0][20] == "Si"){
 		    	$("#expiracion_producto").prop("checked",true);
 		    }else{
 		    	$("#expiracion_producto").prop("checked",false);
 		    }
-		    if(resp[0][23] == "on"){
+		    $("#txt_18").val(resp[0][21]);		 
+		    $("#avatar").attr("src","img/"+resp[0][22]);		    
+		    if(resp[0][23] == "Si"){
 		    	$("#producto_activo").prop("checked",true);
 		    }else{
 		    	$("#producto_activo").prop("checked",false);
+		    }
+		    $("#iva_producto").val(resp[0][25]);		    
+		    $("#iva_producto").trigger("chosen:updated");			
+		    if(resp[0][27] == "Si"){
+		    	$("#incluye_iva").prop("checked",true);
+		    }else{
+		    	$("#incluye_iva").prop("checked",false);
 		    }			
-			$("#txt_18").val(resp[0][24]);		    
-			$("#avatar").attr("src","img/"+resp[0][25]);
-			$("#txt_13").val(resp[0][26]);		    
-		    $("#txt_13").trigger("chosen:updated");
-		    $("#txt_6").val(resp[0][27]);		    
-		    $("#txt_6").trigger("chosen:updated");				
+			$("#descuento").val(resp[0][28]);		 
+			
 				    		    
 		    /**/	        
 		}else{
@@ -592,7 +610,8 @@ function inicio (){
 	});
 	$("#btn_5").on("click",function (){		
 		var resp = "";		
-		resp =adelante($("#txt_0").val(),"productos","secuencia.php");		
+		resp =adelante($("#txt_0").val(),"productos","secuencia.php");	
+		//console.log(resp)	
 		if(resp[0] != false){
 			$("#txt_0").val(resp[0][0]);
 			$("#txt_1").val(resp[0][1]);
@@ -605,45 +624,49 @@ function inicio (){
 			$("#txt_11").val(resp[0][8]);
 			$("#txt_5").val(resp[0][9]);
 			$("#txt_5").trigger("chosen:updated");
-		    $("#txt_12").val(resp[0][11]);
+		    $("#txt_12").val(resp[0][10]);
+		    $("#txt_6").val(resp[0][11]);
+			$("#txt_6").trigger("chosen:updated");
 		    $("#txt_7").val(resp[0][12]);		    
 		    $("#txt_7").trigger("chosen:updated");
 		    $("#txt_14").val(resp[0][14]);		    
 		    $("#txt_14").trigger("chosen:updated");
-		    if(resp[0][16] == "on"){
+		    $("#txt_15").val(resp[0][15]);		    
+		    if(resp[0][16] == "Si"){
 		    	$("#sin_existencia").prop("checked",true);
 		    }else{
 		    	$("#sin_existencia").prop("checked",false);
 		    }
-		    $("#txt_15").val(resp[0][17]);		    
-		    $("#txt_16").val(resp[0][18]);		    
-		    $("#txt_17").val(resp[0][19]);		    
-		    if(resp[0][20] == "on"){
-		    	$("#iva_producto").prop("checked",true);
-		    }else{
-		    	$("#iva_producto").prop("checked",false);
-		    }
-		    if(resp[0][21] == "on"){
+
+		    $("#txt_16").val(resp[0][17]);		    
+		    $("#txt_17").val(resp[0][18]);	
+
+		    if(resp[0][19] == "Si"){
 		    	$("#producto_series").prop("checked",true);
 		    }else{
 		    	$("#producto_series").prop("checked",false);
 		    }
-		    if(resp[0][22] == "on"){
+		    if(resp[0][20] == "Si"){
 		    	$("#expiracion_producto").prop("checked",true);
 		    }else{
 		    	$("#expiracion_producto").prop("checked",false);
 		    }
-		    if(resp[0][23] == "on"){
+		    $("#txt_18").val(resp[0][21]);		 
+		    $("#avatar").attr("src","img/"+resp[0][22]);		    
+		    if(resp[0][23] == "Si"){
 		    	$("#producto_activo").prop("checked",true);
 		    }else{
 		    	$("#producto_activo").prop("checked",false);
+		    }
+		    $("#iva_producto").val(resp[0][25]);		    
+		    $("#iva_producto").trigger("chosen:updated");			
+		    if(resp[0][27] == "Si"){
+		    	$("#incluye_iva").prop("checked",true);
+		    }else{
+		    	$("#incluye_iva").prop("checked",false);
 		    }			
-			$("#txt_18").val(resp[0][24]);		    
-			$("#avatar").attr("src","img/"+resp[0][25]);
-			$("#txt_13").val(resp[0][26]);		    
-		    $("#txt_13").trigger("chosen:updated");
-		    $("#txt_6").val(resp[0][27]);		    
-		    $("#txt_6").trigger("chosen:updated");				
+			$("#descuento").val(resp[0][28]);		 
+			
 				    		    
 		    /**/	        
 		}else{

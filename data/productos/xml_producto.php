@@ -25,15 +25,15 @@ $start = $limit * $page - $limit;
 if ($start < 0)
     $start = 0;
 if ($search == 'false') {
-    $SQL = "select id_productos,codigo,codigo_barras,productos.descripcion,precio,utilidad_minorista,utilidad_mayorista,precio_minorista,precio_mayorista,productos.id_tipo,tipo_producto.descripcion,stock,productos.id_bodega,bodega.nombre_bodega,productos.id_unidad, unidades_medida.descripcion,facturar_existencia,unidades_medida.cantidad,cantidad_minima,cantidad_maxima,iva_producto,id_series_venta,id_lotes,productos.estado,comentario,imagen,id_marca,id_categoria from productos,tipo_producto,bodega,unidades_medida where productos.id_tipo = tipo_producto.id_tipo and productos.id_bodega = bodega.id_bodega and productos.id_unidad = unidades_medida.id_unidad ORDER BY  $sidx $sord offset $start limit $limit";
+    $SQL = "select id_productos,codigo,codigo_barras,productos.descripcion,precio,utilidad_minorista,utilidad_mayorista,precio_minorista,precio_mayorista,id_tipo,stock,id_categoria,id_marca,id_bodega,unidades_medida.id_unidad,unidades_medida.cantidad,facturar_existencia,cantidad_minima,cantidad_maxima,id_series_venta,expiracion,comentario,imagen,productos.estado,productos.fecha_creacion,id_porcentaje_iva,id_usuario,incluye_iva,descuento from productos,unidades_medida where unidades_medida.id_unidad = productos.id_unidad ORDER BY  $sidx $sord offset $start limit $limit";
 } else {
     $campo = $_GET['searchField'];
   
     if ($_GET['searchOper'] == 'eq') {
-        $SQL = "select id_productos,codigo,codigo_barras,productos.descripcion,precio,utilidad_minorista,utilidad_mayorista,precio_minorista,precio_mayorista,productos.id_tipo,tipo_producto.descripcion,stock,productos.id_bodega,bodega.nombre_bodega,productos.id_unidad, unidades_medida.descripcion,facturar_existencia,unidades_medida.cantidad,cantidad_minima,cantidad_maxima,iva_producto,id_series_venta,id_lotes,productos.estado,comentario,imagen,id_marca,id_categoria from productos,tipo_producto,bodega,unidades_medida where productos.id_tipo = tipo_producto.id_tipo and productos.id_bodega = bodega.id_bodega and productos.id_unidad = unidades_medida.id_unidad and $campo = '$_GET[searchString]' ORDER BY $sidx $sord offset $start limit $limit";
+        $SQL = "select id_productos,codigo,codigo_barras,productos.descripcion,precio,utilidad_minorista,utilidad_mayorista,precio_minorista,precio_mayorista,id_tipo,stock,id_categoria,id_marca,id_bodega,unidades_medida.id_unidad,unidades_medida.cantidad,facturar_existencia,cantidad_minima,cantidad_maxima,id_series_venta,expiracion,comentario,imagen,productos.estado,productos.fecha_creacion,id_porcentaje_iva,id_usuario,incluye_iva,descuento from productos,unidades_medida where unidades_medida.id_unidad = productos.id_unidad and $campo = '$_GET[searchString]' ORDER BY $sidx $sord offset $start limit $limit";
     }         
     if ($_GET['searchOper'] == 'cn') {
-        $SQL = "select id_productos,codigo,codigo_barras,productos.descripcion,precio,utilidad_minorista,utilidad_mayorista,precio_minorista,precio_mayorista,productos.id_tipo,tipo_producto.descripcion,stock,productos.id_bodega,bodega.nombre_bodega,productos.id_unidad, unidades_medida.descripcion,facturar_existencia,unidades_medida.cantidad,cantidad_minima,cantidad_maxima,iva_producto,id_series_venta,id_lotes,productos.estado,comentario,imagen,id_marca,id_categoria from productos,tipo_producto,bodega,unidades_medida where productos.id_tipo = tipo_producto.id_tipo and productos.id_bodega = bodega.id_bodega and productos.id_unidad = unidades_medida.id_unidad and $campo like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
+        $SQL = "select id_productos,codigo,codigo_barras,productos.descripcion,precio,utilidad_minorista,utilidad_mayorista,precio_minorista,precio_mayorista,id_tipo,stock,id_categoria,id_marca,id_bodega,unidades_medida.id_unidad,unidades_medida.cantidad,facturar_existencia,cantidad_minima,cantidad_maxima,id_series_venta,expiracion,comentario,imagen,productos.estado,productos.fecha_creacion,id_porcentaje_iva,id_usuario,incluye_iva,descuento from productos,unidades_medida where unidades_medida.id_unidad = productos.id_unidad and $campo like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
     }
   
 }
@@ -74,6 +74,7 @@ while ($row = pg_fetch_row($result)) {
     $s .= "<cell>" . $row[25] . "</cell>";
     $s .= "<cell>" . $row[26] . "</cell>";
     $s .= "<cell>" . $row[27] . "</cell>";
+    $s .= "<cell>" . $row[28] . "</cell>";    
     $s .= "</row>";
 }
 $s .= "</rows>";
