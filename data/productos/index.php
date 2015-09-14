@@ -112,26 +112,26 @@
 																				</div>
 																				<div class="form-group">
 																					<label class="col-sm-4 control-label no-padding-right" for="txt_6"> Categoria: </label>
-																					<div class="col-sm-6">
+																					<div class="col-sm-7">
 																						<select class="chosen-select form-control" id="txt_6" name="txt_6" data-placeholder="Categoria">																																										
 																							<option value=""></option>
 																						</select>																												
 																					</div>
-																					<div class="col-sm-2 btn btn-sm btn-success" id="btn_agr_cat" data-toggle="modal" href="#modal_categoria" > Agregar</div>
+																					<div class="col-sm-1 btn btn-sm btn-primary" id="btn_agr_cat" data-toggle="modal" href="#modal_categoria" >...</div>
 																				</div>	
 																				<div class="form-group">
 																					<label class="col-sm-4 control-label no-padding-right" for="txt_7"> Asignado a: </label>
-																					<div class="col-sm-6">
+																					<div class="col-sm-7">
 																						<select class="chosen-select form-control" id="txt_7" name="txt_7" data-placeholder="Asignado a">																																										
 																						</select>																												
 																					</div>
-																					<div class="col-sm-2 btn btn-sm btn-success" id="btn_asi_a" data-toggle="modal" href="#modal_asi_a"> Agregar</div>
+																					<div class="col-sm-1 btn btn-sm btn-primary" id="btn_asi_a" data-toggle="modal" href="#modal_asi_a">...</div>
 																				</div>
 																				<div class="form-group">
 																					<label class="col-sm-4 control-label no-padding-right" for="iva_producto"> Porcentaje Iva: </label>
-																					<div class="col-sm-6">
+																					<div class="col-sm-8">
 																						<select class="chosen-select form-control" id="iva_producto" name="iva_producto" data-placeholder="% iva">																																										
-																							<option value=""></option>
+																							
 																						</select>																												
 																					</div>
 																				</div>																																						
@@ -169,20 +169,20 @@
 																				</div>
 																				<div class="form-group">
 																					<label class="col-sm-4 control-label no-padding-right" for="txt_13"> Marcas: </label>
-																					<div class="col-sm-6">
+																					<div class="col-sm-7">
 																						<select class="chosen-select form-control" id="txt_13" name="txt_13" data-placeholder="Marcas">																																										
 																							<option value=""></option>
 																						</select>																												
 																					</div>
-																					<div class="col-sm-2 btn btn-sm btn-success" id="btn_agr_mar" data-toggle="modal" href="#modal_marcas"> Agregar</div>
+																					<div class="col-sm-1 btn btn-sm btn-primary" id="btn_agr_mar" data-toggle="modal" href="#modal_marcas">...</div>
 																				</div>
 																				<div class="form-group">
 																					<label class="col-sm-4 control-label no-padding-right" for="txt_14"> Se vender por: </label>
-																					<div class="col-sm-6">
+																					<div class="col-sm-7">
 																						<select class="chosen-select form-control" id="txt_14" name="txt_14" data-placeholder="Se vender por">																																										
 																						</select>																																							
 																					</div>
-																					<div class="col-sm-2 btn btn-sm btn-success" id="btn_se-ven_por" data-toggle="modal" href="#modal_se-vender_por"> Agregar</div>
+																					<div class="col-sm-1 btn btn-sm btn-primary" id="btn_se-ven_por" data-toggle="modal" href="#modal_se-vender_por">...</div>
 																				</div>
 																				<div class="form-group">
 																					<label class="col-sm-4 control-label no-padding-right" for="txt_15">y contiene:</label>
@@ -213,13 +213,13 @@
 																						<div class="form-group">
 																							<label class="col-sm-5 control-label no-padding-right" for="txt_16"> Cantidad Mínima:</label>
 																							<div class="col-sm-7">
-																								<input type="text" id="txt_16" name="txt_16"  placeholder="Cantidad Mínima" class="form-control" data-toggle="tooltip" data-original-title="" required pattern="[0-9]{1,}" />																						
+																								<input type="text" id="txt_16" name="txt_16"  placeholder="Cantidad Mínima" class="form-control" data-toggle="tooltip" data-original-title="" />																						
 																							</div>
 																						</div>
 																						<div class="form-group">
 																							<label class="col-sm-5 control-label no-padding-right" for="txt_16"> Descuento:</label>
 																							<div class="col-sm-7">
-																								<input type="text" id="descuento" name="descuento"  placeholder="" class="form-control" data-toggle="tooltip" data-original-title="" required pattern="[0-9]{1,}" />																						
+																								<input type="text" id="descuento" name="descuento"  placeholder="" class="form-control" data-toggle="tooltip" data-original-title="" />																						
 																							</div>
 																						</div>
 																						<div class="form-group">
@@ -254,7 +254,7 @@
 																						<div class="form-group">
 																							<label class="col-sm-5 control-label no-padding-right" for="txt_17"> Cantidad Máxima:</label>
 																							<div class="col-sm-7">
-																								<input type="text" id="txt_17" name="txt_17"  placeholder="Cantidad Máxima" class="form-control" data-toggle="tooltip" data-original-title="" required pattern="[0-9]{1,}" />																						
+																								<input type="text" id="txt_17" name="txt_17"  placeholder="Cantidad Máxima" class="form-control" data-toggle="tooltip" data-original-title="" />
 																							</div>
 																						</div>
 																						<div class="form-group">

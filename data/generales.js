@@ -160,11 +160,13 @@ function limpiar_form(e){
                         $("#txt_12").val('0');
                         $("#txt_16").val('0');
                         $("#txt_17").val('0');
+                        $("#descuento").val('0');
                         $("#txt_18").val('');
                         $("#txt_13").val('')
                         $("#txt_13").trigger('chosen:updated');
                         $("#txt_6").val('')
                         $("#txt_6").trigger('chosen:updated');
+                        $("#avatar").prop("src","img/default.png");       
                     }else{
                         if(form == "form_plan_cuentas"){
                             $("#btn_0").text("");

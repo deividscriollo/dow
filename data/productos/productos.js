@@ -27,7 +27,7 @@ function inicio (){
 				//specify ace file input plugin's options here
 				btn_choose: 'Cambiar Imagen',
 				droppable: true,
-				maxSize: 110000,//~100Kb
+				maxSize: 1110000,//~100Kb
 
 				//and a few extra ones here
 				name: 'avatar',//put the field name here as well, will be used inside the custom plugin
@@ -107,6 +107,7 @@ function inicio (){
 			 var $this = $(this);
 			 $this.next().css({'width': $this.parent().width()});
 		})
+		
 	}).trigger('resize.chosen');
 	//resize chosen on sidebar collapse/expand
 	$(document).on('settings.ace.chosen', function(e, event_name, event_val) {
@@ -115,6 +116,7 @@ function inicio (){
 			 var $this = $(this);
 			 $this.next().css({'width': $this.parent().width()});
 		})
+		
 	});
 	/*-----------------------*/
 	/*jqgrid*/    
@@ -817,7 +819,12 @@ function datos_productos(valores,tipo,p){
 		url: "productos.php",			
 	    success: function(data) {		    	
     		if(data == 0){
-    			alert('Datos guardados correctamente');			
+    			alert('Datos guardados correctamente');		
+    			var ul = $("#myTab").children();
+    			var di = $("#myTab").next();
+    			
+    			$('#myTab a:first').tab('show') 
+
     			limpiar_form(p);		    		
     		}else{
     			if( data == 1 ){
