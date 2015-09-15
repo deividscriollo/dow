@@ -167,8 +167,8 @@ function limpiar_form(e){
                         $("#txt_6").val('')
                         $("#txt_6").trigger('chosen:updated');
                         $("#avatar").prop("src","img/default.png");    
-                        $("#txt_9").attr("disabled",false);
-                        $("#txt_12").attr("disabled",false);   
+                        $("#txt_9").attr("readonly",false);
+                        $("#txt_12").attr("readonly",false);   
                     }else{
                         if(form == "form_plan_cuentas"){
                             $("#btn_0").text("");
@@ -327,10 +327,16 @@ function carga_detalles_productos(id_select,fun){
         type: "POST",
         dataType: 'json',        
         url: "../carga_ubicaciones.php?tipo=0&id=0&fun="+fun,        
-        success: function(response) {                     
-            for (var i = 0; i < response.length; i=i+2) {               
-                $("#"+id_select).append("<option value ="+response[i]+">"+response[i+1]+"</option>");                                                                                                                                            
-            }   
+        success: function(response) {      
+            if(id_select == "grupo_contable"){               
+                for (var i = 0; i < response.length; i=i+3) {               
+                    $("#"+id_select).append("<option value ="+response[i]+">"+response[i+1]+ " " +response[i+2] +"</option>");                                                                                                                                            
+                }   
+            }else{
+                for (var i = 0; i < response.length; i=i+2) {               
+                    $("#"+id_select).append("<option value ="+response[i]+">"+response[i+1]+"</option>");                                                                                                                                            
+                }   
+            }
             $("#"+id_select).trigger("chosen:updated");                                          
         }                   
     }); 
