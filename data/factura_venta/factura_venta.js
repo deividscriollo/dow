@@ -264,7 +264,7 @@ function inicio (){
     ////////////////////////////////////////
 
     ///////////////////////busqueda productos codigo/////////
-    $("#codigo").keyup(function(e) {
+    $("#codigo").change(function(e) {
         var precio = $("#tipo").val();
         if (precio === "MINORISTA") {
             $("#codigo").autocomplete({

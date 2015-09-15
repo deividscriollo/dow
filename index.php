@@ -177,30 +177,10 @@ sti
 			</div><!-- /.main-content -->
 		</div><!-- /.main-container -->
 
-		<!-- basic scripts -->
-
-		<!--[if !IE]> -->
-		
-
-
-		<!-- <![endif]-->
-
-		<!--[if IE]>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<![endif]-->
-
-		<!--[if !IE]> -->
 		<script type="text/javascript">
             window.jQuery || document.write("<script src='dist/js/jquery.min.js'>"+"<"+"/script>");
         </script>
 
-		<!-- <![endif]-->
-
-		<!--[if IE]>
-<script type="text/javascript">
- window.jQuery || document.write("<script src='dist/js/jquery1x.min.js'>"+"<"+"/script>");
-</script>
-<![endif]-->
 		<script type="text/javascript">
 			if('ontouchstart' in document.documentElement) document.write("<script src='dist/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>

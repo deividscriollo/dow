@@ -24,6 +24,7 @@
 		<link rel="stylesheet" href="../../dist/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="../../dist/css/fontdc.css" />
 		<link rel="stylesheet" href="../../dist/css/jquery-ui.custom.min.css" type="text/css"/>
+		<link rel="stylesheet" href="../../dist/css/jquery.gritter.min.css" />
 		<!-- ace styles -->
 		<link rel="stylesheet" href="../../dist/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
         <link type="text/css" rel="stylesheet" id="ace-skins-stylesheet" href="../../dist/css/ace-skins.min.css">
@@ -68,12 +69,12 @@
 																		</a>
 																	</li>
 
-																	<li class="">
+																	<!-- <li class="">
 																		<a data-toggle="tab" href="#detalle">
 																			<i class="green ace-icon fa fa-info-circle bigger-120"></i>
 																			Detalles
 																		</a>
-																	</li>
+																	</li> -->
 
 																	<li class="">
 																		<a data-toggle="tab" href="#pagos">
@@ -130,6 +131,7 @@
 																							<label class="col-sm-4 no-padding-right" for="serie3"> Numero de serie:</label>																			
 																							<div class="col-sm-8">
 																								<input type="text" id="serie" name="serie" class="form-control" data-toggle="tooltip" data-original-title="" required />																		
+																								<input type="hidden" id="id_facura_compra" name="id_facura_compra" class="form-control" data-toggle="tooltip" data-original-title="" required />																		
 																							</div>																														
 																						</div>
 																					</div>
@@ -270,9 +272,17 @@
 																					</div>
 																				</div>
 																			</div>
-																		</div>
 
-																		<div id="detalle" class="tab-pane fade">
+																			<div class="row ">
+																				<div class="col-xs-12">
+																					<div class="col-xs-12">
+																						<h3 class="header smaller lighter green">
+																							Detalle Factura
+																						</h3>
+																					</div>
+																				</div>
+																			</div>
+
 																			<div class="row">
 																				<div class="col-xs-12">
 																					<div class="col-xs-2">
@@ -418,8 +428,12 @@
 																				</div>
 																			</div>
 																		</div>
+
+																		<!-- <div id="detalle" class="tab-pane fade">
+																		</div> -->
 																	</div>
 																</form>
+
 																<div class="row">
 																	<div class="center">													 
 																		<button type="submit" class="btn btn-primary" id="btn_0">
@@ -502,6 +516,7 @@
 		<script src="../generales.js"></script>
 		<script src="factura_compra.js"></script>
 		<script src="../../dist/js/validCampoFranz.js" ></script>
+		<script src="../../dist/js/jquery.gritter.min.js"></script>
 	</body>
 </html>  
   <!-- Modal -->
