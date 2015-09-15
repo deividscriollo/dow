@@ -10,10 +10,12 @@ function guardar_inventario(){
         var v2 = new Array();
         var v3 = new Array();
         var v4 = new Array();
+        var v5 = new Array();
         var string_v1 = "";
         var string_v2 = "";
         var string_v3 = "";
         var string_v4 = "";
+        var string_v5 = "";
         var fil = jQuery("#list").jqGrid("getRowData");
         for (var i = 0; i < fil.length; i++) {
             var datos = fil[i];
@@ -21,17 +23,19 @@ function guardar_inventario(){
             v2[i] = datos['stock'];
             v3[i] = datos['existencia'];
             v4[i] = datos['diferencia'];
+            v5[i] = datos['precio_compra'];
         }
         for (i = 0; i < fil.length; i++) {
             string_v1 = string_v1 + "|" + v1[i];
             string_v2 = string_v2 + "|" + v2[i];
             string_v3 = string_v3 + "|" + v3[i];
             string_v4 = string_v4 + "|" + v4[i];
+            string_v5 = string_v5 + "|" + v5[i];
         }
 
         $.ajax({        
             type: "POST",
-            data: $("#form_inventario").serialize()+"&campo1="+string_v1+"&campo2="+string_v2+"&campo3="+string_v3+"&campo4="+string_v4,                
+            data: $("#form_inventario").serialize()+"&campo1="+string_v1+"&campo2="+string_v2+"&campo3="+string_v3+"&campo4="+string_v4+"&campo5="+string_v5,                
             url: "inventario.php",      
             success: function(data) { 
                 if( data == 0 ){

@@ -204,7 +204,8 @@ function inicio (){
 	            var gsr = jQuery(grid_selector).jqGrid('getGridParam','selrow');                                              
             	var ret = jQuery(grid_selector).jqGrid('getRowData',gsr);    
             	//console.log(ret)   	            	                       
-
+            	$("#txt_9").attr("disabled",true);
+				$("#txt_12").attr("disabled",true);
             	$("#avatar").attr("src","img/"+ret.avatar);
             	$("#descuento").val(ret.descuento);
             	if(ret.expiracion_producto == "Si"){
@@ -540,6 +541,8 @@ function inicio (){
 	$("#btn_1").on("click",limpiar_form);
 	$("#btn_2").on("click",actualizar_form);	
 	$("#btn_4").on("click",function (){		
+		$("#txt_9").attr("disabled",true);
+		$("#txt_12").attr("disabled",true);
 		var resp = "";		
 		resp =atras($("#txt_0").val(),"productos","secuencia.php");	
 		//console.log(resp)	
@@ -609,7 +612,9 @@ function inicio (){
         /**/
 	});
 	$("#btn_5").on("click",function (){		
-		var resp = "";		
+		var resp = "";	
+		$("#txt_9").attr("disabled",true);
+		$("#txt_12").attr("disabled",true);	
 		resp =adelante($("#txt_0").val(),"productos","secuencia.php");	
 		//console.log(resp)	
 		if(resp[0] != false){

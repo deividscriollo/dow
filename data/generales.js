@@ -166,7 +166,9 @@ function limpiar_form(e){
                         $("#txt_13").trigger('chosen:updated');
                         $("#txt_6").val('')
                         $("#txt_6").trigger('chosen:updated');
-                        $("#avatar").prop("src","img/default.png");       
+                        $("#avatar").prop("src","img/default.png");    
+                        $("#txt_9").attr("disabled",false);
+                        $("#txt_12").attr("disabled",false);   
                     }else{
                         if(form == "form_plan_cuentas"){
                             $("#btn_0").text("");
