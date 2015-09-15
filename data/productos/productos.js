@@ -144,7 +144,7 @@ function inicio (){
 	    jQuery(grid_selector).jqGrid({	        
 	        datatype: "xml",
 	        url: 'xml_producto.php',        
-	        colNames: ['id_producto','CÓDIGO','CÓDIGO BARRAS','NOMBRE PRODUCTO','PRECIO','UTILIDAD MINORISTA','UTILIDAD MAYORISTA','PRECIO MINORISTA','PRECIO MAYORISTA','id_tipo','STOCK','id_categoria','id_marca','id_bodega','id_unidad','CANTIDAD','FACTURAR EXITENCIA','CANITDAD MINIMA','CANTIDAD MAXIMA','id_series_venta','EXPIRACION','COMENTARIO','IMAGEN','ESTADO','CREACIÓN','id_porcentaje_iva','id_usuario','INCLUYE IVA','DESCUENTO'],
+	        colNames: ['id_producto','CÓDIGO','CÓDIGO BARRAS','NOMBRE PRODUCTO','PRECIO','UTILIDAD MINORISTA','UTILIDAD MAYORISTA','PRECIO MINORISTA','PRECIO MAYORISTA','id_tipo','STOCK','id_categoria','id_marca','id_bodega','id_unidad','CANTIDAD','FACTURAR EXITENCIA','CANITDAD MINIMA','CANTIDAD MAXIMA','id_series_venta','EXPIRACION','COMENTARIO','IMAGEN','ESTADO','CREACIÓN','id_porcentaje_iva','id_usuario','INCLUYE IVA','DESCUENTO','GRUPO'],
 	        colModel:[      
 	            {name:'txt_0',index:'txt_0',frozen:true,align:'left',search:false},
 	            {name:'txt_1',index:'codigo',frozen : true,align:'left',search:true},
@@ -175,6 +175,7 @@ function inicio (){
 	            {name:'id_usuario',index:'id_usuario',frozen : true,align:'left',search:false},	            	            
 	            {name:'incluye_iva',index:'incluye_iva',frozen : true,align:'left',search:false},	            	            
 	            {name:'descuento',index:'descuento',frozen : true,align:'left',search:false},	            	            
+	            {name:'grupo_contable',index:'grupo_contable',frozen : true,align:'left',search:false},	            	            
 
 	        ],          
 	        rowNum: 10,       
@@ -204,8 +205,8 @@ function inicio (){
 	            var gsr = jQuery(grid_selector).jqGrid('getGridParam','selrow');                                              
             	var ret = jQuery(grid_selector).jqGrid('getRowData',gsr);    
             	//console.log(ret)   	            	                       
-            	$("#txt_9").attr("disabled",true);
-				$("#txt_12").attr("disabled",true);
+            	$("#txt_9").attr("readonly",true);
+				$("#txt_12").attr("readonly",true);
             	$("#avatar").attr("src","img/"+ret.avatar);
             	$("#descuento").val(ret.descuento);
             	if(ret.expiracion_producto == "Si"){
@@ -258,7 +259,9 @@ function inicio (){
 			    $("#txt_15").val(ret.txt_15);	
 			    $("#txt_16").val(ret.txt_16);	
 			    $("#txt_17").val(ret.txt_17);	
-			    $("#txt_18").val(ret.txt_18);	
+			    $("#txt_18").val(ret.txt_18);
+			    $("#grupo_contable").val(ret.grupo_contable);
+				$("#grupo_contable").trigger("chosen:updated");		            	  
 	            $('#myModal').modal('hide');
 	            comprobarCamposRequired("form_productos");  
 	            $("#btn_0").text("");
@@ -518,6 +521,7 @@ function inicio (){
 	carga_detalles_productos("txt_13",'10');//asignado a y el numero de funcion
 	carga_detalles_productos_1("txt_14",'11');//asignado a y el numero de funcion
     carga_detalles_productos("iva_producto",'31');
+    carga_detalles_productos("grupo_contable",'39');//categorias y el numero de funcion
 	
 	////////////////////////
 	/*guardar categorias productos*/
@@ -541,11 +545,11 @@ function inicio (){
 	$("#btn_1").on("click",limpiar_form);
 	$("#btn_2").on("click",actualizar_form);	
 	$("#btn_4").on("click",function (){		
-		$("#txt_9").attr("disabled",true);
-		$("#txt_12").attr("disabled",true);
+		$("#txt_9").attr("readonly",true);
+		$("#txt_12").attr("readonly",true);
 		var resp = "";		
 		resp =atras($("#txt_0").val(),"productos","secuencia.php");	
-		//console.log(resp)	
+		console.log(resp)	
 		if(resp[0] != false){
 			$("#txt_0").val(resp[0][0]);
 			$("#txt_1").val(resp[0][1]);
@@ -561,7 +565,9 @@ function inicio (){
 		    $("#txt_12").val(resp[0][10]);
 		    $("#txt_6").val(resp[0][11]);
 			$("#txt_6").trigger("chosen:updated");
-		    $("#txt_7").val(resp[0][12]);		    
+			$("#txt_13").val(resp[0][12]);
+			$("#txt_13").trigger("chosen:updated");
+		    $("#txt_7").val(resp[0][13]);		    
 		    $("#txt_7").trigger("chosen:updated");
 		    $("#txt_14").val(resp[0][14]);		    
 		    $("#txt_14").trigger("chosen:updated");
@@ -600,7 +606,8 @@ function inicio (){
 		    	$("#incluye_iva").prop("checked",false);
 		    }			
 			$("#descuento").val(resp[0][28]);		 
-			
+			$("#grupo_contable").val(resp[0][29]);		    
+		    $("#grupo_contable").trigger("chosen:updated");
 				    		    
 		    /**/	        
 		}else{
@@ -613,8 +620,8 @@ function inicio (){
 	});
 	$("#btn_5").on("click",function (){		
 		var resp = "";	
-		$("#txt_9").attr("disabled",true);
-		$("#txt_12").attr("disabled",true);	
+		$("#txt_9").attr("readonly",true);
+		$("#txt_12").attr("readonly",true);	
 		resp =adelante($("#txt_0").val(),"productos","secuencia.php");	
 		//console.log(resp)	
 		if(resp[0] != false){
@@ -631,8 +638,10 @@ function inicio (){
 			$("#txt_5").trigger("chosen:updated");
 		    $("#txt_12").val(resp[0][10]);
 		    $("#txt_6").val(resp[0][11]);
-			$("#txt_6").trigger("chosen:updated");
-		    $("#txt_7").val(resp[0][12]);		    
+			$("#txt_6").trigger("chosen:updated");		    
+		    $("#txt_13").val(resp[0][12]);
+			$("#txt_13").trigger("chosen:updated");
+		    $("#txt_7").val(resp[0][13]);		    
 		    $("#txt_7").trigger("chosen:updated");
 		    $("#txt_14").val(resp[0][14]);		    
 		    $("#txt_14").trigger("chosen:updated");
@@ -671,7 +680,8 @@ function inicio (){
 		    	$("#incluye_iva").prop("checked",false);
 		    }			
 			$("#descuento").val(resp[0][28]);		 
-			
+			$("#grupo_contable").val(resp[0][29]);		    
+		    $("#grupo_contable").trigger("chosen:updated");
 				    		    
 		    /**/	        
 		}else{

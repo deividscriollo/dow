@@ -126,7 +126,7 @@
 																						</select>																												
 																					</div>
 																					<div class="col-sm-1 btn btn-sm btn-primary" id="btn_asi_a" data-toggle="modal" href="#modal_asi_a">...</div>
-																				</div>
+																				</div>																				
 																				<div class="form-group">
 																					<label class="col-sm-4 control-label no-padding-right" for="iva_producto"> Porcentaje Iva: </label>
 																					<div class="col-sm-8">
@@ -134,7 +134,15 @@
 																							
 																						</select>																												
 																					</div>
-																				</div>																																						
+																				</div>
+																				<div class="form-group">
+																					<label class="col-sm-4 control-label no-padding-right" for="iva_producto"> Grupo Contable: </label>
+																					<div class="col-sm-8">
+																						<select class="chosen-select form-control" id="grupo_contable" name="grupo_contable" data-placeholder="Grupo Contable">	
+																							
+																						</select>																												
+																					</div>
+																				</div>																																																																												
 																			</div>
 																			<div class="col-sm-6">
 																				<div class="form-group">
