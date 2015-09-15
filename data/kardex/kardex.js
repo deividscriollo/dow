@@ -14,7 +14,7 @@ function inicio(){
             		for (var i = 0; i < data.length; i=i+8) {                                                 
               			appendToChosenProducto(data[i],data[i+1],data[i+2],data[i+3],data[i+4],data[i+5],data[i+6],data[i+7],text,"codigo","codigo_chosen");
             		}           
-            		$('#producto').html("");
+            		//$('#producto').html("");
             		$('#producto').append($("<option data-barras='"+data[2]+"' data-codigo='"+data[1]+"' data-precio='"+data[4]+"' data-stock='"+data[5]+"' data-iva='"+data[6]+"' data-inventariable='"+data[7]+"' ></option>").val(data[0]).html(data[3])).trigger('chosen:updated');            
             		$("#id_producto").val(data[0]);	          		
           		},

@@ -30,26 +30,55 @@
 	$arreglo3 = explode('|', $campo3);
 	$arreglo4 = explode('|', $campo4);
 	$arreglo5 = explode('|', $campo5);
-	$nelem = count($arreglo1);
-   		
+	$nelem = count($arreglo1);   	   	
+	
 	for ($i = 1; $i < $nelem; $i++) {		
 		$id2 = unique($fecha_larga);
 		$stock = 0;
-		$cal = 0;
+		$precio_compra = 0;		
 		// guardar detalle_factura
-        $sql2 = "insert into detalle_factura_compra values (
-       	'$id2','$id','".$arreglo1[$i]."','".$arreglo2[$i]."','".$arreglo3[$i]."','".$arreglo4[$i]."','".$arreglo5[$i]."','$fecha','Activo')";       
+        $sql2 = "insert into detalle_factura_compra values ('$id2','$id','".$arreglo1[$i]."','".$arreglo2[$i]."','".$arreglo3[$i]."','".$arreglo4[$i]."','".$arreglo5[$i]."','$fecha','Activo')";       
 		$guardar = guardarSql($conexion,$sql2);
-		// fin
-        
-        // modificar productos
-        $consulta = pg_query("select * from productos where id_productos = '".$arreglo1[$i]."'");
+		// fin        
+		$sql_kardex = "select id_productos from productos where codigo ='".$arreglo1[$i]."'";
+		//echo $sql_kardex;
+		$id_prod = id_unique($conexion,$sql_kardex);
+        ///kardex y modificar productos///
+        $c_t = '';
+		$v_t = '';
+		$t_t = '';
+		$c_e = '';
+		$v_e = '';
+		$t_e = '';
+        $consulta = pg_query("select stock,precio from productos where id_productos = '".$id_prod."'");
         while ($row = pg_fetch_row($consulta)) {
-            $stock = $row[10];
+            $stock = $row[0];
+            $precio_compra = $row[1];
         }
-        $cal = $stock + $arreglo2[$i];
+
+        $sql_kardex = "select id_kardex from kardex where id_productos ='".$id_prod."'";
+		$id_kardex = id_unique($conexion,$sql_kardex);
+		$id_det_kardex = unique($fecha_larga);
+
+		$sql_kardex = "select c_e,v_e,t_e,c_s,v_s,t_s,c_t,v_t,t_t from detalles_kardex where id_kardex = '".$id_kardex."' order by fecha desc limit 1";	
+		$sql_kardex = pg_query($sql_kardex);
+		while ($row = pg_fetch_row($sql_kardex)) {
+			$c_t = $row[6];
+			$v_t = $row[7];
+			$t_t = $row[8];
+		}
+		$c_e = $arreglo2[$i];
+		$v_e = $arreglo3[$i];
+		$t_e = $arreglo2[$i] * $arreglo3[$i];
+
+		$c_t = $c_t + $c_e;		
+		$t_t = $t_t + $t_e;
+		$v_t = $t_t / $c_t;
+		$sql_kardex = "insert into detalles_kardex values ('".$id_det_kardex."','".$id_kardex."','".$fecha."','".'Factura compra Ingreso productos Nro.'.$id."','".$c_e."','".$v_e."','".$t_e."','','','','".$c_t."','".$v_t."','".$t_t."')";
+		//echo $sql_kardex;
+		$guardar = guardarSql($conexion, $sql_kardex);        
         
-        $sql3 = "update productos set stock='$cal' where id_productos='".$arreglo1[$i]."'";								
+        $sql3 = "update productos set stock='".$c_t."', precio = '".$v_t."' where id_productos='".$id_prod."'";								
 		$guardar = guardarSql($conexion, $sql3);
         // fin
   	}

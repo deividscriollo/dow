@@ -67,7 +67,7 @@
 			$sql_kardex = "insert into kardex values ('".$id_kardex."','".$id."','".$fecha."')";
 			$guardar = guardarSql($conexion,$sql_kardex);
 			$id_det_kardex = unique($fecha_larga);	
-			$sql_kardex = "insert into detalles_kardex values ('".$id_det_kardex."','".$id_kardex."','".$fecha."','Creacion de productos','".$_POST['txt_12']."','".$_POST['txt_9']."','".($_POST['txt_12'] * $_POST['txt_9'])."','','','','".$_POST['txt_11']."','".$_POST['txt_9']."','".($_POST['txt_11'] * $_POST['txt_9'])."')";
+			$sql_kardex = "insert into detalles_kardex values ('".$id_det_kardex."','".$id_kardex."','".$fecha."','Creacion de productos','".$_POST['txt_12']."','".$_POST['txt_9']."','".($_POST['txt_12'] * $_POST['txt_9'])."','','','','".$_POST['txt_12']."','".$_POST['txt_9']."','".($_POST['txt_12'] * $_POST['txt_9'])."')";
 			$guardar = guardarSql($conexion,$sql_kardex);
 			///////////////////////
 			$sql_nuevo = "select (id_productos,codigo,codigo_barras,descripcion,precio,utilidad_minorista,utilidad_mayorista,precio_minorista,precio_mayorista,id_tipo,stock,id_categoria,id_marca,id_bodega,id_unidad,facturar_existencia,cantidad_minima,cantidad_maxima,id_series_venta,expiracion,comentario,imagen,estado,fecha_creacion,id_porcentaje_iva,id_usuario,incluye_iva,descuento) from productos where id_productos = '$id'";        

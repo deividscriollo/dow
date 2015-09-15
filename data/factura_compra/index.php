@@ -153,8 +153,8 @@
 																				<div class="col-md-12">
 																					<div class="col-md-5">
 																						<div class="form-group">
-																							<label class="col-sm-6 no-padding-right" for="txt_nro_identificacion"> Cédula de Identidad o Ruc: <font color="red">*</font></label>
-																							<div class="col-sm-6">
+																							<label class="col-sm-4 no-padding-right" for="txt_nro_identificacion"> Cédula de Identidad o Ruc: <font color="red">*</font></label>
+																							<div class="col-sm-8">
 																							<input type="hidden" id="id_proveedor" name="id_proveedor">																				
 																								<select class="chosen-select form-control" id="txt_nro_identificacion" name="txt_nro_identificacion" data-placeholder="Nro de identifiación">	     
 							                                                                        <option value=""></option>	                                                                        

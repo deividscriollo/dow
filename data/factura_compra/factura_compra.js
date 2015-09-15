@@ -37,9 +37,10 @@ function guardar_factura(){
                   var string_v4 = "";
                   var string_v5 = "";
                   var fil = jQuery("#list").jqGrid("getRowData");
+                  console.log(fil)                  
                   for (var i = 0; i < fil.length; i++) {
                       var datos = fil[i];
-                      v1[i] = datos['cod_producto'];
+                      v1[i] = datos['codigo'];
                       v2[i] = datos['cantidad'];
                       v3[i] = datos['precio_u'];
                       v4[i] = datos['descuento'];
@@ -1028,7 +1029,7 @@ colModel:[
     {name: 'myac', width: 50, fixed: true, sortable: false, resize: false, formatter: 'actions',
           formatoptions: {keys: false, delbutton: true, editbutton: false}
       },     
-    {name: 'id_productos', index: 'id_productos', editable: false, search: false, hidden: true, editrules: {edithidden: false}, align: 'center',
+    {name: 'id_productos', index: 'id_productos', editable: false, search: false, hidden: false, editrules: {edithidden: false}, align: 'center',
       frozen: true, width: 50},
     {name: 'codigo', index: 'codigo', editable: false, search: false, hidden: false, editrules: {edithidden: false}, align: 'center',
       frozen: true, width: 180},
