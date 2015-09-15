@@ -23,7 +23,8 @@ while ($row = pg_fetch_row($consulta)) {
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="../../dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="../../dist/css/font-awesome.min.css" />
-		<link rel="stylesheet" href="../../dist/css/chosen.min.css" />		
+		<!-- Select -->
+		<link rel="stylesheet" href="../../dist/css/chosen.min.css" />				
 		<link rel="stylesheet" href="../../dist/css/ui.jqgrid.min.css" />
 		<link rel="stylesheet" href="../../dist/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="../../dist/css/datepicker.min.css" />
@@ -32,9 +33,12 @@ while ($row = pg_fetch_row($consulta)) {
 		<link rel="stylesheet" href="../../dist/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="../../dist/css/fontdc.css" />
 		<link rel="stylesheet" href="../../dist/css/jquery-ui.custom.min.css" type="text/css"/>
+		<link rel="stylesheet" href="../../dist/css/jquery.gritter.min.css" />
+		<!-- ace styles -->
 		<link rel="stylesheet" href="../../dist/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
-		<link type="text/css" rel="stylesheet" id="ace-skins-stylesheet" href="../../dist/css/ace-skins.min.css">
-		<script src="../../dist/js/ace-extra.min.js"></script>
+        <link type="text/css" rel="stylesheet" id="ace-skins-stylesheet" href="../../dist/css/ace-skins.min.css">
+        <link type="text/css" rel="stylesheet" id="ace-rtl-stylesheet" href="../../dist/css/ace-rtl.min.css">
+        <script src="../../dist/js/ace-extra.min.js"></script>
 	</head>
 
 	<body class="skin-2">
@@ -462,12 +466,16 @@ while ($row = pg_fetch_row($consulta)) {
 			</div>
 
 		<script type="text/javascript">
-			if('ontouchstart' in document.documentElement) document.write("<script src='../../dist/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+			window.jQuery || document.write("<script src='../../dist/js/jquery.min.js'>"+"<"+"/script>");
 		</script>
 
-		<script src="../../dist/js/jquery.min.js"></script>
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='../../dist/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		
 		<script src="../../dist/js/bootstrap.min.js"></script>
-		<script src="../../dist/js/jquery-ui.custom.min.js"></script>
+
+		<script src="../../dist/js/jquery-ui.min.js"></script>
 		<script src="../../dist/js/jquery.ui.touch-punch.min.js"></script>
 		<script src="../../dist/js/jquery.easypiechart.min.js"></script>
 		<script src="../../dist/js/jquery.sparkline.min.js"></script>
@@ -477,18 +485,24 @@ while ($row = pg_fetch_row($consulta)) {
 		<script src="../../dist/js/chosen.jquery.min.js"></script>
 		<script src="../../dist/js/date-time/bootstrap-datepicker.min.js"></script>
 		<script src="../../dist/js/date-time/bootstrap-timepicker.min.js"></script>
-		<script src="../../dist/js/date-time/moment.min.js"></script>
 		<script src="../../dist/js/date-time/daterangepicker.min.js"></script>
-		<script src="../../dist/js/date-time/bootstrap-datetimepicker.min.js"></script>
+		<script src="../../dist/js/date-time/moment.min.js"></script>
+				
+		<!-- ace scripts -->
 		<script src="../../dist/js/ace-elements.min.js"></script>
 		<script src="../../dist/js/ace.min.js"></script>
 		<script src="../../dist/js/jqGrid/jquery.jqGrid.min.js"></script>
         <script src="../../dist/js/jqGrid/i18n/grid.locale-en.js"></script>
-        <script src="../../dist/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+        <script src="../../dist/js/jquery.maskedinput.min.js"></script>
+        <script src="../../dist/js/jquery.bootstrap-duallistbox.min.js"></script>
+        <script src="../../dist/js/jquery.raty.min.js"></script>
+        <script src="../../dist/js/select2.min.js"></script>
+        <script src="../../dist/js/bootstrap-multiselect.min.js"></script>
 		
 		<script src="../generales.js"></script>
 		<script src="factura_venta.js"></script>
-        <script src="../../dist/js/validCampoFranz.js" ></script>
+		<script src="../../dist/js/validCampoFranz.js" ></script>
+		<script src="../../dist/js/jquery.gritter.min.js"></script>
 	</body>
 </html>  
 
@@ -497,6 +511,7 @@ while ($row = pg_fetch_row($consulta)) {
 	$('[data-rel=tooltip]').tooltip();
 	//calendario
 	var f = new Date();
+
 	$('.date-picker').datepicker({
 		autoclose: true,
 		format:'yyyy-mm-dd',
@@ -504,6 +519,7 @@ while ($row = pg_fetch_row($consulta)) {
 	});
 	$('.date-picker').val(f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate());
 	$('#txt_fecha_actual').val(f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate());
+
 	// seclect chosen 
 	$('.chosen-select').chosen({
 		allow_single_deselect:true,

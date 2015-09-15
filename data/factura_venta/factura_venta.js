@@ -24,12 +24,14 @@ function guardar_factura(){
                 var v4 = new Array();
                 var v5 = new Array();
                 var v6 = new Array();
+
                 var string_v1 = "";
                 var string_v2 = "";
                 var string_v3 = "";
                 var string_v4 = "";
                 var string_v5 = "";
                 var string_v6 = "";
+
                 var fil = jQuery("#list").jqGrid("getRowData");
                 for (var i = 0; i < fil.length; i++) {
                     var datos = fil[i];
@@ -164,12 +166,12 @@ function inicio (){
 		    	    $('#txt_nro_identificacion').html("");
 		        	$('#txt_nro_identificacion').append($("<option data-extra='"+data[2]+"' data-direccion='"+data[3]+"' data-telefono='"+data[4]+"' data-email='"+data[5]+"'></option>").val(data[0]).html(data[1])).trigger('chosen:updated');                    
 			        $("#id_cliente").val(data[0]);		        					
-              $('#lbl_client_telefono').val(data[4]);
-              $('#lbl_client_correo').val(data[5]);
-              $('#lbl_client_direccion').val(data[3]);
+                    $('#lbl_client_telefono').val(data[4]);
+                    $('#lbl_client_correo').val(data[5]);
+                    $('#lbl_client_direccion').val(data[3]);
 			    },
 			    error: function (data) {
-			        console.log(data)
+			        // console.log(data)
 		    	}	        
 		    });
 	    }	  
@@ -191,9 +193,9 @@ function inicio (){
       		$('#txt_nro_identificacion').html("");
       		$('#txt_nro_identificacion').append($("<option data-extra='"+$(a).text()+"' data-direccion='"+$(a).data("direccion")+"' data-telefono='"+$(a).data("telefono")+"' data-email='"+$(a).data("email")+"'></option>").val($(a).val()).html($(a).data("extra"))).trigger('chosen:updated');      		
       		$("#id_cliente").val($(a).val());		        
-    			$('#lbl_client_telefono').val($(a).data("telefono"));
-    			$('#lbl_client_correo').val($(a).data("email"));
-    			$('#lbl_client_direccion').val($(a).data("direccion"));
+    		$('#lbl_client_telefono').val($(a).data("telefono"));
+    		$('#lbl_client_correo').val($(a).data("email"));
+    		$('#lbl_client_direccion').val($(a).data("direccion"));
 		}
 	});
 
@@ -455,10 +457,11 @@ function inicio (){
           var subtotal12 = 0;
           var iva12 = 0;
           var total_total = 0;
-          var descu_total = 0;     
-      		if($("#cantidad").val() != ""){
-        		if($("#precio").val() != ""){
-          			if($("#id_productos").val() != ""){
+          var descu_total = 0;  
+             
+      		if($("#id_productos").val() != ""){
+        		if($("#cantidad").val() != ""){
+          			if($("#precio").val() != ""){
                   if($("#inventar").val() == "Si" && $("#cantidad").val() <= $("#stock").val()) {
                       var filas = jQuery("#list").jqGrid("getRowData");
                       var descuento = 0;
