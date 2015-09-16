@@ -16,7 +16,7 @@ while ($row = pg_fetch_row($consulta)) {
         'precio' => $row[4],
         'descuento' => $row[27],
         'stock' => $row[10],
-        'iva_producto' => $row[29],
+        'iva_producto' => $row[30],
         'inventar' => $row[15],
         'incluye' => $row[26]
     );
