@@ -86,13 +86,11 @@ function limpiar_campo1(){
         $("#producto").val("");
         $("#cantidad").val("");
         $("#precio").val("");
-        $("#p_venta").val("");
         $("#descuento").val("");
         $("#stock").val("");
         $("#iva_producto").val("");
         $("#inventar").val("");
         $("#incluye").val("");
-        $("#codigo_barras").focus();
     }
 } 
 
@@ -103,13 +101,11 @@ function limpiar_campo2(){
         $("#codigo").val("");
         $("#cantidad").val("");
         $("#precio").val("");
-        $("#p_venta").val("");
         $("#descuento").val("");
         $("#stock").val("");
         $("#iva_producto").val("");
         $("#inventar").val("");
         $("#incluye").val("");
-        $("#codigo_barras").focus();
     }
 } 
 

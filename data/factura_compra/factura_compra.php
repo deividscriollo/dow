@@ -74,12 +74,34 @@
 		$c_t = $c_t + $c_e;		
 		$t_t = $t_t + $t_e;
 		$v_t = $t_t / $c_t;
-		$sql_kardex = "insert into detalles_kardex values ('".$id_det_kardex."','".$id_kardex."','".$fecha."','".'Factura compra Ingreso productos Nro.'.$id."','".$c_e."','".$v_e."','".$t_e."','','','','".$c_t."','".$v_t."','".$t_t."')";
-		//echo $sql_kardex;
+		$sql_kardex = "insert into detalles_kardex values ('".$id_det_kardex."','".$id_kardex."','".$fecha."','".'Factura compra Ingreso productos Nro.'.$id."','".$c_e."','".$v_e."','".$t_e."','','','','".$c_t."','".$v_t."','".$t_t."')";		
 		$guardar = guardarSql($conexion, $sql_kardex);        
         
         $sql3 = "update productos set stock='".$c_t."', precio = '".$v_t."' where id_productos='".$id_prod."'";								
 		$guardar = guardarSql($conexion, $sql3);
+		
+		/////////LIBRO DIARIOS//////////
+		$id_libro  = unique($fecha_larga);		
+		$sql_libro = "insert into libro_diario values ('".$id_libro."','".$fecha."','".($_POST['tarifa12'] + $_POST['tarifa0'])."','','11501155240ac3a0d22','Factura Compra','Ingreso de Mercaderia')";
+		$resp = $guardar = guardarSql($conexion,$sql_libro);
+		if($resp == 'true'){
+			$id_libro_2  = unique($fecha_larga);		
+			$sql_libro = "insert into libro_diario values ('".$id_libro_2."','".$fecha."','".$_POST['iva']."','','11501155240ac3a6d69','Factura Compra','Iva Pagado')";
+			$resp = $guardar = guardarSql($conexion,$sql_libro);
+			if($resp == 'true'){
+				$id_libro_3  = unique($fecha_larga);		
+				if($_POST['formas'] == '110147552550ebaa4df')//CONTADO NO CAMBIAR EN LA BASE
+				{			
+					$sql_libro = "insert into libro_diario values ('".$id_libro_3."','".$fecha."','','".$_POST['total']."','11501155240ac39d2f0','Factura Compra','Pago Contado Caja')";
+					$guardar = guardarSql($conexion,$sql_libro);	
+				}else{
+					
+					$sql_libro = "insert into libro_diario values ('".$id_libro_3."','".$fecha."','','".$_POST['total']."','11501155240ac3a44f3','Factura Compra','Cuentas por Pagar')";
+					$guardar = guardarSql($conexion,$sql_libro);	
+				}
+			}
+		}						
+		///////////////////////		
         // fin
   	}
 

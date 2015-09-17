@@ -146,8 +146,10 @@ function cargarSelect_10($conexion, $sql) {
 }
 
 function unique($fecha_larga) {
-    $id = uniqid();
-    $id = $fecha_larga . $id;
+    $id = '';
+    $id = uniqid(rand(), true);    
+    $id = $fecha_larga . $id;   
+    //echo $id;
     return $id;    
 }
 //echo unique($fecha_larga) ;

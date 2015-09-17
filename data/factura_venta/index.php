@@ -85,7 +85,7 @@ while ($row = pg_fetch_row($consulta)) {
 																<label class="col-sm-4 no-padding-right" for="fecha_actual">Fecha Actual:</label>
 																<div class="col-sm-8">
 																	<div class="input-group">
-																		<input class="form-control date-picker" id="fecha_actual" name="fecha_actual" type="text" readonly data-date-format="yyyy-mm-dd" />
+																		<input class="form-control date-picker" id="fecha_actual" name="fecha_actual" type="text" readonly />
 																		<span class="input-group-addon">
 																			<i class="fa fa-calendar bigger-110"></i>
 																		</span>
@@ -194,7 +194,7 @@ while ($row = pg_fetch_row($consulta)) {
 																	<label class="col-sm-4 no-padding-right" for="fecha_cancelacion"> Fecha cancelación:</label>
 																	<div class="col-sm-8">
 																		<div class="input-group">
-																			<input class="form-control date-picker" id="fecha_cancelacion" name="fecha_cancelacion" type="text" readonly data-date-format="yyyy-mm-dd" />
+																			<input class="form-control date-picker" id="fecha_cancelacion" name="fecha_cancelacion" type="text" readonly/>
 																			<span class="input-group-addon">
 																				<i class="fa fa-calendar bigger-110"></i>
 																			</span>
@@ -505,34 +505,3 @@ while ($row = pg_fetch_row($consulta)) {
 		<script src="../../dist/js/jquery.gritter.min.js"></script>
 	</body>
 </html>  
-
-<script type="text/javascript">
-	// tooltips 
-	$('[data-rel=tooltip]').tooltip();
-	//calendario
-	var f = new Date();
-
-	$('.date-picker').datepicker({
-		autoclose: true,
-		format:'yyyy-mm-dd',
-		startView:0		
-	});
-	$('.date-picker').val(f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate());
-	$('#txt_fecha_actual').val(f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate());
-
-	// seclect chosen 
-	$('.chosen-select').chosen({
-		allow_single_deselect:true,
-		no_results_text:'No encontrado'		
-	});
-	$('.modal.aside').ace_aside();
-				
-	$('#aside-inside-modal').addClass('aside').ace_aside({container: '#my-modal > .modal-dialog'});
-	
-	$(document).one('ajaxloadstart.page', function(e) {
-		//in ajax mode, remove before leaving page
-		$('.modal.aside').remove();
-		$(window).off('.aside')
-	});
-	//$('#dob').datepicker('setDate', new Date(2006, 11, 24));
-</script>
