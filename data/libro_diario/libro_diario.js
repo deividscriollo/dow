@@ -1,5 +1,13 @@
 $(document).on("ready",inicio);	
-function inicio(){	  	 	  
+function inicio(){	 
+  $('input[name=date-range-picker]').daterangepicker({
+    'applyClass' : 'btn-sm btn-success',
+    'cancelClass' : 'btn-sm btn-purple',
+    locale: {
+      applyLabel: 'Aplicar',
+      cancelLabel: 'Cancelar',
+    }
+  }); 	 	  
   $('#btn_buscar').click(function(){
     //$('#td_libro').dataTable().fnClearTable();
     $('#td_libro tbody').html('');

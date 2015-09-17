@@ -10,7 +10,7 @@ $sql = pg_query("select id_plan,codigo_cuenta,nombre_cuenta from plan_cuentas or
 while ($row = pg_fetch_row($sql)) {
     $lista = array();
     $lista_1 = array();
-	$sql_1 = pg_query("select fecha,debe,haber,referencia,detalle from libro_diario where id_plan_cuentas = '".$row[0]."' order by fecha");
+	$sql_1 = pg_query("select fecha,debe,haber,referencia,detalle from libro_diario where id_plan_cuentas = '".$row[0]."' and fecha between '".$f[0].' 00:00:00'."' and '".$f[1].' 23:59:59'."' order by fecha");
     if(pg_num_rows($sql_1) > 0){
         $lista[] = $row[0];
         $lista[] = $row[1];
