@@ -50,7 +50,7 @@
 		$c_e = '';
 		$v_e = '';
 		$t_e = '';
-        $consulta = pg_query("select stock,precio from productos where id_productos = '".$id_prod."'");
+        $consulta = pg_query("select stock, precio from productos where id_productos = '".$id_prod."'");
         while ($row = pg_fetch_row($consulta)) {
             $stock = $row[0];
             $precio_compra = $row[1];

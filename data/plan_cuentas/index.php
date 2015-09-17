@@ -57,7 +57,7 @@ if(!isset($_SESSION))
                                 <i class="ace-icon fa fa-home home-icon"></i>
                                 <a href="../inicio/">Inicio</a>
                             </li>
-                            <li class="active">Procesos</li>
+                            <li class="active">Contabilidad</li>
                             <li class="active">Plan de Cuentas</li>
                         </ul>
                     </div>

@@ -313,8 +313,8 @@ function change_provincia(pais,provincia,ciudad){
     });
 }
 
-function carga_detalles_productos(id_select,fun){     
-    if(id_select == "txt_6"){
+function cargar_idioma(id_select){
+    if(id_select == "txt_6") {
         $("#"+id_select+" option").not(":first").remove();
     }else{
         if(id_select == "txt_13"){
@@ -323,6 +323,19 @@ function carga_detalles_productos(id_select,fun){
             $("#"+id_select+" option").remove();    
         }           
     }
+}
+
+function carga_detalles_productos(id_select,fun){     
+    if(id_select == "txt_6") {
+        $("#"+id_select+" option").not(":first").remove();
+    }else{
+        if(id_select == "txt_13"){
+            $("#"+id_select+" option").not(":first").remove();
+        }else{
+            $("#"+id_select+" option").remove();    
+        }           
+    }
+
     $.ajax({        
         type: "POST",
         dataType: 'json',        

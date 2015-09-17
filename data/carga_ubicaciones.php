@@ -310,7 +310,7 @@
 																																						}else{
 																																							if($_GET['fun'] == "39"){//para la tabla
 																																								if($_GET['tipo'] == "0"){//indica que se carga al inicio de la pagina
-																																									$sql = "select id_plan,codigo_cuenta,nombre_cuenta from plan_cuentas order by fecha asc";
+																																									$sql = "select id_plan,codigo_cuenta,nombre_cuenta from plan_cuentas order by fecha desc";
 																																									cargarSelect_1($conexion,$sql);
 																																								}else{
 
@@ -332,6 +332,16 @@
 
 																																										}
 																																									}else{
+																																										if($_GET['fun'] == "42"){//para la tabla
+																																											if($_GET['tipo'] == "0"){//indica que se carga al inicio de la pagina
+																																												$sql = "select id_bancos, nombre_banco from bancos";
+																																												cargarSelect($conexion,$sql);
+																																											}else{
+
+																																											}
+																																										}else{
+																																											
+																																										}
 																																									}
 																																								}
 																																							}

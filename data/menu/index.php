@@ -1050,7 +1050,7 @@ function menu_lateral(){
 			print '</ul>			
 		</li>';	
 		print '<li ';
-			if ($acus[3]=='plan_cuentas') {
+			if ($acus[3]=='contabilidad') {
 				print('class="hover active open"');
 			}else print('class="hover"');
 		print'>
@@ -1125,10 +1125,35 @@ function menu_lateral(){
 			print'>
 				<a href="../retencion_fuente/">
 					<i class="menu-icon fa fa-caret-right"></i>
-					Retención en la fuente
+					Retenciones
 				</a>
 				<b class="arrow"></b>
-			</li>';		
+			</li>';
+
+			print '<li ';
+				if ($acus[3]=='bancos') {				
+					print('class="hover active"');
+				}else print('class="hover"');
+			print'>
+				<a href="../bancos/">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Bancos
+				</a>
+				<b class="arrow"></b>
+			</li>';
+
+			print '<li ';
+				if ($acus[3]=='cuentas') {				
+					print('class="hover active"');
+				}else print('class="hover"');
+			print'>
+				<a href="../cuentas/">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Cuentas
+				</a>
+				<b class="arrow"></b>
+			</li>';	
+
 			print '</ul>
 		</li>';				
 	
