@@ -58,7 +58,7 @@ if(!isset($_SESSION))
                                 <a href="../inicio/">Inicio</a>
                             </li>
                             <li class="active">Procesos</li>
-                            <li class="active">Libro Diaio</li>
+                            <li class="active">Libro Diario</li>
                         </ul>
                     </div>
 					<div class="page-content">

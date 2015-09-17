@@ -21,7 +21,7 @@
             $this->Cell(20, 5, $fecha, 0,0, 'C', 0);                         
             $this->Cell(150, 5, "CLIENTE", 0,1, 'R', 0);      
             $this->SetFont('Arial','B',16);        
-            $sql = pg_query("select ruc_empresa,nombre_empresa,propietario,telefono1,telefono2,direccion,correo,sitio_web,autorizacion_sri,ascesor_legar,imagen from empresa where id_empresa = '".$_SESSION['empresa_dow']."'");
+            $sql = pg_query("select ruc_empresa,nombre_empresa,propietario,telefono1,telefono2,direccion,correo,sitio_web,autorizacion_factura,autorizacion_factura,imagen from empresa where id_empresa = '".$_SESSION['empresa_dow']."'");
             while($row = pg_fetch_row($sql)){
                 $this->Cell(190, 8, maxCaracter("EMPRESA: ".utf8_decode($row[1]),50), 0,1, 'C',0);                                
                 $this->Image('../empresa/img/'.$row[10],0,8,52,40);
@@ -32,8 +32,8 @@
                 $this->Cell(170, 5, maxCaracter("DIR.: ".utf8_decode($row[5]),55),0,1, 'C',0);                                
                 $this->Cell(170, 5, maxCaracter("E-MAIL.: ".utf8_decode($row[6]),55),0,1, 'C',0);                                
                 $this->Cell(170, 5, maxCaracter("SITIO WER.: ".utf8_decode($row[7]),55),0,1, 'C',0);                                                
-                $this->Text(160, 30, maxCaracter("Nro Aut SRI.: ".utf8_decode($row[8]),55),0,1, 'C',0);                                
-                $this->Text(150, 35, maxCaracter("Fecha Aut SRI.: ".utf8_decode($row[9]),55),0,1, 'C',0);
+                $this->Text(140, 30, maxCaracter("Nro Aut SRI.: ".utf8_decode($row[8]),30),0,1, 'C',0);                                
+                $this->Text(140, 35, maxCaracter("Fecha Aut SRI.: ".utf8_decode($row[9]),30),0,1, 'C',0);
                 $this->Text(70,44,"OBLIGADO A LLEVAR CONTABILIDAD : SI",0,'C',0);                
                 $this->SetFont('Amble-Regular','U',14);        
                 $this->Text(75,49,"PRODUCTO MAS VENDIDO",0,'C',0);
