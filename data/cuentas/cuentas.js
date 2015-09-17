@@ -1,4 +1,9 @@
 $(document).on("ready",inicio);
+
+function recargar () {
+	 location.reload();
+}
+
 function inicio (){	
 	/*funcion inicial de la imagen y  buscadores del select no topar plz*/	
 
@@ -31,7 +36,7 @@ function inicio (){
     /*procesos de guardar buscar modificar limpiar actualizar*/    		
 	$("#btn_0").on("click",guardar_cuentas);
 	$("#btn_1").on("click",limpiar_form);
-	$("#btn_2").on("click",actualizar_form);
+	$("#btn_2").on("click",recargar);
 
     /*------*/
     jQuery(function($) {
@@ -358,7 +363,8 @@ function datos_cuenta(valores,tipo,p){
 	    success: function(data) {	
 	    	if( data == 0 ){
 	    		alert('Datos Agregados Correctamente');			
-	    		limpiar_form(p);	
+	    		// limpiar_form(p);
+	    		recargar();	
 	    		$('#table').trigger('reloadGrid');							
 	    	}else{
 	    		if( data == 1 ){
