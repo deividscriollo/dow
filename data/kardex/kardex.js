@@ -78,7 +78,7 @@ function inicio(){
   	});
   
   $('#btn_buscar').click(function(){
-    //$("#dynamic-table tbody").empty(); 
+    $('#td_kardex').dataTable().fnClearTable();
     $.ajax({
         type: "POST",
         url: "kardex.php",  

@@ -100,7 +100,7 @@
 		$guardar = guardarSql($conexion, $sql3);
         /////////LIBRO DIARIOS//////////
 		$id_libro  = unique($fecha_larga);	
-		echo $id_libro.'</br>';
+		//echo $id_libro.'</br>';
 
 		if($_POST['formas'] == '110147552550ebaa4df')//CONTADO NO CAMBIAR EN LA BASE
 		{			
@@ -112,14 +112,14 @@
 		}
 		if($resp == 'true'){
 			$id_libro_2  = unique($fecha_larga);	
-			echo $id_libro_2.'</br>';
+			//echo $id_libro_2.'</br>';
 			
 							
 			$sql_libro = "insert into libro_diario values ('".$id_libro_2."','".$fecha."','','".($_POST['tarifa12'] + $_POST['tarifa0'])."','11501155240ac3aaaaa','Factura Ventas','Venta de Productos')";
 			$resp = $guardar = guardarSql($conexion,$sql_libro);			
 			if($resp == 'true'){
 				$id_libro_3  = unique($fecha_larga);	
-				echo $id_libro_3.'</br>';		
+				//echo $id_libro_3.'</br>';		
 				$sql_libro = "insert into libro_diario values ('".$id_libro_3."','".$fecha."','','".($_POST['iva'])."','11501155240ac3a138e','Factura Ventas','Iva Cobrado')";
 				$resp = $guardar = guardarSql($conexion,$sql_libro);			
 				

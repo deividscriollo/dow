@@ -853,7 +853,7 @@ function menu_lateral(){
 		</li>';
 		
 		print '<li ';
-			if ($acus[3]=='factura_compra' || $acus[3]=='devolucion_compra' || $acus[3]=='factura_venta'|| $acus[3]=='nota_credito'|| $acus[3]=='kardex'|| $acus[3]=='inventario' ) {
+			if ($acus[3]=='factura_compra' || $acus[3]=='devolucion_compra' || $acus[3]=='factura_venta'|| $acus[3]=='nota_credito'|| $acus[3]=='kardex'|| $acus[3]=='inventario' || $acus[3]=='libro_diario' ) {
 				print('class="hover active open"');
 			}else print('class="hover"');
 			print'>
@@ -962,7 +962,18 @@ function menu_lateral(){
 					Kardex
 				</a>
 				<b class="arrow"></b>
-			</li>';															
+				</li>';	
+				print '<li ';
+					if ($acus[3]=='libro_diario') {
+						print('class=" hover active"');
+					}else print('class="hover"');
+				print'>
+					<a href="../libro_diario/">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Libro Diario
+					</a>
+					<b class="arrow"></b>
+				</li>';															
 		print '</ul>
 		</li>';
 		
