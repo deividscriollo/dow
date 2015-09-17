@@ -132,7 +132,7 @@ function inicio (){
     }
 
     $("#codigo").on("keyup", limpiar_campo1);
-  $("#producto").on("keyup", limpiar_campo2);
+    $("#producto").on("keyup", limpiar_campo2);
 
     // tooltips 
     $('[data-rel=tooltip]').tooltip();
@@ -271,12 +271,13 @@ function inicio (){
 	});
 
     /////////////////bucador barras///////////////////////////
-    $("#codigo_barras").change(function(e) {
+    $("#codigo_barras").change(function(e) {      
+        console.log(e)  
         var precio = $("#tipo").val(); 
         var codigo = $("#codigo_barras").val();
-        if (precio === "MINORISTA") {
+        if (precio === "MINORISTA") {            
             $.getJSON('search.php?codigo_barras=' + codigo + '&precio=' + precio, function(data) {
-                var tama = data.length;
+                var tama = data.length;                 
                 if (tama !== 0) {
                     for (var i = 0; i < tama; i = i + 9) {
                         $("#id_productos").val(data[i]);

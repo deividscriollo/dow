@@ -147,16 +147,18 @@ if(!isset($_SESSION))
 														<table id="td_kardex" class="table table-striped table-bordered table-hover">
 															<thead>
 																<tr>
-																	<th>Producto</th>
-																	<th>Detalle</th>
-																	<th>Factura</th>
-																	<th>Cant. Entrada</th>
-																	<th>Precio. Entrada</th>
-																	<th>Valor. Entrada</th>
-																	<th>Cant. Salida</th>
-																	<th>Precio. Salida</th>
-																	<th>Valor. Salida</th>
-																	<th>Transacción</th>
+																	<th class="hidden">ID</th>
+																	<th>FECHA</th>
+																	<th>DETALLE</th>
+																	<th>CANTIDAD ENTRADA</th>																	
+																	<th>VALOR ENTRADA</th>
+																	<th>TOTAL ENTRADA</th>
+																	<th>CANTIDAD SALIDA</th>																	
+																	<th>VALOR SALIDA</th>
+																	<th>TOTAL SALIDA</th>
+																	<th>CANTIDAD TOTAL</th>																	
+																	<th>VALOR TOTAL</th>
+																	<th>TOTAL</th>
 																</tr>
 															</thead>
 															<tbody>
@@ -241,9 +243,21 @@ if(!isset($_SESSION))
 				//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
 				.dataTable( {
 					bAutoWidth: false,
-					"aoColumns": [
-					  { "bSortable": false },null, null,null, null, null,  { "bSortable": false },null,null,null
-					],
+					"aoColumnDefs": [
+				        { "bSearchable": false, "bVisible": false, "aTargets": [ 0 ], },        
+				        { "bSearchable": false, "bVisible": true, "aTargets": [ 1 ] },        
+				        { "bSearchable": false, "bVisible": true, "aTargets": [ 2 ] },        
+				        { "bSearchable": false, "bVisible": true, "aTargets": [ 3 ] },        
+				        { "bSearchable": false, "bVisible": true, "aTargets": [ 4 ] },        
+				        { "bSearchable": false, "bVisible": true, "aTargets": [ 5 ] },        
+				        { "bSearchable": false, "bVisible": true, "aTargets": [ 6 ] },                
+				        { "bSearchable": false, "bVisible": true, "aTargets": [ 7 ] },                
+				        { "bSearchable": false, "bVisible": true, "aTargets": [ 8 ] },                
+				        { "bSearchable": false, "bVisible": true, "aTargets": [ 9 ] },                
+				        { "bSearchable": false, "bVisible": true, "aTargets": [ 10 ] },                
+				        { "bSearchable": false, "bVisible": true, "aTargets": [ 11 ] },                				        
+			    	],      	   			
+					
 					"aaSorting": [],			
 					language: {
 					    "sProcessing":     "Procesando...",
