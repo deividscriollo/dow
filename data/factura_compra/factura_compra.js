@@ -8,7 +8,6 @@ function recargar() {
 
 function guardar_factura(){
   var tam = jQuery("#list").jqGrid("getRowData");
-  // var loader_grabar = $("#loader_grabar");
 
   if($("#serie").val() == ""){  
       $("#serie").focus();
@@ -16,8 +15,8 @@ function guardar_factura(){
       alert("Ingrese la serie");
     } else {
         if($("#id_proveedor").val() == ""){
-          $("#txt_nro_identificacion").trigger("chosen:open");
-          alert("Seleccione un Proveedor");    
+          alert("Seleccione un Proveedor"); 
+          $("#txt_nro_identificacion").trigger("chosen:open");   
         } else {
           if($("#autorizacion").val() == "") {
             $("#autorizacion").focus()
@@ -40,7 +39,7 @@ function guardar_factura(){
                   console.log(fil)                  
                   for (var i = 0; i < fil.length; i++) {
                       var datos = fil[i];
-                      v1[i] = datos['codigo'];
+                      v1[i] = datos['id_productos'];
                       v2[i] = datos['cantidad'];
                       v3[i] = datos['precio_u'];
                       v4[i] = datos['descuento'];
@@ -109,7 +108,7 @@ function limpiar_campo2(){
     }
 } 
 
-function inicio (){		
+function inicio () {		
   show();
 
   // mask
@@ -742,7 +741,7 @@ function inicio (){
                 }
                 
                 var datarow = {
-                    cod_producto: $("#id_productos").val(), 
+                    id_productos: $("#id_productos").val(), 
                     codigo: $("#codigo").val(), 
                     detalle: $("#producto").val(), 
                     cantidad: $("#cantidad").val(), 
@@ -760,7 +759,7 @@ function inicio (){
                 for (var i = 0; i < filas.length; i++) {
                     var id = filas[i];
 
-                    if (id['codigo'] == $("#codigo").val()) {
+                    if (id['id_productos'] == $("#id_productos").val()) {
                         repe = 1;
                         var can = id['cantidad'];
                     }
@@ -788,7 +787,7 @@ function inicio (){
                     }
                 
                     datarow = {
-                        cod_producto: $("#id_productos").val(), 
+                        id_productos: $("#id_productos").val(), 
                         codigo: $("#codigo").val(), 
                         detalle: $("#producto").val(), 
                         cantidad: suma, 
@@ -822,7 +821,7 @@ function inicio (){
                     }
               
                     datarow = {
-                        cod_producto: $("#id_productos").val(), 
+                        id_productos: $("#id_productos").val(), 
                         codigo: $("#codigo").val(), 
                         detalle: $("#producto").val(), 
                         cantidad: $("#cantidad").val(), 

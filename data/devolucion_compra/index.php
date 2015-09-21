@@ -23,7 +23,8 @@
 		<link rel="stylesheet" href="../../dist/css/daterangepicker.min.css" />
 		<link rel="stylesheet" href="../../dist/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="../../dist/css/fontdc.css" />
-
+		<link rel="stylesheet" href="../../dist/css/jquery-ui.custom.min.css" type="text/css"/>
+		<link rel="stylesheet" href="../../dist/css/jquery.gritter.min.css" />
 		<!-- ace styles -->
 		<link rel="stylesheet" href="../../dist/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
         <link type="text/css" rel="stylesheet" id="ace-skins-stylesheet" href="../../dist/css/ace-skins.min.css">
@@ -46,7 +47,7 @@
                                 <i class="ace-icon fa fa-home home-icon"></i>
                                 <a href="../inicio/">Inicio</a>
                             </li>
-                            <li class="active">Ingresos</li>
+                            <li class="active">Procesos</li>
                             <li class="active">Devolución Compra</li>
                         </ul>
                     </div>
@@ -69,36 +70,50 @@
 
 									<div class="widget-body">
 										<div class="widget-main">
+
 											<div class="row">
 												<form class="form-horizontal" role="form" rol="form" action="" method="POST" id="form_devolucionCompra">	
 													<div class="row">
-														<div class="col-xs-12 pull-right">														
-															<div class="col-sm-3">
-																<span class="bigger-120" id>
-																	<span class="blue bolder">Fecha Actual:</span>
-																	<span id ="fecha_actual"></span>
-																</span>
+														<div class="col-md-12 pull-right">
+															<div class="col-md-4">
+																<label class="col-sm-4 no-padding-right" for="fecha_actual">Fecha Actual:</label>
+																<div class="col-sm-8">
+																	<div class="input-group">
+																		<input class="form-control date-picker" id="fecha_actual" name="fecha_actual" type="text" readonly data-date-format="yyyy-mm-dd" />
+																		<span class="input-group-addon">
+																			<i class="fa fa-calendar bigger-110"></i>
+																		</span>
+																	</div>
+																</div>
 															</div>
-															<div class="col-sm-3">
-																<span class="bigger-120" id>
-																	<span class="blue bolder">Hora Actual:</span>
-																	<span id="estado"></span>
-																</span>
+
+															<div class="col-md-4">
+																<label class="col-sm-4 no-padding-right" for="hora_actual">Hora Actual:</label>
+																<div class="col-sm-8">
+																	<div class="input-group">
+																		<input class="form-control" type="text" id="hora_actual" name="hora_actual"  readonly />
+																		<span class="input-group-addon">
+																			<i class="fa fa-clock-o bigger-110"></i>
+																		</span>
+																	</div>
+																</div>
 															</div>
-															<div class="col-sm-3">
-																<span class="bigger-120" id>
+
+															<div class="col-md-4">
+																<span class="bigger-120">
 																	<span class="red bolder">Responsable:</span>
-																	<span id="txt_responsable"><?php print($_SESSION['nombrescompletosdow']); ?></span>
+																	<span ><?php print($_SESSION['nombrescompletosdow']); ?></span>
 																</span>
 															</div>
 														</div>
 													</div>
+											
 													<div class="hr"></div>																									
 													<div class="row">
-														<div class="col-xs-12">
+														<div class="col-md-12">
 															<div class="col-sm-4">
 																<div class="form-group">
-																	<label class="col-sm-6 control-label no-padding-right" for="txt_nro_identificacion"> Nro de Identificación:</label>
+																	<label class="col-sm-6 control-label no-padding-right" for="txt_nro_identificacion">Nro de Identificación:</label>
 																	<div class="col-sm-6">
 																	<input type="hidden" id="id_proveedor" name="id_proveedor">
 																		<select class="chosen-select form-control" id="txt_nro_identificacion" name="txt_nro_identificacion" data-placeholder="Buscar...." >	                                                                        
@@ -109,7 +124,7 @@
 															</div>
 															<div class="col-sm-4">
 																<div class="form-group">
-																	<label class="col-sm-5 control-label no-padding-right" for="txt_nombre_proveedor"> Proveedor: </label>
+																	<label class="col-sm-5 control-label no-padding-right" for="txt_nombre_proveedor">Proveedor: </label>
 																	<div class="col-sm-7">
 																		<select class="chosen-select form-control" id="txt_nombre_proveedor" name="txt_nombre_proveedor" data-placeholder="Buscar....">	                                                                        
 	                                                                        <option value=""> </option>	                                                                        
@@ -119,9 +134,9 @@
 															</div>														
 															<div class="col-sm-4">
 																<div class="form-group">
-																	<label class="col-sm-5 control-label no-padding-right" for="txt_nro_factura"> Nro. Factura:</label>
+																	<label class="col-sm-5 control-label no-padding-right" for="txt_nro_factura">Nro. Factura:</label>
 																	<div class="col-sm-7">
-																		<input type="hidden" id="id_factura_compra" name="id_factura_compra" />
+																		<input type="text" id="id_factura_compra" name="id_factura_compra" />
 																		<select class="chosen-select form-control" id="txt_nro_factura" name="txt_nro_factura" data-placeholder="Buscar....">	                                                                        
 	                                                                        <option value=""> </option>	                                                                        
 	                                                                    </select>
@@ -134,15 +149,15 @@
 														<div class="col-xs-12">
 															<div class="col-xs-12">
 																<h3 class="header smaller lighter green">
-																	<i class="ace-icon fa fa-bullhorn"></i>
 																	Detalle Factura
 																</h3>
 															</div>
 														</div>
 													</div>
+
 													<div class="row">
 														<div class="col-xs-12">
-															<div class="col-xs-3">
+															<div class="col-xs-2">
 																<div class="row">
 																	<div class="col-xs-12">
 																		<label> Codigo de Barra:</label>
@@ -150,9 +165,7 @@
 																</div>
 																<div class="row">
 																	<div class="col-xs-12">
-																		<select class="chosen-select form-control" id="codigo_barras" name="codigo_barras" data-placeholder="Código de Barras del Producto">
-																			<option value=""></option>
-																		</select>																					
+																		<input type="text" id="codigo_barras" name="codigo_barras"  class="form-control" data-toggle="tooltip"  /> 																					
 																	</div>
 																</div>
 															</div>
@@ -164,13 +177,11 @@
 																</div>
 																<div class="row">
 																	<div class="col-xs-12">
-																		<select class="chosen-select form-control" id="codigo" name="codigo" data-placeholder="Código del Producto">
-																			<option value=""></option>
-																		</select>																		
+																		<input type="text" id="codigo" name="codigo"  class="form-control" data-toggle="tooltip"  /> 																		
 																	</div>
 																</div>
 															</div>
-															<div class="col-xs-3">
+															<div class="col-xs-4">
 																<div class="row">
 																	<div class="col-xs-12">
 																		<label> Producto:</label>
@@ -178,12 +189,11 @@
 																</div>
 																<div class="row">
 																	<div class="col-xs-12">
-																		<select class="chosen-select form-control" id="producto" name="producto" data-placeholder="Descripción del Producto">
-																			<option value=""></option>
-																		</select>																																				
+																		<input type="text" id="producto" name="producto"  class="form-control" data-toggle="tooltip"  /> 																																				
 																	</div>
 																</div>
 															</div>
+
 															<div class="col-xs-3">
 																<div class="row">
 																	<div class="col-xs-12">
@@ -207,7 +217,7 @@
 																			</div>
 																			<div class="row">
 																				<div class="col-xs-12">
-																					<input type="text" id="precio" name="precio" onkeydown="return validarNumeros(event)" value="0.00" class="form-control" data-toggle="tooltip" readonly  /> 
+																					<input type="text" id="precio" name="precio" onkeydown="return validarNumeros(event)" value="0.00" class="form-control" data-toggle="tooltip"  /> 
 																				</div>
 																			</div>
 																		</div>
@@ -219,8 +229,12 @@
 																			</div>
 																			<div class="row">
 																				<div class="col-xs-12">
-																					<input type="number" id="descuento" name="descuento" class="form-control" data-toggle="tooltip" onkeydown="return validarNumeros(event)" value="0" readonly /> 
-																					<input type="hidden" id="id_productos" name="id_productos" class="form-control" data-toggle="tooltip" /> 
+																					<input type="text" readonly id="descuento" name="descuento" class="form-control" data-toggle="tooltip" value="0" min="0" maxlength="3" /> 
+																					<input type="text" id="stock" name="stock" class="form-control" data-toggle="tooltip" /> 
+																					<input type="text" id="id_productos" name="id_productos" class="form-control" data-toggle="tooltip" /> 
+																					<input type="text" id="iva_producto" name="iva_producto" class="form-control" data-toggle="tooltip" /> 
+																					<input type="text" id="incluye" name="incluye" class="form-control" data-toggle="tooltip" />
+																					<input type="text" id="inventar" name="inventar" class="form-control" data-toggle="tooltip" />  
 																				</div>
 																			</div>
 																		</div>
@@ -229,6 +243,7 @@
 															</div>
 														</div>
 													</div>
+
 													<div class="row">
 														<div class="col-xs-12">
 															<div class="col-sm-12">
@@ -236,82 +251,56 @@
 															</div>
 														</div>
 													</div>
-													<div class="row">														
-														<div class="col-xs-12">
-														 	<div class="col-sm-12">
-																<table id="detalle_factura" class="table table-striped table-bordered table-hover">
-																	<thead>
-																		<tr style="background-color: #428BCA; color: white;">
-																			<th class="center" width="2px"><i class="ace-icon fa fa-bars"></i></th>
-																			<th class="center" width="100px"><i class="ace-icon fa fa-barcode"></i> Codigo</th>
-																			<th class="center"><i class="ace-icon fa fa-info"></i> Detalle</th>
-																			<th class="center" width="100px"><i class="ace-icon fa fa-list-ol"></i> Cantidad</th>
-																			<th class="center" width="100px"><i class="ace-icon fa fa-money"></i> Precio U.</th>
-																			<th class="center" width="100px"><i class="ace-icon fa fa-area-chart"> Descuento</th>
-																			<th class="center" width="100px"><i class="ace-icon fa fa-usd"> Total</th>
-																			<th class="center" width="90px"><i class="ace-icon fa fa-cogs"></i> Accion</th>
-																			<th class="hidden" width="90px"><i class="ace-icon fa fa-cogs"></i> Iva</th>
-																		</tr>
-																	</thead>
-																	<tbody>
-																	</tbody>
-																</table>
-															</div>
-															<div class="row">
-																<div class="col-xs-12">
-																	<div class="col-sm-8"></div>
-																	<div class="col-sm-4">
-																		<div class="form-group">
-																			<label class="col-sm-3 control-label no-padding-right" for="tarifa0"> Tarifa 0:</label>
-																			<div class="col-sm-9">
-																				<span class="input-icon">
-																					<input type="text" value="00.00" id="tarifa0" name="tarifa0" readonly>
-																					<i class="ace-icon fa fa-usd purple"></i>
-																				</span>
-																			</div>
-																		</div>
-																		<div class="form-group">
-																			<label class="col-sm-3 control-label no-padding-right" for="tarifa12"> Tarifa 12:</label>
-																			<div class="col-sm-9">
-																				<span class="input-icon">
-																					<input type="text" value="00.00" id="tarifa12" name="tarifa12" readonly>
-																					<i class="ace-icon fa fa fa-usd orange"></i>
-																				</span>
-																			</div>
-																		</div>
-																		<div class="form-group">
-																			<label class="col-sm-3 control-label no-padding-right" for="iva"> 12 % Iva</label>
-																			<div class="col-sm-9">
-																				<span class="input-icon">
-																					<input type="text" value="00.00" id="iva" name="iva" readonly>
-																					<i class="ace-icon fa fa fa-usd red"></i>
-																				</span>
-																			</div>
-																		</div>
-																		<div class="form-group">
-																			<label class="col-sm-3 control-label no-padding-right" for="descuento_total"> Descuento</label>
-																			<div class="col-sm-9">
-																				<span class="input-icon">
-																					<input type="text" value="00.00" id="descuento_total" name="descuento_total" readonly>
-																					<i class="ace-icon fa fa fa-usd green"></i>
-																				</span>
-																			</div>
-																		</div>
-																		<div class="form-group">
-																			<label class="col-sm-3 control-label no-padding-right" for="total"> Total</label>
-																			<div class="col-sm-9">
-																				<span class="input-icon">
-																					<input type="text" value="00.00" id="total" name="total" readonly>
-																					<i class="ace-icon fa fa-facebook blue"></i>
-																				</span>
-																			</div>
-																		</div>
-																	</div>																	
+
+													<div class="col-md-12">
+							                            <div id="grid_container">
+							                                <table id="list"></table>
+							                            </div>
+							                        </div>
+
+							                        <div class="row">
+														<div class="col-md-12">
+															<div class="col-md-9"></div>
+															<div class="col-md-3">																		
+																<div class="form-group">
+																	<label class="col-sm-4 no-padding-right" for="tarifa0"> Tarifa 0:</label>
+																	<div class="col-sm-8">
+																		<input type="text" id="tarifa0" name="tarifa0" class="form-control" readonly value="0.000" /> 
+																	</div>																													
+																</div>	
+
+																<div class="form-group">
+																	<label class="col-sm-4 no-padding-right" for="tarifa12"> Tarifa 12:</label>
+																	<div class="col-sm-8">
+																		<input type="text" id="tarifa12" name="tarifa12" class="form-control" readonly value="0.000" /> 
+																	</div>																													
 																</div>
-															</div>
-														</div>														
+
+																<div class="form-group">
+																	<label class="col-sm-4 no-padding-right" for="iva"> 12 % Iva:</label>
+																	<div class="col-sm-8">
+																		<input type="text" id="iva" name="iva" class="form-control" readonly value="0.000" /> 
+																	</div>																													
+																</div>
+
+																<div class="form-group">
+																	<label class="col-sm-4 no-padding-right" for="descuento_total"> Descuento:</label>
+																	<div class="col-sm-8">
+																		<input type="text" id="descuento_total" name="descuento_total" class="form-control" readonly value="0.000" /> 
+																	</div>																													
+																</div>
+
+																<div class="form-group">
+																	<label class="col-sm-4 no-padding-right" for="total"> Total:</label>
+																	<div class="col-sm-8">
+																		<input type="text" id="total" name="total" class="form-control" readonly value="0.000" /> 
+																	</div>																													
+																</div>																											
+															</div>																	
+														</div>
 													</div>
 												</form>
+
 											<div class="row">
 													<div class="center">													 
 														<button type="submit" class="btn btn-primary" id="btn_0">
@@ -363,7 +352,7 @@
 		</script>
 		<script src="../../dist/js/bootstrap.min.js"></script>
 
-		<script src="../../dist/js/jquery-ui.custom.min.js"></script>
+		<script src="../../dist/js/jquery-ui.min.js"></script>
 		<script src="../../dist/js/jquery.ui.touch-punch.min.js"></script>
 		<script src="../../dist/js/jquery.easypiechart.min.js"></script>
 		<script src="../../dist/js/jquery.sparkline.min.js"></script>
@@ -373,19 +362,24 @@
 		<script src="../../dist/js/chosen.jquery.min.js"></script>
 		<script src="../../dist/js/date-time/bootstrap-datepicker.min.js"></script>
 		<script src="../../dist/js/date-time/bootstrap-timepicker.min.js"></script>
-		<script src="../../dist/js/date-time/moment.min.js"></script>
 		<script src="../../dist/js/date-time/daterangepicker.min.js"></script>
-		<script src="../../dist/js/date-time/bootstrap-datetimepicker.min.js"></script>
-
+		<script src="../../dist/js/date-time/moment.min.js"></script>
+				
 		<!-- ace scripts -->
 		<script src="../../dist/js/ace-elements.min.js"></script>
 		<script src="../../dist/js/ace.min.js"></script>
 		<script src="../../dist/js/jqGrid/jquery.jqGrid.min.js"></script>
         <script src="../../dist/js/jqGrid/i18n/grid.locale-en.js"></script>
+        <script src="../../dist/js/jquery.maskedinput.min.js"></script>
+        <script src="../../dist/js/jquery.bootstrap-duallistbox.min.js"></script>
+        <script src="../../dist/js/jquery.raty.min.js"></script>
+        <script src="../../dist/js/select2.min.js"></script>
+        <script src="../../dist/js/bootstrap-multiselect.min.js"></script>
 		
 		<script src="../generales.js"></script>
 		<script src="devolucion_compra.js"></script>
 		<script src="../../dist/js/validCampoFranz.js" ></script>
+		<script src="../../dist/js/jquery.gritter.min.js"></script>
 	</body>
 </html>  
   <!-- Modal -->
@@ -394,7 +388,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">BUSCAR FACTURAS COMPRAS</h4>
+          <h4 class="modal-title">BUSCAR DEVOLUCIÓN COMPRA</h4>
         </div>
         <div class="modal-body">
             <table id="table"></table>
@@ -422,7 +416,7 @@
 						&nbsp; &nbsp;
 						<a class="btn btn-app btn-light no-radius" href="#">
 							<i class="ace-icon fa fa-print bigger-230"></i>
-							Imprmir
+							Imprimir
 						</a>
 					</div>
 				</div>
@@ -433,23 +427,3 @@
 		</button>
 	</div>
  </div>
-
-<script type="text/javascript">
-$('.modal.aside').ace_aside();
-	$('#aside-inside-modal').addClass('aside').ace_aside({container: '#my-modal > .modal-dialog'});
-	
-	// tooltips 
-	$('[data-rel=tooltip]').tooltip();
-	var f = new Date();
-	$('.date-picker').datepicker({
-		autoclose: true,
-		format:'yyyy-mm-dd',
-		startView:0		
-	});
-	$('.date-picker').val(f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate());
-	// seclect chosen 
-	$('.chosen-select').chosen({
-		allow_single_deselect:true,
-		no_results_text:'No encontrado'		
-	});
-</script>

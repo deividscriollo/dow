@@ -14,14 +14,7 @@
 		
     ///////////////////////guardar factura compra////////////////////
 
-	$sql = "insert into devolucion_compra values ('$id','$_POST[id_proveedor]','$id_session','$_POST[id_factura_compra]','$fecha','$_POST[hora]','$_POST[tarifa0]','$_POST[tarifa12]','$_POST[iva]','$_POST[descuento_total]','$_POST[total]','','Activo','$fecha')";	
-		
-	$guardar = guardarSql($conexion,$sql);
-	if( $guardar == 'true'){
-		$data = 0; ////datos guardados
-	}else{
-		$data = 2; /// error al guardar
-	}			
+	$sql = "insert into devolucion_compra values ('$id','$_POST[id_proveedor]','$id_session','$_POST[id_factura_compra]','$fecha','$_POST[hora]','$_POST[tarifa0]','$_POST[tarifa12]','$_POST[iva]','$_POST[descuento_total]','$_POST[total]','','Activo','$fecha')";			
 		
     /////datos detalle factura/////
 	$campo1 = $_POST['campo1'];
@@ -66,6 +59,13 @@
 		$guardar = guardarSql($conexion,$sql4);
 		////////////////////////////////////////
   	}
+
+  	$guardar = guardarSql($conexion,$sql);
+	if( $guardar == 'true'){
+		$data = 0; ////datos guardados
+	}else{
+		$data = 2; /// error al guardar
+	}
 
 	echo $data;
 ?>

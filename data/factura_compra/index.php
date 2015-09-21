@@ -128,7 +128,7 @@
 																				<div class="col-md-12">
 																					<div class="col-md-5">
 																						<div class="form-group">
-																							<label class="col-sm-4 no-padding-right" for="serie3"> Numero de serie:</label>																			
+																							<label class="col-sm-4 no-padding-right" for="serie3">Numero de serie:</label>																			
 																							<div class="col-sm-8">
 																								<input type="text" id="serie" name="serie" class="form-control" data-toggle="tooltip" data-original-title="" required />																		
 																								<input type="hidden" id="id_facura_compra" name="id_facura_compra" class="form-control" data-toggle="tooltip" data-original-title="" required />																		
@@ -153,7 +153,7 @@
 																				<div class="col-md-12">
 																					<div class="col-md-5">
 																						<div class="form-group">
-																							<label class="col-sm-4 no-padding-right" for="txt_nro_identificacion"> Cédula de Identidad o Ruc: <font color="red">*</font></label>
+																							<label class="col-sm-4 no-padding-right" for="txt_nro_identificacion">Cédula de Identidad o Ruc: <font color="red">*</font></label>
 																							<div class="col-sm-8">
 																							<input type="hidden" id="id_proveedor" name="id_proveedor">																				
 																								<select class="chosen-select form-control" id="txt_nro_identificacion" name="txt_nro_identificacion" data-placeholder="Nro de identifiación">	     
@@ -165,7 +165,7 @@
 
 																					<div class="col-md-7">
 																						<div class="form-group">
-																							<label class="col-sm-5 control-label no-padding-right" for="txt_nombre_proveedor"> Proveedor:<font color="red">*</font></label>
+																							<label class="col-sm-5 control-label no-padding-right" for="txt_nombre_proveedor">Proveedor:<font color="red">*</font></label>
 																							<div class="col-sm-7">
 																								<select class="chosen-select form-control" id="txt_nombre_proveedor" name="txt_nombre_proveedor" data-placeholder="Nombres Completos">	                                                                        
 							                                                                        <option value=""> </option>	                                                                        
@@ -180,7 +180,7 @@
 																				<div class="col-md-12">
 																					<div class="col-sm-4">
 																						<div class="form-group">
-																							<label class="col-sm-5 no-padding-right" for="fecha_registro"> Fecha Registro:</label>
+																							<label class="col-sm-5 no-padding-right" for="fecha_registro">Fecha Registro:</label>
 																							<div class="col-sm-7">
 																								<div class="input-group">
 																									<input type="text" id="fecha_registro" name="fecha_registro" readonly class="form-control date-picker" />
@@ -226,7 +226,7 @@
 																				<div class="col-md-12">
 																					<div class="col-sm-4">
 																						<div class="form-group">
-																							<label class="col-sm-5 no-padding-right" for="fecha_cancelacion"> Fecha cancelación:</label>
+																							<label class="col-sm-5 no-padding-right" for="fecha_cancelacion">Fecha cancelación:</label>
 																								<div class="col-sm-7">
 																									<div class="input-group">
 																									<input type="text" id="fecha_cancelacion" name="fecha_cancelacion" readonly class="form-control date-picker" />
@@ -240,16 +240,16 @@
 
 																					<div class="col-sm-4">
 																						<div class="form-group">																	
-																							<label class="col-sm-5 control-label no-padding-right" for="autorizacion"> Nro de Autorización:</label>
+																							<label class="col-sm-5 control-label no-padding-right" for="autorizacion">Nro de Autorización:</label>
 																							<div class="col-sm-7">
-																								<input type="text" id="autorizacion" name="autorizacion" class="form-control" data-toggle="tooltip" required /> 
+																								<input type="text" id="autorizacion" name="autorizacion" class="form-control" data-toggle="tooltip" maxlength="30" required /> 
 																							</div>																														
 																						</div>
 																					</div>
 
 																					<div class="col-sm-4">
 																						<div class="form-group">
-																							<label class="col-sm-5 control-label no-padding-right" for="formas"> Forma de Pago:</label>
+																							<label class="col-sm-5 control-label no-padding-right" for="formas">Forma de Pago:</label>
 																							<div class="col-sm-7">
 																								<select class="chosen-select form-control" id="formas" name="formas" data-placeholder="Forma de Pago">                                                                        
 							                                                                    </select>
@@ -359,7 +359,7 @@
 																										<div class="col-xs-12">
 																											<input type="number" id="descuento" name="descuento" class="form-control" data-toggle="tooltip" value="0" min="0" maxlength="3" /> 
 																											<input type="hidden" id="stock" name="stock" class="form-control" data-toggle="tooltip" /> 
-																											<input type="hidden" id="id_productos" name="id_productos" class="form-control" data-toggle="tooltip" /> 
+																											<input type="text" id="id_productos" name="id_productos" class="form-control" data-toggle="tooltip" /> 
 																											<input type="hidden" id="iva_producto" name="iva_producto" class="form-control" data-toggle="tooltip" /> 
 																											<input type="hidden" id="incluye" name="incluye" class="form-control" data-toggle="tooltip" />
 																											<input type="hidden" id="inventar" name="inventar" class="form-control" data-toggle="tooltip" />  
