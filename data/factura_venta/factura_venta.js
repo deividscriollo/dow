@@ -350,7 +350,6 @@ function inicio (){
                 $("#producto").val(ui.item.producto);
                 $("#precio").val(ui.item.precio);
                 $("#descuento").val(ui.item.descuento);
-                // $("#descuento").attr("max",ui.item.descuento);
                 $("#stock").val(ui.item.stock);
                 $("#iva_producto").val(ui.item.iva_producto);
                 $("#inventar").val(ui.item.inventar);
@@ -433,7 +432,6 @@ function inicio (){
                 $("#producto").val(ui.item.value);
                 $("#precio").val(ui.item.precio);
                 $("#descuento").val(ui.item.descuento);
-                // $("#descuento").attr("max",ui.item.descuento);
                 $("#stock").val(ui.item.stock);
                 $("#iva_producto").val(ui.item.iva_producto);
                 $("#inventar").val(ui.item.inventar);
@@ -881,7 +879,7 @@ function inicio (){
                                     };
                                     su = jQuery("#list").jqGrid('addRowData', $("#id_productos").val(), datarow);
                                     limpiar_input();
-                                }else{
+                                } else {
                                     alert("Error... Alcanzo el limite máximo de Items");
                                 }
                             }
@@ -915,7 +913,7 @@ function inicio (){
                                     subtotal12 = parseFloat(subtotal12).toFixed(3);
                                     iva12 = parseFloat(iva12).toFixed(3);
                                     descu_total = parseFloat(descu_total).toFixed(3);
-                                }else{
+                                } else {
                                     if(dd['incluye'] == "Si"){
                                         subtotal = dd['total'];
                                         sub2 = (subtotal / 1.12).toFixed(3);
@@ -932,7 +930,7 @@ function inicio (){
                                         descu_total = parseFloat(descu_total).toFixed(3);
                                     }
                                 }
-                              }else{
+                              } else {
                                 if (dd['iva'] == 0) {                                               
                                     subtotal = dd['total'];
                                     sub = subtotal;
@@ -961,25 +959,24 @@ function inicio (){
                         /////////////////////////////////////////////////////
                     } 
                   }
-          			} else {
-                        $("#precio").focus();  
-                        alert("Ingrese un precio");                       
-        	  		}
-        		} else {
-                    $("#cantidad").focus();
-                    alert("Ingrese una cantidad");
-        		}
-      		} else {
-                $('#codigo_barras').focus();
-                alert("Seleccione un producto antes de continuar");   
+      			} else {
+                    $("#precio").focus();  
+                    alert("Ingrese un precio");                       
+    	  		}
+    		} else {
+                $("#cantidad").focus();
+                alert("Ingrese una cantidad");
+    		}
+  		} else {
+            $('#codigo_barras').focus();
+            alert("Seleccione un producto antes de continuar");   
 
-                
-      		}
-    	}
-	});
+            
+  		}
+	}
+});
 /*-----guardar factura compra--*/
   $("#btn_0").on("click",guardar_factura);
-
 
 /////////////////////////////tabla factura///////////////////7
 jQuery("#list").jqGrid({          

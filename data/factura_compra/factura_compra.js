@@ -1024,7 +1024,7 @@ colModel:[
     {name: 'myac', width: 50, fixed: true, sortable: false, resize: false, formatter: 'actions',
           formatoptions: {keys: false, delbutton: true, editbutton: false}
       },     
-    {name: 'id_productos', index: 'id_productos', editable: false, search: false, hidden: false, editrules: {edithidden: false}, align: 'center',
+    {name: 'id_productos', index: 'id_productos', editable: false, search: false, hidden: true, editrules: {edithidden: false}, align: 'center',
       frozen: true, width: 50},
     {name: 'codigo', index: 'codigo', editable: false, search: false, hidden: false, editrules: {edithidden: false}, align: 'center',
       frozen: true, width: 180},
