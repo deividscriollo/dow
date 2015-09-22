@@ -94,6 +94,7 @@
 																						<div class="col-sm-8">
 																							<div class="input-group">
 																								<input class="form-control date-picker" id="fecha_actual" name="fecha_actual" type="text" readonly data-date-format="yyyy-mm-dd" />
+																								<input type="text" id="comprobante" name="comprobante" readonly class="form-control" />
 																								<span class="input-group-addon">
 																									<i class="fa fa-calendar bigger-110"></i>
 																								</span>
@@ -131,7 +132,7 @@
 																							<label class="col-sm-4 no-padding-right" for="serie3">Numero de serie:</label>																			
 																							<div class="col-sm-8">
 																								<input type="text" id="serie" name="serie" class="form-control" data-toggle="tooltip" data-original-title="" required />																		
-																								<input type="hidden" id="id_facura_compra" name="id_facura_compra" class="form-control" data-toggle="tooltip" data-original-title="" required />																		
+																								<input type="hidden" id="id_factura_compra" name="id_factura_compra" class="form-control" data-toggle="tooltip" data-original-title="" required />																		
 																							</div>																														
 																						</div>
 																					</div>
@@ -532,8 +533,8 @@
 			<div id="pager2"></div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
         </div>
       </div>
     </div>

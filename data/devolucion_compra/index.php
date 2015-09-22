@@ -80,6 +80,7 @@
 																<div class="col-sm-8">
 																	<div class="input-group">
 																		<input class="form-control date-picker" id="fecha_actual" name="fecha_actual" type="text" readonly data-date-format="yyyy-mm-dd" />
+																		<input type="hidden" id="comprobante" name="comprobante" readonly class="form-control" />
 																		<span class="input-group-addon">
 																			<i class="fa fa-calendar bigger-110"></i>
 																		</span>
@@ -136,7 +137,7 @@
 																<div class="form-group">
 																	<label class="col-sm-5 control-label no-padding-right" for="txt_nro_factura">Nro. Factura:</label>
 																	<div class="col-sm-7">
-																		<input type="text" id="id_factura_compra" name="id_factura_compra" />
+																		<input type="hidden" id="id_factura_compra" name="id_factura_compra" />
 																		<select class="chosen-select form-control" id="txt_nro_factura" name="txt_nro_factura" data-placeholder="Buscar....">	                                                                        
 	                                                                        <option value=""> </option>	                                                                        
 	                                                                    </select>
