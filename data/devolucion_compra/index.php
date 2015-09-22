@@ -396,8 +396,8 @@
 			<div id="pager"></div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
         </div>
       </div>
     </div>
@@ -410,7 +410,6 @@
 				<div class="row">
 					<div class="col-sm-5 col-sm-offset-1 white">
 						<h3 class="lighter">Imprimir &amp; Factura</h3>
-						
 					</div>
 
 					<div class="col-sm-5 text-center line-height-2">									

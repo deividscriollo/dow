@@ -94,7 +94,7 @@
 																						<div class="col-sm-8">
 																							<div class="input-group">
 																								<input class="form-control date-picker" id="fecha_actual" name="fecha_actual" type="text" readonly data-date-format="yyyy-mm-dd" />
-																								<input type="text" id="comprobante" name="comprobante" readonly class="form-control" />
+																								<input type="hidden" id="comprobante" name="comprobante" readonly class="form-control" />
 																								<span class="input-group-addon">
 																									<i class="fa fa-calendar bigger-110"></i>
 																								</span>
