@@ -1,62 +1,108 @@
 $(document).on("ready",inicio);	
 
-function guardar_devolucion(){
-    var vect1 = new Array();
-    var vect2 = new Array();
-    var vect3 = new Array();
-    var vect4 = new Array();
-    var vect5 = new Array();
-    var cont=0;
-    $("#detalle_factura tbody tr").each(function (index) {                                                                 
-        $(this).children("td").each(function (index) {                               
-            switch (index) {                                            
-                case 0:
-                    vect1[cont] = $(this).text();   
-                    break; 
-                case 3:
-                    vect2[cont] = $(this).text();                                       
-                    break; 
-                case 6:
-                    vect3[cont] = $(this).text();                                       
-                    break;
-                case 7:
-                    vect4[cont] = $(this).text();                                       
-                    break;
-                case 8:
-                    vect5[cont] = $(this).text();                                       
-                    break;        
-            }                          
-        });
-        cont++;  
-    });
+function recargar() {
+  setTimeout(function() {
+    location.reload();
+  }, 1000);  
+}
 
-    if($("#id_proveedor").val() == ""){  
-        alert("Seleccione un proveedor");
-    } else {
-        if($("#id_factura_compra").val() == ""){  
+function guardar_devolucion() {
+  var tam = jQuery("#list").jqGrid("getRowData");
+
+  if($("#id_proveedor").val() == ""){
+      alert("Seleccione un proveedor");
+      $("#txt_nombre_proveedor").trigger("chosen:open");
+    }else{
+        if($("#id_factura_compra").val() == ""){
             alert("Seleccione una factura");
-        } else {
-            if(vect1.length == 0){
-                alert("Ingrese los productos");  
-            } else {
+            $("#txt_nro_factura").trigger("chosen:open");   
+        }else{
+            if(tam.length == 0){
+                alert("Ingrese productos a la Devolución");  
+                $("#codigo_barras").focus();
+            }else{
+                var v1 = new Array();
+                var v2 = new Array();
+                var v3 = new Array();
+                var v4 = new Array();
+                var v5 = new Array();
+
+                var string_v1 = "";
+                var string_v2 = "";
+                var string_v3 = "";
+                var string_v4 = "";
+                var string_v5 = "";
+
+                var fil = jQuery("#list").jqGrid("getRowData");
+                for (var i = 0; i < fil.length; i++) {
+                    var datos = fil[i];
+                    v1[i] = datos['id_productos'];
+                    v2[i] = datos['cantidad'];
+                    v3[i] = datos['precio_u'];
+                    v4[i] = datos['descuento'];
+                    v5[i] = datos['total'];
+                }
+                
+                for (i = 0; i < fil.length; i++) {
+                    string_v1 = string_v1 + "|" + v1[i];
+                    string_v2 = string_v2 + "|" + v2[i];
+                    string_v3 = string_v3 + "|" + v3[i];
+                    string_v4 = string_v4 + "|" + v4[i];
+                    string_v5 = string_v5 + "|" + v5[i];
+                }
+
                 $.ajax({        
                     type: "POST",
-                    data: $("#form_devolucionCompra").serialize()+"&campo1="+vect1+"&campo2="+vect2+"&campo3="+vect3+"&campo4="+vect4+"&campo5="+vect5+"&hora="+$("#estado").text()+"&num_factura="+$("#txt_nro_factura").text(),                
+                    data: $("#form_devolucionCompra").serialize() + "&campo1=" + string_v1 + "&campo2=" + string_v2 + "&campo3=" + string_v3 + "&campo4=" + string_v4 + "&campo5=" + string_v5,                
                     url: "devolucion_compra.php",      
                     success: function(data) { 
                         if( data == 0 ){
-                            alert('Datos Agregados Correctamente');     
-                            setTimeout(function() {
-                                location.reload();
-                            }, 1000);
+                            $.gritter.add({
+                              title: 'Información Mensaje',
+                              text: ' <span class="fa fa-shield"></span>'
+                                  +'Devolución Agregada Correctamente <span class="text-succes fa fa-spinner fa-spin"></span>'
+                                  ,
+                              sticky: false,
+                              time: 1000,                       
+                            });
+                          recargar(); 
                         }
                     }
                 }); 
             }
-        } 
+        }
     }
 }
 
+function limpiar_campo1(){
+    if($("#codigo").val() === "") {
+        $("#codigo_barras").val("");
+        $("#id_productos").val("");
+        $("#producto").val("");
+        $("#cantidad").val("");
+        $("#precio").val("");
+        $("#descuento").val("");
+        $("#stock").val("");
+        $("#iva_producto").val("");
+        $("#inventar").val("");
+        $("#incluye").val("");
+    }
+} 
+
+function limpiar_campo2(){
+    if($("#producto").val() === "") {
+        $("#codigo_barras").val("");
+        $("#id_productos").val("");
+        $("#codigo").val("");
+        $("#cantidad").val("");
+        $("#precio").val("");
+        $("#descuento").val("");
+        $("#stock").val("");
+        $("#iva_producto").val("");
+        $("#inventar").val("");
+        $("#incluye").val("");
+    }
+} 
 
 function inicio (){	
   show();
@@ -80,6 +126,9 @@ function inicio (){
 
   // toltip   
   $('[data-rel=tooltip]').tooltip();
+
+  $("#codigo").on("keyup", limpiar_campo1);
+  $("#producto").on("keyup", limpiar_campo2);
 
   /*jqgrid*/    
   // jQuery(function($) {
@@ -545,13 +594,9 @@ function inicio (){
 
   /*buscador del codigo barras del producto dependiendo de la factura con change*/
   $("#codigo_barras").change(function(e) {
-    var ids = $("#id_factura_compra").val();
-
-    if (ids == "") {
-       alert("Error... Seleccione una Factura");
-       $("#txt_nro_factura").trigger("chosen:open");
-    } else {
+        var ids = $("#id_factura_compra").val();
         var codigo = $("#codigo_barras").val();
+
         $.getJSON('search.php?codigo_barras=' + codigo + '&ids=' + ids, function(data) {
           var tama = data.length;
           if (tama != 0) {
@@ -581,119 +626,91 @@ function inicio (){
               $("#codigo_barras").val("");
           }
       });
-    }
   });
 
   /*buscador del codigo del producto dependiendo de la factura con change*/
+  $("#codigo").keyup(function(e) {
+      var ids = $("#id_factura_compra").val();
 
-  // var input_codigoProducto = $("#codigo_chosen").children().next().children();    
-  // $(input_codigoProducto).on("keyup",function(input_ci){
-  //   var text = $(this).children().val();
-  //     if(text != ""){
-  //       $.ajax({        
-  //         type: "POST",
-  //         dataType: 'json',        
-  //         url: "../carga_ubicaciones.php?tipo=0&id="+$("#txt_nro_factura").val()+"&fun=24&val="+text,        
-  //         success: function(data, status) {
-  //           $('#codigo').html("");            
-  //           for (var i = 0; i < data.length; i=i+8) {                                                 
-  //             appendToChosenDevolucion(data[i],data[i+1],data[i+2],data[i+3],data[i+4],data[i+5],data[i+6],data[i+7],text,"codigo","codigo_chosen");
-  //           }           
-  //           $('#producto').html("");
-  //           $('#producto').append($("<option data-barras='"+data[2]+"' data-codigo='"+data[1]+"' data-precio='"+data[4]+"' data-stock='"+data[5]+"' data-descuento='"+data[6]+"' data-total='"+data[7]+"' ></option>").val(data[0]).html(data[3])).trigger('chosen:updated');            
-  //           $("#id_productos").val(data[0]);
-  //           $('#codigo_barras').html("");
-  //           $('#codigo_barras').append($("<option data-barras='"+data[3]+"' data-codigo='"+data[1]+"' data-precio='"+data[4]+"' data-stock='"+data[5]+"' data-descuento='"+data[6]+"' data-total='"+data[7]+"' ></option>").val(data[0]).html(data[2])).trigger('chosen:updated');                        
-  //           $("#precio").val(data[4]);
-  //           $("#descuento").val(data[6]);
-  //         },
-  //         error: function (data) {
-  //           // alert(data);
-  //         }         
-  //       });     
-  //   }
-  // });
+        $("#codigo").autocomplete({
+            source: "buscar_codigo.php?ids=" + ids,
+            minLength: 1,
+            focus: function(event, ui) {
+            $("#id_productos").val(ui.item.id_productos); 
+            $("#codigo").val(ui.item.value); 
+            $("#codigo_barras").val(ui.item.codigo_barras);
+            $("#producto").val(ui.item.producto);
+            $("#precio").val(ui.item.precio);
+            $("#descuento").val(ui.item.descuento);
+            $("#stock").val(ui.item.stock);
+            $("#iva_producto").val(ui.item.iva_producto);
+            $("#inventar").val(ui.item.inventar);
+            $("#incluye").val(ui.item.incluye);
+            return false;
+            },
+            select: function(event, ui) {
+            $("#id_productos").val(ui.item.id_productos); 
+            $("#codigo").val(ui.item.value); 
+            $("#codigo_barras").val(ui.item.codigo_barras);
+            $("#producto").val(ui.item.producto);
+            $("#precio").val(ui.item.precio);
+            $("#descuento").val(ui.item.descuento);
+            $("#stock").val(ui.item.stock);
+            $("#iva_producto").val(ui.item.iva_producto);
+            $("#inventar").val(ui.item.inventar);
+            $("#incluye").val(ui.item.incluye);
+            $("#cantidad").focus();
+            return false;
+            }
 
-  // $("#codigo_chosen").children().next().children().click(function (){
-  //   $("#cantidad").focus(); 
-  // });
+            }).data("ui-autocomplete")._renderItem = function(ul, item) {
+            return $("<li>")
+            .append("<a>" + item.value + "</a>")
+            .appendTo(ul);
+        };
+    });
 
-  // $("#codigo").chosen().change(function (event,params){    
-  //   if(params == undefined){     
-  //     limpiar_chosen_codigo();          
-  //   }else{              
-  //     var a = $("#codigo option:selected");            
-  //     $('#producto').html("");                   
-  //     $('#codigo_barras').html("");             
-  //     $('#producto').append($("<option data-barras='"+$(a).data("barras")+"' data-codigo='"+$(a).text()+"' data-precio='"+$(a).data("precio")+"' data-stock='"+$(a).data("stock")+"' data-descuento='"+$(a).data("descuento")+"' data-total='"+$(a).data("total")+"' ></option>").val($(a).val()).html($(a).data("codigo"))).trigger('chosen:updated');                  
-  //     $('#codigo_barras').append($("<option data-barras='"+$(a).data("codigo")+"' data-codigo='"+$(a).text()+"' data-precio='"+$(a).data("precio")+"' data-stock='"+$(a).data("stock")+"' data-descuento='"+$(a).data("descuento")+"' data-total='"+$(a).data("total")+"' ></option>").val($(a).val()).html($(a).data("barras"))).trigger('chosen:updated');                  
-  //     $("#id_productos").val($(a).val());
-  //     $("#precio").val($(a).data("precio"));       
-  //     $("#descuento").val($(a).data("descuento"));       
-  //     $("#cantidad").focus();
-  //   }
-  // }); 
+  /*buscador del producto del producto dependiendo de la factura con change*/
+   $("#producto").keyup(function(e) {
+        var ids = $("#id_factura_compra").val();
 
-  /*buscador del nombre del producto dependiendo de la factura con change*/
-  // var input_nombreProducto = $("#producto_chosen").children().next().children();    
-  // $(input_nombreProducto).on("keyup",function(input_ci){    
-  //   var text = $(this).children().val();
-  //   if(text != ""){
-  //     $.ajax({        
-  //       type: "POST",
-  //       dataType: 'json',        
-  //       url: "../carga_ubicaciones.php?tipo=0&id="+$("#txt_nro_factura").val()+"&fun=25&val="+text,        
-  //       success: function(data, status) {
-  //         $('#producto').html("");            
-  //         for (var i = 0; i < data.length; i=i+8) {                                                 
-  //           appendToChosenDevolucion(data[i],data[i+3],data[i+2],data[i+1],data[i+4],data[i+5],data[i+6],data[i+7],text,"producto","producto_chosen");
-  //         }           
-  //         $('#codigo').html("");
-  //         $('#codigo').append($("<option data-barras='"+data[2]+"' data-codigo='"+data[3]+"' data-precio='"+data[4]+"' data-stock='"+data[5]+"' data-descuento='"+data[6]+"' data-total='"+data[7]+"' ></option>").val(data[0]).html(data[1])).trigger('chosen:updated');            
-  //         $("#id_productos").val(data[0]);
-  //         $('#codigo_barras').html("");
-  //         $('#codigo_barras').append($("<option data-barras='"+data[3]+"' data-codigo='"+data[1]+"' data-precio='"+data[4]+"' data-stock='"+data[5]+"' data-descuento='"+data[6]+"' data-total='"+data[7]+"' ></option>").val(data[0]).html(data[2])).trigger('chosen:updated');                        
-  //         $("#precio").val(data[4]);
-  //         $("#descuento").val(data[6]);
-  //       },
-  //       error: function (data) {
-  //         // alert(data);
-  //       }          
-  //     });
-  //   }
-  // }); 
+        $("#producto").autocomplete({
+            source: "buscar_producto.php?ids=" + ids,
+            minLength: 1,
+            focus: function(event, ui) {
+            $("#id_productos").val(ui.item.id_productos); 
+            $("#codigo").val(ui.item.codigo); 
+            $("#codigo_barras").val(ui.item.codigo_barras);
+            $("#producto").val(ui.item.value);
+            $("#precio").val(ui.item.precio);
+            $("#descuento").val(ui.item.descuento);
+            $("#stock").val(ui.item.stock);
+            $("#iva_producto").val(ui.item.iva_producto);
+            $("#inventar").val(ui.item.inventar);
+            $("#incluye").val(ui.item.incluye);
+            return false;
+            },
+            select: function(event, ui) {
+            $("#id_productos").val(ui.item.id_productos); 
+            $("#codigo").val(ui.item.codigo); 
+            $("#codigo_barras").val(ui.item.codigo_barras);
+            $("#producto").val(ui.item.value);
+            $("#precio").val(ui.item.precio);
+            $("#descuento").val(ui.item.descuento);
+            $("#stock").val(ui.item.stock);
+            $("#iva_producto").val(ui.item.iva_producto);
+            $("#inventar").val(ui.item.inventar);
+            $("#incluye").val(ui.item.incluye);
+            $("#cantidad").focus();
+            return false;
+            }
 
-  // $("#producto_chosen").children().next().children().click(function (){
-  //   $("#cantidad").focus(); 
-  // });  
-  // /*eventos change del chosen*/	
-
-  
-  // $("#producto").chosen().change(function (event,params){    
-  //   if(params == undefined){         
-  //     $('#codigo').html("");
-  //     $('#codigo').append($("<option></option>"));          
-  //     $('#codigo').trigger('chosen:updated')
-  //     $('#producto').html("");
-  //     $('#producto').append($("<option></option>"));          
-  //     $('#producto').trigger('chosen:updated');     
-  //     $('#codigo_barras').html("");
-  //     $('#codigo_barras').append($("<option></option>"));          
-  //     $('#codigo_barras').trigger('chosen:updated');     
-  //     $("#id_productos").val("");
-  //     $("#precio").val("");       
-  //     //$("#cantidad").val(0)
-  //   }else{              
-  //     var a = $("#producto option:selected");            
-  //     $('#codigo').html("");                   
-  //     $('#codigo_barras').html("");             
-  //     $('#codigo').append($("<option data-barras='"+$(a).data("barras")+"' data-codigo='"+$(a).text()+"' data-precio='"+$(a).data("precio")+"' data-stock='"+$(a).data("stock")+"' data-iva='"+$(a).data("iva")+"' data-inventariable='"+$(a).data("inventariable")+"' ></option>").val($(a).val()).html($(a).data("codigo"))).trigger('chosen:updated');                  
-  //     $('#codigo_barras').append($("<option data-barras='"+$(a).data("codigo")+"' data-codigo='"+$(a).text()+"' data-precio='"+$(a).data("precio")+"' data-stock='"+$(a).data("stock")+"' data-iva='"+$(a).data("iva")+"' data-inventariable='"+$(a).data("inventariable")+"' ></option>").val($(a).val()).html($(a).data("barras"))).trigger('chosen:updated');                  
-  //     $("#id_productos").val($(a).val());
-  //     $("#precio").val($(a).data("precio"));      
-  //     $("#cantidad").focus(); 
-  //   }
-  // });   
+            }).data("ui-autocomplete")._renderItem = function(ul, item) {
+            return $("<li>")
+            .append("<a>" + item.value + "</a>")
+            .appendTo(ul);
+        };
+    });
 
   /*---agregar a la tabla---*/
   $("#cantidad").on("keypress",function (e) {

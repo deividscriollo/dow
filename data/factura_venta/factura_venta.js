@@ -6,13 +6,12 @@ function recargar() {
   }, 1000);  
 }
 
-function guardar_factura(){
+function guardar_factura() {
   var tam = jQuery("#list").jqGrid("getRowData");
 
   if($("#id_cliente").val() == ""){
       $("#txt_nro_identificacion").trigger("chosen:open");    
       alert("Seleccione un cliente");
-      $(this).addClass('reload');
     }else{
         if($("#serie3").val() == ""){
             $("#serie3").focus();

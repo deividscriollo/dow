@@ -230,11 +230,11 @@
 																			<div class="row">
 																				<div class="col-xs-12">
 																					<input type="text" readonly id="descuento" name="descuento" class="form-control" data-toggle="tooltip" value="0" min="0" maxlength="3" /> 
-																					<input type="text" id="stock" name="stock" class="form-control" data-toggle="tooltip" /> 
-																					<input type="text" id="id_productos" name="id_productos" class="form-control" data-toggle="tooltip" /> 
-																					<input type="text" id="iva_producto" name="iva_producto" class="form-control" data-toggle="tooltip" /> 
-																					<input type="text" id="incluye" name="incluye" class="form-control" data-toggle="tooltip" />
-																					<input type="text" id="inventar" name="inventar" class="form-control" data-toggle="tooltip" />  
+																					<input type="hidden" id="stock" name="stock" class="form-control" data-toggle="tooltip" /> 
+																					<input type="hidden" id="id_productos" name="id_productos" class="form-control" data-toggle="tooltip" /> 
+																					<input type="hidden" id="iva_producto" name="iva_producto" class="form-control" data-toggle="tooltip" /> 
+																					<input type="hidden" id="incluye" name="incluye" class="form-control" data-toggle="tooltip" />
+																					<input type="hidden" id="inventar" name="inventar" class="form-control" data-toggle="tooltip" />  
 																				</div>
 																			</div>
 																		</div>
