@@ -572,7 +572,7 @@ function inicio (){
                                 }
                           
                                 var datarow = {
-                                    cod_producto: $("#id_productos").val(), 
+                                    id_productos: $("#id_productos").val(), 
                                     codigo: $("#codigo").val(), 
                                     detalle: $("#producto").val(), 
                                     cantidad: $("#cantidad").val(), 
@@ -590,7 +590,7 @@ function inicio (){
                                 for (var i = 0; i < filas.length; i++) {
                                     var id = filas[i];
                                     
-                                    if (id['codigo'] == $("#codigo").val()) {
+                                    if (id['id_productos'] == $("#id_productos").val()) {
                                         repe = 1;
                                         var can = id['cantidad'];
                                       }
@@ -622,7 +622,7 @@ function inicio (){
                                         }
                                     
                                         datarow = {
-                                            cod_producto: $("#id_productos").val(), 
+                                            id_productos: $("#id_productos").val(), 
                                             codigo: $("#codigo").val(), 
                                             detalle: $("#producto").val(), 
                                             cantidad: suma, 
@@ -659,7 +659,7 @@ function inicio (){
                                 }
                             
                                 datarow = {
-                                    cod_producto: $("#id_productos").val(), 
+                                    id_productos: $("#id_productos").val(), 
                                     codigo: $("#codigo").val(), 
                                     detalle: $("#producto").val(), 
                                     cantidad: $("#cantidad").val(), 
@@ -674,7 +674,7 @@ function inicio (){
 
                                 su = jQuery("#list").jqGrid('addRowData', $("#id_productos").val(), datarow);
                                 limpiar_input();
-                            }else{
+                            } else {
                                 alert("Error... Alcanzo el limite máximo de Items");
                             }
                           }
@@ -786,7 +786,7 @@ function inicio (){
                             }   
                           
                           var datarow = {
-                              cod_producto: $("#id_productos").val(), 
+                              id_productos: $("#id_productos").val(), 
                               codigo: $("#codigo").val(), 
                               detalle: $("#producto").val(), 
                               cantidad: $("#cantidad").val(), 
@@ -805,7 +805,7 @@ function inicio (){
                           for (var i = 0; i < filas.length; i++) {
                               var id = filas[i];
                               
-                              if (id['codigo'] == $("#codigo").val()) {
+                              if (id['id_productos'] == $("#id_productos").val()) {
                                   repe = 1;
                                   var can = id['cantidad'];
                               }
@@ -832,7 +832,7 @@ function inicio (){
                             }
                           
                               datarow = {
-                                  cod_producto: $("#id_productos").val(), 
+                                  id_productos: $("#id_productos").val(), 
                                   codigo: $("#codigo").val(), 
                                   detalle: $("#producto").val(), 
                                   cantidad: suma, 
@@ -868,7 +868,7 @@ function inicio (){
                                     }
                                 
                                     datarow = {
-                                        cod_producto: $("#id_productos").val(), 
+                                        id_productos: $("#id_productos").val(), 
                                         codigo: $("#codigo").val(), 
                                         detalle: $("#producto").val(), 
                                         cantidad: $("#cantidad").val(), 
@@ -990,7 +990,7 @@ colModel:[
     {name: 'myac', width: 50, fixed: true, sortable: false, resize: false, formatter: 'actions',
           formatoptions: {keys: false, delbutton: true, editbutton: false}
       },     
-    {name: 'cod_producto', index: 'cod_producto', editable: false, search: false, hidden: true, editrules: {edithidden: false}, align: 'center',
+    {name: 'id_productos', index: 'id_productos', editable: false, search: false, hidden: true, editrules: {edithidden: false}, align: 'center',
       frozen: true, width: 50},
     {name: 'codigo', index: 'codigo', editable: false, search: false, hidden: false, editrules: {edithidden: false}, align: 'center',
       frozen: true, width: 150},
@@ -1010,7 +1010,8 @@ colModel:[
   shrinkToFit: false,
   sortable: true,
   rowList: [10,20,30],
-  pager: jQuery('#pager'),        
+  // pager: jQuery('#pager'), 
+  sortname: 'id_productos',       
   sortorder: 'asc',
   viewrecords : true,
   cellEdit: true,
@@ -1047,7 +1048,7 @@ colModel:[
                 subtotal0 = parseFloat($("#tarifa0").val()) + 0;
                 subtotal12 = parseFloat($("#tarifa12").val()) - parseFloat(sub1);
                 iva12 = parseFloat($("#iva").val()) - parseFloat(iva1);
-                descu_total = parseFloat($("#descuento_total").val()) - ret.cal_des;
+                descu_total = parseFloat($("#descuento_total").val()) - parseFloat(ret.cal_des);
 
                 subtotal0 = parseFloat(subtotal0).toFixed(3);
                 subtotal12 = parseFloat(subtotal12).toFixed(3);
@@ -1062,7 +1063,7 @@ colModel:[
                       subtotal0 = parseFloat($("#tarifa0").val()) + 0;
                       subtotal12 = parseFloat($("#tarifa12").val()) - parseFloat(sub2);
                       iva12 = parseFloat($("#iva").val()) - parseFloat(iva2);
-                      descu_total = parseFloat($("#descuento_total").val()) - ret.cal_des;
+                      descu_total = parseFloat($("#descuento_total").val()) - parseFloat(ret.cal_des);
 
                       subtotal0 = parseFloat(subtotal0).toFixed(3);
                       subtotal12 = parseFloat(subtotal12).toFixed(3);
@@ -1078,7 +1079,7 @@ colModel:[
                   subtotal0 = parseFloat($("#tarifa0").val()) - parseFloat(sub);
                   subtotal12 = parseFloat($("#tarifa12").val()) + 0;
                   iva12 = parseFloat($("#iva").val()) + 0;
-                  descu_total = parseFloat($("#descuento_total").val()) - ret.cal_des;
+                  descu_total = parseFloat($("#descuento_total").val()) - parseFloat(ret.cal_des);
                   
                   subtotal0 = parseFloat(subtotal0).toFixed(3);
                   subtotal12 = parseFloat(subtotal12).toFixed(3);

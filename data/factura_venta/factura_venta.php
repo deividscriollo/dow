@@ -124,9 +124,7 @@
 				$resp = $guardar = guardarSql($conexion,$sql_libro);			
 				
 			}			
-		}
-		
-				
+		}		
 		///////////////////////		
 	}
 
