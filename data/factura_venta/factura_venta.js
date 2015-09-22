@@ -41,7 +41,7 @@ function guardar_factura(){
                 var fil = jQuery("#list").jqGrid("getRowData");
                 for (var i = 0; i < fil.length; i++) {
                     var datos = fil[i];
-                    v1[i] = datos['cod_producto'];
+                    v1[i] = datos['id_productos'];
                     v2[i] = datos['cantidad'];
                     v3[i] = datos['precio_u'];
                     v4[i] = datos['descuento'];
