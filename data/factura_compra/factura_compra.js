@@ -6,15 +6,15 @@ function recargar() {
   }, 1000);  
 }
 
-function guardar_factura(){
+function guardar_factura() {
   var tam = jQuery("#list").jqGrid("getRowData");
 
-  if($("#serie").val() == ""){  
+  if($("#serie").val() == "") {  
       $("#serie").focus();
         // loader_grabar.removeClass("label-warning").addClass("label-warning").text("Ingrese la serie").delay(3000).slideUp();      
       alert("Ingrese la serie");
     } else {
-        if($("#id_proveedor").val() == ""){
+        if($("#id_proveedor").val() == "") {
           alert("Seleccione un Proveedor"); 
           $("#txt_nro_identificacion").trigger("chosen:open");   
         } else {
@@ -30,13 +30,15 @@ function guardar_factura(){
                   var v3 = new Array();
                   var v4 = new Array();
                   var v5 = new Array();
+
                   var string_v1 = "";
                   var string_v2 = "";
                   var string_v3 = "";
                   var string_v4 = "";
                   var string_v5 = "";
                   var fil = jQuery("#list").jqGrid("getRowData");
-                  console.log(fil)                  
+
+                  
                   for (var i = 0; i < fil.length; i++) {
                       var datos = fil[i];
                       v1[i] = datos['id_productos'];
@@ -200,8 +202,15 @@ function inicio () {
             var gsr = jQuery(grid_selector).jqGrid('getGridParam','selrow');                                              
             var ret = jQuery(grid_selector).jqGrid('getRowData',gsr);  
             
-
             $("#comprobante").val(ret.id_factura_compra);
+
+            
+
+
+
+
+            $('#myModal').modal('hide');
+
             
             // $("#txt_responsable").text(ret.txt_reponsable);
             // $("#fecha_actual").val(ret.fecha_registro);

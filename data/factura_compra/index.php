@@ -554,7 +554,7 @@
 						&nbsp; &nbsp;
 						<a class="btn btn-app btn-light no-radius" href="#">
 							<i class="ace-icon fa fa-print bigger-230"></i>
-							Imprmir
+							Imprimir
 						</a>
 					</div>
 				</div>
