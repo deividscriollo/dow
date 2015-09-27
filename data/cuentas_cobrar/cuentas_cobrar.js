@@ -1,71 +1,60 @@
 $(document).on("ready",inicio);
 
-function guardar_factura(){
+function guardar_pago() {
   var tam = jQuery("#list").jqGrid("getRowData");
 
   if($("#id_cliente").val() == ""){
-      $("#txt_nro_identificacion").trigger("chosen:open");    
-      alert("Seleccione un cliente");
-      $(this).addClass('reload');
+      $("#txt_nro_identificacion").trigger("chosen:open");
+       alert("Seleccione un cliente");
     }else{
-        if($("#serie3").val() == ""){
-            $("#serie3").focus();
-            alert("Ingrese la serie");
-        }else{
-            if(tam.length == 0){
-                var a = autocompletar($("#serie3").val());
-                $("#serie3").val(a + "" + $("#serie3").val());
-                $("#codigo").trigger("chosen:open");
-                alert("Ingrese productos a la Factura");  
-            }else{
-                var v1 = new Array();
-                var v2 = new Array();
-                var v3 = new Array();
-                var v4 = new Array();
-                var v5 = new Array();
-                var v6 = new Array();
-                var string_v1 = "";
-                var string_v2 = "";
-                var string_v3 = "";
-                var string_v4 = "";
-                var string_v5 = "";
-                var string_v6 = "";
-                var fil = jQuery("#list").jqGrid("getRowData");
-                for (var i = 0; i < fil.length; i++) {
-                    var datos = fil[i];
-                    v1[i] = datos['cod_producto'];
-                    v2[i] = datos['cantidad'];
-                    v3[i] = datos['precio_u'];
-                    v4[i] = datos['descuento'];
-                    v5[i] = datos['total'];
-                    v6[i] = datos['pendiente'];
-                }
-                
-                for (i = 0; i < fil.length; i++) {
-                    string_v1 = string_v1 + "|" + v1[i];
-                    string_v2 = string_v2 + "|" + v2[i];
-                    string_v3 = string_v3 + "|" + v3[i];
-                    string_v4 = string_v4 + "|" + v4[i];
-                    string_v5 = string_v5 + "|" + v5[i];
-                    string_v6 = string_v6 + "|" + v6[i];
-                }
+        if(tam.length == 0){
+            alert("Ingrese un pago");  
+        } else {
+            var v1 = new Array();
+            var v2 = new Array();
+            var v3 = new Array();
+            var v4 = new Array();
+            var v5 = new Array();
+            var v6 = new Array();
 
-                var a = autocompletar($("#serie3").val());
-                $("#serie3").val(a + "" + $("#serie3").val());
-                $.ajax({        
-                    type: "POST",
-                    data: $("#form_facturaVenta").serialize() + "&campo1=" + string_v1 + "&campo2=" + string_v2 + "&campo3=" + string_v3 + "&campo4=" + string_v4 + "&campo5=" + string_v5+ "&campo6=" + string_v6,                
-                    url: "factura_venta.php",      
-                    success: function(data) { 
-                        if( data == 0 ){
-                            alert('Datos Agregados Correctamente');     
-                            setTimeout(function() {
-                                location.reload();
-                            }, 1000);
-                        }
-                    }
-                }); 
+            var string_v1 = "";
+            var string_v2 = "";
+            var string_v3 = "";
+            var string_v4 = "";
+            var string_v5 = "";
+            var string_v6 = "";
+
+            var fil = jQuery("#list").jqGrid("getRowData");
+            for (var i = 0; i < fil.length; i++) {
+                var datos = fil[i];
+                v1[i] = datos['id_pagos_venta'];
+                v2[i] = datos['num_factura'];
+                v3[i] = datos['fecha_factura'];
+                v4[i] = datos['totalcxc'];
+                v5[i] = datos['valor_pagado'];
+                v6[i] = datos['saldo'];
             }
+            for (i = 0; i < fil.length; i++) {
+                string_v1 = string_v1 + "|" + v1[i];
+                string_v2 = string_v2 + "|" + v2[i];
+                string_v3 = string_v3 + "|" + v3[i];
+                string_v4 = string_v4 + "|" + v4[i];
+                string_v5 = string_v5 + "|" + v5[i];
+                string_v6 = string_v6 + "|" + v6[i];
+            }
+            
+            $.ajax({
+                type: "POST",
+                url: "cuentas_cobrar.php",
+                data: $("#form_pagosVenta").serialize() + "&campo1=" + string_v1 + "&campo2=" + string_v2 + "&campo3=" + string_v3 + "&campo4=" + string_v4 + "&campo5=" + string_v5 + "&campo6=" + string_v6,
+                success: function(data) {
+                    var val = data;
+                    if (val == 1) {
+                        //alertify.alert("Pago Guardado correctamente", function(){location.reload();});
+                          
+                    }
+                }
+            }); 
         }
     }
 }
@@ -106,10 +95,6 @@ function inicio (){
 
  	////////////////validaciones/////////////////
  	$("#valor_pagado").on("keypress",punto);
-
-    $("#btn_01").click(function (){
-      cargar_facturas();  
-    });
 
  	/*----buscador cliente identificacion----*/
 	var input_ci = $("#txt_nro_identificacion_chosen").children().next().children();		
@@ -207,493 +192,67 @@ function inicio (){
       		$('#txt_nro_identificacion').html("");
       		$('#txt_nro_identificacion').append($("<option data-extra='"+$(a).text()+"' data-direccion='"+$(a).data("direccion")+"' data-telefono='"+$(a).data("telefono")+"' data-email='"+$(a).data("email")+"'></option>").val($(a).val()).html($(a).data("extra"))).trigger('chosen:updated');      		
       		$("#id_cliente").val($(a).val());		        
-    			$('#lbl_client_telefono').val($(a).data("telefono"));
-    			$('#lbl_client_correo').val($(a).data("email"));
-    			$('#lbl_client_direccion').val($(a).data("direccion"));
+			$('#lbl_client_telefono').val($(a).data("telefono"));
+			$('#lbl_client_correo').val($(a).data("email"));
+			$('#lbl_client_direccion').val($(a).data("direccion"));
 		}
 	});
 
-    /////////////////bucador barras///////////////////////////
-    $("#codigo_barras").keyup(function(e) {
-        var precio = $("#tipo").val(); 
-        var codigo = $("#codigo_barras").val();
-        if (precio === "MINORISTA") {
-            $.getJSON('search.php?codigo_barras=' + codigo + '&precio=' + precio, function(data) {
-                var tama = data.length;
-                if (tama !== 0) {
-                    for (var i = 0; i < tama; i = i + 9) {
-                        $("#id_productos").val(data[i]);
-                        $("#codigo").val(data[i+1]);
-                        $("#producto").val(data[i + 2]);
-                        $("#precio").val(data[i + 3]);
-                        $("#descuento").val(data[i + 4]);
-                        $("#stock").val(data[i + 5]);
-                        $("#iva_producto").val(data[i + 6]);
-                        $("#inventar").val(data[i + 7]);
-                        $("#incluye").val(data[i + 8]);
-                        $("#cantidad").focus();
-                    }
-                }else{
-                    $("#id_productos").val("");
-                    $("#codigo").val("");
-                    $("#producto").val("");
-                    $("#precio").val("");
-                    $("#descuento").val("");
-                    $("#stock").val("");
-                    $("#iva_producto").val("");
-                    $("#inventar").val("");
-                    $("#incluye").val("");
-                }
-            });
-        }else{
-            if (precio === "MAYORISTA") {
-                $.getJSON('search.php?codigo_barras=' + codigo + '&precio=' + precio, function(data) {
-                    var tama = data.length;
-                    if (tama !== 0) {
-                        for (var i = 0; i < tama; i = i + 10) {
-                            $("#id_productos").val(data[i]);
-                            $("#codigo").val(data[i+1]);
-                            $("#producto").val(data[i + 2]);
-                            $("#precio").val(data[i + 3]);
-                            $("#descuento").val(data[i + 4]);
-                            $("#stock").val(data[i + 5]);
-                            $("#iva_producto").val(data[i + 6]);
-                            $("#inventar").val(data[i + 7]);
-                            $("#incluye").val(data[i + 8]);
-                            $("#cantidad").focus();
-                        }
-                    }else{
-                        $("#id_productos").val("");
-                        $("#codigo").val("");
-                        $("#producto").val("");
-                        $("#precio").val("");
-                        $("#descuento").val("");
-                        $("#stock").val("");
-                        $("#iva_producto").val("");
-                        $("#inventar").val("");
-                        $("#incluye").val("");
-                    }
-                });
-            }
-        }
-    });
-    ////////////////////////////////////////
-
-    ///////////////////////busqueda productos codigo/////////
-    $("#codigo").keyup(function(e) {
-        var precio = $("#tipo").val();
-        if (precio === "MINORISTA") {
-            $("#codigo").autocomplete({
-                source: "buscar_codigo.php?tipo_precio=" + precio,
-                minLength: 1,
-                focus: function(event, ui) {
-                $("#id_productos").val(ui.item.id_productos); 
-                $("#codigo").val(ui.item.value); 
-                $("#codigo_barras").val(ui.item.codigo_barras);
-                $("#producto").val(ui.item.producto);
-                $("#precio").val(ui.item.precio);
-                $("#descuento").val(ui.item.descuento);
-                // $("#descuento").attr("max",ui.item.descuento);
-                $("#stock").val(ui.item.stock);
-                $("#iva_producto").val(ui.item.iva_producto);
-                $("#inventar").val(ui.item.inventar);
-                $("#incluye").val(ui.item.incluye);
-                return false;
-                },
-                select: function(event, ui) {
-                $("#id_productos").val(ui.item.id_productos); 
-                $("#codigo").val(ui.item.value); 
-                $("#codigo_barras").val(ui.item.codigo_barras);
-                $("#producto").val(ui.item.producto);
-                $("#precio").val(ui.item.precio);
-                $("#descuento").val(ui.item.descuento);
-                $("#stock").val(ui.item.stock);
-                $("#iva_producto").val(ui.item.iva_producto);
-                $("#inventar").val(ui.item.inventar);
-                $("#incluye").val(ui.item.incluye);
-                $("#cantidad").focus();
-                return false;
-                }
-
-                }).data("ui-autocomplete")._renderItem = function(ul, item) {
-                return $("<li>")
-                .append("<a>" + item.value + "</a>")
-                .appendTo(ul);
-            };
-        } else {
-            if (precio === "MAYORISTA") {
-                $("#codigo").autocomplete({
-                    source: "buscar_codigo.php?tipo_precio=" + precio,
-                    minLength: 1,
-                    focus: function(event, ui) {
-                    $("#id_productos").val(ui.item.id_productos); 
-                    $("#codigo").val(ui.item.value); 
-                    $("#codigo_barras").val(ui.item.codigo_barras);
-                    $("#producto").val(ui.item.producto);
-                    $("#precio").val(ui.item.precio);
-                    $("#descuento").val(ui.item.descuento);
-                    $("#stock").val(ui.item.stock);
-                    $("#iva_producto").val(ui.item.iva_producto);
-                    $("#inventar").val(ui.item.inventar);
-                    $("#incluye").val(ui.item.incluye);
-                    return false;
-                    },
-                    select: function(event, ui) {
-                    $("#id_productos").val(ui.item.id_productos); 
-                    $("#codigo").val(ui.item.value); 
-                    $("#codigo_barras").val(ui.item.codigo_barras);
-                    $("#producto").val(ui.item.producto);
-                    $("#precio").val(ui.item.precio);
-                    $("#descuento").val(ui.item.descuento);
-                    $("#stock").val(ui.item.stock);
-                    $("#iva_producto").val(ui.item.iva_producto);
-                    $("#inventar").val(ui.item.inventar);
-                    $("#incluye").val(ui.item.incluye);
-                    $("#cantidad").focus();
-                    return false;
-                    }
-                    }).data("ui-autocomplete")._renderItem = function(ul, item) {
-                    return $("<li>")
-                    .append("<a>" + item.value + "</a>")
-                    .appendTo(ul);
-                };
-            }
-        }
-    });
-    /////////////////////////////////////////
-
-    ///////////////////////busqueda productos nombres/////////
-    $("#producto").keyup(function(e) {
-        var precio = $("#tipo").val();
-        if (precio === "MINORISTA") {
-            $("#producto").autocomplete({
-                source: "buscar_producto.php?tipo_precio=" + precio,
-                minLength: 1,
-                focus: function(event, ui) {
-                $("#id_productos").val(ui.item.id_productos); 
-                $("#codigo").val(ui.item.codigo); 
-                $("#codigo_barras").val(ui.item.codigo_barras);
-                $("#producto").val(ui.item.value);
-                $("#precio").val(ui.item.precio);
-                $("#descuento").val(ui.item.descuento);
-                // $("#descuento").attr("max",ui.item.descuento);
-                $("#stock").val(ui.item.stock);
-                $("#iva_producto").val(ui.item.iva_producto);
-                $("#inventar").val(ui.item.inventar);
-                $("#incluye").val(ui.item.incluye);
-                return false;
-                },
-                select: function(event, ui) {
-                $("#id_productos").val(ui.item.id_productos); 
-                $("#codigo").val(ui.item.codigo); 
-                $("#codigo_barras").val(ui.item.codigo_barras);
-                $("#producto").val(ui.item.value);
-                $("#precio").val(ui.item.precio);
-                $("#descuento").val(ui.item.descuento);
-                $("#stock").val(ui.item.stock);
-                $("#iva_producto").val(ui.item.iva_producto);
-                $("#inventar").val(ui.item.inventar);
-                $("#incluye").val(ui.item.incluye);
-                $("#cantidad").focus();
-                return false;
-                }
-
-                }).data("ui-autocomplete")._renderItem = function(ul, item) {
-                return $("<li>")
-                .append("<a>" + item.value + "</a>")
-                .appendTo(ul);
-            };
-        } else {
-            if (precio === "MAYORISTA") {
-                $("#producto").autocomplete({
-                    source: "buscar_producto.php?tipo_precio=" + precio,
-                    minLength: 1,
-                    focus: function(event, ui) {
-                    $("#id_productos").val(ui.item.id_productos); 
-                    $("#codigo").val(ui.item.codigo); 
-                    $("#codigo_barras").val(ui.item.codigo_barras);
-                    $("#producto").val(ui.item.value);
-                    $("#precio").val(ui.item.precio);
-                    $("#descuento").val(ui.item.descuento);
-                    $("#stock").val(ui.item.stock);
-                    $("#iva_producto").val(ui.item.iva_producto);
-                    $("#inventar").val(ui.item.inventar);
-                    $("#incluye").val(ui.item.incluye);
-                    return false;
-                    },
-                    select: function(event, ui) {
-                    $("#id_productos").val(ui.item.id_productos); 
-                    $("#codigo").val(ui.item.codigo); 
-                    $("#codigo_barras").val(ui.item.codigo_barras);
-                    $("#producto").val(ui.item.value);
-                    $("#precio").val(ui.item.precio);
-                    $("#descuento").val(ui.item.descuento);
-                    $("#stock").val(ui.item.stock);
-                    $("#iva_producto").val(ui.item.iva_producto);
-                    $("#inventar").val(ui.item.inventar);
-                    $("#incluye").val(ui.item.incluye);
-                    $("#cantidad").focus();
-                    return false;
-                    }
-                    }).data("ui-autocomplete")._renderItem = function(ul, item) {
-                    return $("<li>")
-                    .append("<a>" + item.value + "</a>")
-                    .appendTo(ul);
-                };
-            }
-        }
-    });
-    /////////////////////////////////////////
-
-    ///////////////////accion limpiar//////////
-    $("#tipo").change(function() {
-      limpiar_input(); 
-    });
-    //////////////////////////////////////////
 
     /////////////////////////////////////////////////////////
   	/*---agregar a la tabla---*/
-  	$("#cantidad").on("keypress",function (e){
-    	if(e.keyCode == 13){//tecla del alt para el entrer poner 13
-      		$("#precio").focus();  
-    	}
-  	});
 
-  	$("#precio").on("keypress",function (e){
-    	if(e.keyCode == 13){//tecla del alt para el entrer poner 13
-      		$("#descuento").focus();  
-    	}
-  	});
+  	$("#valor_pagado").on("keypress",function (e) {
+        if(e.keyCode == 13) {
+            if($("#id_pagos_venta").val() != "") {
+                if(parseFloat($("#valor_pagado").val()) <= parseFloat($("#saldo2").val())) {
+                    $("#list").jqGrid("clearGridData", true);
 
-  	$("#descuento").on("keypress",function (e){
-    	if(e.keyCode == 13){//tecla del alt para el entrer poner 13 
-          var subtotal0 = 0;
-          var subtotal12 = 0;
-          var iva12 = 0;
-          var total_total = 0;
-          var descu_total = 0;     
-      		if($("#cantidad").val() != ""){
-        		if($("#precio").val() != ""){
-          			if($("#id_productos").val() != ""){
-                      var filas = jQuery("#list").jqGrid("getRowData");
-                      var descuento = 0;
-                      var total = 0;
-                      var su = 0;
-                      var desc = 0;
-                      var precio = 0;
-                      var multi = 0;
-                      var flotante = 0;
-                      var resultado = 0;
-                      var repe = 0;
+                    var filas = jQuery("#list").jqGrid("getRowData");
 
-                      if (filas.length === 0) {
-                          if ($("#descuento").val() !== "") {
-                              desc = $("#descuento").val();
-                              precio = (parseFloat($("#precio").val())).toFixed(2);
-                              multi = (parseFloat($("#cantidad").val()) * parseFloat($("#precio").val())).toFixed(2);
-                              descuento = ((multi * parseFloat($("#descuento").val())) / 100);
-                              flotante = parseFloat(descuento);
-                              resultado = (Math.round(flotante * Math.pow(10,2)) / Math.pow(10,2)).toFixed(2);
-                              total = (multi - resultado).toFixed(2);
-                          } else {
-                              desc = 0;
-                              precio = (parseFloat($("#precio").val())).toFixed(2);
-                              total = (parseFloat($("#cantidad").val()) * precio).toFixed(2);
-                          }
-                          
-                          var datarow = {
-                              cod_producto: $("#id_productos").val(), 
-                              codigo: $("#codigo").val(), 
-                              detalle: $("#producto").val(), 
-                              cantidad: $("#cantidad").val(), 
-                              precio_u: precio, 
-                              descuento: desc, 
-                              cal_des: resultado,
-                              total: total, 
-                              iva: $("#iva_producto").val(), 
-                              incluye: $("#incluye").val()
-                          };
+                    if (filas.length === 0) {
+                        var su = 0;
+                        var saldo = 0;
+                        var valor = parseFloat($("#valor_pagado").val());
+                        var entero = ((valor).toFixed(2));
+                        saldo = (parseFloat($("#saldo2").val()) - parseFloat($("#valor_pagado").val()));
+                        var entero2 = ((saldo).toFixed(2));
 
-                          su = jQuery("#list").jqGrid('addRowData', $("#id_productos").val(), datarow);
-                          limpiar_input();
-                      } else {
-                          for (var i = 0; i < filas.length; i++) {
-                              var id = filas[i];
-                              var can = id['cantidad'];
-                              if (id['cod_producto'] === $("#id_productos").val()) {
-                                  repe = 1;
-                              }
-                          }
-                          if (repe === 1) {
-                              if ($("#descuento").val() !== "") {
-                                  desc = $("#descuento").val();
-                                  precio = (parseFloat($("#precio").val())).toFixed(2);
-                                  multi = (parseFloat($("#cantidad").val()) * parseFloat($("#precio").val())).toFixed(2);
-                                  descuento = ((multi * parseFloat($("#descuento").val())) / 100);
-                                  flotante = parseFloat(descuento);
-                                  resultado = (Math.round(flotante * Math.pow(10,2)) / Math.pow(10,2)).toFixed(2);
-                                  total = (multi - resultado).toFixed(2);
-                              } else {
-                                  desc = 0;
-                                  precio = (parseFloat($("#precio").val())).toFixed(2);
-                                  total = (parseFloat($("#cantidad").val()) * precio).toFixed(2);
-                              }
-                          
-                              datarow = {
-                                  cod_producto: $("#id_productos").val(), 
-                                  codigo: $("#codigo").val(), 
-                                  detalle: $("#producto").val(),
-                                  cantidad: $("#cantidad").val(), 
-                                  precio_u: precio, 
-                                  descuento: desc, 
-                                  cal_des: resultado,
-                                  total: total, 
-                                  iva: $("#iva_producto").val(), 
-                                  incluye: $("#incluye").val()
-                              };
-                          
-                              su = jQuery("#list").jqGrid('setRowData', $("#id_productos").val(), datarow);
-                              limpiar_input();
-                          } else {
-                            if(filas.length < 19){
-                                if ($("#descuento").val() !== "") {
-                                  desc = $("#descuento").val();
-                                  precio = (parseFloat($("#precio").val())).toFixed(2);
-                                  multi = (parseFloat($("#cantidad").val()) * parseFloat($("#precio").val())).toFixed(2);
-                                  descuento = ((multi * parseFloat($("#descuento").val())) / 100);
-                                  flotante = parseFloat(descuento);
-                                  resultado = (Math.round(flotante * Math.pow(10,2)) / Math.pow(10,2)).toFixed(2);
-                                  total = (multi - resultado).toFixed(2);
-                                } else {
-                                    desc = 0;
-                                    precio = (parseFloat($("#precio").val())).toFixed(2);
-                                    total = (parseFloat($("#cantidad").val()) * precio).toFixed(2);
-                                }
-                            
-                                datarow = {
-                                    cod_producto: $("#id_productos").val(), 
-                                    codigo: $("#codigo").val(), 
-                                    detalle: $("#producto").val(), 
-                                    cantidad: $("#cantidad").val(), 
-                                    precio_u: precio, 
-                                    descuento: desc, 
-                                    cal_des: resultado,
-                                    total: total, 
-                                    iva: $("#iva_producto").val(), 
-                                    incluye: $("#incluye").val()
-                                };
+                        var datarow = {id_pagos_venta: $("#id_pagos_venta").val(), num_factura: $("#num_factura").val(), fecha_factura: $("#fecha_factura").val(), totalcxc: $("#totalcxc").val(), valor_pagado: entero, saldo: entero2};
+                        su = jQuery("#list").jqGrid('addRowData', $("#id_pagos_venta").val(), datarow);
+                    }
 
-                                su = jQuery("#list").jqGrid('addRowData', $("#id_productos").val(), datarow);
-                                limpiar_input();
-                            }else{
-                                alert("Error... Alcanzo el limite máximo de Items");
-                            }
-                          }
-                        }
+                    // limpiar
+                    $("#id_pagos_venta").val("");
+                    $("#num_factura").val("");
+                    $("#fecha_factura").val("");
+                    $("#totalcxc").val("");
+                    $("#valor_pagado").val("");
+                    $("#saldo2").val("");
 
-                        ///////////////////CALCULAR VALORES/////////////////
-                        var subtotal = 0;
-                        var sub = 0;
-                        var sub1 = 0;
-                        var sub2 = 0;
-                        var iva = 0;
-                        var iva1 = 0;
-                        var iva2 = 0;
-
-
-                        var fil = jQuery("#list").jqGrid("getRowData");
-                        for (var t = 0; t < fil.length; t++) {
-                            var dd = fil[t];
-                            if (dd['iva'] != 0) {
-                                if(dd['incluye'] == "No"){
-                                    subtotal = dd['total'];
-                                    sub1 = subtotal;
-                                    iva1 = (sub1 * 0.12).toFixed(3);                                          
-
-                                    subtotal0 = parseFloat(subtotal0) + 0;
-                                    subtotal12 = parseFloat(subtotal12) + parseFloat(sub1);
-                                    iva12 = parseFloat(iva12) + parseFloat(iva1);
-                                    descu_total = parseFloat(descu_total) + dd['cal_des'];
-                                
-                                    subtotal0 = parseFloat(subtotal0).toFixed(3);
-                                    subtotal12 = parseFloat(subtotal12).toFixed(3);
-                                    iva12 = parseFloat(iva12).toFixed(3);
-                                    descu_total = parseFloat(descu_total).toFixed(3);
-                                }else{
-                                    if(dd['incluye'] == "Si"){
-                                        subtotal = dd['total'];
-                                        sub2 = (subtotal / 1.12).toFixed(3);
-                                        iva2 = (sub2 * 0.12).toFixed(3);
-
-                                        subtotal0 = parseFloat(subtotal0) + 0;
-                                        subtotal12 = parseFloat(subtotal12) + parseFloat(sub2);
-                                        iva12 = parseFloat(iva12) + parseFloat(iva2);
-                                        descu_total = parseFloat(descu_total) + dd['cal_des'];
-
-                                        subtotal0 = parseFloat(subtotal0).toFixed(3);
-                                        subtotal12 = parseFloat(subtotal12).toFixed(3);
-                                        iva12 = parseFloat(iva12).toFixed(3);
-                                        descu_total = parseFloat(descu_total).toFixed(3);
-                                    }
-                                }
-                              }else{
-                                if (dd['iva'] == 0) {                                               
-                                    subtotal = dd['total'];
-                                    sub = subtotal;
-
-                                    subtotal0 = parseFloat(subtotal0) + parseFloat(sub);
-                                    subtotal12 = parseFloat(subtotal12) + 0;
-                                    iva12 = parseFloat(iva12) + 0;
-                                    descu_total = parseFloat(descu_total) + dd['cal_des'];
-                                    
-                                    subtotal0 = parseFloat(subtotal0).toFixed(3);
-                                    subtotal12 = parseFloat(subtotal12).toFixed(3);
-                                    iva12 = parseFloat(iva12).toFixed(3);
-                                    descu_total = parseFloat(descu_total).toFixed(3);                                  
-                                }       
-                            }
-                          }  
-                                                                                  
-                          total_total = parseFloat(total_total) + (parseFloat(subtotal0) + parseFloat(subtotal12) + parseFloat(iva12));
-                          total_total = parseFloat(total_total).toFixed(3);
-
-                          $("#tarifa0").val(subtotal0);
-                          $("#tarifa12").val(subtotal12);
-                          $("#iva").val(iva12);
-                          $("#descuento_total").val(descu_total);
-                          $("#total").val(total_total);
-                        /////////////////////////////////////////////////////
-          			} else {
-                        $('#codigo_barras').focus();
-            			alert("Seleccione un producto antes de continuar");                        
-        	  		}
-        		} else {
-                    $("#precio").focus();  
-	          		alert("Ingrese un precio");
-    	      		
-        		}
-      		} else {
-                $("#cantidad").focus();
-	        	alert("Ingrese una cantidad");
-      		}
-    	}
+                } else{
+                  alert("Error... Valor excedió al saldo");  
+                }
+            } else {
+                alert("Seleccione una Factura");
+            }
+        }    
 	});
 /*-----guardar factura compra--*/
-  $("#btn_0").on("click",guardar_factura);
+  $("#btn_0").on("click", guardar_pago);
 
 
 // tabla pagos
 jQuery("#list").jqGrid({          
 datatype: "local",
-colNames: ['', 'ID', 'Factura a Pagar', 'Fecha Factura', 'Total CxC', 'Valor a Pagar', 'Saldo'],
+colNames: ['', 'ID', 'Factura a Pagar', 'Fecha Factura', 'Monto Total', 'Valor a Pagar', 'Saldo'],
 colModel:[ 
     {name: 'myac', width: 50, fixed: true, sortable: false, resize: false, formatter: 'actions',
           formatoptions: {keys: false, delbutton: true, editbutton: false}
       },     
     {name: 'id_pagos_venta', index: 'id_pagos_venta', editable: false, search: false, hidden: true, editrules: {edithidden: false}, align: 'center',frozen: true, width: 50},
-    {name: 'num_factura', index: 'num_factura', editable: false, search: false, hidden: false, editrules: {edithidden: false}, align: 'center',
-      frozen: true, width: 150},
-    {name: 'fecha_factura', index: 'fecha_factura', editable: false, frozen: true, editrules: {required: true}, align: 'center', width: 290},
+    {name: 'num_factura', index: 'num_factura', editable: false, search: false, hidden: false, editrules: {edithidden: false}, align: 'center',frozen: true, width: 150},
+    {name: 'fecha_factura', index: 'fecha_factura', editable: false, frozen: true, editrules: {required: true}, align: 'center', width: 150},
     {name: 'totalcxc', index: 'totalcxc', editable: false, frozen: true, editrules: {required: true}, align: 'center', width: 70},
     {name: 'valor_pagado', index: 'valor_pagado', editable: false, search: false, frozen: true, editrules: {required: true}, align: 'center', width: 110, editoptions:{maxlength: 10, size:15,dataInit: function(elem){$(elem).bind("keypress", function(e) {return punto(e)})}}}, 
     {name: 'saldo', index: 'saldo', editable: false, frozen: true, editrules: {required: true}, align: 'center', width: 90},
@@ -715,9 +274,6 @@ colModel:[
         var id = jQuery("#list").jqGrid('getGridParam', 'selrow');
         jQuery('#list').jqGrid('restoreRow', id);
         var ret = jQuery("#list").jqGrid('getRowData', id);
-        
-
-         var fil = jQuery("#list").jqGrid("getRowData");
 
          var su = jQuery("#list").jqGrid('delRowData', rowid);
          if (su === true) {
@@ -755,7 +311,7 @@ colModel:[
         jQuery(grid_selector).jqGrid({          
             datatype: "xml",
             url: 'xmlFacturasventas.php',        
-            colNames: ['ID', 'Factura a Pagar', 'Fecha Factura', 'Total Monto', 'Valor a Pagar', 'Saldo'],
+            colNames: ['ID', 'Factura a Pagar', 'Fecha Factura', 'Monto Total', 'Valor a Pagar', 'Saldo'],
                 colModel: [
                 {name: 'id_pagos_venta', index: 'id_pagos_venta', editable: false, search: false, hidden: true, editrules: {edithidden: false}, align: 'center',frozen: true, width: 50},
                 {name: 'num_factura', index: 'num_factura', editable: false, search: false, hidden: false, editrules: {edithidden: false}, align: 'center', frozen: true, width: 180},
@@ -793,8 +349,26 @@ colModel:[
                 $("#num_factura").val(ret.num_factura);
                 $("#fecha_factura").val(ret.fecha_factura);
                 $("#totalcxc").val(ret.totalcxc);
-                $("#saldo2").val(ret.saldo);                      
-                
+                $("#saldo2").val(ret.saldo); 
+
+                $("#tablaNuevo tbody").empty(); 
+
+                $.ajax({
+                    type: "POST",
+                    url: "buscar_pagos.php",    
+                    data: "id=" + ret.id_pagos_venta,
+                    dataType: 'json',
+                    success: function(response) {
+                    $("#tablaNuevo").css('display','inline-table');
+                    for (var i = 0; i < response.length; i=i+3) {
+                            $("#tablaNuevo tbody").append( "<tr>" +
+                            "<td align=center >" + response[i+0] + "</td>" +
+                            "<td align=center>" + response[i+1] + "</td>" +             
+                            "<td align=center>" + response[i+2] + "</td>" +                         
+                           "<tr>");                    
+                        }
+                   }                    
+               });
 
                 $('#modal_facturas').modal('hide');
                                 
@@ -895,11 +469,7 @@ colModel:[
             form.find('input[name=sdate]').datepicker({format:'yyyy-mm-dd' , autoclose:true})
             
             form.find('input[name=stock]').addClass('ace ace-switch ace-switch-5').after('<span class="lbl"></span>');
-            //don't wrap inside a label element, the checkbox value won't be submitted (POST'ed)
-            //.addClass('ace ace-switch ace-switch-5').wrap('<label class="inline" />').after('<span class="lbl"></span>');
 
-                    
-            //update buttons classes
             var buttons = form.next().find('.EditButton .fm-button');
             buttons.addClass('btn btn-sm').find('[class*="-icon"]').hide();//ui-icon, s-icon
             buttons.eq(0).addClass('btn-primary').prepend('<i class="ace-icon fa fa-check"></i>');
@@ -948,45 +518,12 @@ colModel:[
             style_edit_form(form);
         }
 
-
-
-        //it causes some flicker when reloading or navigating grid
-        //it may be possible to have some custom formatter to do this as the grid is being created to prevent this
-        //or go back to default browser checkbox styles for the grid
         function styleCheckbox(table) {
-            /**
-                        $(table).find('input:checkbox').addClass('ace')
-                        .wrap('<label />')
-                        .after('<span class="lbl align-top" />')
-
-
-                        $('.ui-jqgrid-labels th[id*="_cb"]:first-child')
-                        .find('input.cbox[type=checkbox]').addClass('ace')
-                        .wrap('<label />').after('<span class="lbl align-top" />');
-             */
         }
-        
 
-        //unlike navButtons icons, action icons in rows seem to be hard-coded
-        //you can change them like this in here if you want
         function updateActionIcons(table) {
-            /**
-                        var replacement = 
-                        {
-                                'ui-ace-icon fa fa-pencil' : 'ace-icon fa fa-pencil blue',
-                                'ui-ace-icon fa fa-trash-o' : 'ace-icon fa fa-trash-o red',
-                                'ui-icon-disk' : 'ace-icon fa fa-check green',
-                                'ui-icon-cancel' : 'ace-icon fa fa-times red'
-                        };
-                        $(table).find('.ui-pg-div span.ui-icon').each(function(){
-                                var icon = $(this);
-                                var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
-                                if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
-                        })
-             */
         }
-        
-        //replace icons with FontAwesome icons like above
+
         function updatePagerIcons(table) {
             var replacement = 
                 {
@@ -1007,8 +544,6 @@ colModel:[
             $('.navtable .ui-pg-button').tooltip({container:'body'});
             $(table).find('.ui-pg-div').tooltip({container:'body'});
         }
-
-        //var selr = jQuery(grid_selector).jqGrid('getGridParam','selrow');
 
         $(document).one('ajaxloadstart.page', function(e) {
             $(grid_selector).jqGrid('GridUnload');

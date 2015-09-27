@@ -78,7 +78,7 @@ while ($row = pg_fetch_row($consulta)) {
 									<div class="widget-body">
 										<div class="widget-main">
 											<div class="row">
-												<form class="form-horizontal" role="form" rol="form" action="" method="POST" id="form_facturaVenta">	
+												<form class="form-horizontal" role="form" rol="form" action="" method="POST" id="form_pagosVenta">	
 													<div class="row">
 														<div class="col-md-12 pull-right">
 															<div class="col-md-4">
@@ -270,11 +270,56 @@ while ($row = pg_fetch_row($consulta)) {
 														</div>
 													</div>
 
-													<div class="col-md-12">
-							                            <div id="grid_container">
-							                                <table id="list"></table>
-							                            </div>
-							                        </div>
+													<div class="col-xs-12">
+														<div class="tabbable">
+															<ul class="nav nav-tabs" id="myTab">
+																<li class="active">
+																	<a data-toggle="tab" href="#pagos">
+																		<i class="green ace-icon fa fa-pencil-square-o bigger-120"></i>
+																		Pagos
+																	</a>
+																</li>
+
+																<li class="">
+																	<a data-toggle="tab" href="#fecha">
+																		<i class="green ace-icon fa fa-money bigger-120"></i>
+																		Fecha Pagos
+																	</a>
+																</li>
+															</ul>
+
+															<div class="tab-content">
+																<div id="pagos" class="tab-pane fade in active">
+																	<div class="col-md-12">
+											                            <div id="grid_container">
+											                                <table id="list"></table>
+											                            </div>
+											                        </div>
+											                    </div>
+
+											                    <div id="fecha" class="tab-pane">
+											                    	<row>
+											                    		<div class="col-md-12">
+											                    			<div class="col-md-6">
+														                    	<table id="tablaNuevo" class="table table-striped table-bordered"  >
+												                                    <thead>
+												                                        <tr>
+												                                            <th style="width: 280px">Fecha Pagos</th>
+												                                            <th style="width: 200px">Monto</th>
+												                                            <th style="width: 200px">Saldo</th>
+												                                        </tr>   
+												                                    </thead>
+												                                    <tbody>
+												                                        <tr></tr>
+												                                    </tbody>
+												                                </table>
+												                            </div>    
+											                            </div>
+										                            </row>    
+											                    </div>
+										                    </div>    
+									                    </div>    
+								                    </div>    
 
 													<div class="row">
 														<div class="col-md-12">
