@@ -4,7 +4,7 @@
 	include '../funciones_generales.php';
 	//include '../correos/mail.php';
 	// include '../correos/prueba.php';
-	// error_reporting(0);
+	 error_reporting(0);
 
 	$conexion = conectarse();
 	date_default_timezone_set('America/Guayaquil');
@@ -48,7 +48,8 @@
     $nelem = count($arreglo1);
     // fin
 
-    if($_POST['formas'] == '110205552550fd8d51e') {//CREDITO NO CAMBIAR EN LA BASE
+    
+    if($_POST['formas'] == '121615168685608245f3e51a1.74980590') {//CREDITO NO CAMBIAR EN LA BASE
     	// variables pagos
         $adelanto = $_POST['adelanto'];
         $meses = $_POST['meses'];
@@ -57,16 +58,19 @@
 
         if ($adelanto == "") {
             $monto = $total;
-            $format = number_format($monto, 2, '.', '');
-            $adelanto = 0.00;
+            $format = number_format($monto, 3, '.', '');
+            $adelanto = 0.000;
         } else {
             $monto = $total - $adelanto;
-            $format = number_format($monto, 2, '.', '');
+            $format = number_format($monto, 3, '.', '');
         }
 
         // guardar pagos venta
         $id2 = unique($fecha_larga);
         pg_query("insert into pagos_venta values('$id2','".$_POST['id_cliente']."', '$id','".$id_session."','".$_POST['fecha_actual']."','$adelanto','$meses','$format','$format','Activo','$fecha')");
+        $sql_nuevo = "select (id_pagos_venta,id_cliente,id_factura_venta,id_usuario,fecha_credito,adelanto,meses,monto_credito,saldo,estado,fecha_creacion) from pagos_venta where id_pagos_venta = '$id2'";        
+		$sql_nuevo = sql_array($conexion,$sql_nuevo);
+		auditoria_sistema($conexion,'pagos_venta',$id_user,'Insert',$id,$fecha_larga,$fecha,$sql_nuevo,'');
         // fin
 
         // guardar detalle pagos 
@@ -80,6 +84,9 @@
                 $nuevaFecha = date('Y-m-d', strtotime(" + $i month"));
                 $format_numero = number_format(floor($calcu), 2, '.', '');
                 pg_query("insert into detalle_pagos_venta values('$id3','$id2','$nuevaFecha','$format_numero','$format_numero','Activo','$fecha')");
+                $sql_nuevo = "select (id_detalles_pagos_venta,id_pagos_venta,fecha_pagos,cuota,saldo,estado,fecha_creacion) from detalle_pagos_venta where id_detalles_pagos_venta = '$id3'";        
+				$sql_nuevo = sql_array($conexion,$sql_nuevo);
+				auditoria_sistema($conexion,'detalle_pagos_venta',$id_user,'Insert',$id,$fecha_larga,$fecha,$sql_nuevo,'');
             }
 
             $id3 = unique($fecha_larga);
@@ -88,6 +95,10 @@
             $sal = $monto - $calcu1;
             $format_numero2 = number_format($sal, 2, '.', '');
             pg_query("insert into detalle_pagos_venta values('$id3','$id2','$ultimaFecha','$format_numero2','$format_numero2','Activo','$fecha')");
+
+            $sql_nuevo = "select (id_detalles_pagos_venta,id_pagos_venta,fecha_pagos,cuota,saldo,estado,fecha_creacion) from detalle_pagos_venta where id_detalles_pagos_venta = '$id3'";        
+			$sql_nuevo = sql_array($conexion,$sql_nuevo);
+			auditoria_sistema($conexion,'detalle_pagos_venta',$id_user,'Insert',$id,$fecha_larga,$fecha,$sql_nuevo,'');
         } else {
             $id3 = unique($fecha_larga);
 
@@ -95,6 +106,10 @@
             $format2 = number_format($monto, 2, '.', '');
             $Fecha = date('Y-m-d', strtotime(" + $k month"));
             pg_query("insert into detalle_pagos_venta values('$id3','$id2','$Fecha','$format2','$format2','Activo','$fecha')");
+
+            $sql_nuevo = "select (id_detalles_pagos_venta,id_pagos_venta,fecha_pagos,cuota,saldo,estado,fecha_creacion) from detalle_pagos_venta where id_detalles_pagos_venta = '$id3'";        
+			$sql_nuevo = sql_array($conexion,$sql_nuevo);
+			auditoria_sistema($conexion,'detalle_pagos_venta',$id_user,'Insert',$id,$fecha_larga,$fecha,$sql_nuevo,'');
         }
     }
     // fin credito
@@ -108,7 +123,7 @@
 	    $sql2 = "insert into detalle_factura_venta values ('$id4','$id','".$arreglo1[$i]."','".$arreglo2[$i]."','".$arreglo3[$i]."','".$arreglo4[$i]."','".$arreglo5[$i]."','".$arreglo6[$i]."','$fecha','Activo')";       
 		$guardar = guardarSql($conexion,$sql2);
 
-		$sql_nuevo = "select (id_detalle_factura_venta,id_factura_venta,id_productos,cantidad,precio,descuento,total,pendientes,fecha_creacion,estado) from detalle_factura_venta where id_detalle_factura_venta = '$id3'";        
+		$sql_nuevo = "select (id_detalle_factura_venta,id_factura_venta,id_productos,cantidad,precio,descuento,total,pendientes,fecha_creacion,estado) from detalle_factura_venta where id_detalle_factura_venta = '$id4'";        
 		$sql_nuevo = sql_array($conexion,$sql_nuevo);
 		auditoria_sistema($conexion,'detalle_factura_venta',$id_user,'Insert',$id,$fecha_larga,$fecha,$sql_nuevo,'');
 		// fin   
@@ -166,11 +181,11 @@
         // Libro diario
 		$id_libro  = unique($fecha_larga);	
 		
-		if($_POST['formas'] == '110147552550ebaa4df') {//CONTADO NO CAMBIAR EN LA BASE
-			$sql_libro = "insert into libro_diario values ('".$id_libro."','".$fecha."','".$_POST['total']."','','11501155240ac39d2f0','Factura Venta','Cobro Contado Caja')";
-			$resp = $guardar = guardarSql($conexion,$sql_libro);	
-		} else {			
+		if($_POST['formas'] == '121615168685608245f3e51a1.74980590') {//CONTADO NO CAMBIAR EN LA BASE
 			$sql_libro = "insert into libro_diario values ('".$id_libro."','".$fecha."','".$_POST['total']."','','11501155240ac39f4e6','Factura Venta','Cuentas por Cobrar')";
+			$resp = $guardar = guardarSql($conexion,$sql_libro);				
+		} else {			
+			$sql_libro = "insert into libro_diario values ('".$id_libro."','".$fecha."','".$_POST['total']."','','11501155240ac39d2f0','Factura Venta','Cobro Contado Caja')";
 			$resp = $guardar = guardarSql($conexion,$sql_libro);	
 		}
 

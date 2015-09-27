@@ -104,8 +104,11 @@ if(!isset($_SESSION))
 																<div class="col-sm-12">
 																	<div class="form-group">
 																		<label class="col-sm-4 control-label no-padding-right" for="form-field-1"></label>																		
-																		<div class="col-sm-8">
+																		<div class="col-sm-4">
 																			<div class="btn btn-info ice-icon fa fa-search" id="btn_buscar"> Buscar</div>
+																		</div>
+																		<div class="col-sm-4">
+																			<div class="btn btn-info ice-icon fa fa-search" id="btn_reporte"> Reporte</div>
 																		</div>
 																	</div>
 																</div>																
@@ -114,12 +117,12 @@ if(!isset($_SESSION))
 													</div>
 												</form>
 											</div>											
-											<div class="row">
+											<div class="row" >
 												<div class="col-xs-12">
 													<div class="clearfix">
 														<div class="pull-right tableTools-container"></div>
 													</div>
-													<div>
+													<div style="overflow:scroll;height:400px;">
 														<table id="td_libro" class="table table-striped table-bordered table-hover">
 															<thead>
 																<tr>
