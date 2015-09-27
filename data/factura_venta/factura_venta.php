@@ -2,7 +2,7 @@
 //inclucion de librerias
 	include '../conexion.php';
 	include '../funciones_generales.php';
-	include '../correos/mail.php';
+	//include '../correos/mail.php';
 	// include '../correos/prueba.php';
 	// error_reporting(0);
 
@@ -16,12 +16,17 @@
 	$sql4 = "";
 	$id_session = sesion_activa();///datos session
 	$id = unique($fecha_larga);
+	$id_user = sesion_activa();	
 	
 	// guardar factura venta
     $num_serie = "001-001-".$_POST['serie3'];
 
 	$sql = "insert into factura_venta values ('$id','".$_POST['id_cliente']."','".$id_session."','','".$_POST['fecha_actual']."','".$_POST['hora_actual']."','".$num_serie."','".$_POST['fecha_cancelacion']."','".$_POST['tipo']."','".$_POST['formas']."','".$_POST['termino_pago']."','".$_POST['tarifa0']."','".$_POST['tarifa12']."','".$_POST['iva']."','".$_POST['descuento_total']."','".$_POST['total']."','$fecha','Activo')";	
 	$guardar = guardarSql($conexion,$sql);
+
+	$sql_nuevo = "select (id_factura_venta,id_cliente,id_usuario,fecha_anulacion,fecha_actual,hora_actual,numero_serie,fecha_cancelacion,tipo_precio,id_forma_pago,id_termino_pago,tarifa0,tarifa12,iva,descuento,total,fecha_creacion,estado) from factura_venta where id_factura_venta = '$id'";        
+	$sql_nuevo = sql_array($conexion,$sql_nuevo);
+	auditoria_sistema($conexion,'factura_venta',$id_user,'Insert',$id,$fecha_larga,$fecha,$sql_nuevo,'');
 	// Fin 
 	
 	// datos detalle factura
@@ -105,6 +110,10 @@
 		// guardar detalle_factura
 	    $sql2 = "insert into detalle_factura_venta values ('$id3','$id','".$arreglo1[$i]."','".$arreglo2[$i]."','".$arreglo3[$i]."','".$arreglo4[$i]."','".$arreglo5[$i]."','".$arreglo6[$i]."','$fecha','Activo')";       
 		$guardar = guardarSql($conexion,$sql2);
+
+		$sql_nuevo = "select (id_detalle_factura_venta,id_factura_venta,id_productos,cantidad,precio,descuento,total,pendientes,fecha_creacion,estado) from detalle_factura_venta where id_detalle_factura_venta = '$id3'";        
+		$sql_nuevo = sql_array($conexion,$sql_nuevo);
+		auditoria_sistema($conexion,'detalle_factura_venta',$id_user,'Insert',$id,$fecha_larga,$fecha,$sql_nuevo,'');
 		// fin   
 
 		// Kardex
@@ -140,11 +149,13 @@
 		$c_e = $arreglo2[$i];
 		$v_e = $precio_compra;
 		$t_e = $arreglo2[$i] * $precio_compra;
-		
+		$t_e = number_format($t_e, 3, '.', '');
+
 		$c_t = $c_t - $c_e;		
 		$t_t = $t_t - $t_e;		
 		if($t_t > 0 && $c_t >0) { 						
 		    $v_t = $t_t / $c_t;
+		    $v_t = number_format($v_t, 2, '.', '');
 		} else { 		
 		    $v_t = '0';
 		}  
