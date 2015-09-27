@@ -43,19 +43,75 @@
     $nelem = count($arreglo1);
     // fin
 
+    if($_POST['formas'] == '110205552550fd8d51e') {//CREDITO NO CAMBIAR EN LA BASE
+    	// variables pagos
+        $adelanto = $_POST['adelanto'];
+        $meses = $_POST['meses'];
+        $total = $_POST['total'];
+        // fin
+
+        if ($adelanto == "") {
+            $monto = $total;
+            $format = number_format($monto, 2, '.', '');
+            $adelanto = 0.00;
+        } else {
+            $monto = $total - $adelanto;
+            $format = number_format($monto, 2, '.', '');
+        }
+
+        // guardar pagos venta
+        $id2 = unique($fecha_larga);
+        pg_query("insert into pagos_venta values('$id2','".$_POST['id_cliente']."', '$id','".$id_session."','".$_POST['fecha_actual']."','$adelanto','$meses','$format','$format','Activo','$fecha')");
+        // fin
+
+        // Guardar meses
+        if ($meses > 1) {
+            for ($i = 1; $i <= $meses - 1; $i++) {
+                // contador detalle pagos compra
+                $id3 = unique($fecha_larga);
+                // fin
+
+                $calcu = $monto / ($meses);
+                $nuevaFecha = date('Y-m-d', strtotime(" + $i month"));
+                $format_numero = number_format(floor($calcu), 2, '.', '');
+                pg_query("insert into detalle_pagos_venta values('$id3','$id2','$nuevaFecha','$format_numero','$format_numero','Activo','$fecha')");
+            }
+            
+            $id3 = unique($fecha_larga);
+            $calcu1 = floor($calcu) * ($meses - 1);
+            $ultimaFecha = date('Y-m-d', strtotime(" + $i month"));
+            $sal = $monto - $calcu1;
+            $format_numero2 = number_format($sal, 2, '.', '');
+            pg_query("insert into detalle_pagos_venta values('$id3','$id2','$ultimaFecha','$format_numero2','$format_numero2','Activo','$fecha')");
+        } else {
+            $id3 = unique($fecha_larga);
+
+            $k = 1;
+            $format2 = number_format($monto, 2, '.', '');
+            $Fecha = date('Y-m-d', strtotime(" + $k month"));
+            pg_query("insert into detalle_pagos_venta values('$id3','$id2','$Fecha','$format2','$format2','Activo','$fecha')");
+        }
+        //////////////////////////////////////////////////////  
+
+    }
+
+
+
 	for ($i = 1; $i < $nelem; $i++) {
-		$id2 = unique($fecha_larga);
+		$id3 = unique($fecha_larga);
 		$stock = 0;
 		$cal = 0;
 
 		// guardar detalle_factura
-	    $sql2 = "insert into detalle_factura_venta values (
-	   	'$id2','$id','".$arreglo1[$i]."','".$arreglo2[$i]."','".$arreglo3[$i]."','".$arreglo4[$i]."','".$arreglo5[$i]."','".$arreglo6[$i]."','$fecha','Activo')";       
+	    $sql2 = "insert into detalle_factura_venta values ('$id3','$id','".$arreglo1[$i]."','".$arreglo2[$i]."','".$arreglo3[$i]."','".$arreglo4[$i]."','".$arreglo5[$i]."','".$arreglo6[$i]."','$fecha','Activo')";       
 		$guardar = guardarSql($conexion,$sql2);
-		// fin    KARDEX
+		// fin   
+
+		// Kardex
 		$sql_kardex = "select id_productos from productos where id_productos ='".$arreglo1[$i]."'";
-		//echo $sql_kardex;
+
 		$id_prod = id_unique($conexion,$sql_kardex);
+
         ///kardex y modificar productos///
         $c_t = '';
 		$v_t = '';
@@ -63,6 +119,7 @@
 		$c_e = '';
 		$v_e = '';
 		$t_e = '';
+
         $consulta = pg_query("select stock,precio from productos where id_productos = '".$id_prod."'");
         while ($row = pg_fetch_row($consulta)) {
             $stock = $row[0];
@@ -86,14 +143,12 @@
 		
 		$c_t = $c_t - $c_e;		
 		$t_t = $t_t - $t_e;		
-		if($t_t > 0 && $c_t >0) 
-		{ 						
+		if($t_t > 0 && $c_t >0) { 						
 		    $v_t = $t_t / $c_t;
-		} 
-		else 
-		{ 		
+		} else { 		
 		    $v_t = '0';
 		}  
+
 		$sql_kardex = "insert into detalles_kardex values ('".$id_det_kardex."','".$id_kardex."','".$fecha."','".'Factura venta salida de productos Nro.'.$id."','','','','".$c_e."','".$v_e."','".$t_e."','".$c_t."','".$v_t."','".$t_t."')";		
 		$guardar = guardarSql($conexion, $sql_kardex);                
         $sql3 = "update productos set stock='".$c_t."', precio = '".$v_t."' where id_productos='".$id_prod."'";								
@@ -102,15 +157,15 @@
 		$id_libro  = unique($fecha_larga);	
 		//echo $id_libro.'</br>';
 
-		if($_POST['formas'] == '110147552550ebaa4df')//CONTADO NO CAMBIAR EN LA BASE
-		{			
+		if($_POST['formas'] == '110147552550ebaa4df') {//CONTADO NO CAMBIAR EN LA BASE
 			$sql_libro = "insert into libro_diario values ('".$id_libro."','".$fecha."','".$_POST['total']."','','11501155240ac39d2f0','Factura Venta','Cobro Contado Caja')";
 			$resp = $guardar = guardarSql($conexion,$sql_libro);	
-		}else{			
+		} else {			
 			$sql_libro = "insert into libro_diario values ('".$id_libro."','".$fecha."','".$_POST['total']."','','11501155240ac39f4e6','Factura Venta','Cuentas por Cobrar')";
 			$resp = $guardar = guardarSql($conexion,$sql_libro);	
 		}
-		if($resp == 'true'){
+
+		if($resp == 'true') {
 			$id_libro_2  = unique($fecha_larga);	
 			//echo $id_libro_2.'</br>';
 			
