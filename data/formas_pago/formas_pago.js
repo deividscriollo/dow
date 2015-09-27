@@ -31,13 +31,23 @@
 	        url: 'xml_formas_pago.php',
 	        datatype: "xml",
 	        height: 250,
-	        colNames:['ID','DESCRIPCIÓN','ESTADO','PRINCIPAL','FECHA'],
+	        colNames:['ID','DESCRIPCIÓN','ESTADO','PRINCIPAL','FECHA','PLAN CUENTAS'],
 	        colModel:[
 	            {name:'id_forma_pago',index:'id_forma_pago', width:60, sorttype:"int", editable: true, hidden: true, editoptions: {readonly: 'readonly'}},
 	            {name:'descripcion',index:'descripcion',width:150, editable:true, editoptions:{size:"20",maxlength:"30"}, editrules: {required: true}},	            	            
 	            {name:'estado',index:'estado', width:150,editable: true,hidden: true,editoptions:{size:"20",maxlength:"30",readonly: 'readonly'}},
 	            {name:'principal',index:'principal', width:60, editable: true,edittype:"checkbox",editoptions: {value:"Si:No"}},
-	            {name:'fecha_creacion',index:'fecha_creacion', width:150, hidden:false, editable: false, editrules:{edithidden:false}}
+	            {name:'fecha_creacion',index:'fecha_creacion', width:150, hidden:false, editable: false, editrules:{edithidden:false}},
+	            {name:'id_plan_cuentas',index:'id_plan_cuentas', width:150, hidden:true, editable: true, editrules:{edithidden:true},edittype:"select",
+					editoptions: {
+						dataUrl:'select_formas.php',
+						dataInit: function(elem) {
+					        $(elem).width(170);  // set the width which you need
+					    }
+						
+					} // edit option
+				},
+					
 
 	        ], 
 	        rowNum:10,
