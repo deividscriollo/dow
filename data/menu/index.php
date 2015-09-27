@@ -853,7 +853,7 @@ function menu_lateral(){
 		</li>';
 		
 		print '<li ';
-			if ($acus[3]=='factura_compra' || $acus[3]=='devolucion_compra' || $acus[3]=='factura_venta'|| $acus[3]=='nota_credito'|| $acus[3]=='kardex'|| $acus[3]=='inventario' || $acus[3]=='libro_diario' ) {
+			if ($acus[3]=='factura_compra' || $acus[3]=='devolucion_compra' || $acus[3]=='factura_venta' || $acus[3]=='nota_credito' || $acus[3]=='cuentas_cobrar' || $acus[3]=='cuentas_pagar' || $acus[3]=='kardex'|| $acus[3]=='inventario' || $acus[3]=='libro_diario' ) {
 				print('class="hover active open"');
 			}else print('class="hover"');
 			print'>
@@ -889,8 +889,9 @@ function menu_lateral(){
 					</a>
 					<b class="arrow"></b>
 				</li>';	
+
 				print '<li ';
-					if ($acus[3]=='factura_compra'||$acus[3]=='devolucion_compra') {
+					if ($acus[3]=='factura_compra' || $acus[3]=='devolucion_compra') {
 						print('class="hover active open"');
 					}else print('class="hover"');
 				print'>
@@ -926,9 +927,8 @@ function menu_lateral(){
 				print '</ul>
 				</li>';
 
-				
 				print '<li ';
-					if ($acus[3]=='factura_venta'||$acus[3]=='nota_credito') {
+					if ($acus[3]=='factura_venta' || $acus[3]=='nota_credito') {
 						print('class="hover active open"');
 					}else print('class="hover"');
 				print'>
@@ -951,7 +951,46 @@ function menu_lateral(){
 					<b class="arrow"></b>
 				</li>';																													
 				print '</ul>
-				</li>';												
+				</li>';
+
+				print '<li ';
+					if ($acus[3] == 'cuentas_cobrar' || $acus[3] == 'cuentas_pagar') {
+						print('class="hover active open"');
+					} else print('class="hover"');
+				print'>
+					<a href="#" class="dropdown-toggle">
+					<i class="menu-icon fa fa-caret-right"></i>
+					Cartera
+					<b class="arrow fa fa-angle-down"></b>
+					</a>
+					<b class="arrow"></b>
+				<ul class="submenu">';					
+				print '<li ';
+					if ($acus[3] == 'cuentas_cobrar') {
+						print('class="hover active"');
+					}else print('class="hover"');
+				print'>
+					<a href="../cuentas_cobrar/">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Cuentas Cobrar
+					</a>
+					<b class="arrow"></b>
+				</li>';				
+				print '<li ';
+					if ($acus[3] == 'cuentas_pagar') {
+						print('class="hover active"');
+					}else print('class="hover"');
+				print'>
+					<a href="../cuentas_pagar/">
+						<i class="menu-icon fa fa-caret-right"></i>
+						Cuentas Pagar
+					</a>
+					<b class="arrow"></b>
+				</li>';																													
+				print '</ul>
+				</li>';
+
+
 				print '<li ';
 				if ($acus[3]=='kardex') {
 					print('class=" hover active"');

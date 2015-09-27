@@ -69,7 +69,7 @@
         pg_query("insert into pagos_venta values('$id2','".$_POST['id_cliente']."', '$id','".$id_session."','".$_POST['fecha_actual']."','$adelanto','$meses','$format','$format','Activo','$fecha')");
         // fin
 
-        // Guardar meses
+        // guardar detalle pagos 
         if ($meses > 1) {
             for ($i = 1; $i <= $meses - 1; $i++) {
                 // contador detalle pagos compra
@@ -81,7 +81,7 @@
                 $format_numero = number_format(floor($calcu), 2, '.', '');
                 pg_query("insert into detalle_pagos_venta values('$id3','$id2','$nuevaFecha','$format_numero','$format_numero','Activo','$fecha')");
             }
-            
+
             $id3 = unique($fecha_larga);
             $calcu1 = floor($calcu) * ($meses - 1);
             $ultimaFecha = date('Y-m-d', strtotime(" + $i month"));
@@ -96,19 +96,16 @@
             $Fecha = date('Y-m-d', strtotime(" + $k month"));
             pg_query("insert into detalle_pagos_venta values('$id3','$id2','$Fecha','$format2','$format2','Activo','$fecha')");
         }
-        //////////////////////////////////////////////////////  
-
     }
-
-
+    // fin credito
 
 	for ($i = 1; $i < $nelem; $i++) {
-		$id3 = unique($fecha_larga);
+		$id4 = unique($fecha_larga);
 		$stock = 0;
 		$cal = 0;
 
 		// guardar detalle_factura
-	    $sql2 = "insert into detalle_factura_venta values ('$id3','$id','".$arreglo1[$i]."','".$arreglo2[$i]."','".$arreglo3[$i]."','".$arreglo4[$i]."','".$arreglo5[$i]."','".$arreglo6[$i]."','$fecha','Activo')";       
+	    $sql2 = "insert into detalle_factura_venta values ('$id4','$id','".$arreglo1[$i]."','".$arreglo2[$i]."','".$arreglo3[$i]."','".$arreglo4[$i]."','".$arreglo5[$i]."','".$arreglo6[$i]."','$fecha','Activo')";       
 		$guardar = guardarSql($conexion,$sql2);
 
 		$sql_nuevo = "select (id_detalle_factura_venta,id_factura_venta,id_productos,cantidad,precio,descuento,total,pendientes,fecha_creacion,estado) from detalle_factura_venta where id_detalle_factura_venta = '$id3'";        
@@ -117,11 +114,11 @@
 		// fin   
 
 		// Kardex
-		$sql_kardex = "select id_productos from productos where id_productos ='".$arreglo1[$i]."'";
+		$sql_kardex = "select id_productos from productos where id_productos = '".$arreglo1[$i]."'";
 
 		$id_prod = id_unique($conexion,$sql_kardex);
 
-        ///kardex y modificar productos///
+        // kardex y modificar productos
         $c_t = '';
 		$v_t = '';
 		$t_t = '';
@@ -146,6 +143,7 @@
 			$v_t = $row[7];
 			$t_t = $row[8];
 		}
+
 		$c_e = $arreglo2[$i];
 		$v_e = $precio_compra;
 		$t_e = $arreglo2[$i] * $precio_compra;
@@ -164,10 +162,10 @@
 		$guardar = guardarSql($conexion, $sql_kardex);                
         $sql3 = "update productos set stock='".$c_t."', precio = '".$v_t."' where id_productos='".$id_prod."'";								
 		$guardar = guardarSql($conexion, $sql3);
-        /////////LIBRO DIARIOS//////////
-		$id_libro  = unique($fecha_larga);	
-		//echo $id_libro.'</br>';
 
+        // Libro diario
+		$id_libro  = unique($fecha_larga);	
+		
 		if($_POST['formas'] == '110147552550ebaa4df') {//CONTADO NO CAMBIAR EN LA BASE
 			$sql_libro = "insert into libro_diario values ('".$id_libro."','".$fecha."','".$_POST['total']."','','11501155240ac39d2f0','Factura Venta','Cobro Contado Caja')";
 			$resp = $guardar = guardarSql($conexion,$sql_libro);	
@@ -178,20 +176,17 @@
 
 		if($resp == 'true') {
 			$id_libro_2  = unique($fecha_larga);	
-			//echo $id_libro_2.'</br>';
-			
 							
 			$sql_libro = "insert into libro_diario values ('".$id_libro_2."','".$fecha."','','".($_POST['tarifa12'] + $_POST['tarifa0'])."','11501155240ac3aaaaa','Factura Ventas','Venta de Productos')";
 			$resp = $guardar = guardarSql($conexion,$sql_libro);			
 			if($resp == 'true'){
 				$id_libro_3  = unique($fecha_larga);	
-				//echo $id_libro_3.'</br>';		
+				
 				$sql_libro = "insert into libro_diario values ('".$id_libro_3."','".$fecha."','','".($_POST['iva'])."','11501155240ac3a138e','Factura Ventas','Iva Cobrado')";
 				$resp = $guardar = guardarSql($conexion,$sql_libro);			
 				
 			}			
-		}		
-		///////////////////////		
+		}	
 	}
 
 	if( $guardar == 'true'){
