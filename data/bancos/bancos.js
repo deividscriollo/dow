@@ -186,8 +186,6 @@
 	        }
 	    }
 	)
-
-
 	    
 	    function style_edit_form(form) {
 	        //enable datepicker on "sdate" field and switches for "stock" field

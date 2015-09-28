@@ -204,6 +204,40 @@ function inicio () {
             
             $("#comprobante").val(ret.id_factura_compra);
 
+            var valor = ret.id_factura_compra;
+
+            $.getJSON('retornar_factura_compra1.php?com=' + valor, function(data) {
+                  var tama = data.length;
+                  console.log(data)
+                  if (tama != 0) {
+                      for (var i = 0; i < tama; i = i + 21) {
+                          $("#id_factura_compra").val(data[i]);
+                          $("#fecha_actual").val(data[i + 1]);
+                          $("#hora_actual").val(data[i + 2]);
+                          $("#digitador").val(data[i + 3]);
+                          $("#serie").val(data[i + 4]);
+                          $("#tipo_comprobante").val(data[i + 4]);
+                          $("#tipo_comprobante").trigger("chosen:updated");
+                          $("#id_proveedor").val(data[i + 6]);
+                          $("#txt_nro_identificacion").val(data[i + 7]);
+                          $("#txt_nro_identificacion").trigger("chosen:updated");
+                          $("#txt_nombre_proveedor").val(data[i + 8]);
+                          
+                          $("#fecha_registro").val(data[i + 8]);
+                          $("#fecha_emision").val(data[i + 9]);
+                          $("#fecha_caducidad").val(data[i + 10]);
+                          
+                          
+                          $("#cancelacion").val(data[i + 12]);
+                          $("#autorizacion").val(data[i + 12]);
+                          $("#formas").val(data[i + 14]);
+                          $("#total_p").val(data[i + 15]);
+                          $("#total_p2").val(data[i + 16]);
+                          $("#total").val(data[i + 19]);
+                      }
+                  }
+              });
+
             
 
 
