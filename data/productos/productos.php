@@ -63,20 +63,22 @@
 			}
 			$guardar = guardarSql($conexion,$sql);
 			////////kardex/////////
+			$temp = round(($_POST['txt_12'] * $_POST['txt_9']), 3);
 			$id_kardex = unique($fecha_larga);			
 			$sql_kardex = "insert into kardex values ('".$id_kardex."','".$id."','".$fecha."')";
 			$guardar = guardarSql($conexion,$sql_kardex);
 			$id_det_kardex = unique($fecha_larga);	
-			$sql_kardex = "insert into detalles_kardex values ('".$id_det_kardex."','".$id_kardex."','".$fecha."','Creacion de productos','".$_POST['txt_12']."','".$_POST['txt_9']."','".($_POST['txt_12'] * $_POST['txt_9'])."','','','','".$_POST['txt_12']."','".$_POST['txt_9']."','".($_POST['txt_12'] * $_POST['txt_9'])."')";
+			$sql_kardex = "insert into detalles_kardex values ('".$id_det_kardex."','".$id_kardex."','".$fecha."','Creacion de productos','".$_POST['txt_12']."','".$_POST['txt_9']."','".$temp."','','','','".$_POST['txt_12']."','".$_POST['txt_9']."','".$temp."')";
 			$guardar = guardarSql($conexion,$sql_kardex);
 
 			/////////LIBRO DIARIOS//////////
 			$id_libro  = unique($fecha_larga);
-			$sql_libro = "insert into libro_diario values ('".$id_libro."','".$fecha."','".($_POST['txt_12'] * $_POST['txt_9'])."','','11501155240ac3a0d22','Tabla Productos','Ingreso de Mercaderia')";
+			
+			$sql_libro = "insert into libro_diario values ('".$id_libro."','".$fecha."','$temp','','".$_POST['grupo_contable']."','Tabla Productos','Ingreso de Mercaderia')";
 			$guardar = guardarSql($conexion,$sql_libro);
 
 			$id_libro  = unique($fecha_larga);
-			$sql_libro = "insert into libro_diario values ('".$id_libro."','".$fecha."','','".($_POST['txt_12'] * $_POST['txt_9'])."','11501155240ac3a8bb0','Tabla Productos','Capital Inicial')";
+			$sql_libro = "insert into libro_diario values ('".$id_libro."','".$fecha."','','".$temp."','11501155240ac3a8eeb','Tabla Productos','Capital Inicial')";
 			$guardar = guardarSql($conexion,$sql_libro);	
 			///////////////////////
 			$sql_nuevo = "select (id_productos,codigo,codigo_barras,descripcion,precio,utilidad_minorista,utilidad_mayorista,precio_minorista,precio_mayorista,id_tipo,stock,id_categoria,id_marca,id_bodega,id_unidad,facturar_existencia,cantidad_minima,cantidad_maxima,id_series_venta,expiracion,comentario,imagen,estado,fecha_creacion,id_porcentaje_iva,id_usuario,incluye_iva,descuento) from productos where id_productos = '$id'";        

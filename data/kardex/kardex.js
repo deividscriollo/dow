@@ -106,6 +106,8 @@ function inicio(){
       });       
       
   })
-  
+  $('#btn_kardex').click(function(){
+    window.open("../reportes/kardex.php?fecha="+$('#rango_fecha').val()+"&id="+$("#id_producto").val());
+  });
                	
 }

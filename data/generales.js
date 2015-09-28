@@ -325,7 +325,7 @@ function cargar_idioma(id_select){
     }
 }
 
-function carga_detalles_productos(id_select,fun){     
+function carga_detalles_productos(id_select,fun){   
     if(id_select == "txt_6") {
         $("#"+id_select+" option").not(":first").remove();
     }else{
@@ -345,6 +345,8 @@ function carga_detalles_productos(id_select,fun){
                 for (var i = 0; i < response.length; i=i+3) {               
                     $("#"+id_select).append("<option value ="+response[i]+">"+response[i+1]+ " " +response[i+2] +"</option>");                                                                                                                                            
                 }   
+                $("#grupo_contable").val("11501155240ac3a0d22");
+                $("#grupo_contable").trigger("chosen:updated");
             }else{
                 for (var i = 0; i < response.length; i=i+2) {               
                     $("#"+id_select).append("<option value ="+response[i]+">"+response[i+1]+"</option>");                                                                                                                                            

@@ -56,7 +56,7 @@
 		$sql_kardex = "select id_kardex from kardex where id_productos ='".$arreglo1[$i]."'";
 		$id_kardex = id_unique($conexion,$sql_kardex);
 		$id_det_kardex = unique($fecha_larga);
-		$sql_kardex = "insert into detalles_kardex values ('".$id_det_kardex."','".$id_kardex."','".$fecha."','".'Ajuste de Inventario con una difetencia de '.$arreglo4[$i]."','".$arreglo3[$i]."','".$arreglo5[$i]."','".$arreglo3[$i] * $arreglo5[$i]."','','','','".$arreglo3[$i]."','".$arreglo5[$i]."','".$arreglo3[$i] * $arreglo5[$i]."')";
+		$sql_kardex = "insert into detalles_kardex values ('".$id_det_kardex."','".$id_kardex."','".$fecha."','".'Ajuste de Inventario con una diferencia de '.$arreglo4[$i]."','".$arreglo3[$i]."','".$arreglo5[$i]."','".$arreglo3[$i] * $arreglo5[$i]."','','','','".$arreglo3[$i]."','".$arreglo5[$i]."','".$arreglo3[$i] * $arreglo5[$i]."')";
 		$guardar = guardarSql($conexion, $sql_kardex);
 		////////////
 

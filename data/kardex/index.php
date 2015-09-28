@@ -128,8 +128,11 @@ if(!isset($_SESSION))
 																<div class="col-sm-12">
 																	<div class="form-group">
 																		<label class="col-sm-4 control-label no-padding-right" for="form-field-1"></label>																		
-																		<div class="col-sm-8">
+																		<div class="col-sm-4">
 																			<div class="btn btn-info ice-icon fa fa-search" id="btn_buscar"> Buscar</div>
+																		</div>
+																		<div class="col-sm-4">
+																			<div class="btn btn-info ice-icon fa fa-search" id="btn_kardex"> Reporte</div>
 																		</div>
 																	</div>
 																</div>																
