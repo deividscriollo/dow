@@ -302,17 +302,13 @@
 													</div>
 												</form>
 
-											<div class="row">
+												<div class="row">
 													<div class="center">													 
 														<button type="submit" class="btn btn-primary" id="btn_0">
 															<i class="ace-icon fa fa-floppy-o bigger-120 write"></i>
 															Guardar
 														</button>
 														<button type="button" id="btn_1" class="btn btn-primary">
-															<i class="ace-icon fa fa-file-o bigger-120 write"></i>
-															Limpiar
-														</button>
-														<button type="button" id="btn_2" class="btn btn-primary">
 															<i class="ace-icon fa fa-refresh bigger-120 write"></i>
 															Actualizar
 														</button>														
@@ -320,11 +316,11 @@
 															<i class="ace-icon fa fa-search bigger-120 write"></i>
 															Buscar
 														</button>
-														<button type="button" id="btn_4" class="btn btn-primary">
+														<button type="button" id="btn_2" class="btn btn-primary">
 															<i class="ace-icon fa fa-arrow-circle-left bigger-120 write"></i>
 															Atras
 														</button>
-														<button type="button" id="btn_5" class="btn btn-primary">
+														<button type="button" id="btn_3" class="btn btn-primary">
 															<i class="ace-icon fa fa fa-arrow-circle-right bigger-120 write"></i>
 															Adelante
 														</button>
@@ -383,33 +379,33 @@
 		<script src="../../dist/js/jquery.gritter.min.js"></script>
 	</body>
 </html>  
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">BUSCAR DEVOLUCIÓN COMPRA</h4>
-        </div>
-        <div class="modal-body">
-            <table id="table"></table>
-			<div id="pager"></div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div id="top-menu" class="modal aside" data-fixed="true" data-placement="top" data-background="true" data-backdrop="invisible" tabindex="-1">
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	      <h4 class="modal-title">BUSCAR DEVOLUCIÓN COMPRA</h4>
+	    </div>
+	    <div class="modal-body">
+	        <table id="table2"></table>
+			<div id="pager2"></div>
+	    </div>
+	    <div class="modal-footer">
+	      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+	    </div>
+	  </div>
+	</div>
+</div>
+
+<div id="top-menu" class="modal aside" data-fixed="true" data-placement="top" data-background="true" data-backdrop="invisible" tabindex="-1">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-body container">
 				<div class="row">
 					<div class="col-sm-5 col-sm-offset-1 white">
-						<h3 class="lighter">Imprimir &amp; Factura</h3>
+						<h3 class="lighter">Devolución Compra</h3>
 					</div>
 
 					<div class="col-sm-5 text-center line-height-2">									
@@ -426,4 +422,4 @@
 			<i data-icon="fa-chevron-down" data-icon="fa-chevron-up" class="ace-icon fa fa-chevron-down bigger-110 icon-only"></i>
 		</button>
 	</div>
- </div>
+</div>

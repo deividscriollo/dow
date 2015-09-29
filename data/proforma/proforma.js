@@ -68,7 +68,7 @@ function guardar_proforma() {
     }
 }
 
-function limpiar_campo1(){
+function limpiar_campo1() {
     if($("#codigo").val() == "") {
         $("#codigo_barras").val("");
         $("#id_productos").val("");
@@ -83,7 +83,7 @@ function limpiar_campo1(){
     }
 } 
 
-function limpiar_campo2(){
+function limpiar_campo2() {
     if($("#producto").val() == "") {
         $("#codigo_barras").val("");
         $("#id_productos").val("");
@@ -165,7 +165,7 @@ function inicio (){
 	});
 
 
-	$("#txt_nro_identificacion").chosen().change(function (event,params){
+	$("#txt_nro_identificacion").chosen().change(function (event,params) {
 		if(params == undefined){			
 			$('#txt_nro_identificacion').html("");
 			$('#txt_nro_identificacion').append($("<option></option>"));    			
@@ -215,7 +215,7 @@ function inicio (){
 	    }	  
 	});
 
-	$("#txt_nombre_cliente").chosen().change(function (event,params){
+	$("#txt_nombre_cliente").chosen().change(function (event,params) {
 		if(params == undefined){			
 			$('#txt_nro_identificacion').html("");
 			$('#txt_nro_identificacion').append($("<option></option>"));    			
@@ -238,7 +238,7 @@ function inicio (){
 		}
 	});
 
-    /////////////////bucador barras///////////////////////////
+    // bucador barras
     $("#codigo_barras").change(function(e) {
         var precio = $("#tipo").val(); 
         var codigo = $("#codigo_barras").val();
@@ -302,7 +302,7 @@ function inicio (){
             }
         }
     });
-    ////////////////////////////////////////
+    // fin
 
     // busqueda productos codigo
     $("#codigo").keyup(function(e) {
@@ -577,22 +577,22 @@ function inicio (){
                                 }
                           
                                 datarow = {
-                                  id_productos: $("#id_productos").val(), 
-                                  codigo: $("#codigo").val(), 
-                                  detalle: $("#producto").val(), 
-                                  cantidad: suma, 
-                                  precio_u: precio, 
-                                  descuento: desc, 
-                                  cal_des: resultado,
-                                  total: total, 
-                                  iva: $("#iva_producto").val(), 
-                                  pendiente: 0,
-                                  incluye: $("#incluye").val()
-                              };
+                                    id_productos: $("#id_productos").val(), 
+                                    codigo: $("#codigo").val(), 
+                                    detalle: $("#producto").val(), 
+                                    cantidad: suma, 
+                                    precio_u: precio, 
+                                    descuento: desc, 
+                                    cal_des: resultado,
+                                    total: total, 
+                                    iva: $("#iva_producto").val(), 
+                                    pendiente: 0,
+                                    incluye: $("#incluye").val()
+                                };
                           
-                              su = jQuery("#list").jqGrid('setRowData', $("#id_productos").val(), datarow);
-                              limpiar_input();
-                          } else {
+                            su = jQuery("#list").jqGrid('setRowData', $("#id_productos").val(), datarow);
+                            limpiar_input();
+                        } else {
                             if(filas.length < 19) {
                                 if ($("#descuento").val() !== "") {
                                     desc = $("#descuento").val();
@@ -633,7 +633,7 @@ function inicio (){
                           }
                         }
 
-                        ///////////////////CALCULAR VALORES/////////////////
+                        // Calcular valores
                         var subtotal = 0;
                         var sub = 0;
                         var sub1 = 0;
@@ -721,8 +721,8 @@ function inicio (){
 	});
 
 /*-----guardar factura compra--*/
-  $("#btn_0").on("click",guardar_proforma);
-
+$("#btn_0").on("click", guardar_proforma);
+$("#btn_1").on("click", recargar);
 
 // tabla factura
 jQuery("#list").jqGrid({          
@@ -848,6 +848,322 @@ colModel:[
       },
     processing: true
 }
+});
+
+/*jqgrid*/    
+jQuery(function($) {
+var grid_selector = "#table2";
+var pager_selector = "#pager2";    
+//cambiar el tamaño para ajustarse al tamaño de la página
+$(window).on('resize.jqGrid', function () {
+  //$(grid_selector).jqGrid( 'setGridWidth', $("#myModal").width());          
+  $(grid_selector).jqGrid( 'setGridWidth', $("#myModal .modal-dialog").width()-30);
+})
+//cambiar el tamaño de la barra lateral collapse/expand
+var parent_column = $(grid_selector).closest('[class*="col-"]');
+$(document).on('settings.ace.jqGrid' , function(ev, event_name, collapsed) {
+  if( event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed' ) {
+    //para dar tiempo a los cambios de DOM y luego volver a dibujar!!!
+    setTimeout(function() {
+      $(grid_selector).jqGrid( 'setGridWidth', parent_column.width() );
+    }, 0);
+  }
+})
+
+jQuery(grid_selector).jqGrid({          
+  datatype: "xml",
+  url: 'xml_proforma.php',        
+  colNames: ['ID','IDENTIFICACIÓN','CLIENTE','MONTO TOTAL','FECHA'],
+  colModel:[      
+        {name: 'id_proforma', index: 'id_proforma', editable: false, search: false, hidden: true, editrules: {edithidden: false}, align: 'center',frozen: true, width: 50},
+        {name: 'identificacion', index: 'identificacion', editable: false, search: true, hidden: false, editrules: {edithidden: false}, align: 'center',frozen: true, width: 150},
+        {name: 'nombres_completos', index: 'nombres_completos', editable: true, search: true, hidden: false, editrules: {edithidden: false}, align: 'center',frozen: true, width: 200},
+        {name: 'monto_total', index: 'monto_total', editable: true, search: false, hidden: false, editrules: {edithidden: false}, align: 'center',frozen: true, width: 100},
+        {name: 'fecha_actual', index: 'fecha_actual', editable: true, search: false, hidden: false, editrules: {edithidden: false}, align: 'center',frozen: true, width: 100},
+      ],          
+      rowNum: 10,       
+      width: null,
+      shrinkToFit: false,
+      height:200,
+      rowList: [10,20,30],
+      pager: pager_selector,        
+      sortname: 'id_proforma',
+      sortorder: 'asc',
+      caption: 'LISTA DE PROFORMAS',          
+      altRows: true,
+      multiselect: false,
+      multiboxonly: true,
+      viewrecords : true,
+      loadComplete : function() {
+          var table = this;
+          setTimeout(function(){
+              styleCheckbox(table);
+              updateActionIcons(table);
+              updatePagerIcons(table);
+              enableTooltips(table);
+          }, 0);
+      },
+      ondblClickRow: function(rowid) {                                
+        var gsr = jQuery(grid_selector).jqGrid('getGridParam','selrow');                                              
+        var ret = jQuery(grid_selector).jqGrid('getRowData',gsr);  
+        
+        $("#comprobante").val(ret.id_proforma);
+        var valor = ret.id_proforma;
+
+        $.getJSON('retornar_factura_compra1.php?com=' + valor, function(data) {
+          var tama = data.length;
+          if (tama != 0) {
+                for (var i = 0; i < tama; i = i + 21) {
+                    $("#id_factura_compra").val(data[i]);
+                    $("#fecha_actual").val(data[i + 1]);
+                    $("#hora_actual").val(data[i + 2]);
+                    $("#digitador").val(data[i + 3]);
+                    $("#serie").val(data[i + 4]);
+                    $("#tipo_comprobante").val(data[i + 4]);
+                    $("#tipo_comprobante").trigger("chosen:updated");
+                    $("#id_proveedor").val(data[i + 6]);
+                    $("#txt_nro_identificacion").val(data[i + 7]);
+                    $("#txt_nro_identificacion").trigger("chosen:updated");
+                    $("#txt_nombre_proveedor").val(data[i + 8]);
+                  
+                    $("#fecha_registro").val(data[i + 8]);
+                    $("#fecha_emision").val(data[i + 9]);
+                    $("#fecha_caducidad").val(data[i + 10]);
+                  
+                    $("#cancelacion").val(data[i + 12]);
+                    $("#autorizacion").val(data[i + 12]);
+                    $("#formas").val(data[i + 14]);
+                    $("#total_p").val(data[i + 15]);
+                    $("#total_p2").val(data[i + 16]);
+                    $("#total").val(data[i + 19]);
+                }
+            }
+        });
+
+        $('#myModal').modal('hide');
+
+        
+        // $("#txt_responsable").text(ret.txt_reponsable);
+        // $("#fecha_actual").val(ret.fecha_registro);
+        // $("#estado").val(ret.estado);
+        // $("#id_proveedor").val(ret.id_proveedor);
+        // $('#txt_nro_identificacion').html("");
+        // $('#txt_nro_identificacion').append($("<option data-extra='"+ret.nombre_proveedor+"'></option>").val(ret.id_proveedor).html(ret.ci_proveedor)).trigger('chosen:updated');                    
+        // $('#txt_nombre_proveedor').html("");
+        // $('#txt_nombre_proveedor').append($("<option data-extra='"+ret.ci_proveedor+"'></option>").val(ret.id_proveedor).html(ret.nombre_proveedor)).trigger('chosen:updated');                                                             
+        // $('#tipo_comprobante').val(ret.tipo_comprobante);
+        // $('#tipo_comprobante').trigger("chosen:updated");
+        // $('#fecha_registro').val(ret.fecha_registro);
+        // $('#fecha_emision').val(ret.fecha_emision);
+        // $('#fecha_caducidad').val(ret.fecha_caducidad);
+        // $('#fecha_cancelacion').val(ret.fecha_cancelacion);
+        // var text = ret.nro_serie;
+        // $('#serie1').val(text.substr(0,3));
+        // $('#serie2').val(text.substr(4,3));
+        // $('#serie3').val(text.substr(8,30));
+        // $('#autorizacion').val(ret.autorizacion);
+        
+        // $('#tarifa0').val(ret.tarifa0);
+        // $('#tarifa12').val(ret.tarifa12);
+        // $('#iva').val(ret.iva);
+        // $('#descuento_total').val(ret.descuento_total);
+        // $('#total').val(ret.total);
+
+        // $("#formas").val(ret.id_forma_pago);            
+        // $('#formas').trigger("chosen:updated");            
+        
+        // $("#termino_pago").val(ret.id_termino_pago)            
+        // $('#termino_pago').trigger("chosen:updated");
+        // $('#myModal').modal('hide');  
+        // carga_detalles_fc("detalle_factura",ret.comprobante);                            
+        $("#btn_0").text("");
+        $("#btn_0").append("<span class='glyphicon glyphicon-log-in'></span> ----------");                   
+    },          
+
+      
+      caption: "LISTA DE PROFORMAS"
+
+  });
+  // jQuery(grid_selector).jqGrid('hideCol', "comprobante");   
+  // jQuery(grid_selector).jqGrid('hideCol', "id_proveedor");      
+  // jQuery(grid_selector).jqGrid('hideCol', "tarifa0");      
+  // jQuery(grid_selector).jqGrid('hideCol', "tarifa12");      
+  // jQuery(grid_selector).jqGrid('hideCol', "iva");      
+  // jQuery(grid_selector).jqGrid('hideCol', "descuento_total");      
+  // jQuery(grid_selector).jqGrid('hideCol', "total");      
+  // jQuery(grid_selector).jqGrid('hideCol', "id_forma_pago");  
+  // jQuery(grid_selector).jqGrid('hideCol', "id_termino_pago");  
+  $(window).triggerHandler('resize.jqGrid');//cambiar el tamaño para hacer la rejilla conseguir el tamaño correcto
+
+  function aceSwitch( cellvalue, options, cell ) {
+      setTimeout(function(){
+          $(cell) .find('input[type=checkbox]')
+          .addClass('ace ace-switch ace-switch-5')
+          .after('<span class="lbl"></span>');
+      }, 0);
+  }          
+  //navButtons
+  jQuery(grid_selector).jqGrid('navGrid',pager_selector,
+  {   //navbar options
+      edit: false,
+      editicon : 'ace-icon fa fa-pencil blue',
+      add: false,
+      addicon : 'ace-icon fa fa-plus-circle purple',
+      del: false,
+      delicon : 'ace-icon fa fa-trash-o red',
+      search: true,
+      searchicon : 'ace-icon fa fa-search orange',
+      refresh: true,
+      refreshicon : 'ace-icon fa fa-refresh green',
+      view: true,
+      viewicon : 'ace-icon fa fa-search-plus grey'
+  },
+  {         
+      recreateForm: true,
+      beforeShowForm : function(e) {
+          var form = $(e[0]);
+          form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+          style_edit_form(form);
+      }
+  },
+  {
+      //new record form
+      //width: 700,
+      closeAfterAdd: true,
+      recreateForm: true,
+      viewPagerButtons: false,
+      beforeShowForm : function(e) {
+          var form = $(e[0]);
+          form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar')
+          .wrapInner('<div class="widget-header" />')
+          style_edit_form(form);
+      }
+  },
+  {
+      //delete record form
+      recreateForm: true,
+      beforeShowForm : function(e) {
+          var form = $(e[0]);
+          if(form.data('styled')) return false;
+              
+          form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+          style_delete_form(form);
+              
+          form.data('styled', true);
+      },
+      onClick : function(e) {
+          //alert(1);
+      }
+  },
+  {
+        recreateForm: true,
+      afterShowSearch: function(e){
+          var form = $(e[0]);
+          form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+          style_search_form(form);
+      },
+      afterRedraw: function(){
+          style_search_filters($(this));
+      }
+      ,
+      //multipleSearch: true
+      overlay: false,
+      sopt: ['eq', 'cn'],
+        defaultSearch: 'eq',                     
+    },
+  {
+      //view record form
+      recreateForm: true,
+      beforeShowForm: function(e){
+          var form = $(e[0]);
+          form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+      }
+  })      
+  function style_edit_form(form) {
+      //enable datepicker on "sdate" field and switches for "stock" field
+      form.find('input[name=sdate]').datepicker({format:'yyyy-mm-dd' , autoclose:true})
+      
+      form.find('input[name=stock]').addClass('ace ace-switch ace-switch-5').after('<span class="lbl"></span>');
+
+      var buttons = form.next().find('.EditButton .fm-button');
+      buttons.addClass('btn btn-sm').find('[class*="-icon"]').hide();//ui-icon, s-icon
+      buttons.eq(0).addClass('btn-primary').prepend('<i class="ace-icon fa fa-check"></i>');
+      buttons.eq(1).prepend('<i class="ace-icon fa fa-times"></i>')
+      
+      buttons = form.next().find('.navButton a');
+      buttons.find('.ui-icon').hide();
+      buttons.eq(0).append('<i class="ace-icon fa fa-chevron-left"></i>');
+      buttons.eq(1).append('<i class="ace-icon fa fa-chevron-right"></i>');       
+  }
+
+  function style_delete_form(form) {
+      var buttons = form.next().find('.EditButton .fm-button');
+      buttons.addClass('btn btn-sm btn-white btn-round').find('[class*="-icon"]').hide();//ui-icon, s-icon
+      buttons.eq(0).addClass('btn-danger').prepend('<i class="ace-icon fa fa-trash-o"></i>');
+      buttons.eq(1).addClass('btn-default').prepend('<i class="ace-icon fa fa-times"></i>')
+  }
+  
+  function style_search_filters(form) {
+      form.find('.delete-rule').val('X');
+      form.find('.add-rule').addClass('btn btn-xs btn-primary');
+      form.find('.add-group').addClass('btn btn-xs btn-success');
+      form.find('.delete-group').addClass('btn btn-xs btn-danger');
+  }
+  function style_search_form(form) {
+      var dialog = form.closest('.ui-jqdialog');
+      var buttons = dialog.find('.EditTable')
+      buttons.find('.EditButton a[id*="_reset"]').addClass('btn btn-sm btn-info').find('.ui-icon').attr('class', 'ace-icon fa fa-retweet');
+      buttons.find('.EditButton a[id*="_query"]').addClass('btn btn-sm btn-inverse').find('.ui-icon').attr('class', 'ace-icon fa fa-comment-o');
+      buttons.find('.EditButton a[id*="_search"]').addClass('btn btn-sm btn-purple').find('.ui-icon').attr('class', 'ace-icon fa fa-search');
+  }
+  
+  function beforeDeleteCallback(e) {
+      var form = $(e[0]);
+      if(form.data('styled')) return false;
+      
+      form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+      style_delete_form(form);
+      
+      form.data('styled', true);
+  }
+  
+  function beforeEditCallback(e) {
+      var form = $(e[0]);
+      form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+      style_edit_form(form);
+  }
+
+  function styleCheckbox(table) {
+  }
+
+  function updateActionIcons(table) {
+  }
+
+  function updatePagerIcons(table) {
+      var replacement = 
+          {
+          'ui-icon-seek-first' : 'ace-icon fa fa-angle-double-left bigger-140',
+          'ui-icon-seek-prev' : 'ace-icon fa fa-angle-left bigger-140',
+          'ui-icon-seek-next' : 'ace-icon fa fa-angle-right bigger-140',
+          'ui-icon-seek-end' : 'ace-icon fa fa-angle-double-right bigger-140'
+      };
+      $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
+          var icon = $(this);
+          var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+          
+          if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
+      })
+  }
+
+  function enableTooltips(table) {
+      $('.navtable .ui-pg-button').tooltip({container:'body'});
+      $(table).find('.ui-pg-div').tooltip({container:'body'});
+  }
+
+  $(document).one('ajaxloadstart.page', function(e) {
+      $(grid_selector).jqGrid('GridUnload');
+      $('.ui-jqdialog').remove();
+  });
 });
 
 jQuery(window).bind('resize', function () {

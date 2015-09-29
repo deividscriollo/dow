@@ -252,33 +252,6 @@
 			</a>
 		</div>
 
-		<!-- Modal -->
-		<div id="top-menu" class="modal aside" data-fixed="true" data-placement="top" data-background="true" data-backdrop="invisible" tabindex="-1">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-body container">
-						<div class="row">
-							<div class="col-sm-5 col-sm-offset-1 white">
-								<h3 class="lighter">Imprimir &amp; Inventario</h3>
-							</div>
-
-							<div class="col-sm-5 text-center line-height-2">									
-
-								&nbsp; &nbsp;
-								<a class="btn btn-app btn-light no-radius" href="#">
-									<i class="ace-icon fa fa-print bigger-230"></i>
-									Imprimir
-								</a>
-							</div>
-						</div>
-					</div>
-				</div><!-- /.modal-content -->
-
-				<button class="btn btn-inverse btn-app btn-xs ace-settings-btn aside-trigger" data-target="#top-menu" data-toggle="modal" type="button">
-					<i data-icon="fa-chevron-down" data-icon="fa-chevron-up" class="ace-icon fa fa-chevron-down bigger-110 icon-only"></i>
-				</button>
-			</div><!-- /.modal-dialog -->
-		</div>
 		<!--[if !IE]> -->
 		<script type="text/javascript">
 			window.jQuery || document.write("<script src='../../dist/js/jquery.min.js'>"+"<"+"/script>");
@@ -317,4 +290,31 @@
 		<script src="../../dist/js/validCampoFranz.js" ></script>
 		<script src="../../dist/js/jquery.gritter.min.js"></script>
 	</body>
-</html>  
+</html> 
+
+<!-- Modal -->
+<div id="top-menu" class="modal aside" data-fixed="true" data-placement="top" data-background="true" data-backdrop="invisible" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body container">
+				<div class="row">
+					<div class="col-sm-5 col-sm-offset-1 white">
+						<h3 class="lighter">Inventario</h3>
+					</div>
+
+					<div class="col-sm-5 text-center line-height-2">									
+						&nbsp; &nbsp;
+						<a class="btn btn-app btn-light no-radius" href="#">
+							<i class="ace-icon fa fa-print bigger-230"></i>
+							Imprimir
+						</a>
+					</div>
+				</div>
+			</div>
+		</div><!-- /.modal-content -->
+
+		<button class="btn btn-inverse btn-app btn-xs ace-settings-btn aside-trigger" data-target="#top-menu" data-toggle="modal" type="button">
+			<i data-icon="fa-chevron-down" data-icon="fa-chevron-up" class="ace-icon fa fa-chevron-down bigger-110 icon-only"></i>
+		</button>
+	</div><!-- /.modal-dialog -->
+</div> 

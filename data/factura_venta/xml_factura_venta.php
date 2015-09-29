@@ -11,7 +11,7 @@ $search = $_GET['_search'];
 
 if (!$sidx)
     $sidx = 1;
-$result = pg_query("SELECT COUNT(*) AS count from factura_compra");
+$result = pg_query("SELECT COUNT(*) AS count from factura_venta");
 $row = pg_fetch_row($result);
 $count = $row[0];
 if ($count > 0 && $limit > 0) {
@@ -25,15 +25,15 @@ $start = $limit * $page - $limit;
 if ($start < 0)
     $start = 0;
 if ($search == 'false') {
-    $SQL = "SELECT F.id_factura_compra, P.identificacion, P.empresa, F.numero_serie, F.total, F.fecha_actual FROM factura_compra  F, proveedor P where F.id_proveedor = P.id_proveedor ORDER BY  $sidx $sord offset $start limit $limit";
+    $SQL = "SELECT F.id_factura_venta, C.identificacion, C.nombres_completos, F.numero_serie, F.total, F.fecha_actual FROM factura_venta F, cliente C where F.id_cliente = C.id_cliente ORDER BY  $sidx $sord offset $start limit $limit";
 } else {
     $campo = $_GET['searchField'];
   
     if ($_GET['searchOper'] == 'eq') {
-        $SQL = "SELECT F.id_factura_compra, P.identificacion, P.empresa, F.numero_serie, F.total, F.fecha_actual FROM factura_compra  F, proveedor P where F.id_proveedor = P.id_proveedor and $campo = '$_GET[searchString]' ORDER BY $sidx $sord offset $start limit $limit";
+        $SQL = "SELECT F.id_factura_venta, C.identificacion, C.nombres_completos, F.numero_serie, F.total, F.fecha_actual FROM factura_venta F, cliente C where F.id_cliente = C.id_cliente and $campo = '$_GET[searchString]' ORDER BY $sidx $sord offset $start limit $limit";
     }         
     if ($_GET['searchOper'] == 'cn') {
-        $SQL = "SELECT F.id_factura_compra, P.identificacion, P.empresa, F.numero_serie, F.total, F.fecha_actual FROM factura_compra  F, proveedor P where F.id_proveedor = P.id_proveedor and $campo like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
+        $SQL = "SELECT F.id_factura_venta, C.identificacion, C.nombres_completos, F.numero_serie, F.total, F.fecha_actual FROM factura_venta F, cliente C where F.id_cliente = C.id_cliente and $campo like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
     }
   
 }
