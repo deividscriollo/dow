@@ -11,18 +11,18 @@ function guardar_factura() {
 
   if($("#serie").val() == "") {  
       $("#serie").focus();
-        // loader_grabar.removeClass("label-warning").addClass("label-warning").text("Ingrese la serie").delay(3000).slideUp();      
       alert("Ingrese la serie");
     } else {
         if($("#id_proveedor").val() == "") {
+          $("#txt_nro_identificacion").trigger("chosen:open");
           alert("Seleccione un Proveedor"); 
-          $("#txt_nro_identificacion").trigger("chosen:open");   
         } else {
           if($("#autorizacion").val() == "") {
-            $("#autorizacion").focus()
+            $("#autorizacion").focus();
               alert("Ingrese la autorización");
           } else {
               if(tam.length == 0){
+                  $("#codigo_barras").focus()
                   alert("Ingrese los productos a la Factura");  
               } else {
                   var v1 = new Array();
@@ -64,8 +64,7 @@ function guardar_factura() {
                         if( data == 0 ){
                             $.gritter.add({
                               title: 'Información Mensaje',
-                              text: ' <span class="fa fa-shield"></span>'
-                                  +'Factura Agregada Correctamente <span class="text-succes fa fa-spinner fa-spin"></span>'
+                              text: ' <span class="fa fa-shield"></span>' + ' ' +'Factura Agregada Correctamente <span class="text-succes fa fa-spinner fa-spin"></span>'
                                   ,
                               sticky: false,
                               time: 1000,                       
@@ -446,39 +445,11 @@ function inicio () {
       //it may be possible to have some custom formatter to do this as the grid is being created to prevent this
       //or go back to default browser checkbox styles for the grid
       function styleCheckbox(table) {
-          /**
-                      $(table).find('input:checkbox').addClass('ace')
-                      .wrap('<label />')
-                      .after('<span class="lbl align-top" />')
-
-
-                      $('.ui-jqgrid-labels th[id*="_cb"]:first-child')
-                      .find('input.cbox[type=checkbox]').addClass('ace')
-                      .wrap('<label />').after('<span class="lbl align-top" />');
-           */
       }
-      
 
-      //unlike navButtons icons, action icons in rows seem to be hard-coded
-      //you can change them like this in here if you want
       function updateActionIcons(table) {
-          /**
-                      var replacement = 
-                      {
-                              'ui-ace-icon fa fa-pencil' : 'ace-icon fa fa-pencil blue',
-                              'ui-ace-icon fa fa-trash-o' : 'ace-icon fa fa-trash-o red',
-                              'ui-icon-disk' : 'ace-icon fa fa-check green',
-                              'ui-icon-cancel' : 'ace-icon fa fa-times red'
-                      };
-                      $(table).find('.ui-pg-div span.ui-icon').each(function(){
-                              var icon = $(this);
-                              var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
-                              if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
-                      })
-           */
       }
-      
-      //replace icons with FontAwesome icons like above
+
       function updatePagerIcons(table) {
           var replacement = 
               {
@@ -922,7 +893,7 @@ function inicio () {
   });   
   /////////////////////////////////////////////////////////////
 
-  /////////////////bucador barras///////////////////////////
+  // bucador barras 
     $("#codigo_barras").change(function(e) {
       var codigo = $("#codigo_barras").val();
       $.getJSON('search.php?codigo_barras=' + codigo, function(data) {
@@ -953,9 +924,9 @@ function inicio () {
           }
       });
     });
-    ////////////////////////////////////////
+    // fin
 
-    ///////////////////////busqueda productos codigo/////////
+    // busqueda productos codigo
       $("#codigo").autocomplete({
           source: "buscar_codigo.php",
           minLength: 1,
@@ -993,9 +964,9 @@ function inicio () {
           .append("<a>" + item.value + "</a>")
           .appendTo(ul);
       };
-    /////////////////////////////////////////
+    // fin
 
-    ///////////////////////busqueda productos nombres/////////
+    // busqueda productos nombres
       $("#producto").autocomplete({
           source: "buscar_producto.php",
           minLength: 1,
@@ -1033,7 +1004,7 @@ function inicio () {
           .append("<a>" + item.value + "</a>")
           .appendTo(ul);
       };
-    /////////////////////////////////////////
+    // fin
 
   /*---agregar a la tabla---*/
   $("#cantidad").on("keypress",function (e){

@@ -23,7 +23,8 @@ while ($row = pg_fetch_row($consulta)) {
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="../../dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="../../dist/css/font-awesome.min.css" />
-		<link rel="stylesheet" href="../../dist/css/chosen.min.css" />		
+		<!-- Select -->
+		<link rel="stylesheet" href="../../dist/css/chosen.min.css" />				
 		<link rel="stylesheet" href="../../dist/css/ui.jqgrid.min.css" />
 		<link rel="stylesheet" href="../../dist/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="../../dist/css/datepicker.min.css" />
@@ -32,9 +33,12 @@ while ($row = pg_fetch_row($consulta)) {
 		<link rel="stylesheet" href="../../dist/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="../../dist/css/fontdc.css" />
 		<link rel="stylesheet" href="../../dist/css/jquery-ui.custom.min.css" type="text/css"/>
+		<link rel="stylesheet" href="../../dist/css/jquery.gritter.min.css" />
+		<!-- ace styles -->
 		<link rel="stylesheet" href="../../dist/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
-		<link type="text/css" rel="stylesheet" id="ace-skins-stylesheet" href="../../dist/css/ace-skins.min.css">
-		<script src="../../dist/js/ace-extra.min.js"></script>
+        <link type="text/css" rel="stylesheet" id="ace-skins-stylesheet" href="../../dist/css/ace-skins.min.css">
+        <link type="text/css" rel="stylesheet" id="ace-rtl-stylesheet" href="../../dist/css/ace-rtl.min.css">
+        <script src="../../dist/js/ace-extra.min.js"></script>
 	</head>
 
 	<body class="skin-2">
@@ -74,14 +78,14 @@ while ($row = pg_fetch_row($consulta)) {
 									<div class="widget-body">
 										<div class="widget-main">
 											<div class="row">
-												<form class="form-horizontal" role="form" rol="form" action="" method="POST" id="form_facturaVenta">	
+												<form class="form-horizontal" role="form" rol="form" action="" method="POST" id="form_proforma">	
 													<div class="row">
 														<div class="col-md-12 pull-right">
 															<div class="col-md-4">
 																<label class="col-sm-4 no-padding-right" for="fecha_actual">Fecha Actual:</label>
 																<div class="col-sm-8">
 																	<div class="input-group">
-																		<input class="form-control date-picker" id="fecha_actual" name="fecha_actual" type="text" readonly data-date-format="yyyy-mm-dd" />
+																		<input class="form-control date-picker" id="fecha_actual" name="fecha_actual" type="text" readonly/>
 																		<span class="input-group-addon">
 																			<i class="fa fa-calendar bigger-110"></i>
 																		</span>
@@ -116,7 +120,7 @@ while ($row = pg_fetch_row($consulta)) {
 														<div class="col-md-12">
 															<div class="col-md-5">
 																<div class="form-group">
-																	<label class="col-sm-6 no-padding-right" for="txt_nro_identificacion"> Cédula de Identidad o Ruc: <font color="red">*</font></label>
+																	<label class="col-sm-6 no-padding-right" for="txt_nro_identificacion">Cédula de Identidad o Ruc: <font color="red">*</font></label>
 																	<div class="col-sm-6">
 																	<input type="hidden" id="id_cliente" name="id_cliente">																				
 																		<select class="chosen-select form-control" id="txt_nro_identificacion" name="txt_nro_identificacion" data-placeholder="Nro de identifiación">	     
@@ -128,7 +132,7 @@ while ($row = pg_fetch_row($consulta)) {
 
 															<div class="col-md-7">
 																<div class="form-group">
-																	<label class="col-sm-5 control-label no-padding-right" for="txt_nombre_cliente"> Nombres Completos: <font color="red">*</font></label>
+																	<label class="col-sm-5 control-label no-padding-right" for="txt_nombre_cliente">Nombres Completos: <font color="red">*</font></label>
 																	<div class="col-sm-7">
 																		<select class="chosen-select form-control" id="txt_nombre_cliente" name="txt_nombre_cliente" data-placeholder="Nombres Completos">	                                                                        
 	                                                                        <option value=""> </option>	                                                                        
@@ -143,7 +147,7 @@ while ($row = pg_fetch_row($consulta)) {
 														<div class="col-md-12">
 															<div class="col-md-4">																		
 																<div class="form-group">
-																	<label class="col-sm-4 no-padding-right" for="form-field-1"> Dirección: </label>
+																	<label class="col-sm-4 no-padding-right" for="lbl_client_direccion">Dirección: </label>
 																	<div class="col-sm-8">
 																		<input type="text" id="lbl_client_direccion" name="lbl_client_direccion" class="form-control" readonly data-toggle="tooltip"  value="" /> 
 																	</div>																													
@@ -152,7 +156,7 @@ while ($row = pg_fetch_row($consulta)) {
 
 															<div class="col-md-4">																		
 																<div class="form-group">
-																	<label class="col-sm-4 no-padding-right" for="form-field-1"> Teléfono:</label>
+																	<label class="col-sm-4 no-padding-right" for="lbl_client_telefono">Teléfono:</label>
 																	<div class="col-sm-8">
 																	    <input type="text" id="lbl_client_telefono" name="lbl_client_telefono" class="form-control" readonly data-toggle="tooltip"  value="" /> 
 																	</div>																													
@@ -161,7 +165,7 @@ while ($row = pg_fetch_row($consulta)) {
 
 															<div class="col-md-4">																		
 																<div class="form-group">
-																	<label class="col-sm-3 no-padding-right" for="form-field-1"> Correo:</label>
+																	<label class="col-sm-3 no-padding-right" for="lbl_client_correo">Correo:</label>
 																	<div class="col-sm-9">
 																		<input type="text" id="lbl_client_correo" name="lbl_client_correo" class="form-control" readonly data-toggle="tooltip"  value="" /> 
 																	</div>																													
@@ -397,14 +401,14 @@ while ($row = pg_fetch_row($consulta)) {
 						<div class="modal-body container">
 							<div class="row">
 								<div class="col-sm-5 col-sm-offset-1 white">
-									<h3 class="lighter">Imprimir &amp; Factura</h3>
+									<h3 class="lighter">Imprimir &amp; Proforma</h3>
 								</div>
 
 								<div class="col-sm-5 text-center line-height-2">									
 									&nbsp; &nbsp;
 									<a class="btn btn-app btn-light no-radius" href="#">
 										<i class="ace-icon fa fa-print bigger-230"></i>
-										Imprmir
+										Imprimir
 									</a>
 								</div>
 							</div>
@@ -417,12 +421,16 @@ while ($row = pg_fetch_row($consulta)) {
 			</div>
 
 		<script type="text/javascript">
-			if('ontouchstart' in document.documentElement) document.write("<script src='../../dist/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+			window.jQuery || document.write("<script src='../../dist/js/jquery.min.js'>"+"<"+"/script>");
 		</script>
 
-		<script src="../../dist/js/jquery.min.js"></script>
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='../../dist/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		
 		<script src="../../dist/js/bootstrap.min.js"></script>
-		<script src="../../dist/js/jquery-ui.custom.min.js"></script>
+
+		<script src="../../dist/js/jquery-ui.min.js"></script>
 		<script src="../../dist/js/jquery.ui.touch-punch.min.js"></script>
 		<script src="../../dist/js/jquery.easypiechart.min.js"></script>
 		<script src="../../dist/js/jquery.sparkline.min.js"></script>
@@ -432,46 +440,23 @@ while ($row = pg_fetch_row($consulta)) {
 		<script src="../../dist/js/chosen.jquery.min.js"></script>
 		<script src="../../dist/js/date-time/bootstrap-datepicker.min.js"></script>
 		<script src="../../dist/js/date-time/bootstrap-timepicker.min.js"></script>
-		<script src="../../dist/js/date-time/moment.min.js"></script>
 		<script src="../../dist/js/date-time/daterangepicker.min.js"></script>
-		<script src="../../dist/js/date-time/bootstrap-datetimepicker.min.js"></script>
+		<script src="../../dist/js/date-time/moment.min.js"></script>
+				
+		<!-- ace scripts -->
 		<script src="../../dist/js/ace-elements.min.js"></script>
 		<script src="../../dist/js/ace.min.js"></script>
 		<script src="../../dist/js/jqGrid/jquery.jqGrid.min.js"></script>
         <script src="../../dist/js/jqGrid/i18n/grid.locale-en.js"></script>
-        // <script src="../../dist/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+        <script src="../../dist/js/jquery.maskedinput.min.js"></script>
+        <script src="../../dist/js/jquery.bootstrap-duallistbox.min.js"></script>
+        <script src="../../dist/js/jquery.raty.min.js"></script>
+        <script src="../../dist/js/select2.min.js"></script>
+        <script src="../../dist/js/bootstrap-multiselect.min.js"></script>
 		
 		<script src="../generales.js"></script>
-		<script src="inventario.js"></script>
-        <script src="../../dist/js/validCampoFranz.js" ></script>
+		<script src="proforma.js"></script>
+		<script src="../../dist/js/validCampoFranz.js" ></script>
+		<script src="../../dist/js/jquery.gritter.min.js"></script>
 	</body>
 </html>  
-
-<script type="text/javascript">
-	// tooltips 
-	$('[data-rel=tooltip]').tooltip();
-	//calendario
-	var f = new Date();
-	$('.date-picker').datepicker({
-		autoclose: true,
-		format:'yyyy-mm-dd',
-		startView:0		
-	});
-	$('.date-picker').val(f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate());
-	$('#txt_fecha_actual').val(f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate());
-	// seclect chosen 
-	$('.chosen-select').chosen({
-		allow_single_deselect:true,
-		no_results_text:'No encontrado'		
-	});
-	$('.modal.aside').ace_aside();
-				
-	$('#aside-inside-modal').addClass('aside').ace_aside({container: '#my-modal > .modal-dialog'});
-	
-	$(document).one('ajaxloadstart.page', function(e) {
-		//in ajax mode, remove before leaving page
-		$('.modal.aside').remove();
-		$(window).off('.aside')
-	});
-	//$('#dob').datepicker('setDate', new Date(2006, 11, 24));
-</script>
