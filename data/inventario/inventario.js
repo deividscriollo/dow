@@ -1,25 +1,35 @@
 $(document).on("ready",inicio);
 
+function recargar() {
+  setTimeout(function() {
+    location.reload();
+  }, 1000);  
+}
+
 function guardar_inventario(){
     var tam = jQuery("#list").jqGrid("getRowData");
 
-    if(tam.length === 0){
+    if(tam.length === 0) {
+        $("#codigo_barras").focus();
         alert("Ingrese productos al inventario");  
-    }else{
+    } else {
         var v1 = new Array();
         var v2 = new Array();
         var v3 = new Array();
         var v4 = new Array();
         var v5 = new Array();
+
         var string_v1 = "";
         var string_v2 = "";
         var string_v3 = "";
         var string_v4 = "";
         var string_v5 = "";
+
         var fil = jQuery("#list").jqGrid("getRowData");
+
         for (var i = 0; i < fil.length; i++) {
             var datos = fil[i];
-            v1[i] = datos['cod_producto'];
+            v1[i] = datos['id_productos'];
             v2[i] = datos['stock'];
             v3[i] = datos['existencia'];
             v4[i] = datos['diferencia'];
@@ -39,24 +49,82 @@ function guardar_inventario(){
             url: "inventario.php",      
             success: function(data) { 
                 if( data == 0 ){
-                    alert('Datos Agregados Correctamente');     
-                    setTimeout(function() {
-                        location.reload();
-                    }, 1000);
+                  $.gritter.add({
+                        title: 'Información Mensaje',
+                        text: '<span class="fa fa-shield"></span>'+ ' ' +'Inventario Agregado Correctamente <span class="text-succes fa fa-spinner fa-spin"></span>'
+                            ,
+                        sticky: false,
+                        time: 1000,                       
+                      });
+                    recargar();
                 }
             }
         }); 
     }
 }
 
+function limpiar_campo1(){
+    if($("#codigo").val() == "") {
+        $("#codigo_barras").val("");
+        $("#id_productos").val("");
+        $("#producto").val("");
+        $("#cantidad").val("");
+        $("#precio").val("");
+        $("#descuento").val("");
+        $("#stock").val("");
+        $("#p_venta").val("");
+    }
+} 
+
+function limpiar_campo2(){
+    if($("#producto").val() == "") {
+        $("#codigo_barras").val("");
+        $("#id_productos").val("");
+        $("#codigo").val("");
+        $("#cantidad").val("");
+        $("#precio").val("");
+        $("#descuento").val("");
+        $("#stock").val("");
+        $("#p_venta").val("");
+    }
+} 
 
 function inicio (){		
   show(); 
 
-  $("#cantidad").validCampoFranz("0123456789");
+  // tooltips 
+  $('[data-rel=tooltip]').tooltip();
 
-   /////////////////bucador barras///////////////////////////
-    $("#codigo_barras").keyup(function(e) {
+  // seclect chosen 
+  $('.chosen-select').chosen({
+      allow_single_deselect:true,
+      no_results_text:'No encontrado'     
+  });
+  
+  $(document).one('ajaxloadstart.page', function(e) {
+      //in ajax mode, remove before leaving page
+      $('.modal.aside').remove();
+      $(window).off('.aside')
+  });
+
+  // modal
+    $('.modal.aside').ace_aside();
+    $('#aside-inside-modal').addClass('aside').ace_aside({container: '#my-modal > .modal-dialog'});
+
+  // formato calendario
+    $('.date-picker').datepicker({
+      autoclose: true,
+      showOtherMonths: true,
+      format:'yyyy-mm-dd',
+      startView:0   
+    }).datepicker('setDate', 'today');
+
+  $("#cantidad").validCampoFranz("0123456789");
+  $("#codigo").on("keyup", limpiar_campo1);
+  $("#producto").on("keyup", limpiar_campo2);
+
+   // bucador barras
+    $("#codigo_barras").change(function(e) {
       var codigo = $("#codigo_barras").val();
       $.getJSON('search.php?codigo_barras=' + codigo, function(data) {
           var tama = data.length;
@@ -71,7 +139,7 @@ function inicio (){
                   $("#p_venta").val(data[i + 6]);
                   $("#cantidad").focus();
               }
-          }else{
+          } else {
               $("#id_productos").val("");
               $("#codigo").val("");
               $("#producto").val("");
@@ -82,9 +150,9 @@ function inicio (){
           }
       });
     });
-    ////////////////////////////////////////
+    // fin
 
-    ///////////////////////busqueda productos codigo/////////
+    // busqueda productos codigo
       $("#codigo").autocomplete({
           source: "buscar_codigo.php",
           minLength: 1,
@@ -117,9 +185,9 @@ function inicio (){
           .append("<a>" + item.value + "</a>")
           .appendTo(ul);
       };
-    /////////////////////////////////////////
+    // fin
 
-    ///////////////////////busqueda productos nombres/////////
+    // busqueda productos nombres
       $("#producto").autocomplete({
           source: "buscar_producto.php",
           minLength: 1,
@@ -152,19 +220,21 @@ function inicio (){
           .append("<a>" + item.value + "</a>")
           .appendTo(ul);
       };
-    /////////////////////////////////////////
+    // fin 
 
-  $("#cantidad").on("keypress",function (e){
+    // agregar datos a los detalles
+  $("#cantidad").on("keypress",function (e) {
     if(e.keyCode == 13){//tecla del alt para el entrer poner 13
-        if($("#cantidad").val() != ""){
-            if($("#id_productos").val() != ""){
+        if($("#id_productos").val() != "") {
+            if($("#cantidad").val() != "") {
+
                 var filas = jQuery("#list").jqGrid("getRowData");
                 var su = 0;
                 var dife = 0;
                 if (filas.length === 0) {
                    dife = (parseInt( $("#cantidad").val()) - Math.abs(parseInt( $("#stock").val())))
                     var datarow = {
-                        cod_producto: $("#id_productos").val(), 
+                        id_productos: $("#id_productos").val(), 
                         codigo: $("#codigo").val(), 
                         nombre_producto: $("#producto").val(), 
                         precio_compra: $("#precio").val(), 
@@ -180,14 +250,15 @@ function inicio (){
                     var repe = 0;
                     for (var i = 0; i < filas.length; i++) {
                         var id = filas[i];
-                        if (id['cod_producto'] === $("#id_productos").val()) {
+                        if (id['id_productos'] === $("#id_productos").val()) {
                             repe = 1;
                         }
                     }
-                    if (repe === 1) {
+
+                    if (repe == 1) {
                        dife = (parseInt( $("#cantidad").val()) - Math.abs(parseInt( $("#stock").val())))
                         datarow = {
-                            cod_producto: $("#id_productos").val(), 
+                            id_productos: $("#id_productos").val(), 
                             codigo: $("#codigo").val(), 
                             nombre_producto: $("#producto").val(), 
                             precio_compra: $("#precio").val(), 
@@ -202,7 +273,7 @@ function inicio (){
                     else {
                         dife = (parseInt( $("#cantidad").val()) - Math.abs(parseInt( $("#stock").val())))
                         datarow = {
-                            cod_producto: $("#id_productos").val(), 
+                            id_productos: $("#id_productos").val(), 
                             codigo: $("#codigo").val(), 
                             nombre_producto: $("#producto").val(), 
                             precio_compra: $("#precio").val(), 
@@ -249,7 +320,7 @@ function inicio (){
         colNames: ['','ID', 'CÓDIGO', 'PRODUCTO', 'P. COSTO', 'P. VENTA', 'STOCK', 'EXISTENCIA', 'DIFERENCIA'],
         colModel: [
             {name: 'myac', width: 50, fixed: true, sortable: false, search: false, resize: false, formatter: 'actions', formatoptions: {keys: false, delbutton: true, editbutton: false}},
-            {name: 'cod_producto', index: 'cod_producto', editable: false, search: false, hidden: true, editrules: {edithidden: false}, align: 'center', frozen: true, width: 50},
+            {name: 'id_productos', index: 'id_productos', editable: false, search: false, hidden: true, editrules: {edithidden: false}, align: 'center', frozen: true, width: 50},
             {name: 'codigo', index: 'codigo', editable: false, search: true, hidden: false, editrules: {edithidden: false}, align: 'center', frozen: true, width: 200},
             {name: 'nombre_producto', index: 'nombre_producto', editable: false, search: true, hidden: false, editrules: {edithidden: false}, align: 'center', frozen: true, width: 450},
             {name: 'precio_compra', index: 'precio_compra', editable: false, search: false, hidden: false, editrules: {edithidden: false}, align: 'center', frozen: true, width: 110},
@@ -264,7 +335,7 @@ function inicio (){
         sortable: true,
         rowList: [10, 20, 30],
         pager: jQuery('#pager'),
-        sortname: 'cod_producto',
+        sortname: 'id_productos',
         sortorder: 'asc',
         viewrecords: true,
         cellEdit: true,

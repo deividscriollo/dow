@@ -69,7 +69,7 @@ function guardar_proforma() {
 }
 
 function limpiar_campo1(){
-    if($("#codigo").val() === "") {
+    if($("#codigo").val() == "") {
         $("#codigo_barras").val("");
         $("#id_productos").val("");
         $("#producto").val("");
@@ -84,7 +84,7 @@ function limpiar_campo1(){
 } 
 
 function limpiar_campo2(){
-    if($("#producto").val() === "") {
+    if($("#producto").val() == "") {
         $("#codigo_barras").val("");
         $("#id_productos").val("");
         $("#codigo").val("");
@@ -129,15 +129,14 @@ function inicio (){
       }).datepicker('setDate', 'today');
 
 
- 	////////////////validaciones/////////////////
+ 	// validaciones 
  	$("#cantidad").validCampoFranz("0123456789");
  	$("#descuento").validCampoFranz("0123456789");
     $("#codigo").on("keyup", limpiar_campo1);
     $("#producto").on("keyup", limpiar_campo2);
+    // fin
 
  	/*----buscador cliente identificacion----*/
-
-
 	var input_ci = $("#txt_nro_identificacion_chosen").children().next().children();		
 	$(input_ci).on("keyup",function(input_ci){
 		var text = $(this).children().val();

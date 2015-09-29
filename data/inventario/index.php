@@ -16,7 +16,7 @@
 		<link rel="stylesheet" href="../../dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="../../dist/css/font-awesome.min.css" />
 		<!-- Select -->
-		<link rel="stylesheet" href="../../dist/css/chosen.min.css" />		
+		<link rel="stylesheet" href="../../dist/css/chosen.min.css" />				
 		<link rel="stylesheet" href="../../dist/css/ui.jqgrid.min.css" />
 		<link rel="stylesheet" href="../../dist/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="../../dist/css/datepicker.min.css" />
@@ -25,11 +25,12 @@
 		<link rel="stylesheet" href="../../dist/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="../../dist/css/fontdc.css" />
 		<link rel="stylesheet" href="../../dist/css/jquery-ui.custom.min.css" type="text/css"/>
-
+		<link rel="stylesheet" href="../../dist/css/jquery.gritter.min.css" />
 		<!-- ace styles -->
 		<link rel="stylesheet" href="../../dist/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
-		<link type="text/css" rel="stylesheet" id="ace-skins-stylesheet" href="../../dist/css/ace-skins.min.css">
-		<script src="../../dist/js/ace-extra.min.js"></script>
+        <link type="text/css" rel="stylesheet" id="ace-skins-stylesheet" href="../../dist/css/ace-skins.min.css">
+        <link type="text/css" rel="stylesheet" id="ace-rtl-stylesheet" href="../../dist/css/ace-rtl.min.css">
+        <script src="../../dist/js/ace-extra.min.js"></script>
 	</head>
 
 	<body class="skin-2">
@@ -61,7 +62,7 @@
 											<a href="#" data-action="fullscreen" class="orange2">
 												<i class="ace-icon fa fa-expand"></i>
 											</a>
-											<a href="#" data-action="reload">
+											<a href="" data-action="reload">
 												<i class="ace-icon fa fa-refresh"></i>
 											</a>
 										</div>
@@ -77,7 +78,7 @@
 																<label class="col-sm-4 no-padding-right" for="fecha_actual">Fecha Actual:</label>
 																<div class="col-sm-8">
 																	<div class="input-group">
-																		<input class="form-control date-picker" id="fecha_actual" name="fecha_actual" type="text" readonly data-date-format="yyyy-mm-dd" />
+																		<input class="form-control date-picker" id="fecha_actual" name="fecha_actual" type="text" readonly />
 																		<span class="input-group-addon">
 																			<i class="fa fa-calendar bigger-110"></i>
 																		</span>
@@ -181,10 +182,10 @@
 																			</div>
 																			<div class="row">
 																				<div class="col-xs-12">
-																					<input type="hidden" id="descuento" name="descuento" class="form-control" data-toggle="tooltip" value="0" min="0" maxlength="3" /> 
-																					<input type="text" id="stock" name="stock" class="form-control" data-toggle="tooltip" readonly /> 
-																					<input type="hidden" id="id_productos" name="id_productos" class="form-control" data-toggle="tooltip" /> 
-																					<input type="hidden" id="p_venta" name="p_venta" class="form-control" data-toggle="tooltip" />
+																					<input type="text" id="stock" name="stock" class="form-control" readonly /> 
+																					<input type="hidden" id="descuento" name="descuento" class="form-control" value="0" min="0" maxlength="3" /> 
+																					<input type="hidden" id="id_productos" name="id_productos" class="form-control" /> 
+																					<input type="hidden" id="p_venta" name="p_venta" class="form-control"/>
 																				</div>
 																			</div>
 																		</div>
@@ -205,7 +206,6 @@
 							                                <table id="list"></table>
 							                            </div>
 							                        </div>
-
 
 													<div class="row">
 														<div class="col-xs-12">
@@ -233,14 +233,6 @@
 														<button data-toggle="modal" href="#myModal" type="button" id="btn_3" class="btn btn-primary">
 															<i class="ace-icon fa fa-search bigger-120 write"></i>
 															Buscar
-														</button>
-														<button type="button" id="btn_4" class="btn btn-primary">
-															<i class="ace-icon fa fa-arrow-circle-left bigger-120 write"></i>
-															Atras
-														</button>
-														<button type="button" id="btn_5" class="btn btn-primary">
-															<i class="ace-icon fa fa fa-arrow-circle-right bigger-120 write"></i>
-															Adelante
 														</button>
 													</div>
 												</div>
@@ -275,7 +267,7 @@
 								&nbsp; &nbsp;
 								<a class="btn btn-app btn-light no-radius" href="#">
 									<i class="ace-icon fa fa-print bigger-230"></i>
-									Inprimir
+									Imprimir
 								</a>
 							</div>
 						</div>
@@ -295,7 +287,8 @@
 			if('ontouchstart' in document.documentElement) document.write("<script src='../../dist/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
 		<script src="../../dist/js/bootstrap.min.js"></script>
-		<script src="../../dist/js/jquery-ui.custom.min.js"></script>
+
+		<script src="../../dist/js/jquery-ui.min.js"></script>
 		<script src="../../dist/js/jquery.ui.touch-punch.min.js"></script>
 		<script src="../../dist/js/jquery.easypiechart.min.js"></script>
 		<script src="../../dist/js/jquery.sparkline.min.js"></script>
@@ -305,51 +298,23 @@
 		<script src="../../dist/js/chosen.jquery.min.js"></script>
 		<script src="../../dist/js/date-time/bootstrap-datepicker.min.js"></script>
 		<script src="../../dist/js/date-time/bootstrap-timepicker.min.js"></script>
-		<script src="../../dist/js/date-time/moment.min.js"></script>
 		<script src="../../dist/js/date-time/daterangepicker.min.js"></script>
-		<script src="../../dist/js/date-time/bootstrap-datetimepicker.min.js"></script>
-		<script src="../../dist/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
-
+		<script src="../../dist/js/date-time/moment.min.js"></script>
+				
 		<!-- ace scripts -->
 		<script src="../../dist/js/ace-elements.min.js"></script>
 		<script src="../../dist/js/ace.min.js"></script>
 		<script src="../../dist/js/jqGrid/jquery.jqGrid.min.js"></script>
         <script src="../../dist/js/jqGrid/i18n/grid.locale-en.js"></script>
+        <script src="../../dist/js/jquery.maskedinput.min.js"></script>
+        <script src="../../dist/js/jquery.bootstrap-duallistbox.min.js"></script>
+        <script src="../../dist/js/jquery.raty.min.js"></script>
+        <script src="../../dist/js/select2.min.js"></script>
+        <script src="../../dist/js/bootstrap-multiselect.min.js"></script>
 		
 		<script src="../generales.js"></script>
-		<script src="../../dist/js/validCampoFranz.js" ></script>
 		<script src="inventario.js"></script>
+		<script src="../../dist/js/validCampoFranz.js" ></script>
+		<script src="../../dist/js/jquery.gritter.min.js"></script>
 	</body>
 </html>  
-
-<script type="text/javascript">
-	// tooltips 
-	$('[data-rel=tooltip]').tooltip();
-	//calendario
-	var f = new Date();
-	$('.date-picker').datepicker({
-		autoclose: true,
-		format:'yyyy-mm-dd',
-		startView:0		
-	});
-	$('.date-picker').val(f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate());
-	$('#txt_fecha_actual').val(f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate());
-	// seclect chosen 
-	$('.chosen-select').chosen({
-		allow_single_deselect:true,
-		no_results_text:'No encontrado'		
-	});
-	$('.modal.aside').ace_aside();
-				
-	$('#aside-inside-modal').addClass('aside').ace_aside({container: '#my-modal > .modal-dialog'});
-	
-	$(document).one('ajaxloadstart.page', function(e) {
-		//in ajax mode, remove before leaving page
-		$('.modal.aside').remove();
-		$(window).off('.aside')
-	});
-
-	//$('#dob').datepicker('setDate', new Date(2006, 11, 24));
-
-
-</script>

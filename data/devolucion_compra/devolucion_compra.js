@@ -75,7 +75,7 @@ function guardar_devolucion() {
 }
 
 function limpiar_campo1(){
-    if($("#codigo").val() === "") {
+    if($("#codigo").val() == "") {
         $("#codigo_barras").val("");
         $("#id_productos").val("");
         $("#producto").val("");
@@ -90,7 +90,7 @@ function limpiar_campo1(){
 } 
 
 function limpiar_campo2(){
-    if($("#producto").val() === "") {
+    if($("#producto").val() == "") {
         $("#codigo_barras").val("");
         $("#id_productos").val("");
         $("#codigo").val("");

@@ -471,8 +471,8 @@
 										</div>
 									</div>							
 								</div>
-							</div><!-- /.col -->
-						</div><!-- /.row -->
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -482,6 +482,7 @@
 			<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
 		</a>
 		</div>
+
 		<script type="text/javascript">
 			window.jQuery || document.write("<script src='../../dist/js/jquery.min.js'>"+"<"+"/script>");
 		</script>
