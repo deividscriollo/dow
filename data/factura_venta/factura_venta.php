@@ -4,7 +4,7 @@
 	include '../funciones_generales.php';
 	//include '../correos/mail.php';
 	// include '../correos/prueba.php';
-	 error_reporting(0);
+	error_reporting(0);
 
 	$conexion = conectarse();
 	date_default_timezone_set('America/Guayaquil');

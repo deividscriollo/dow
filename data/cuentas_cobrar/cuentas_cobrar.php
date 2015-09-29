@@ -3,6 +3,8 @@
 	include '../conexion.php';
 	include '../funciones_generales.php';
 	include '../correos/mail.php';
+	error_reporting(0);
+
 	// include '../correos/prueba.php';
 	$conexion = conectarse();
 	date_default_timezone_set('America/Guayaquil');
@@ -40,8 +42,14 @@
 		$id2 = unique($fecha_larga);
 
 		// guardar pagos
-        $sql = "insert into pagos_cobrar values('$id1','".$_POST['id_cliente']."','".$id_session."', '".$_POST['fecha_actual']."','".$_POST['hora_actual']."','".$_POST['formas']."','$arreglo2[$i]','$arreglo3[$i]','$arreglo4[$i]','$arreglo5[$i]','$arreglo6[$i]','".$_POST['observaciones']."','Activo','$fecha')";
-        $guardar = guardarSql($conexion,$sql);
+		pg_query("insert into pagos_cobrar values('$id1','".$_POST['id_cliente']."','".$id_session."', '".$_POST['fecha_actual']."','".$_POST['hora_actual']."','".$_POST['formas']."','$arreglo2[$i]','$arreglo3[$i]','$arreglo4[$i]','$arreglo5[$i]','$arreglo6[$i]','".$_POST['observaciones']."','Activo','$fecha')");
+        // fin
+
+		// modificar pagos
+        $consulta = pg_query("select * from pagos_venta where id_pagos_venta = '$arreglo1[$i]'");
+        while ($row = pg_fetch_row($consulta)) {
+            $saldo = $row[9];
+        }
         // fin
 
 }
