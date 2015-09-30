@@ -19,8 +19,8 @@ while ($row = pg_fetch_row($consulta)) {
             'descuento' => $row[27],
             'stock' => $row[10],
             'iva_producto' => $row[29],
-            'inventar' => $row[26],
-            'incluye' => $row[15]
+            'inventar' => $row[15],
+            'incluye' => $row[26]
         );
     } else {
         if ($tipo == "MAYORISTA") {
@@ -33,8 +33,8 @@ while ($row = pg_fetch_row($consulta)) {
             'descuento' => $row[27],
             'stock' => $row[10],
             'iva_producto' => $row[29],
-            'inventar' => $row[26],
-            'incluye' => $row[15]
+            'inventar' => $row[15],
+            'incluye' => $row[26]
             );
         }
     }

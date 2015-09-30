@@ -1182,7 +1182,9 @@ colModel:[
                         $("#fecha_actual").val(data[i + 1]);
                         $("#hora_actual").val(data[i + 2]);
                         $("#digitador").val(data[i + 3]);
-                        $("#serie3").val(data[i + 4]);
+                        var num = data[i + 4]; 
+                        var res = num.substr(8, 20);
+                        $("#serie3").val(res);
                         $("#id_cliente").val(data[i + 5]);
                         $('#txt_nro_identificacion').append($("<option data-extra='" + data[i + 6] + "'></option>").html(data[i + 6])).trigger('chosen:updated');                    
                         $('#txt_nombre_cliente').append($("<option data-extra='" + data[i + 7] + "'></option>").html(data[i + 7])).trigger('chosen:updated');                                                             

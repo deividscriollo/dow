@@ -8,7 +8,7 @@ error_reporting(0);
 $id = $_GET['com'];
 $arr_data = array();
 
-$consulta = pg_query("select D.id_productos, Pr.codigo, Pr.descripcion, D.cantidad, D.precio, D.descuento, D.total, PI.porcentaje, Pr.incluye_iva from proforma P, detalle_proforma D, productos Pr, porcentaje_iva PI where Pr.id_porcentaje_iva = PI.id_porcentaje_iva and D.id_productos = Pr.id_productos and P.id_proforma = D.id_proforma and D.id_factura_compra='" . $id . "'");
+$consulta = pg_query("select D.id_productos, P.codigo, P.descripcion, D.cantidad, D.precio, D.descuento, D.total, PI.porcentaje, P.incluye_iva from factura_compra F, detalle_factura_compra D, productos P, porcentaje_iva PI where P.id_porcentaje_iva = PI.id_porcentaje_iva and D.id_productos = P.id_productos and F.id_factura_compra = D.id_factura_compra and D.id_factura_compra='" . $id . "'");
 while ($row = pg_fetch_row($consulta)) {
     $arr_data[] = $row[0];
     $arr_data[] = $row[1];
