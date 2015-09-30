@@ -989,9 +989,9 @@ colModel:[
     {name: 'descuento', index: 'descuento', editable: false, frozen: true, editrules: {required: true}, align: 'center', width: 80},
     {name: 'cal_des', index: 'cal_des', editable: false, hidden: true, frozen: true, editrules: {required: true}, align: 'center', width: 80},
     {name: 'total', index: 'total', editable: false, search: false, frozen: true, editrules: {required: true}, align: 'center', width: 80},
-    {name: 'iva', index: 'iva', align: 'center', width: 100, hidden: true},
+    {name: 'iva', index: 'iva', align: 'center', width: 50, hidden: true},
     {name: 'pendiente', index: 'pendiente', editable: false, frozen: true, editrules: {required: true}, align: 'center', width: 80},
-    {name: 'incluye', index: 'incluye', editable: false, hidden: true, frozen: true, editrules: {required: true}, align: 'center', width: 80}
+    {name: 'incluye', index: 'incluye', editable: false, hidden: true, frozen: true, editrules: {required: true}, align: 'center', width: 50}
   ],          
   rowNum: 10,       
   width: null,
