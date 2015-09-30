@@ -116,7 +116,7 @@
 																<div class="form-group">
 																	<label class="col-sm-6 control-label no-padding-right" for="txt_nro_identificacion">Nro de Identificación:</label>
 																	<div class="col-sm-6">
-																	<input type="text" id="id_proveedor" name="id_proveedor">
+																	<input type="hidden" id="id_proveedor" name="id_proveedor">
 																		<select class="chosen-select form-control" id="txt_nro_identificacion" name="txt_nro_identificacion" data-placeholder="Buscar...." >	                                                                        
 	                                                                        <option value=""> </option>	                                                                        
 	                                                                    </select>
@@ -137,7 +137,7 @@
 																<div class="form-group">
 																	<label class="col-sm-5 control-label no-padding-right" for="txt_nro_factura">Nro. Factura:</label>
 																	<div class="col-sm-7">
-																		<input type="text" id="id_factura_compra" name="id_factura_compra" />
+																		<input type="hidden" id="id_factura_compra" name="id_factura_compra" />
 																		<select class="chosen-select form-control" id="txt_nro_factura" name="txt_nro_factura" data-placeholder="Buscar....">	                                                                        
 	                                                                        <option value=""> </option>	                                                                        
 	                                                                    </select>
