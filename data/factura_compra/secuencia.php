@@ -7,14 +7,15 @@
 	$lista2 = array();
 	$lista3 = array();
 	$id_tabla = '';
-	if($_GET['fn'] == '0'){//function atras
-		if($_GET['id'] == ''){///si exsite un id previo
+	if($_GET['fn'] == '0') {//function atras
+		if($_GET['id'] == '') {///si exsite un id previo
 			$sql = "select id_factura_compra from factura_compra order by fecha_creacion desc limit 1";
 			$id_tabla = id_unique($conexion, $sql);			
 		}else{
 			$sql = "select id_factura_compra from factura_compra where id_factura_compra not in (select id_factura_compra from factura_compra where id_factura_compra >= '$_GET[id]' order by id_factura_compra desc) order by fecha_creacion desc limit 1";
 			$id_tabla = id_unique($conexion, $sql);			
 		}
+
 		$sql_cabecera = "select id_factura_compra,usuario.nombres_completos,fecha_actual,hora_actual,proveedor.id_proveedor,proveedor.identificacion, proveedor.nombres_completos,comprobante,fecha_registro,fecha_emision,fecha_caducidad,fecha_cancelacion,numero_serie,numero_autorizacion,factura_compra.forma_pago,tarifa0,tarifa12,iva,descuento,total,factura_compra.termino_pago,terminos_pago.descripcion,formas_pago.descripcion from factura_compra,proveedor,usuario,formas_pago,terminos_pago where factura_compra.id_proveedor = proveedor.id_proveedor and factura_compra.id_usuario = usuario.id_usuario and formas_pago.id_forma_pago = factura_compra.forma_pago and terminos_pago.id_termino_pago = factura_compra.termino_pago and id_factura_compra='$id_tabla'";
 		//echo $sql_cabecera;					
 		$sql_detalles = "select productos.id_productos,codigo,descripcion,cantidad,detalle_factura_compra.precio,descuento,total from detalle_factura_compra,productos where detalle_factura_compra.id_productos = productos.id_productos and id_factura_compra = '$id_tabla'";

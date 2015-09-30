@@ -74,7 +74,8 @@ while ($row = pg_fetch_row($consulta)) {
 												<i class="ace-icon fa fa-refresh"></i>
 											</a>
 										</div>
-									</div>									
+									</div>
+
 									<div class="widget-body">
 										<div class="widget-main">
 											<div class="row">
@@ -86,6 +87,7 @@ while ($row = pg_fetch_row($consulta)) {
 																<div class="col-sm-8">
 																	<div class="input-group">
 																		<input class="form-control date-picker" id="fecha_actual" name="fecha_actual" type="text" readonly/>
+																		<input type="hidden" id="comprobante" name="comprobante" readonly class="form-control"/>
 																		<span class="input-group-addon">
 																			<i class="fa fa-calendar bigger-110"></i>
 																		</span>
@@ -108,7 +110,7 @@ while ($row = pg_fetch_row($consulta)) {
 															<div class="col-md-4">
 																<span class="bigger-120">
 																	<span class="red bolder">Responsable:</span>
-																	<span ><?php print($_SESSION['nombrescompletosdow']); ?></span>
+																	<span id="responsable"><?php print($_SESSION['nombrescompletosdow']); ?></span>
 																</span>
 															</div>
 														</div>

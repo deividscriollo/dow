@@ -741,7 +741,7 @@ colModel:[
     {name: 'precio_u', index: 'precio_u', editable: false, search: false, frozen: true, editrules: {required: true}, align: 'center', width: 110, editoptions:{maxlength: 10, size:15,dataInit: function(elem){$(elem).bind("keypress", function(e) {return punto(e)})}}}, 
     {name: 'descuento', index: 'descuento', editable: false, frozen: true, editrules: {required: true}, align: 'center', width: 90},
     {name: 'cal_des', index: 'cal_des', editable: false, hidden: true, frozen: true, editrules: {required: true}, align: 'center', width: 90},
-    {name: 'total', index: 'total', editable: false, search: false, frozen: true, editrules: {required: true}, align: 'center', width: 150},
+    {name: 'total', index: 'total', editable: false, search: false, frozen: true, editrules: {required: true}, align: 'center', width: 100},
     {name: 'iva', index: 'iva', align: 'center', width: 100, hidden: true},
     {name: 'incluye', index: 'incluye', editable: false, hidden: true, frozen: true, editrules: {required: true}, align: 'center', width: 90}
   ],          
@@ -910,89 +910,71 @@ jQuery(grid_selector).jqGrid({
         $("#comprobante").val(ret.id_proforma);
         var valor = ret.id_proforma;
 
-        $.getJSON('retornar_factura_compra1.php?com=' + valor, function(data) {
+        // limpiar campos
+        $('#txt_nro_identificacion').html("");
+        $('#txt_nombre_cliente').html("");
+        $("#lbl_client_direccion").val("");
+        $("#lbl_client_telefono").val("");
+        $("#lbl_client_correo").val("");
+
+        $("#list").jqGrid("clearGridData", true);
+        $("#tarifa0").val("0.000");
+        $("#tarifa12").val("0.000");
+        $("#iva").val("0.000");
+        $("#descuento_total").val("0.000");
+        $("#total").val("0.000");
+
+        $.getJSON('retornar_proforma1.php?com=' + valor, function(data) {
           var tama = data.length;
           if (tama != 0) {
-                for (var i = 0; i < tama; i = i + 21) {
-                    $("#id_factura_compra").val(data[i]);
+                for (var i = 0; i < tama; i = i + 16) {
+                    $("#id_proforma").val(data[i]);
                     $("#fecha_actual").val(data[i + 1]);
                     $("#hora_actual").val(data[i + 2]);
                     $("#digitador").val(data[i + 3]);
-                    $("#serie").val(data[i + 4]);
-                    $("#tipo_comprobante").val(data[i + 4]);
-                    $("#tipo_comprobante").trigger("chosen:updated");
-                    $("#id_proveedor").val(data[i + 6]);
-                    $("#txt_nro_identificacion").val(data[i + 7]);
-                    $("#txt_nro_identificacion").trigger("chosen:updated");
-                    $("#txt_nombre_proveedor").val(data[i + 8]);
-                  
-                    $("#fecha_registro").val(data[i + 8]);
-                    $("#fecha_emision").val(data[i + 9]);
-                    $("#fecha_caducidad").val(data[i + 10]);
-                  
-                    $("#cancelacion").val(data[i + 12]);
-                    $("#autorizacion").val(data[i + 12]);
-                    $("#formas").val(data[i + 14]);
-                    $("#total_p").val(data[i + 15]);
-                    $("#total_p2").val(data[i + 16]);
-                    $("#total").val(data[i + 19]);
+                    $("#id_cliente").val(data[i + 4]);
+                    $('#txt_nro_identificacion').append($("<option data-extra='" + data[i + 5] + "'></option>").html(data[i + 5])).trigger('chosen:updated');                    
+                    $('#txt_nombre_cliente').append($("<option data-extra='" + data[i + 6] + "'></option>").html(data[i + 6])).trigger('chosen:updated');                                                             
+                    $("#lbl_client_direccion").val(data[i + 7]);
+                    $("#lbl_client_telefono").val(data[i + 8]);
+                    $("#lbl_client_correo").val(data[i + 9]);
+                    $('#tipo').html("");
+                    $('#tipo').append($("<option data-extra='" + data[i + 10] + "'></option>").html(data[i + 10])).trigger('chosen:updated');                                                             
+                    $("#tarifa0").val(data[i + 11]);
+                    $("#tarifa12").val(data[i + 12]);
+                    $("#iva").val(data[i + 13]);
+                    $("#descuento_total").val(data[i + 14]);
+                    $("#total").val(data[i + 15]);
                 }
             }
         });
 
-        $('#myModal').modal('hide');
+        $.getJSON('retornar_proforma2.php?com=' + valor, function(data) {
+          var tama = data.length;
+            if (tama !== 0) {
+                 for (var i = 0; i < tama; i = i + 9) {
+                    var datarow = {
+                        id_productos: data[i], 
+                        codigo: data[i + 1], 
+                        detalle: data[i + 2], 
+                        cantidad: data[i + 3], 
+                        precio_u: data[i + 4], 
+                        descuento: data[i + 5], 
+                        total: data[i + 6], 
+                        iva: data[i + 7],
+                        incluye: data[i + 8]
+                        };
+                    var su = jQuery("#list").jqGrid('addRowData', data[i], datarow);
+                }
+            }
+        });
 
-        
-        // $("#txt_responsable").text(ret.txt_reponsable);
-        // $("#fecha_actual").val(ret.fecha_registro);
-        // $("#estado").val(ret.estado);
-        // $("#id_proveedor").val(ret.id_proveedor);
-        // $('#txt_nro_identificacion').html("");
-        // $('#txt_nro_identificacion').append($("<option data-extra='"+ret.nombre_proveedor+"'></option>").val(ret.id_proveedor).html(ret.ci_proveedor)).trigger('chosen:updated');                    
-        // $('#txt_nombre_proveedor').html("");
-        // $('#txt_nombre_proveedor').append($("<option data-extra='"+ret.ci_proveedor+"'></option>").val(ret.id_proveedor).html(ret.nombre_proveedor)).trigger('chosen:updated');                                                             
-        // $('#tipo_comprobante').val(ret.tipo_comprobante);
-        // $('#tipo_comprobante').trigger("chosen:updated");
-        // $('#fecha_registro').val(ret.fecha_registro);
-        // $('#fecha_emision').val(ret.fecha_emision);
-        // $('#fecha_caducidad').val(ret.fecha_caducidad);
-        // $('#fecha_cancelacion').val(ret.fecha_cancelacion);
-        // var text = ret.nro_serie;
-        // $('#serie1').val(text.substr(0,3));
-        // $('#serie2').val(text.substr(4,3));
-        // $('#serie3').val(text.substr(8,30));
-        // $('#autorizacion').val(ret.autorizacion);
-        
-        // $('#tarifa0').val(ret.tarifa0);
-        // $('#tarifa12').val(ret.tarifa12);
-        // $('#iva').val(ret.iva);
-        // $('#descuento_total').val(ret.descuento_total);
-        // $('#total').val(ret.total);
-
-        // $("#formas").val(ret.id_forma_pago);            
-        // $('#formas').trigger("chosen:updated");            
-        
-        // $("#termino_pago").val(ret.id_termino_pago)            
-        // $('#termino_pago').trigger("chosen:updated");
-        // $('#myModal').modal('hide');  
-        // carga_detalles_fc("detalle_factura",ret.comprobante);                            
+        $('#myModal').modal('hide');                         
         $("#btn_0").text("");
         $("#btn_0").append("<span class='glyphicon glyphicon-log-in'></span> ----------");                   
-    },          
-
-      
+    }, 
       caption: "LISTA DE PROFORMAS"
-
   });
-  // jQuery(grid_selector).jqGrid('hideCol', "comprobante");   
-  // jQuery(grid_selector).jqGrid('hideCol', "id_proveedor");      
-  // jQuery(grid_selector).jqGrid('hideCol', "tarifa0");      
-  // jQuery(grid_selector).jqGrid('hideCol', "tarifa12");      
-  // jQuery(grid_selector).jqGrid('hideCol', "iva");      
-  // jQuery(grid_selector).jqGrid('hideCol', "descuento_total");      
-  // jQuery(grid_selector).jqGrid('hideCol', "total");      
-  // jQuery(grid_selector).jqGrid('hideCol', "id_forma_pago");  
-  // jQuery(grid_selector).jqGrid('hideCol', "id_termino_pago");  
   $(window).triggerHandler('resize.jqGrid');//cambiar el tamaño para hacer la rejilla conseguir el tamaño correcto
 
   function aceSwitch( cellvalue, options, cell ) {
@@ -1027,8 +1009,6 @@ jQuery(grid_selector).jqGrid({
       }
   },
   {
-      //new record form
-      //width: 700,
       closeAfterAdd: true,
       recreateForm: true,
       viewPagerButtons: false,

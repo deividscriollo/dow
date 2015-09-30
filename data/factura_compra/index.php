@@ -79,7 +79,7 @@
 																	<li class="">
 																		<a data-toggle="tab" href="#pagos">
 																			<i class="green ace-icon fa fa-money bigger-120"></i>
-																			Pagos
+																			Adicionales
 																		</a>
 																	</li>
 																</ul>
@@ -129,7 +129,7 @@
 																				<div class="col-md-12">
 																					<div class="col-md-5">
 																						<div class="form-group">
-																							<label class="col-sm-4 no-padding-right" for="serie3">Numero de serie:</label>																			
+																							<label class="col-sm-4 no-padding-right" for="serie3">Numero de serie: <font color="red">*</font></label>																			
 																							<div class="col-sm-8">
 																								<input type="text" id="serie" name="serie" class="form-control" data-toggle="tooltip" data-original-title="" required />																		
 																								<input type="hidden" id="id_factura_compra" name="id_factura_compra" class="form-control" data-toggle="tooltip" data-original-title="" required />																		
@@ -241,7 +241,7 @@
 
 																					<div class="col-sm-4">
 																						<div class="form-group">																	
-																							<label class="col-sm-5 control-label no-padding-right" for="autorizacion">Nro de Autorización:</label>
+																							<label class="col-sm-5 control-label no-padding-right" for="autorizacion">Nro de Autorización: <font color="red">*</font></label>
 																							<div class="col-sm-7">
 																								<input type="text" id="autorizacion" name="autorizacion" class="form-control" data-toggle="tooltip" maxlength="30" required /> 
 																							</div>																														
