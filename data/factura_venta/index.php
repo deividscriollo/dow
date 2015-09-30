@@ -89,13 +89,6 @@ while ($row = pg_fetch_row($consulta)) {
 																</a>
 															</li>
 
-															<!-- <li class="">
-																<a data-toggle="tab" href="#detalle">
-																	<i class="green ace-icon fa fa-info-circle bigger-120"></i>
-																	Detalles
-																</a>
-															</li> -->
-
 															<li class="">
 																<a data-toggle="tab" href="#detalle_pagos">
 																	<i class="green ace-icon fa fa-money bigger-120"></i>
@@ -114,6 +107,7 @@ while ($row = pg_fetch_row($consulta)) {
 																				<div class="col-sm-8">
 																					<div class="input-group">
 																						<input class="form-control date-picker" id="fecha_actual" name="fecha_actual" type="text" readonly />
+																						<input type="text" id="comprobante" name="comprobante" readonly class="form-control"/>
 																						<span class="input-group-addon">
 																							<i class="fa fa-calendar bigger-110"></i>
 																						</span>
@@ -163,7 +157,7 @@ while ($row = pg_fetch_row($consulta)) {
 																				<div class="form-group">
 																					<label class="col-sm-6 no-padding-right" for="txt_nro_identificacion"> Cédula de Identidad o Ruc: <font color="red">*</font></label>
 																					<div class="col-sm-6">
-																					<input type="hidden" id="id_cliente" name="id_cliente">																				
+																					<input type="text" id="id_cliente" name="id_cliente">																				
 																						<select class="chosen-select form-control" id="txt_nro_identificacion" name="txt_nro_identificacion" data-placeholder="Nro de identifiación">	     
 					                                                                        <option value=""></option>	                                                                        
 					                                                                    </select>

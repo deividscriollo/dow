@@ -916,6 +916,7 @@ jQuery(grid_selector).jqGrid({
         $("#lbl_client_direccion").val("");
         $("#lbl_client_telefono").val("");
         $("#lbl_client_correo").val("");
+        $('#tipo').html("");
 
         $("#list").jqGrid("clearGridData", true);
         $("#tarifa0").val("0.000");
@@ -938,7 +939,6 @@ jQuery(grid_selector).jqGrid({
                     $("#lbl_client_direccion").val(data[i + 7]);
                     $("#lbl_client_telefono").val(data[i + 8]);
                     $("#lbl_client_correo").val(data[i + 9]);
-                    $('#tipo').html("");
                     $('#tipo').append($("<option data-extra='" + data[i + 10] + "'></option>").html(data[i + 10])).trigger('chosen:updated');                                                             
                     $("#tarifa0").val(data[i + 11]);
                     $("#tarifa12").val(data[i + 12]);
