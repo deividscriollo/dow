@@ -50,7 +50,7 @@ function guardar_pago() {
                 success: function(data) {
                     var val = data;
                     if (val == 1) {
-                        //alertify.alert("Pago Guardado correctamente", function(){location.reload();});
+                        alertify.alert("Pago Guardado correctamente", function(){location.reload();});
                           
                     }
                 }

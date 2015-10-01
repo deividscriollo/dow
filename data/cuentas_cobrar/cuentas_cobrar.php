@@ -51,17 +51,20 @@
             $saldo = $row[9];
         }
         // fin
+        /////////LIBRO DIARIOS//////////
+		$id_libro  = unique($fecha_larga);
+		
+		$sql_libro = "insert into libro_diario values ('".$id_libro."','".$fecha."','".$_POST['valor_pagado']."','','11501155240ac39d2f0','Tabla Pagos Cobrar','Cobro en efectivo del documento '.$arreglo1[1])";///caja
+		$guardar = guardarSql($conexion,$sql_libro);
 
-
+		$id_libro  = unique($fecha_larga);
+		$sql_libro = "insert into libro_diario values ('".$id_libro."','".$fecha."','','".$_POST['valor_pagado']."','11501155240ac39f4e6','Tabla Pagos Cobrar','Cobro cuentas cobrar')";///cuentas por cobrar
+		$guardar = guardarSql($conexion,$sql_libro);	
+		////////////////////////////////
 
 }
+$data = 0; /// error al guardar
 
-$guardar = guardarSql($conexion,$sql);
-if( $guardar == 'true'){
-	$data = 0; ////datos guardados
-}else{
-	$data = 2; /// error al guardar
-}
 
 echo $data;
 ?>
