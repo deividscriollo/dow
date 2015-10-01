@@ -46,11 +46,13 @@
         // fin
 
 		// modificar pagos
-        $consulta = pg_query("select * from pagos_venta where id_pagos_venta = '$arreglo1[$i]'");
+        $consulta = pg_query("select * from pagos_venta where id_pagos_venta = '".$arreglo1[$i]."'");
         while ($row = pg_fetch_row($consulta)) {
             $saldo = $row[9];
         }
         // fin
+
+
 
 }
 

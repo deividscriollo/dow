@@ -39,7 +39,7 @@
 		// guardar detalle_factura
         $sql2 = "insert into detalle_factura_compra values ('$id2','$id','".$arreglo1[$i]."','".$arreglo2[$i]."','".$arreglo3[$i]."','".$arreglo4[$i]."','".$arreglo5[$i]."','$fecha','Activo')";       
 		$guardar = guardarSql($conexion,$sql2);
-		// fin        
+		// fin        		
 		$sql_kardex = "select id_productos from productos where id_productos ='".$arreglo1[$i]."'";		
 		//echo $sql_kardex;
 		$id_prod = id_unique($conexion,$sql_kardex);
@@ -71,9 +71,13 @@
 		$v_e = $arreglo3[$i];
 		$t_e = $arreglo2[$i] * $arreglo3[$i];
 
+		$t_e = number_format($t_e, 3, '.', '');
+
 		$c_t = $c_t + $c_e;		
 		$t_t = $t_t + $t_e;
 		$v_t = $t_t / $c_t;
+
+		$v_t = number_format($v_t, 3, '.', '');
 		$sql_kardex = "insert into detalles_kardex values ('".$id_det_kardex."','".$id_kardex."','".$fecha."','".'Factura compra Ingreso productos Nro.'.$id."','".$c_e."','".$v_e."','".$t_e."','','','','".$c_t."','".$v_t."','".$t_t."')";		
 		$guardar = guardarSql($conexion, $sql_kardex);        
         
