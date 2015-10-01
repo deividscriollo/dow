@@ -40,7 +40,7 @@
         $sql2 = "insert into detalle_factura_compra values ('$id2','$id','".$arreglo1[$i]."','".$arreglo2[$i]."','".$arreglo3[$i]."','".$arreglo4[$i]."','".$arreglo5[$i]."','$fecha','Activo')";       
 		$guardar = guardarSql($conexion,$sql2);
 		// fin        
-		$sql_kardex = "select id_productos from productos where codigo ='".$arreglo1[$i]."'";
+		$sql_kardex = "select id_productos from productos where id_productos ='".$arreglo1[$i]."'";		
 		//echo $sql_kardex;
 		$id_prod = id_unique($conexion,$sql_kardex);
         ///kardex y modificar productos///
