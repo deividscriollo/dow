@@ -69,13 +69,6 @@
 																		</a>
 																	</li>
 
-																	<!-- <li class="">
-																		<a data-toggle="tab" href="#detalle">
-																			<i class="green ace-icon fa fa-info-circle bigger-120"></i>
-																			Detalles
-																		</a>
-																	</li> -->
-
 																	<li class="">
 																		<a data-toggle="tab" href="#pagos">
 																			<i class="green ace-icon fa fa-money bigger-120"></i>
@@ -445,7 +438,7 @@
 																			<i class="ace-icon fa fa-refresh bigger-120 write"></i>
 																			Actualizar
 																		</button>														
-																		<button data-toggle="modal" href="#myModal" type="button" id="btn_3" class="btn btn-primary">
+																		<button data-toggle="modal" href="#myModal" type="button" class="btn btn-primary">
 																			<i class="ace-icon fa fa-search bigger-120 write"></i>
 																			Buscar
 																		</button>

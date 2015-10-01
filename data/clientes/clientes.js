@@ -45,6 +45,7 @@ function inicio (){
 	$("#btn_0").on("click",guardar_clientes);
 	$("#btn_1").on("click",limpiar_form);
 	$("#btn_2").on("click",actualizar_form);
+	
 	$("#btn_4").on("click",function (){		
 		var resp = "";		
 		resp =atras($("#txt_0").val(),"clientes","secuencia.php");		
@@ -142,6 +143,7 @@ function inicio (){
 	    $("#btn_0").append("<span class='glyphicon glyphicon-log-in'></span> Modificar");     	            
         /**/
 	});
+
 	$("#btn_5").on("click",function (){		
 		var resp = "";		
 		resp =adelante($("#txt_0").val(),"clientes","secuencia.php");		

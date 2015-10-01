@@ -312,7 +312,7 @@
 															<i class="ace-icon fa fa-refresh bigger-120 write"></i>
 															Actualizar
 														</button>														
-														<button data-toggle="modal" href="#myModal" type="button" id="btn_3" class="btn btn-primary">
+														<button data-toggle="modal" href="#myModal" type="button" class="btn btn-primary">
 															<i class="ace-icon fa fa-search bigger-120 write"></i>
 															Buscar
 														</button>

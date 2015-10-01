@@ -4,6 +4,7 @@ session_start();
 
 include '../conexion.php';
 conectarse();
+
 $texto = $_GET['term'];
 $consulta = pg_query("select * from productos P, porcentaje_iva I where P.id_porcentaje_iva = I.id_porcentaje_iva and P.estado = 'Si' and P.codigo like '%$texto%'");
 

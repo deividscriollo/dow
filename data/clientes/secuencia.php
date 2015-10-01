@@ -21,7 +21,6 @@
 		if($_GET['fn'] == '1'){//function adelante
 			if($_GET['id'] == ''){///si exsite un id previo
 				$sql = "select id_cliente from cliente order by fecha_creacion desc limit 1";
-				
 				$id_tabla = id_unique($conexion, $sql);			
 			}else{
 				$sql = "select id_cliente from cliente where id_cliente not in (select id_cliente from cliente where id_cliente <= '$_GET[id]' order by id_cliente asc) order by fecha_creacion asc limit 1";				

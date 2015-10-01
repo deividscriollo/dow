@@ -6,6 +6,10 @@ function recargar() {
   }, 1000);  
 }
 
+function actualizar () {
+  location.reload();
+}
+
 function guardar_proforma() {
   var tam = jQuery("#list").jqGrid("getRowData");
 
@@ -227,7 +231,7 @@ function inicio (){
 			$('#lbl_client_telefono').val("");
 			$('#lbl_client_correo').val("");
 			$('#lbl_client_direccion').val("");
-		}else{
+		} else {
 			var a = $("#txt_nombre_cliente option:selected");            
       		$('#txt_nro_identificacion').html("");
       		$('#txt_nro_identificacion').append($("<option data-extra='"+$(a).text()+"' data-direccion='"+$(a).data("direccion")+"' data-telefono='"+$(a).data("telefono")+"' data-email='"+$(a).data("email")+"'></option>").val($(a).val()).html($(a).data("extra"))).trigger('chosen:updated');      		
@@ -474,7 +478,6 @@ function inicio (){
     });
     // fin
 
-
   	/*---agregar a la tabla---*/
   	$("#cantidad").on("keypress",function (e){
     	if(e.keyCode == 13){//tecla del alt para el entrer poner 13
@@ -720,9 +723,165 @@ function inicio (){
     	}
 	});
 
-/*-----guardar factura compra--*/
+/*-----guardar proforma--*/
 $("#btn_0").on("click", guardar_proforma);
-$("#btn_1").on("click", recargar);
+$("#btn_1").on("click", actualizar);
+
+$("#btn_2").on("click",function () { 
+    $.ajax({
+        type: "POST",
+        url: "../procesos/secuencia.php",
+        data: "comprobante=" + $("#comprobante").val() + "&tabla=" + "proforma" + "&id_tabla=" + "id_proforma" + "&tipo=" + 1,
+        success: function(data) {
+            var val = data;
+            if(val != '0') {
+                $("#comprobante").val(val);
+                var valor = val;
+
+                // limpiar campos
+                $('#txt_nro_identificacion').html("");
+                $('#txt_nombre_cliente').html("");
+                $("#lbl_client_direccion").val("");
+                $("#lbl_client_telefono").val("");
+                $("#lbl_client_correo").val("");
+                $('#tipo').html("");
+
+                $("#list").jqGrid("clearGridData", true);
+                $("#tarifa0").val("0.000");
+                $("#tarifa12").val("0.000");
+                $("#iva").val("0.000");
+                $("#descuento_total").val("0.000");
+                $("#total").val("0.000");
+
+                $.getJSON('retornar_proforma1.php?com=' + valor, function(data) {
+                  var tama = data.length;
+                  if (tama != 0) {
+                        for (var i = 0; i < tama; i = i + 16) {
+                            $("#id_proforma").val(data[i]);
+                            $("#fecha_actual").val(data[i + 1]);
+                            $("#hora_actual").val(data[i + 2]);
+                            $("#digitador").val(data[i + 3]);
+                            $("#id_cliente").val(data[i + 4]);
+                            $('#txt_nro_identificacion').append($("<option data-extra='" + data[i + 5] + "'></option>").html(data[i + 5])).trigger('chosen:updated');                    
+                            $('#txt_nombre_cliente').append($("<option data-extra='" + data[i + 6] + "'></option>").html(data[i + 6])).trigger('chosen:updated');                                                             
+                            $("#lbl_client_direccion").val(data[i + 7]);
+                            $("#lbl_client_telefono").val(data[i + 8]);
+                            $("#lbl_client_correo").val(data[i + 9]);
+                            $('#tipo').append($("<option data-extra='" + data[i + 10] + "'></option>").html(data[i + 10])).trigger('chosen:updated');                                                             
+                            $("#tarifa0").val(data[i + 11]);
+                            $("#tarifa12").val(data[i + 12]);
+                            $("#iva").val(data[i + 13]);
+                            $("#descuento_total").val(data[i + 14]);
+                            $("#total").val(data[i + 15]);
+                        }
+                    }
+                });
+
+                $.getJSON('retornar_proforma2.php?com=' + valor, function(data) {
+                  var tama = data.length;
+                    if (tama !== 0) {
+                         for (var i = 0; i < tama; i = i + 9) {
+                            var datarow = {
+                                id_productos: data[i], 
+                                codigo: data[i + 1], 
+                                detalle: data[i + 2], 
+                                cantidad: data[i + 3], 
+                                precio_u: data[i + 4], 
+                                descuento: data[i + 5], 
+                                total: data[i + 6], 
+                                iva: data[i + 7],
+                                incluye: data[i + 8]
+                                };
+                            var su = jQuery("#list").jqGrid('addRowData', data[i], datarow);
+                        }
+                    }
+                });
+                $("#btn_0").text("");
+                $("#btn_0").append("<span class='glyphicon glyphicon-log-in'></span> ----------");
+            } else {
+                alert("Sin registros Posteriores!!");
+        }
+      }
+    });
+});
+
+$("#btn_3").on("click",function () { 
+    $.ajax({
+        type: "POST",
+        url: "../procesos/secuencia.php",
+        data: "comprobante=" + $("#comprobante").val() + "&tabla=" + "proforma" + "&id_tabla=" + "id_proforma" + "&tipo=" + 2,
+        success: function(data) {
+            var val = data;
+            if(val != '0') {
+                $("#comprobante").val(val);
+                var valor = val;
+
+                // limpiar campos
+                $('#txt_nro_identificacion').html("");
+                $('#txt_nombre_cliente').html("");
+                $("#lbl_client_direccion").val("");
+                $("#lbl_client_telefono").val("");
+                $("#lbl_client_correo").val("");
+                $('#tipo').html("");
+
+                $("#list").jqGrid("clearGridData", true);
+                $("#tarifa0").val("0.000");
+                $("#tarifa12").val("0.000");
+                $("#iva").val("0.000");
+                $("#descuento_total").val("0.000");
+                $("#total").val("0.000");
+
+                $.getJSON('retornar_proforma1.php?com=' + valor, function(data) {
+                  var tama = data.length;
+                  if (tama != 0) {
+                        for (var i = 0; i < tama; i = i + 16) {
+                            $("#id_proforma").val(data[i]);
+                            $("#fecha_actual").val(data[i + 1]);
+                            $("#hora_actual").val(data[i + 2]);
+                            $("#digitador").val(data[i + 3]);
+                            $("#id_cliente").val(data[i + 4]);
+                            $('#txt_nro_identificacion').append($("<option data-extra='" + data[i + 5] + "'></option>").html(data[i + 5])).trigger('chosen:updated');                    
+                            $('#txt_nombre_cliente').append($("<option data-extra='" + data[i + 6] + "'></option>").html(data[i + 6])).trigger('chosen:updated');                                                             
+                            $("#lbl_client_direccion").val(data[i + 7]);
+                            $("#lbl_client_telefono").val(data[i + 8]);
+                            $("#lbl_client_correo").val(data[i + 9]);
+                            $('#tipo').append($("<option data-extra='" + data[i + 10] + "'></option>").html(data[i + 10])).trigger('chosen:updated');                                                             
+                            $("#tarifa0").val(data[i + 11]);
+                            $("#tarifa12").val(data[i + 12]);
+                            $("#iva").val(data[i + 13]);
+                            $("#descuento_total").val(data[i + 14]);
+                            $("#total").val(data[i + 15]);
+                        }
+                    }
+                });
+
+                $.getJSON('retornar_proforma2.php?com=' + valor, function(data) {
+                  var tama = data.length;
+                    if (tama !== 0) {
+                         for (var i = 0; i < tama; i = i + 9) {
+                            var datarow = {
+                                id_productos: data[i], 
+                                codigo: data[i + 1], 
+                                detalle: data[i + 2], 
+                                cantidad: data[i + 3], 
+                                precio_u: data[i + 4], 
+                                descuento: data[i + 5], 
+                                total: data[i + 6], 
+                                iva: data[i + 7],
+                                incluye: data[i + 8]
+                                };
+                            var su = jQuery("#list").jqGrid('addRowData', data[i], datarow);
+                        }
+                    }
+                });
+                $("#btn_0").text("");
+                $("#btn_0").append("<span class='glyphicon glyphicon-log-in'></span> ----------");
+            } else {
+                alert("Sin registros Superiores!!");
+        }
+      }
+    });
+});
 
 // tabla factura
 jQuery("#list").jqGrid({          
