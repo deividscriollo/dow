@@ -4,7 +4,8 @@
 	$conexion = conectarse();
 	date_default_timezone_set('America/Guayaquil');
     $fecha=date('Y-m-d H:i:s', time()); 
-    $fecha_larga = date('His', time());     
+    $fecha_larga = date('His', time()); 
+        
 	$sql = "";	
 	$sql2 = "";	
 	$sql3 = "";	
