@@ -93,7 +93,7 @@
 											}else{
 												if($_GET['fun'] == "12"){//para la busqueda de ci de  proveedores
 													if($_GET['tipo'] == "0"){
-														$sql = "select id_proveedor,identificacion,nombres_completos from proveedor where identificacion like '%$_GET[val]%'";															
+														$sql = "select id_proveedor,identificacion,empresa from proveedor where identificacion like '%$_GET[val]%'";															
 														cargarSelect_1($conexion,$sql);
 													}else{
 
@@ -108,7 +108,7 @@
 													}else{
 														if($_GET['fun'] == "14"){//para la busqueda de nombres de proveedor
 															if($_GET['tipo'] == "0"){
-																$sql = "select id_proveedor,nombres_completos,identificacion from proveedor where nombres_completos like '%$_GET[val]%'";
+																$sql = "select id_proveedor,empresa,identificacion from proveedor where empresa like '%$_GET[val]%'";
 																cargarSelect_1($conexion,$sql);
 															}else{
 																
@@ -340,7 +340,16 @@
 
 																																											}
 																																										}else{
-																																											
+																																											if($_GET['fun'] == "43"){//para la tabla
+																																												if($_GET['tipo'] == "0"){//indica que se carga al inicio de la pagina
+																																													$sql = "select id_comprobante, nombre_comprobante from tipo_comprobante";
+																																													cargarSelect($conexion,$sql);
+																																												}else{
+
+																																												}
+																																											}else{
+																																												
+																																											}
 																																										}
 																																									}
 																																								}

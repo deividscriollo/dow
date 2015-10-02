@@ -41,7 +41,6 @@ function guardar_factura() {
                   var string_v4 = "";
                   var string_v5 = "";
                   var fil = jQuery("#list").jqGrid("getRowData");
-
                   
                   for (var i = 0; i < fil.length; i++) {
                       var datos = fil[i];
@@ -120,6 +119,7 @@ function inicio () {
   $('#serie').mask('999-999-999999999');
  
   // cargar combos
+  carga_detalles_productos("tipo_comprobante",'43');
   carga_forma_pago("formas");
   carga_termino_pago("termino_pago");
 
@@ -601,7 +601,6 @@ function inicio () {
               var valor = val;
 
               // limpiar campos
-              $('#tipo_comprobante').html("");
               $('#txt_nro_identificacion').html("");
               $('#txt_nombre_proveedor').html("");
               $("#serie").val("");
@@ -623,7 +622,8 @@ function inicio () {
                           $("#hora_actual").val(data[i + 2]);
                           $("#digitador").val(data[i + 3]);
                           $("#serie").val(data[i + 4]);
-                          $('#tipo_comprobante').append($("<option data-extra='" +data[i + 5] + "'></option>").html(data[i + 5])).trigger('chosen:updated');                    
+                          $("#tipo_comprobante").val(data[i + 5]);
+                          $("#tipo_comprobante").trigger("chosen:updated");
                           $("#id_proveedor").val(data[i + 6]);
                           $('#txt_nro_identificacion').append($("<option data-extra='" + data[i + 7] + "'></option>").html(data[i + 7])).trigger('chosen:updated');                     
                           $('#txt_nombre_proveedor').append($("<option data-extra='" + data[i + 8] + "'></option>").html(data[i + 8])).trigger('chosen:updated');                    
@@ -685,7 +685,6 @@ function inicio () {
               var valor = val;
 
               // limpiar campos
-              $('#tipo_comprobante').html("");
               $('#txt_nro_identificacion').html("");
               $('#txt_nombre_proveedor').html("");
               $("#serie").val("");
@@ -707,7 +706,8 @@ function inicio () {
                           $("#hora_actual").val(data[i + 2]);
                           $("#digitador").val(data[i + 3]);
                           $("#serie").val(data[i + 4]);
-                          $('#tipo_comprobante').append($("<option data-extra='" +data[i + 5] + "'></option>").html(data[i + 5])).trigger('chosen:updated');                    
+                          $("#tipo_comprobante").val(data[i + 5]);
+                          $("#tipo_comprobante").trigger("chosen:updated");
                           $("#id_proveedor").val(data[i + 6]);
                           $('#txt_nro_identificacion').append($("<option data-extra='" + data[i + 7] + "'></option>").html(data[i + 7])).trigger('chosen:updated');                     
                           $('#txt_nombre_proveedor').append($("<option data-extra='" + data[i + 8] + "'></option>").html(data[i + 8])).trigger('chosen:updated');                    
@@ -941,7 +941,6 @@ jQuery(function($) {
           var valor = ret.id_factura_compra;
 
           // limpiar campos
-          $('#tipo_comprobante').html("");
           $('#txt_nro_identificacion').html("");
           $('#txt_nombre_proveedor').html("");
           $("#serie").val("");
@@ -963,7 +962,8 @@ jQuery(function($) {
                         $("#hora_actual").val(data[i + 2]);
                         $("#digitador").val(data[i + 3]);
                         $("#serie").val(data[i + 4]);
-                        $('#tipo_comprobante').append($("<option data-extra='" +data[i + 5] + "'></option>").html(data[i + 5])).trigger('chosen:updated');                    
+                        $("#tipo_comprobante").val(data[i + 5]);
+                        $("#tipo_comprobante").trigger("chosen:updated");
                         $("#id_proveedor").val(data[i + 6]);
                         $('#txt_nro_identificacion').append($("<option data-extra='" + data[i + 7] + "'></option>").html(data[i + 7])).trigger('chosen:updated');                     
                         $('#txt_nombre_proveedor').append($("<option data-extra='" + data[i + 8] + "'></option>").html(data[i + 8])).trigger('chosen:updated');                    

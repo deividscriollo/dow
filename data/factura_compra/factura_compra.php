@@ -30,18 +30,27 @@
 	$arreglo3 = explode('|', $campo3);
 	$arreglo4 = explode('|', $campo4);
 	$arreglo5 = explode('|', $campo5);
-	$nelem = count($arreglo1);   	   	
+	$nelem = count($arreglo1);   
+	// fin
+
+	if($_POST['formas'] == '121615168685608245f3e51a1.74980590') {
+		 // guardar pagos venta
+        $id2 = unique($fecha_larga);
+        pg_query("insert into pagos_compra values('$id2','".$_POST['id_proveedor']."', '$id','".$id_session."','".$_POST['fecha_actual']."','".$_POST['total']."','".$_POST['total']."','Activo','$fecha')");
+	}// fin credito
+
 	
 	for ($i = 1; $i < $nelem; $i++) {		
-		$id2 = unique($fecha_larga);
+		$id3 = unique($fecha_larga);
 		$stock = 0;
 		$precio_compra = 0;		
 		// guardar detalle_factura
-        $sql2 = "insert into detalle_factura_compra values ('$id2','$id','".$arreglo1[$i]."','".$arreglo2[$i]."','".$arreglo3[$i]."','".$arreglo4[$i]."','".$arreglo5[$i]."','$fecha','Activo')";       
+        $sql2 = "insert into detalle_factura_compra values ('$id3','$id','".$arreglo1[$i]."','".$arreglo2[$i]."','".$arreglo3[$i]."','".$arreglo4[$i]."','".$arreglo5[$i]."','$fecha','Activo')";       
 		$guardar = guardarSql($conexion,$sql2);
-		// fin        		
+		// fin  
+
 		$sql_kardex = "select id_productos from productos where id_productos ='".$arreglo1[$i]."'";		
-		//echo $sql_kardex;
+		
 		$id_prod = id_unique($conexion,$sql_kardex);
         ///kardex y modificar productos///
         $c_t = '';
@@ -50,6 +59,7 @@
 		$c_e = '';
 		$v_e = '';
 		$t_e = '';
+
         $consulta = pg_query("select stock, precio from productos where id_productos = '".$id_prod."'");
         while ($row = pg_fetch_row($consulta)) {
             $stock = $row[0];
@@ -84,7 +94,7 @@
         $sql3 = "update productos set stock='".$c_t."', precio = '".$v_t."' where id_productos='".$id_prod."'";								
 		$guardar = guardarSql($conexion, $sql3);
 		
-		/////////LIBRO DIARIOS//////////
+		// Libro diario
 		$id_libro  = unique($fecha_larga);		
 		$sql_libro = "insert into libro_diario values ('".$id_libro."','".$fecha."','".($_POST['tarifa12'] + $_POST['tarifa0'])."','','11501155240ac3a0d22','Factura Compra','Ingreso de Mercaderia')";
 		$resp = $guardar = guardarSql($conexion,$sql_libro);
@@ -104,13 +114,12 @@
 					$guardar = guardarSql($conexion,$sql_libro);	
 				}
 			}
-		}	
-        // fin
+		}
   	}
 
-  	if( $guardar == 'true'){
+  	if( $guardar == 'true') {
 		$data = 0; ////datos guardados
-	}else{
+	} else {
 		$data = 2; /// error al guardar
 	}	
 
