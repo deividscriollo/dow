@@ -26,7 +26,7 @@ function guardar_factura() {
               alert("Ingrese la autorización");
           } else {
               if(tam.length == 0){
-                  $("#codigo_barras").focus()
+                  $("#codigo_barras").focus();
                   alert("Ingrese los productos a la Factura");  
               } else {
                   var v1 = new Array();
@@ -177,7 +177,7 @@ function inicio () {
 	});	
 
   /*eventos change del chosen*/
-  $("#txt_nro_identificacion").chosen().change(function (event,params){
+  $("#txt_nro_identificacion").chosen().change(function (event,params) {
     if(params == undefined){      
       $('#txt_nro_identificacion').html("");
       $('#txt_nro_identificacion').append($("<option></option>"));          
@@ -219,7 +219,7 @@ function inicio () {
     }
   }); 
 
-  $("#txt_nombre_proveedor").chosen().change(function (event, params){    
+  $("#txt_nombre_proveedor").chosen().change(function (event, params) {    
     if(params == undefined){      
       $('#txt_nro_identificacion').html("");
       $('#txt_nro_identificacion').append($("<option></option>"));          
@@ -349,19 +349,19 @@ function inicio () {
     // fin
 
   /*---agregar a la tabla---*/
-  $("#cantidad").on("keypress",function (e){
+  $("#cantidad").on("keypress",function (e) {
     if(e.keyCode == 13){//tecla del alt para el entrer poner 13
       $("#precio").focus();  
     }
   });
 
-  $("#precio").on("keypress",function (e){
+  $("#precio").on("keypress",function (e) {
     if(e.keyCode == 13){//tecla del alt para el entrer poner 13
       $("#descuento").focus();  
     }
   });
 
-  $("#descuento").on("keypress",function (e){
+  $("#descuento").on("keypress",function (e) {
     if(e.keyCode == 13){//tecla del alt para el entrer poner 13
       var subtotal0 = 0;
       var subtotal12 = 0;
