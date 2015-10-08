@@ -1005,6 +1005,7 @@ function carga_forma_pago(id){
         }                   
     });      
 }
+
 function carga_termino_pago(id){
     $.ajax({       /*cargar el select forma_pago*/        
         type: "POST",

@@ -171,6 +171,7 @@ function id($conexion, $sql) { //retorna el id de una consulta con solo un param
     }
     echo $id;
 }
+
 function id_unique($conexion, $sql) { //retorna el id de una consulta con solo un parametro de retorno en el sql
     $id = 0;
     $sql = pg_query($conexion, $sql);
@@ -266,14 +267,14 @@ function buscar_nombres($conexion, $sql) {
         echo $lista = json_encode($lista);
     }
 }
+
 function fecha_total(){    
-    
     date_default_timezone_set('America/Guayaquil');
     $fecha=date('Y-m-d H:i:s', time()); 
     $fecha_larga = date('His', time()); 
     return $valor=uniqid('');
 }
-function sql ($conexion,$sql){
+function sql($conexion,$sql){
     $sql = pg_query($conexion,$sql);
     return $sql;
 }
