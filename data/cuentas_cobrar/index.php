@@ -257,7 +257,7 @@ while ($row = pg_fetch_row($consulta)) {
 																<div class="row">
 																	<div class="col-xs-12">
 																		<input type="text" id="saldo2" name="saldo2" readonly class="form-control" data-toggle="tooltip"  /> 
-																		<input type="text" id="id_pagos_venta" name="id_pagos_venta" readonly class="form-control" data-toggle="tooltip"  /> 
+																		<input type="hidden" id="id_pagos_venta" name="id_pagos_venta" readonly class="form-control" data-toggle="tooltip"  /> 
 																	</div>
 																</div>
 															</div>

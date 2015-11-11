@@ -47,8 +47,6 @@ function menu_arriba(){
 					</button>
 				</div>
 
-				
-
 				<nav role="navigation" class="navbar-menu pull-right collapse navbar-collapse">
 					<ul class="nav navbar-nav">
 						<li>
@@ -975,18 +973,20 @@ function menu_lateral(){
 						Cuentas Cobrar
 					</a>
 					<b class="arrow"></b>
-				</li>';				
-				print '<li ';
-					if ($acus[3] == 'cuentas_pagar') {
-						print('class="hover active"');
-					}else print('class="hover"');
-				print'>
-					<a href="../cuentas_pagar/">
-						<i class="menu-icon fa fa-caret-right"></i>
-						Cuentas Pagar
-					</a>
-					<b class="arrow"></b>
-				</li>';																													
+				</li>';		
+
+				// print '<li ';
+				// 	if ($acus[3] == 'cuentas_pagar') {
+				// 		print('class="hover active"');
+				// 	}else print('class="hover"');
+				// print'>
+				// 	<a href="../cuentas_pagar/">
+				// 		<i class="menu-icon fa fa-caret-right"></i>
+				// 		Cuentas Pagar
+				// 	</a>
+				// 	<b class="arrow"></b>
+				// </li>';	
+																																
 				print '</ul>
 				</li>';
 

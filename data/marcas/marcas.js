@@ -130,21 +130,21 @@
 	            .wrapInner('<div class="widget-header" />')
 	            style_edit_form(form);
 	        },
-	        afterSubmit: function (response){
-	        	if(response.responseText == 2){
-	        		$.gritter.add({
-						title: 'Mensaje',
-						text: 'Registro Guardado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
-						time: 1000				
-					});
-	        		return true;
-	        	}else{
-	        		if(response.responseText == 1){	
-	        			$("#nombre_marca").val("");
-	        			return [false,"Error.. La Marca ya existe"];
-		        	}	
-	        	}
-	        },
+	    //     afterSubmit: function (response){
+	    //     	if(response.responseText == 2){
+	    //     		$.gritter.add({
+					// 	title: 'Mensaje',
+					// 	text: 'Registro Guardado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
+					// 	time: 1000				
+					// });
+	    //     		return true;
+	    //     	}else{
+	    //     		if(response.responseText == 1){	
+	    //     			$("#nombre_marca").val("");
+	    //     			return [false,"Error.. La Marca ya existe"];
+		   //      	}	
+	    //     	}
+	    //     },
 	    },
 	    {
 	        //delete record form

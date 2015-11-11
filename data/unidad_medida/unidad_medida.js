@@ -1,8 +1,6 @@
 	$(document).on("ready",inicio);
 
 	function inicio (){
-
-
 	//////////////para tablas//////////
 		jQuery(function($) {
 	    var grid_selector = "#grid-table";
@@ -78,7 +76,6 @@
 	        }, 0);
 	    }
 
-
 	    //navButtons
 	    jQuery(grid_selector).jqGrid('navGrid',pager_selector,
 	    {   //navbar options
@@ -132,21 +129,21 @@
 	            .wrapInner('<div class="widget-header" />')
 	            style_edit_form(form);
 	        },
-	        afterSubmit: function (response){
-	        	if(response.responseText == 2){
-	        		$.gritter.add({
-						title: 'Mensaje',
-						text: 'Registro guardado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
-						time: 1000				
-					});
-	        		return true;
-	        	}else{
-	        		if(response.responseText == 1){	
-	        			$("#descripcion").val("");
-	        			return [false,"Error.. La Unidad de medida ya existe"];
-		        	}	
-	        	}
-	        },
+	    //     afterSubmit: function (response){
+	    //     	if(response.responseText == 2){
+	    //     		$.gritter.add({
+					// 	title: 'Mensaje',
+					// 	text: 'Registro guardado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
+					// 	time: 1000				
+					// });
+	    //     		return true;
+	    //     	}else{
+	    //     		if(response.responseText == 1){	
+	    //     			$("#descripcion").val("");
+	    //     			return [false,"Error.. La Unidad de medida ya existe"];
+		   //      	}	
+	    //     	}
+	    //     },
 	    },
 	    {
 	        //delete record form

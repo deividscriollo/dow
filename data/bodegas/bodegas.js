@@ -131,21 +131,21 @@
 	            .wrapInner('<div class="widget-header" />')
 	            style_edit_form(form);
 	        },
-	        afterSubmit: function (response){
-	        	if(response.responseText == 2){
-	        		$.gritter.add({
-						title: 'Mensaje',
-						text: 'Registro guardado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
-						time: 1000				
-					});
-	        		return true;
-	        	}else{
-	        		if(response.responseText == 1){	
-	        			$("#nombre_bodega").val("");
-	        			return [false,"Error.. La Bodega ya existe"];
-		        	}	
-	        	}
-	        },
+	    //     afterSubmit: function (response){
+	    // //     	if(response.responseText == 2) {
+	    // //     		$.gritter.add({
+					// // 	title: 'Mensaje',
+					// // 	text: 'Registro guardado correctamente <i class="ace-icon fa fa-spinner fa-spin green bigger-125"></i>',
+					// // 	time: 1000				
+					// // });
+	    // //     		return true;
+	    // //     	}else{
+	    // //     		if(response.responseText == 1){	
+	    // //     			$("#nombre_bodega").val("");
+	    // //     			return [false,"Error.. La Bodega ya existe"];
+		   // //      	}	
+	    // //     	}
+	    //     },
 	    },
 	    {
 	        //delete record form
